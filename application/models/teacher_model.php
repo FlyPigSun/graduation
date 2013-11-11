@@ -67,7 +67,14 @@ $this->db->close();
 //return $msg;
 }
 
-
+//修改密码
+function password($id,$password){
+$this->load->database();
+$sql="update teacher_tb set password=? where id=?"
+$data=array($password,$id);
+$query=$this->db->query($sql,$data);
+$this->db->close();
+}
 
 
 
