@@ -1,11 +1,33 @@
+# Symfony
+/web/bundles/
+/app/cache/*
+/app/logs/*
+/vendor/
+/vendor/composer/
+/vendor/twig/
+/app/config/parameters.yml
+/app/bootstrap*
+/composer.lock
+/autoload*
+/bin
+
+# Localfiles
+symfony-update-m
+
+# Eclipse
+.buildpath
+.project
+/.settings/
+
+# Mac staff
 .DS_Store
 
-application/cache/*
-!application/cache/index.html
-!application/cache/.htaccess
+*.swp
+src/Yike/MainBundle/Resources/public/._.DS_Store
 
-application/logs/*
-!application/logs/index.html
-!application/logs/.htaccess
+.tags*
+/web/js/compiled/*.js
 
-application/config/*
+#upload
+src/Yike/MainBundle/Service/Storage/Cache
+src/Yike/MainBundle/Service/Storage/lib/logs
