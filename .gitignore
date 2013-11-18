@@ -10,3 +10,4 @@ application/logs/*
 
 application/config/*
 !application/config/routes.php
+!application/config/constants.php
