@@ -20,7 +20,7 @@ public function register(){
    $gender=$this->input->post('gender');
    $this->load->model('student_model','student');
    $this->student->insert($username,$password,$realname,$studentnumber,$grade,$class,$gender);
-   header("Location:/login/index");
+   //header("Location:/login/index");
 
 
 

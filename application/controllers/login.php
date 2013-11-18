@@ -192,7 +192,7 @@ public function studentregister(){
    $xingbie=$this->input->post('xingbie');
    $this->load->model('student_model','student');
    $this->student->insert($account,$password,$name,$xuehao,$grade,$class,$xingbie);
-   header("Location:/login/index");
+   //header("Location:/login/index");
 
 
 
