@@ -20,7 +20,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('/applicaton/resources/views/login.html');
+		$this->load->view('login.html');
 	}
     //登录
    
