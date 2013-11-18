@@ -71,7 +71,13 @@ class Welcome extends CI_Controller {
    if(strlen($this->teacher->account)==0)
    {
     //redirect("");
-    echo "1";
+    $result=101;
+    json_encode($result);
+    $data['errcode']=$result;
+    var_dump($data) ;
+   
+  
+    
    }
    else 
    {

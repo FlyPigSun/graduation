@@ -44,5 +44,6 @@
 	</form>
 	<input name="zhuce" type="button" value="注册" onclick="window.location.href='/welcome/teachertiaozhuan'" >
 	<input name="zhuce" type="button" value="添加爱好" onclick="window.location.href='/welcome/addhobby'" >
+	<?php echo $error;?>
 </body>
 </html>
