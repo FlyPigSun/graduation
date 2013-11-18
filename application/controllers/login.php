@@ -1,7 +1,7 @@
 <?php
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Login extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -24,12 +24,13 @@ class Welcome extends CI_Controller {
 	}
     //登录
    
-  public function login() {
+  public function loginin() {
      if(!isset($_SESSION)){
 
     session_start();
 
     }
+    
     $account=strtolower($this->input->post('account'));
    // echo $account;
     //$password=md5($this->input->post('password'));
@@ -86,7 +87,7 @@ class Welcome extends CI_Controller {
      $_SESSION[TEACHER_USER]=$arr;
      //redirect("/teacher/welcome","index");
     // redirect("/teacher/welcome","index");
-     header("Location:/teacher/welcome/index");
+     header("Location:/teacher/login/index");
    }
 }
    
@@ -117,14 +118,14 @@ class Welcome extends CI_Controller {
  }
 public function studentredirect(){
 
-  $this->load->view('/student/studenregister');
+  $this->load->view('/student/studentregister');
  }
 public function addhobby(){
 
  $this->load->view('/student/addhobby');
 
 }
-   public function teacherZhuce(){
+   public function teacherregister(){
     
    $account=$this->input->post('account');
    $password=$this->input->post('password');
@@ -135,7 +136,7 @@ public function addhobby(){
 
    $this->load->model('teacher_model','teacher');
    $this->teacher->insert($account,$password,$name,$gonghao,$grade,$class);
-   header("Location:/welcome/index");
+   header("Location:/login/index");
 
    }
   
@@ -155,18 +156,18 @@ public function addhobby(){
 
 
   }*/
-public function studentZhuce(){
+public function studentregister(){
    
    $account=$this->input->post('account');
    $password=$this->input->post('password');
    $name=$this->input->post('name');
-   $gonghao=$this->input->post('gonghao');
+   $gonghao=$this->input->post('xuehao');
    $grade=$this->input->post('grade');
    $class=$this->input->post('class');
    $xingbie=$this->input->post('xingbie');
    $this->load->model('student_model','student');
    $this->student->insert($account,$password,$name,$xuehao,$grade,$class,$xingbie);
-   header("Location:/welcome/index");
+   header("Location:/login/index");
 
 
 
@@ -175,7 +176,6 @@ public function studentZhuce(){
 
 
 }
-
 
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */
