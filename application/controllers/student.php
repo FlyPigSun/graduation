@@ -3,10 +3,10 @@
 
 class Student extends CI_Controller {
 
-//public function index()
-	//{
-	//	$this->load->view('login.html');
-	//}
+public function index()
+	{
+	$this->load->view('student_index.html');
+	}
 
 
 public function register(){
@@ -20,9 +20,9 @@ public function register(){
    $gender=$this->input->post('gender');
    $this->load->model('student_model','student');
    $this->student->insert($username,$password,$realname,$studentnumber,$grade,$class,$gender);
-   //header("Location:/login/index");
-
-
+ 
+    
+    header("Location:/student/index");
 
   }
 

@@ -22,6 +22,12 @@ class Login extends CI_Controller {
 	{
 		$this->load->view('login.html');
 
+    /*
+      twig使用范例
+      $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
+      $this->twig->display('login.html.twig',array('a'=>'abbcd'));
+    */
+
     if(!isset($_SESSION)){
 
     session_start();
@@ -112,7 +118,7 @@ class Login extends CI_Controller {
      $_SESSION[TEACHER_USER]=$arr;
      //redirect("/teacher/welcome","index");
     // redirect("/teacher/welcome","index");
-     header("Location:/teacher/login/index");
+     //header("Location:/teacher/login/index");
    }
 }
    
@@ -123,14 +129,15 @@ class Login extends CI_Controller {
    $this->student->login($username,$password,date("Y-m-d   H:i:s"));
    if(strlen($this->student->username)==0) 
    {
-   	//redirect("");
+    $data['errcode']=102;
+    var_dump($data);
    }
    else
    {
    
    $arr=array("id"=>$this->student->id,"username"=>$this->student->username,"time"=>$this->student->loginTime,"password"=>$this->student->password,"studentnumber"=>$this->student->studentnumber,"grade"=>$this->student->grade,"class"=>$this->student->class);
    $_SESSION[STUDENT_USER]=$arr;
-   //redirect("/student/welcome","index");
+    header("Location:/student/index");
    }
 }
  

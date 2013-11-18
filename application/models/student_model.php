@@ -39,7 +39,10 @@ public function login($username,$password,$time)
     $sql="update student_tb set logintime=? where id=?";
     $this->db->query($sql, array($time,$this->id));
    $this->db->close();
+   //$data['err']=1;
  }
+ //else{//$data['err']=0;}
+ //return $data;
 }
 //更新密码
  public function password($id,$password){
