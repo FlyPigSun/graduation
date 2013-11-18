@@ -21,10 +21,35 @@ class Login extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('login.html');
+
+    if(!isset($_SESSION)){
+
+    session_start();
+
+    }
+    
+    $account=strtolower($this->input->post('account'));
+   // echo $account;
+    //$password=md5($this->input->post('password'));
+      $password=$this->input->post('password');
+    //echo $password;
+    $role=strtolower($this->input->post('role'));
+    switch ($role) {
+      case 'teacher':
+        $this->teacherLogin($account,$password);
+       
+        break;
+      case 'student':
+        $this->studentLogin($account,$password);
+       
+        break;
+      default:
+        break;
+                   }
 	}
     //登录
    
-  public function loginin() {
+  /*public function userlogin() {
      if(!isset($_SESSION)){
 
     session_start();
@@ -49,7 +74,7 @@ class Login extends CI_Controller {
     	default:
     		break;
                    }
-   }
+   }*/
  
 
     public function loginout()
@@ -95,7 +120,7 @@ class Login extends CI_Controller {
    public function studentLogin($account,$password)
 {
    $this->load->model("student_model","student");
-   $this->load->login(utilSecureReplace($account),$password,date("Y-m-d   H:i:s"));
+   $this->load->login($account,$password,date("Y-m-d   H:i:s"));
    if(strlen($this->student->account)==0) 
    {
    	//redirect("");
