@@ -28,7 +28,7 @@ class Login extends CI_Controller {
 
     }
     
-    $account=strtolower($this->input->post('account'));
+    $username=strtolower($this->input->post('username'));
    // echo $account;
     //$password=md5($this->input->post('password'));
       $password=$this->input->post('password');
@@ -36,11 +36,11 @@ class Login extends CI_Controller {
     $role=strtolower($this->input->post('role'));
     switch ($role) {
       case 'teacher':
-        $this->teacherLogin($account,$password);
+        $this->teacherLogin($username,$password);
        
         break;
       case 'student':
-        $this->studentLogin($account,$password);
+        $this->studentLogin($username,$password);
        
         break;
       default:
@@ -90,10 +90,10 @@ class Login extends CI_Controller {
 
 
 
-    public function teacherLogin($account,$password)
+    public function teacherLogin($username,$password)
 {  
   $this->load->model('teacher_model','teacher');
-   $this->teacher->login($account,$password,date("Y-m-d   H:i:s"));
+   $this->teacher->login($username,$password,date("Y-m-d   H:i:s"));
    if(strlen($this->teacher->account)==0)
    {
     //redirect("");
@@ -117,18 +117,18 @@ class Login extends CI_Controller {
 }
    
 
-   public function studentLogin($account,$password)
+   public function studentLogin($username,$password)
 {
    $this->load->model("student_model","student");
-   $this->load->login($account,$password,date("Y-m-d   H:i:s"));
-   if(strlen($this->student->account)==0) 
+   $this->student->login($username,$password,date("Y-m-d   H:i:s"));
+   if(strlen($this->student->username)==0) 
    {
    	//redirect("");
    }
    else
    {
    
-   $arr=array("id"=>$this->student->id,"account"=>$this->student->account,"time"=>$this->student->loginTime,"password"=>$this->student->password,"xuehao"=>$this->student->xuehao,"grade"=>$this->student->grade,"class"=>$this->student->class);
+   $arr=array("id"=>$this->student->id,"username"=>$this->student->username,"time"=>$this->student->loginTime,"password"=>$this->student->password,"studentnumber"=>$this->student->studentnumber,"grade"=>$this->student->grade,"class"=>$this->student->class);
    $_SESSION[STUDENT_USER]=$arr;
    //redirect("/student/welcome","index");
    }
