@@ -7,10 +7,72 @@
     <script src="/resources/js/jquery-1.10.2.min.js"></script>
     <script src="/resources/js/jquery.md5.js"></script>
     <script src="/resources/js/bootstrap.js"></script>
+    <script src="/resources/js/base.js"></script>
     <script src="/resources/js/login.js"></script>
     <link href="/resources/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/resources/css/base.css" rel="stylesheet"/>
     <link href="/resources/css/login.css" rel="stylesheet"/>
 </head>
 <body>
-    Hello World
+    <div class="activitycircle-login-main">
+        <div class="activitycircle-login-title">欢迎来到活动天地！</div>
+        <div class="activitycircle-login-box">
+            <div class="activitycircle-login-area">
+                <div class="activitycircle-login-box-title">登录</div>
+                <div>
+                    用户名：<input class="activitycircle-login-input"/>
+                </div>
+                <div style="margin-left:13px;">
+                    密码：<input type="password" class="activitycircle-login-input"/>
+                </div>
+                <div style="margin-left:-87px;">
+                    身份：
+                    <select class="activitycircle-login-select">
+                        <option value="student">学生</option>
+                        <option value="teacher">老师</option>
+                    </select>
+                </div>
+                <a class="btn btn-primary btn-sm activitycircle-login-btn" role="button">登录</a>
+                <span class="activitycircle-changetab">没有帐号？前往注册</span>
+            </div>
+            <div class="activitycircle-register-area">
+                <div class="activitycircle-login-box-title">注册</div>
+                <div>
+                    用户名：<input class="activitycircle-login-input"/>*
+                </div>
+                <div style="margin-left:13px;">
+                    姓名：<input class="activitycircle-login-input"/>*
+                </div>
+                <div style="margin-left:13px;">
+                    密码：<input type="password" class="activitycircle-login-input"/>*
+                </div>
+                <div style="margin-left:-14px;">
+                    确认密码：<input type="password" class="activitycircle-login-input"/>*
+                </div>
+                <div style="margin-left:-87px;">
+                    年级：
+                    <select class="activitycircle-login-select">
+                        <option value="一年级">一年级</option>
+                        <option value="二年级">二年级</option>
+                        <option value="三年级">一年级</option>
+                        <option value="四年级">二年级</option>
+                        <option value="五年级">一年级</option>
+                        <option value="六年级">二年级</option>
+                    </select>*
+                </div>
+                <div style="margin-left:13px;">
+                    学号：<input class="activitycircle-login-input"/>*
+                </div>
+                <div style="margin:5px 0px 0px -53px;">
+                    性别：
+                    <input style="margin-left:10px" type="radio" value="男" name="sex">
+                    <img style="margin-right:30px;" src="/resources/images/login-boy.png"/>
+                    <input type="radio" value="女" name="sex">
+                    <img src="/resources/images/login-girl.png"/>*
+                </div>
+                <a class="btn btn-primary btn-sm activitycircle-register-btn" role="button">注册</a>
+                <span class="activitycircle-changetab">已有帐号？马上登录</span>
+            </div>
+        </div>
+    </div>
 </body>

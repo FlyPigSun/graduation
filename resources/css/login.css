@@ -1,0 +1,63 @@
+.activitycircle-login-main{
+	width: 600px;
+	margin: 150px auto;
+	text-align: center;
+}
+.activitycircle-login-title{
+	font-size: 50px;
+	font-weight: 900;
+	color: rgb(9,123,200);
+}
+.activitycircle-login-box{
+	position: relative;
+	overflow: hidden;
+	height: 300px;
+	width: 400px;
+	border: 4px solid #000;
+	border-radius: 10px;
+	padding: 30px 10px;
+	margin: 20px auto;
+}
+.activitycircle-login-area{
+	position: absolute;
+	left: 0px;
+	width: 392px;
+	height: 300px;
+}
+.activitycircle-register-area{
+	position: absolute;
+	left: 500px;
+	width: 392px;
+	height: 300px;
+}
+.activitycircle-login-input{
+	width: 200px;
+	height: 26px;
+	margin: 10px;
+}
+.activitycircle-login-select{
+	width: 100px;
+	height: 26px;
+	margin: 10px 10px 10px 6px;
+}
+.activitycircle-login-btn{
+	margin: 10px;
+	width: 136px;
+	font-size: 15px;
+	font-weight: 900;
+}
+.activitycircle-changetab{
+	font-size: 12px;
+	text-decoration: underline;	
+	cursor: pointer;
+}
+.activitycircle-register-btn{
+	margin: 10px;
+	width: 136px;
+	font-size: 15px;
+	font-weight: 900;
+}
+.activitycircle-login-box-title{
+	font-size: 26px;
+	font-weight: 900;
+}
