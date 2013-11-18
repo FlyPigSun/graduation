@@ -20,7 +20,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome');
+		$this->load->view('/applicaton/resources/views/login.html');
 	}
     //登录
    
@@ -110,14 +110,14 @@ class Welcome extends CI_Controller {
  
 
 
- public function teachertiaozhuan(){
+ public function teacherredirect(){
 
-  $this->load->view('/teacher/teacherzhuce');
+  $this->load->view('/teacher/teacherregister');
 
  }
-public function studenttiaozhuan(){
+public function studentredirect(){
 
-  $this->load->view('/student/studentzhuce');
+  $this->load->view('/student/studenregister');
  }
 public function addhobby(){
 
