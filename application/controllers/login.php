@@ -20,13 +20,8 @@ class Login extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('login.html');
-
-    /*
-      twig使用范例
-      $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
-      $this->twig->display('login.html.twig',array('a'=>'abbcd'));
-    */
+    $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
+    $this->twig->render('login.html.twig');
 
     if(!isset($_SESSION)){
 
