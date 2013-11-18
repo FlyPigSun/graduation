@@ -14,7 +14,7 @@ var $show='';
 public function insert($xingqu){
  $this->load->database();
  $sql="insert into hobby_tb value(null,?,0) ";
- $query=$this->db->query($sql,array($xingqu,0));
+ $query=$this->db->query($sql,array($xingqu));
  $this->db->close();
 }
 
