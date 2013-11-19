@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = 'login';
+$route['default_controller'] = 'login/loginAction';
 $route['index'] = 'login/indexAction';
 $route['login'] = 'login/loginAction';
 $route['logout'] = 'login/logout';

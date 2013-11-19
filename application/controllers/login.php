@@ -18,16 +18,6 @@ class Login extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-
-  	public function index(){
-        $this->load->helper('url');
-        $this->load->library('session');
-        if($this->session->userdata('id')){
-            redirect('/index');
-        }else{
-            redirect('/login');
-        }
-    }
     public function indexAction(){
         $this->load->helper('url');
         $this->load->library('session');
