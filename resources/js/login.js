@@ -10,9 +10,18 @@ activityCircle.loginPage = {
 	mode : 'login',
 	initialize : function(){
 		var me = this;
+		$('body').height($(window).height()-150);
 		$('.activitycircle-login-btn').on('click',this.login);
 		$('.activitycircle-changetab').on('click',this.changeTab);
 		$('.activitycircle-register-btn').on('click',this.studentRegister);
+		$(window).resize(function(){
+			$('body').height($(window).height()-150);
+		});
+		$(document).keypress(function(e){    
+            if(e.which == 13){
+                me.login();
+            }
+        }); 
 	},
 	login : function(){
 		var username = $('.activitycircle-login-area').find('input:eq(0)').val();
@@ -21,7 +30,7 @@ activityCircle.loginPage = {
 		password = $.md5(password);
 		if(username!=''&&password!=''){
 			$.ajax({
-				url : '/login',
+				url : '/login/userlogin',
 				type : 'post',
 				data: {
 				    username : username,
@@ -32,7 +41,13 @@ activityCircle.loginPage = {
 				    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
 				},
 				success : function(responseText){
-
+					var res = responseText;
+					res = $.parseJSON(res);
+					if(res.errcode==100){
+						location.reload();
+					}else{
+						alert('用户名密码错误');
+					}
 				}
 			});
 		}else{
@@ -55,6 +70,7 @@ activityCircle.loginPage = {
 	studentRegister : function(){
 		var username = $('.activitycircle-register-area input:eq(0)').val();
 		var realname = $('.activitycircle-register-area input:eq(1)').val();
+		realname = encodeURIComponent(realname);
 		var password_1 = $('.activitycircle-register-area input:eq(2)').val();
 		var password_2 = $('.activitycircle-register-area input:eq(3)').val();
 		var grade = $('.activitycircle-register-area').find('.activitycircle-login-select').val();

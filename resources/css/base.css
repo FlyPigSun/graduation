@@ -1,4 +1,10 @@
 body{
 	font-family: helvetica,Arial,"微软雅黑","Microsoft Yahei","hiragino kaku gothic pro",meiryo,"ms pgothic",sans-serif;
 	word-break:break-all;
+	background-color: #EDB810;
+	background-image: -moz-linear-gradient(top,#EDB810,#fff);
+	background-image: -webkit-gradient(linear,0 0,0 100%,from(#EDB810),to(#fff));
+	background-image: -webkit-linear-gradient(top,#EDB810,#fff);
+	background-image: -o-linear-gradient(top,#EDB810,#fff);
+	background-image: linear-gradient(to bottom,#EDB810,#fff);
 }

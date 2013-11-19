@@ -147,9 +147,8 @@ class Login extends CI_Controller {
         $_SESSION[STUDENT_USER]=$arr;
         $result=100;
       }
-      $result = json_encode($result);
       $data['errcode']=$result;
-      var_dump($data);
+      print_r(json_encode($data));
 }
  
 
