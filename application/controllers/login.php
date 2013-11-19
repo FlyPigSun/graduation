@@ -1,5 +1,7 @@
 <?php
 ob_start();
+
+
 //header("Cache-Control: no-cache");
 //header("Pragma: no-cache");
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
@@ -124,45 +126,30 @@ class Login extends CI_Controller {
      $_SESSION[TEACHER_USER]=$arr;
      //redirect("/teacher/welcome","index");
     // redirect("/teacher/welcome","index");
+     header("Content-Type: text/xml; charset=UTF-8");
      header("Location:/teacher/index");
    }
 }
    
 
-   public function studentLogin($username,$password)
-{  //ob_start();
-  //header("Location:/student/index");
-  //ob_end_flush();
-   // header('HTTP/1.1 301 Moved Permanently');
-   //header(sprintf("Location: %s", '/student/index')); 
-   $this->load->model("student_model","student");
-   $this->student->login($username,$password,date("Y-m-d   H:i:s"));
-   if(strlen($this->student->username)==0) 
-   {
-    $result=101;
-    json_encode($result);
-    $data['errcode']=$result;
-    var_dump($data) ;
-   }
-   else
-   {
-   
-   $arr=array("id"=>$this->student->id,"username"=>$this->student->username,"time"=>$this->student->loginTime,"password"=>$this->student->password,"studentnumber"=>$this->student->studentnumber,"grade"=>$this->student->grade,"class"=>$this->student->class);
-   $_SESSION[STUDENT_USER]=$arr;
-
-   $result=100;
-    json_encode($result);
-    $data['errcode']=$result;
-    var_dump($data) ;
-   
-    header("Location:/student/index");
-
-    
- 
- 
-   }
-  
-   
+    public function studentLogin($username,$password){
+      $this->load->model("student_model","student");
+      $this->student->login($username,$password,date("Y-m-d   H:i:s"));
+      if(strlen($this->student->username)==0){
+        $result=101;
+        
+      }
+      else{
+        $arr=array("id"=>$this->student->id,"username"=>$this->student->username,
+        "time"=>$this->student->loginTime,"password"=>$this->student->password,
+        "studentnumber"=>$this->student->studentnumber,"grade"=>$this->student->grade,
+        "class"=>$this->student->class);
+        $_SESSION[STUDENT_USER]=$arr;
+        $result=100;
+      }
+      $result = json_encode($result);
+      $data['errcode']=$result;
+      var_dump($data);
 }
  
 

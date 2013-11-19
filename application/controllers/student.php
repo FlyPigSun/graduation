@@ -7,11 +7,7 @@ public function index()
 	{
     $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
     $this->twig->render('student_index.html.twig');
-     $result=100;
-    json_encode($result);
-    $data['errcode']=$result;
-    var_dump($data) ;
-	}
+    }
 
 
 public function register(){
