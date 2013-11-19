@@ -5,7 +5,12 @@ class Student extends CI_Controller {
 
 public function index()
 	{
-	$this->load->view('student_index.html');
+    $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
+    $this->twig->render('student_index.html.twig');
+     $result=100;
+    json_encode($result);
+    $data['errcode']=$result;
+    var_dump($data) ;
 	}
 
 
@@ -22,8 +27,8 @@ public function register(){
    $this->student->insert($username,$password,$realname,$studentnumber,$grade,$class,$gender);
  
     
-    header("Location:/student/index");
-
+   //header("Location:/student/index");
+  header("Location:/student/index");
   }
 
 

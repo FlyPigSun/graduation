@@ -1,4 +1,7 @@
 <?php
+ob_start();
+//header("Cache-Control: no-cache");
+//header("Pragma: no-cache");
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Login extends CI_Controller {
@@ -20,6 +23,7 @@ class Login extends CI_Controller {
 	 */
 	public function index()
 	{
+
     $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
     $this->twig->render('login.html.twig');
 
@@ -50,32 +54,39 @@ class Login extends CI_Controller {
 	}
     //登录
    
-  /*public function userlogin() {
-     if(!isset($_SESSION)){
+
+   public function studentindex()
+  {
+    $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
+    $this->twig->render('student_index.html.twig');
+  }
+
+  public function userlogin() {
+   if(!isset($_SESSION)){
 
     session_start();
 
     }
     
-    $account=strtolower($this->input->post('account'));
+    $username=strtolower($this->input->post('username'));
    // echo $account;
     //$password=md5($this->input->post('password'));
       $password=$this->input->post('password');
     //echo $password;
     $role=strtolower($this->input->post('role'));
     switch ($role) {
-    	case 'teacher':
-    		$this->teacherLogin($account,$password);
+      case 'teacher':
+        $this->teacherLogin($username,$password);
        
-    		break;
-    	case 'student':
-    		$this->studentLogin($account,$password);
+        break;
+      case 'student':
+        $this->studentLogin($username,$password);
        
-    		break;
-    	default:
-    		break;
+        break;
+      default:
+        break;
                    }
-   }*/
+   }
  
 
     public function loginout()
@@ -95,10 +106,10 @@ class Login extends CI_Controller {
 {  
   $this->load->model('teacher_model','teacher');
    $this->teacher->login($username,$password,date("Y-m-d   H:i:s"));
-   if(strlen($this->teacher->account)==0)
+   if(strlen($this->teacher->username)==0)
    {
-    //redirect("");
-    $result=101;
+    
+    $result=102;
     json_encode($result);
     $data['errcode']=$result;
     var_dump($data) ;
@@ -113,27 +124,45 @@ class Login extends CI_Controller {
      $_SESSION[TEACHER_USER]=$arr;
      //redirect("/teacher/welcome","index");
     // redirect("/teacher/welcome","index");
-     //header("Location:/teacher/login/index");
+     header("Location:/teacher/index");
    }
 }
    
 
    public function studentLogin($username,$password)
-{
+{  //ob_start();
+  //header("Location:/student/index");
+  //ob_end_flush();
+   // header('HTTP/1.1 301 Moved Permanently');
+   //header(sprintf("Location: %s", '/student/index')); 
    $this->load->model("student_model","student");
    $this->student->login($username,$password,date("Y-m-d   H:i:s"));
    if(strlen($this->student->username)==0) 
    {
-    $data['errcode']=102;
-    var_dump($data);
+    $result=101;
+    json_encode($result);
+    $data['errcode']=$result;
+    var_dump($data) ;
    }
    else
    {
    
    $arr=array("id"=>$this->student->id,"username"=>$this->student->username,"time"=>$this->student->loginTime,"password"=>$this->student->password,"studentnumber"=>$this->student->studentnumber,"grade"=>$this->student->grade,"class"=>$this->student->class);
    $_SESSION[STUDENT_USER]=$arr;
+
+   $result=100;
+    json_encode($result);
+    $data['errcode']=$result;
+    var_dump($data) ;
+   
     header("Location:/student/index");
+
+    
+ 
+ 
    }
+  
+   
 }
  
 
@@ -144,15 +173,14 @@ class Login extends CI_Controller {
 
  }
 public function studentredirect(){
-
-  $this->load->view('/student/studentregister');
+    
  }
 public function addhobby(){
 
  $this->load->view('/student/addhobby');
 
 }
-   public function teacherregister(){
+ /*  public function teacherregister(){
     
    $account=$this->input->post('account');
    $password=$this->input->post('password');
@@ -167,7 +195,7 @@ public function addhobby(){
 
    }
   
-  /*pubilic function studentZhuce(){
+  pubilic function studentZhuce(){
    
    $account=$this->input->post('account');
    $password=$this->input->post('password');
@@ -182,7 +210,7 @@ public function addhobby(){
 
 
 
-  }*/
+  }
 public function studentregister(){
    
    $account=$this->input->post('account');
@@ -198,7 +226,8 @@ public function studentregister(){
 
 
 
-  }
+  }*/
+
 
 
 
