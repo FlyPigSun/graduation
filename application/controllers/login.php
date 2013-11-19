@@ -3,7 +3,6 @@ ob_start();
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Login extends CI_Controller {
-
 	/**
 	 * Index Page for this controller.
 	 *
@@ -21,16 +20,34 @@ class Login extends CI_Controller {
 	 */
 
   	public function index(){
-        $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
-        $this->twig->render('login.html.twig');
+        $this->load->helper('url');
+        $this->load->library('session');
+        if($this->session->userdata('id')){
+            redirect('/index');
+        }else{
+            redirect('/login');
+        }
     }
-    
-    public function studentindex()
-    {
-        $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
-        $this->twig->render('student_index.html.twig');
+    public function indexAction(){
+        $this->load->helper('url');
+        $this->load->library('session');
+        if($this->session->userdata('id')){
+            $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
+            $this->twig->render('student_index.html.twig');
+        }else{
+            redirect('login');
+        }
     }
-
+    public function loginAction(){
+        $this->load->helper('url');
+        $this->load->library('session');
+        if($this->session->userdata('id')){
+            redirect('/index');
+        }else{
+            $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
+            $this->twig->render('login.html.twig');
+        }
+    }
     public function userlogin(){
         if(!isset($_SESSION)){
           session_start();
@@ -49,11 +66,15 @@ class Login extends CI_Controller {
             break;
         }
      }
-    public function loginout(){
-        if(!isset($_SESSION)){
-            session_start();
+    public function logout(){
+        $this->load->library('session');
+        $this->load->helper('url');
+        if($this->session->userdata('id')){
+            $this->session->unset_userdata('id');
+            $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
+            $this->twig->render('login.html.twig');
+            redirect('/login');
         }
-        session_destroy();
     }
 
 
@@ -76,20 +97,22 @@ class Login extends CI_Controller {
    
 
     public function studentLogin($username,$password){
+        $this->load->library('session');
         $this->load->model("student_model","student");
         $this->student->login($username,$password,date("Y-m-d   H:i:s"));
         if(strlen($this->student->username)==0){
-            $result=101; 
+            $result=101;
         }else{
             $arr=array("id"=>$this->student->id,"username"=>$this->student->username,
             "time"=>$this->student->loginTime,"password"=>$this->student->password,
             "studentnumber"=>$this->student->studentnumber,"grade"=>$this->student->grade,
             "class"=>$this->student->class);
-            $_SESSION[STUDENT_USER]=$arr;
+            $this->session->set_userdata($arr);
             $result=100;
         }
-            $data['errcode']=$result;
-            print_r(json_encode($data));
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+            
     }
  
 

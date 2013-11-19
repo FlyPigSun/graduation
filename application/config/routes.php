@@ -38,9 +38,10 @@
 |
 */
 
-//$route['default_controller'] = "welcome";
 $route['default_controller'] = 'login';
-//$route['(:any)'] = ''welcome/login'/$1';
+$route['index'] = 'login/indexAction';
+$route['login'] = 'login/loginAction';
+$route['logout'] = 'login/logout';
 $route['404_override'] = '';
 
 

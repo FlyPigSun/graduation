@@ -44,7 +44,7 @@ activityCircle.loginPage = {
 					var res = responseText;
 					res = $.parseJSON(res);
 					if(res.errcode==100){
-						location.reload();
+						window.open('/','_self');
 					}else{
 						alert('用户名密码错误');
 					}
