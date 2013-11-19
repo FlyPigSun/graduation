@@ -1,10 +1,6 @@
 <?php
 ob_start();
-
-
-//header("Cache-Control: no-cache");
-//header("Pragma: no-cache");
- if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
@@ -23,149 +19,90 @@ class Login extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
 
-    $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
-    $this->twig->render('login.html.twig');
-
-    if(!isset($_SESSION)){
-
-    session_start();
-
+  	public function index(){
+        $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
+        $this->twig->render('login.html.twig');
     }
     
-    $username=strtolower($this->input->post('username'));
-   // echo $account;
-    //$password=md5($this->input->post('password'));
-      $password=$this->input->post('password');
-    //echo $password;
-    $role=strtolower($this->input->post('role'));
-    switch ($role) {
-      case 'teacher':
-        $this->teacherLogin($username,$password);
-       
-        break;
-      case 'student':
-        $this->studentLogin($username,$password);
-       
-        break;
-      default:
-        break;
-                   }
-	}
-    //登录
-   
-
-   public function studentindex()
-  {
-    $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
-    $this->twig->render('student_index.html.twig');
-  }
-
-  public function userlogin() {
-   if(!isset($_SESSION)){
-
-    session_start();
-
-    }
-    
-    $username=strtolower($this->input->post('username'));
-   // echo $account;
-    //$password=md5($this->input->post('password'));
-      $password=$this->input->post('password');
-    //echo $password;
-    $role=strtolower($this->input->post('role'));
-    switch ($role) {
-      case 'teacher':
-        $this->teacherLogin($username,$password);
-       
-        break;
-      case 'student':
-        $this->studentLogin($username,$password);
-       
-        break;
-      default:
-        break;
-                   }
-   }
- 
-
-    public function loginout()
- {
-   
-    if(!isset($_SESSION))
+    public function studentindex()
     {
-     session_start();
+        $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
+        $this->twig->render('student_index.html.twig');
     }
-     session_destroy();
- 	
-   }
+
+    public function userlogin(){
+        if(!isset($_SESSION)){
+          session_start();
+        }
+        $username=strtolower($this->input->post('username'));
+        $password=$this->input->post('password');
+        $role=strtolower($this->input->post('role'));
+        switch($role){
+          case 'teacher':
+            $this->teacherLogin($username,$password);
+            break;
+          case 'student':
+            $this->studentLogin($username,$password);
+            break;
+          default:
+            break;
+        }
+     }
+    public function loginout(){
+        if(!isset($_SESSION)){
+            session_start();
+        }
+        session_destroy();
+    }
 
 
 
-    public function teacherLogin($username,$password)
-{  
-  $this->load->model('teacher_model','teacher');
-   $this->teacher->login($username,$password,date("Y-m-d   H:i:s"));
-   if(strlen($this->teacher->username)==0)
-   {
-    
-    $result=102;
-    json_encode($result);
-    $data['errcode']=$result;
-    var_dump($data) ;
-   
-  
-    
-   }
-   else 
-   {
-   $arr=array("id"=>$this->teacher->id,"account"=>$this->teacher->account,"time"=>$this->teacher->loginTime,"password"=>$this->teacher->password,"gonghao"=>$this->teacher->gonghao,"grade"=>$this->teacher->grade,"class"=>$this->teacher->class);
-   // $arr=array("id"=>$this->teacher->id, "account"=>$this->teacher->account,"time"=>$this->teacher->loginTime,"password"=>$this->teacher->password,"grade"=>$this->teacher->grade,"classes"=>$this->teacher->classes); 
-     $_SESSION[TEACHER_USER]=$arr;
-     //redirect("/teacher/welcome","index");
-    // redirect("/teacher/welcome","index");
-     header("Content-Type: text/xml; charset=UTF-8");
-     header("Location:/teacher/index");
-   }
-}
+    public function teacherLogin($username,$password){  
+        $this->load->model('teacher_model','teacher');
+        $this->teacher->login($username,$password,date("Y-m-d   H:i:s"));
+        if(strlen($this->teacher->username)==0){
+            $result=102;
+            json_encode($result);
+            $data['errcode']=$result;
+            var_dump($data) ;
+        }else{
+            $arr=array("id"=>$this->teacher->id,"account"=>$this->teacher->account,"time"=>$this->teacher->loginTime,"password"=>$this->teacher->password,"gonghao"=>$this->teacher->gonghao,"grade"=>$this->teacher->grade,"class"=>$this->teacher->class);
+            $_SESSION[TEACHER_USER]=$arr;
+            header("Content-Type: text/xml; charset=UTF-8");
+            header("Location:/teacher/index");
+        }
+    }
    
 
     public function studentLogin($username,$password){
-      $this->load->model("student_model","student");
-      $this->student->login($username,$password,date("Y-m-d   H:i:s"));
-      if(strlen($this->student->username)==0){
-        $result=101;
-        
-      }
-      else{
-        $arr=array("id"=>$this->student->id,"username"=>$this->student->username,
-        "time"=>$this->student->loginTime,"password"=>$this->student->password,
-        "studentnumber"=>$this->student->studentnumber,"grade"=>$this->student->grade,
-        "class"=>$this->student->class);
-        $_SESSION[STUDENT_USER]=$arr;
-        $result=100;
-      }
-      $data['errcode']=$result;
-      print_r(json_encode($data));
-}
+        $this->load->model("student_model","student");
+        $this->student->login($username,$password,date("Y-m-d   H:i:s"));
+        if(strlen($this->student->username)==0){
+            $result=101; 
+        }else{
+            $arr=array("id"=>$this->student->id,"username"=>$this->student->username,
+            "time"=>$this->student->loginTime,"password"=>$this->student->password,
+            "studentnumber"=>$this->student->studentnumber,"grade"=>$this->student->grade,
+            "class"=>$this->student->class);
+            $_SESSION[STUDENT_USER]=$arr;
+            $result=100;
+        }
+            $data['errcode']=$result;
+            print_r(json_encode($data));
+    }
  
 
 
- public function teacherredirect(){
+    public function teacherredirect(){
+        $this->load->view('/teacher/teacherregister');
+    }
+    public function studentredirect(){
 
-  $this->load->view('/teacher/teacherregister');
-
- }
-public function studentredirect(){
-    
- }
-public function addhobby(){
-
- $this->load->view('/student/addhobby');
-
-}
+    }
+    public function addhobby(){
+        $this->load->view('/student/addhobby');
+    }
  /*  public function teacherregister(){
     
    $account=$this->input->post('account');
