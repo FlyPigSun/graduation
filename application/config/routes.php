@@ -39,8 +39,8 @@
 */
 
 $route['default_controller'] = 'login/loginAction';
-$route['student'] = 'login/studentAction';
-$route['teacher'] = 'login/teacherAction';
+$route['student'] = 'student/studentAction';
+$route['teacher'] = 'teacher/teacherAction';
 $route['login'] = 'login/loginAction';
 $route['logout'] = 'login/logout';
 $route['404_override'] = '';

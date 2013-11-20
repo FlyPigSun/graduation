@@ -32,7 +32,20 @@ class Teacher extends CI_Controller {
 
     }
   
+     public function teacherAction(){
+        $this->load->helper('url');
+        $this->load->library('session');
+       // $role=$this->input->post('role');
+        if($this->session->userdata('tid')){
+         // if(_SESSION[TEACHER_USER]){
+            $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
+            $this->twig->render('student_index.html.twig');
+            
 
+        }else{
+            redirect('login');
+        }
+    }
 
 
 
