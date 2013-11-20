@@ -18,12 +18,29 @@ class Login extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-    public function indexAction(){
+    public function studentAction(){
         $this->load->helper('url');
         $this->load->library('session');
-        if($this->session->userdata('id')){
+       // $role=$this->input->post('role');
+        if($this->session->userdata('sid')){
+         // if(_SESSION[STUDENT_USER]){
+            $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
+            $this->twig->render('student_index.html.twig'); 
+        }else{
+            redirect('login');
+        }
+    }
+
+    public function teacherAction(){
+        $this->load->helper('url');
+        $this->load->library('session');
+       // $role=$this->input->post('role');
+        if($this->session->userdata('tid')){
+         // if(_SESSION[TEACHER_USER]){
             $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
             $this->twig->render('student_index.html.twig');
+            
+
         }else{
             redirect('login');
         }
@@ -31,9 +48,16 @@ class Login extends CI_Controller {
     public function loginAction(){
         $this->load->helper('url');
         $this->load->library('session');
-        if($this->session->userdata('id')){
-            redirect('/index');
-        }else{
+       // $role=strtolower($this->input->post('role'));
+      //  if($this->session->userdata('role')=='student'){
+        if($this->session->userdata('sid')){
+           redirect('/student');
+         }
+        //if ($this->session->userdata('role')=='teacher') {
+            if($this->session->userdata('tid')){
+           redirect('/teacher');
+         }
+        else{
             $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
             $this->twig->render('login.html.twig');
         }
@@ -59,30 +83,39 @@ class Login extends CI_Controller {
     public function logout(){
         $this->load->library('session');
         $this->load->helper('url');
-        if($this->session->userdata('id')){
-            $this->session->unset_userdata('id');
+        //if($this->session->userdata('id')){
+           // $this->session->unset_userdata('id');
+            $this->session->sess_destroy();
             $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
             $this->twig->render('login.html.twig');
             redirect('/login');
         }
-    }
+    
 
 
 
     public function teacherLogin($username,$password){  
+        $this->load->library('session');
+        //$this->load->helper('url');
         $this->load->model('teacher_model','teacher');
         $this->teacher->login($username,$password,date("Y-m-d   H:i:s"));
         if(strlen($this->teacher->username)==0){
             $result=102;
-            json_encode($result);
-            $data['errcode']=$result;
-            var_dump($data) ;
+            
         }else{
-            $arr=array("id"=>$this->teacher->id,"account"=>$this->teacher->account,"time"=>$this->teacher->loginTime,"password"=>$this->teacher->password,"gonghao"=>$this->teacher->gonghao,"grade"=>$this->teacher->grade,"class"=>$this->teacher->class);
-            $_SESSION[TEACHER_USER]=$arr;
-            header("Content-Type: text/xml; charset=UTF-8");
-            header("Location:/teacher/index");
+            $arr=array("tid"=>$this->teacher->id,"username"=>$this->teacher->username,
+              "time"=>$this->teacher->loginTime,"password"=>$this->teacher->password,
+              "teachernumber"=>$this->teacher->teachernumber,"grade"=>$this->teacher->grade,
+              "class"=>$this->teacher->class,"role"=>'teacher');
+            //$_SESSION[TEACHER_USER]=$arr;
+            //header("Content-Type: text/xml; charset=UTF-8");
+            //header("Location:/teacher/index");
+            $this->session->set_userdata($arr);
+            $result=100;
         }
+
+            $data['errcode']=$result;
+            print_r(json_encode($data));
     }
    
 
@@ -93,10 +126,11 @@ class Login extends CI_Controller {
         if(strlen($this->student->username)==0){
             $result=101;
         }else{
-            $arr=array("id"=>$this->student->id,"username"=>$this->student->username,
+            $arr=array("sid"=>$this->student->id,"username"=>$this->student->username,
             "time"=>$this->student->loginTime,"password"=>$this->student->password,
             "studentnumber"=>$this->student->studentnumber,"grade"=>$this->student->grade,
-            "class"=>$this->student->class);
+            "class"=>$this->student->class,"role"=>'student');
+            //$_SESSION[STUDENT_USER]=$arr;
             $this->session->set_userdata($arr);
             $result=100;
         }
@@ -107,15 +141,7 @@ class Login extends CI_Controller {
  
 
 
-    public function teacherredirect(){
-        $this->load->view('/teacher/teacherregister');
-    }
-    public function studentredirect(){
-
-    }
-    public function addhobby(){
-        $this->load->view('/student/addhobby');
-    }
+    
  /*  public function teacherregister(){
     
    $account=$this->input->post('account');
