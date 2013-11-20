@@ -11,3 +11,7 @@ application/logs/*
 application/config/*
 !application/config/routes.php
 !application/config/constants.php
+
+.tags
+
+.tags_sorted_by_file
