@@ -17,9 +17,7 @@ class Student extends MY_Controller {
     }
     public function register(){
         $username=$this->input->post('username');
-        $username = mysql_real_escape_string($username);
         $password=$this->input->post('password');
-        $password = mysql_real_escape_string($password);
         $realname=$this->input->post('realname');
         $studentnumber=$this->input->post('studentnumber');
         $grade=$this->input->post('grade');
@@ -37,7 +35,6 @@ class Student extends MY_Controller {
             "class"=>$class,"role"=>'student');
             $this->session->set_userdata($arr);
             $result=100;
-        
         }else{
             $result=102;
         }

@@ -64,6 +64,7 @@ class Student_Model  extends  CI_Model{
         $this->db->close();
     }
 
+    //按姓名查找
     public function find($username){
         $this->load->database();
         $sql="select * from student_tb where username=?";
