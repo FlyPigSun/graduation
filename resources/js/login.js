@@ -16,6 +16,9 @@ activityCircle.loginPage = {
 		$('.activitycircle-register-btn').on('click',this.studentRegister);
 		$(window).resize(function(){
 			$('body').height($(window).height()-150);
+			if($('body').height()<555){
+				$('body').height(555);
+			}
 		});
 		$(document).keypress(function(e){    
             if(e.which == 13){
