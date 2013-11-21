@@ -43,6 +43,7 @@ $route['student'] = 'student/studentAction';
 $route['teacher'] = 'teacher/teacherAction';
 $route['login'] = 'login/loginAction';
 $route['logout'] = 'login/logout';
+$route['studentlogin']='login/studentlogin';
 $route['404_override'] = '';
 
 

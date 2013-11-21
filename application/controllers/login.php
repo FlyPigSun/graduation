@@ -2,7 +2,7 @@
 ob_start();
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class Login extends MY_Controller {
 	/**
 	 * Index Page for this controller.
 	 *
@@ -20,17 +20,16 @@ class Login extends CI_Controller {
 	 */
      public function __construct(){
         parent::__construct();
-        $this->load->library('my_class');
+        //$this->load->library('my_class');
     }    
     public function loginAction(){            
         if($this->session->userdata('sid')){
            redirect('/student');
-         }      
-            if($this->session->userdata('tid')){
+        }      
+        if($this->session->userdata('tid')){
            redirect('/teacher');
-         }
-        else{
-           
+        }
+        else{           
             $this->twig->render('login.html.twig');
         }
     }
@@ -53,10 +52,9 @@ class Login extends CI_Controller {
         }
      }
     public function logout(){       
-           // $this->session->unset_userdata('id');
-            $this->session->sess_destroy();            
-            $this->twig->render('login.html.twig');
-            redirect('/login');
+        $this->session->sess_destroy();            
+        $this->twig->render('login.html.twig');
+        redirect('/login');
         }
     
 
@@ -91,7 +89,6 @@ class Login extends CI_Controller {
             "time"=>$this->student->loginTime,"password"=>$this->student->password,
             "studentnumber"=>$this->student->studentnumber,"grade"=>$this->student->grade,
             "class"=>$this->student->class,"role"=>'student');
-            //$_SESSION[STUDENT_USER]=$arr;
             $this->session->set_userdata($arr);
             $result=100;
         }

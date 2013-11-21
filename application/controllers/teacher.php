@@ -2,7 +2,7 @@
 ob_start();
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Teacher extends CI_Controller {
+class Teacher extends MY_Controller {
 	/**
 	 * Index Page for this controller.
 	 *
@@ -18,8 +18,11 @@ class Teacher extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-    public function teacherregister(){
-        
+    //public function __construct(){
+       // parent::__construct();
+       // $this->load->library('my_class');
+    //}   
+    public function teacherregister(){   
         $username=$this->input->post('username');
         $password=$this->input->post('password');
         $realname=$this->input->post('realname');
@@ -27,29 +30,34 @@ class Teacher extends CI_Controller {
         $grade=$this->input->post('grade');
         $class=$this->input->post('class');
         $this->load->model('teacher_model','teacher');
-        $this->teacher->insert($username,$password,$name,$teachernumber,$grade,$class);
+        $judge=$this->teacher->find($username);
         
-
-    }
-  
-     public function teacherAction(){
-        $this->load->helper('url');
-        $this->load->library('session');
-       // $role=$this->input->post('role');
-        if($this->session->userdata('tid')){
-         // if(_SESSION[TEACHER_USER]){
-            $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
-            $this->twig->render('student_index.html.twig');
-            
-
+        if($judge['obj']==null){
+            $this->teacher->insert($username,$password,$name,$teachernumber,$grade,$class);
+            $this->teacher->login($username,$password,date("Y-m-d   H:i:s"));
+            $arr=array("tid"=>$this->teacher->id,"username"=>$username,
+            "time"=>$this->teacher->loginTime,"password"=>$password,
+            "teachernumber"=>$teachernumber,"grade"=>$grade,
+            "class"=>$class,"role"=>'teacher');
+            $this->session->set_userdata($arr);
+            $result=100;
+        
         }else{
-            redirect('login');
+            $result=102;
+        }
+    $data['errcode']=$result;
+    print_r(json_encode($data));       
+              
+    }
+        
+    
+     public function teacherAction(){  
+        if($this->session->userdata('tid')){
+            $this->twig->render('student_index.html.twig');     
+        }else{
+            redirect('/login');
         }
     }
-
-
-
-
 
 }
 
