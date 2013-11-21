@@ -4,8 +4,9 @@ $(document).ready(function(){
 
 
 /**
-  *登录页面
- **/
+ * 登录页面
+ * author: sunji
+ */
 activityCircle.loginPage = {
 	mode : 'login',
 	initialize : function(){
