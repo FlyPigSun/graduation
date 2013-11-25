@@ -5,11 +5,9 @@ class Student extends MY_Controller {
 
     public function studentAction(){  
         if($this->session->userdata('sid')){
-            if($this->session->userdata('notfirst')==0){
-                redirect('/test');
-            }else{
-                $this->twig->render('student_index.html.twig'); 
-            }
+            $sid=$this->session->userdata('sid');
+            $notfirst=$this->session->userdata('notfirst');
+            $this->twig->render('student_index.html.twig',array('notfirst'=>$notfirst,'sid'=>$sid));
         }else{
             redirect('/login');
         }
@@ -50,12 +48,6 @@ class Student extends MY_Controller {
         $hobby_result_text=urldecode($this->input->post('hobby_result_text'));
         $this->load->model('testresult_model','testresult');
         $this->testresult->insert($sid,$first_result,$second_result,$first_style,$second_style,$hobby_result,$hobby_result_text);
-        
-    }
-
-    public function studentTestAction(){
-        $sid=$this->session->userdata('sid');
-        $this->twig->render('student_test.html.twig',array('sid'=>$sid)); 
     }
 
 }

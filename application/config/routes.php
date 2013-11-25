@@ -44,7 +44,6 @@ $route['teacher'] = 'teacher/teacherAction';
 $route['login'] = 'login/loginAction';
 $route['logout'] = 'login/logout';
 $route['studentlogin']='login/studentlogin';
-$route['test'] = 'student/studentTestAction';
 $route['404_override'] = '';
 
 

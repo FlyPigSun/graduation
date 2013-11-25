@@ -14,13 +14,248 @@
     <link href="/resources/css/student_index.css" rel="stylesheet"/>
 </head>
 <body>
+    <div class="activitycircle-hide sid">{{ sid }}</div>
+    <div class="activitycircle-hide notfirst">{{ notfirst }}</div>
+    <div class="activitycircle-hide activitycircle-test-background"></div>
+    <div class="activitycircle-test-box activitycircle-hide">
+        <div class="activitycircle-styletest">
+            <div class="activitycircle-test-title">
+                <img src="/resources/images/test-board.png" style="width: 60px;height: 60px;"/>
+                性格测试
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    1、为了较好地理解某些事物，我首先
+                </div>
+                <div class="activitycircle-test-radio first_style">
+                    <input style="margin:5px" type="radio" value="a" name="first">a)试试看
+                    <input style="margin:5px" type="radio" value="b" name="first">b)深思熟虑
+                </div>
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    2、当我回想以前做过的事，我的脑海中大多会出现 
+                </div>
+                <div class="activitycircle-test-radio second_style">
+                    <input style="margin:5px" type="radio" value="a" name="second">a)一幅画面
+                    <input style="margin:5px" type="radio" value="b" name="second">b)一些话语
+                </div>
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    3、在学习某些东西时, 我不禁会
+                </div>
+                <div class="activitycircle-test-radio first_style">
+                    <input style="margin:5px" type="radio" value="a" name="third">a)谈论它
+                    <input style="margin:5px" type="radio" value="b" name="third">b)思考它
+                </div>
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    4、我比较偏爱的获取新信息的媒体是
+                </div>
+                <div class="activitycircle-test-radio second_style">
+                    <input style="margin:5px" type="radio" value="a" name="fourth">
+                        a)图画、图解、图形及图象
+                    <input style="margin:5px" type="radio" value="b" name="fourth">
+                        b)书面指导和言语信息
+                </div>
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    5、在学习小组中遇到难题时，我通常会
+                </div>
+                <div class="activitycircle-test-radio first_style">
+                    <input style="margin:5px" type="radio" value="a" name="fifth">
+                        a)挺身而出，畅所欲言
+                    <input style="margin:5px" type="radio" value="b" name="fifth">
+                        b)往后退让，倾听意见
+                </div>
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    6、在阅读一本带有许多插图的书时，我一般会
+                </div>
+                <div class="activitycircle-test-radio second_style">
+                    <input style="margin:5px" type="radio" value="a" name="sixth">
+                        a)仔细观察插图
+                    <input style="margin:5px" type="radio" value="b" name="sixth">
+                        b)集中注意文字
+                </div>
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    7、在我修课的班级中
+                </div>
+                <div class="activitycircle-test-radio first_style">
+                    <input style="margin:5px" type="radio" value="a" name="seventh">
+                        a)我通常结识许多同学
+                    <input style="margin:5px" type="radio" value="b" name="seventh">
+                        b)我认识的同学寥寥无几
+                </div>
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    8、我喜欢的教师是
+                </div>
+                <div class="activitycircle-test-radio second_style">
+                    <input style="margin:5px" type="radio" value="a" name="eighth">
+                        a)在黑板上画许多图解的人
+                    <input style="margin:5px" type="radio" value="b" name="eighth">
+                        b)花许多时间讲解的人
+                </div>
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    9、当我做家庭作业时，我比较喜欢
+                </div>
+                <div class="activitycircle-test-radio first_style">
+                    <input style="margin:5px" type="radio" value="a" name="ninth">
+                        a)一开始就立即做解答
+                    <input style="margin:5px" type="radio" value="b" name="ninth">
+                        b)首先设法理解题意
+                </div>
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    10、我记得最牢是
+                </div>
+                <div class="activitycircle-test-radio second_style">
+                    <input style="margin:5px" type="radio" value="a" name="tenth">
+                        a)看到的东西
+                    <input style="margin:5px" type="radio" value="b" name="tenth">
+                        b)听到的东西
+                </div>
+            </div>
+            <a class="btn btn-primary btn-sm activitycircle-test-btn" role="button">
+                下一步
+            </a>
+        </div>
+        <div class="activitycircle-hobbytest activitycircle-hide">
+            <div class="activitycircle-test-title">
+                <img src="/resources/images/test-board.png" style="width: 60px;height: 60px;"/>
+                兴趣测试
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    1、经常查英语（纸质）字典或电子字典
+                </div>
+                <div class="activitycircle-test-radio hobby-test">
+                    <input style="margin:5px" type="radio" value="5" name="first">5
+                    <input style="margin:5px" type="radio" value="4" name="first">4
+                    <input style="margin:5px" type="radio" value="3" name="first">3
+                    <input style="margin:5px" type="radio" value="2" name="first">2
+                    <input style="margin:5px" type="radio" value="1" name="first">1
+                </div>
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    2、如果广告里面有英语，我会很喜欢看
+                </div>
+                <div class="activitycircle-test-radio hobby-test">
+                    <input style="margin:5px" type="radio" value="5" name="second">5
+                    <input style="margin:5px" type="radio" value="4" name="second">4
+                    <input style="margin:5px" type="radio" value="3" name="second">3
+                    <input style="margin:5px" type="radio" value="2" name="second">2
+                    <input style="margin:5px" type="radio" value="1" name="second">1
+                </div>
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    3、喜欢收藏国外的物品
+                </div>
+                <div class="activitycircle-test-radio hobby-test">
+                    <input style="margin:5px" type="radio" value="5" name="third">5
+                    <input style="margin:5px" type="radio" value="4" name="third">4
+                    <input style="margin:5px" type="radio" value="3" name="third">3
+                    <input style="margin:5px" type="radio" value="2" name="third">2
+                    <input style="margin:5px" type="radio" value="1" name="third">1
+                </div>
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    4、喜欢看英语写的小故事
+                </div>
+                <div class="activitycircle-test-radio hobby-test">
+                    <input style="margin:5px" type="radio" value="5" name="fourth">5
+                    <input style="margin:5px" type="radio" value="4" name="fourth">4
+                    <input style="margin:5px" type="radio" value="3" name="fourth">3
+                    <input style="margin:5px" type="radio" value="2" name="fourth">2
+                    <input style="margin:5px" type="radio" value="1" name="fourth">1
+                </div>
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    5、经常让父母买英语图书
+                </div>
+                <div class="activitycircle-test-radio hobby-test">
+                    <input style="margin:5px" type="radio" value="5" name="fifth">5
+                    <input style="margin:5px" type="radio" value="4" name="fifth">4
+                    <input style="margin:5px" type="radio" value="3" name="fifth">3
+                    <input style="margin:5px" type="radio" value="2" name="fifth">2
+                    <input style="margin:5px" type="radio" value="1" name="fifth">1
+                </div>
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    6、爱看英语动画片 ，觉得对学习有帮助
+                </div>
+                <div class="activitycircle-test-radio hobby-test">
+                    <input style="margin:5px" type="radio" value="5" name="sixth">5
+                    <input style="margin:5px" type="radio" value="4" name="sixth">4
+                    <input style="margin:5px" type="radio" value="3" name="sixth">3
+                    <input style="margin:5px" type="radio" value="2" name="sixth">2
+                    <input style="margin:5px" type="radio" value="1" name="sixth">1
+                </div>
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    7、听过英语广播或英语有声读物
+                </div>
+                <div class="activitycircle-test-radio hobby-test">
+                    <input style="margin:5px" type="radio" value="5" name="seventh">5
+                    <input style="margin:5px" type="radio" value="4" name="seventh">4
+                    <input style="margin:5px" type="radio" value="3" name="seventh">3
+                    <input style="margin:5px" type="radio" value="2" name="seventh">2
+                    <input style="margin:5px" type="radio" value="1" name="seventh">1
+                </div>
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    8、愿意与能说英语的小朋友交往，向他们学习
+                </div>
+                <div class="activitycircle-test-radio hobby-test">
+                    <input style="margin:5px" type="radio" value="5" name="eighth">5
+                    <input style="margin:5px" type="radio" value="4" name="eighth">4
+                    <input style="margin:5px" type="radio" value="3" name="eighth">3
+                    <input style="margin:5px" type="radio" value="2" name="eighth">2
+                    <input style="margin:5px" type="radio" value="1" name="eighth">1
+                </div>
+            </div>
+            <div class="activitycircle-test-question">
+                <div class="activitycircle-test-text">
+                    9、注意说英语的语音和语调
+                </div>
+                <div class="activitycircle-test-radio hobby-test">
+                    <input style="margin:5px" type="radio" value="5" name="ninth">5
+                    <input style="margin:5px" type="radio" value="4" name="ninth">4
+                    <input style="margin:5px" type="radio" value="3" name="ninth">3
+                    <input style="margin:5px" type="radio" value="2" name="ninth">2
+                    <input style="margin:5px" type="radio" value="1" name="ninth">1
+                </div>
+            </div>
+            <a class="btn btn-primary btn-sm activitycircle-test-btn" role="button">
+                提交结果
+            </a>
+        </div>
+    </div>
     <div class="student-index-main">
         <div class="student-index-toparea">
             <div class="student-index-topbtnarea">
                 <div class="student-index-topbtn active" type="index">
                     首页
                 </div>
-                <div class="student-index-topbtn active" type="personal_center">
+                <div class="student-index-topbtn" type="personal_center">
                     个人中心
                 </div>
                 <div class="student-index-topbtn" type="teacher_recommend">
