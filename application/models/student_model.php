@@ -14,6 +14,8 @@ class Student_Model  extends  CI_Model{
     var $grade='';
     var $class='';
     var $studentnumber='';
+    var $notfirst='';
+    
 
     function __construct(){
         parent::__construct();
@@ -34,6 +36,7 @@ class Student_Model  extends  CI_Model{
             $this->loginTime=$row->loginTime;
             $this->grade=$row->grade;
             $this->class=$row->class;
+            $this->notfirst=$row->notfirst;
             $sql="update student_tb set logintime=? where id=?";
             $this->db->query($sql, array($time,$this->id));
             $this->db->close();  
@@ -50,7 +53,7 @@ class Student_Model  extends  CI_Model{
     //添加学生
     public function insert($username,$password,$realname,$studentnumber,$grade,$class,$gender){
         $this->load->database();
-        $sql="insert into student_tb values(null,?,?,?,null,?,?,?,null,null,?,null)";
+        $sql="insert into student_tb values(null,?,?,?,null,?,?,?,null,null,?,null,0)";
         $query=$this->db->query($sql,array($realname,$username,$password,$gender,$grade,$class,$studentnumber));
         $this->db->close();
     }
@@ -64,7 +67,7 @@ class Student_Model  extends  CI_Model{
         $this->db->close();
     }
 
-    //按姓名查找
+    //按用户名查找
     public function find($username){
         $this->load->database();
         $sql="select * from student_tb where username=?";
@@ -77,6 +80,29 @@ class Student_Model  extends  CI_Model{
         $this->db->close();
         return $data;
     }
+    //按id查找
+    public function findById($sid){
+        $this->load->database();
+        $sql="select * from student_tb where id=?";
+        $query=$this->db->query($sql,array($sid));
+        if($query->num_rows()>0){
+            $data["obj"]=$query->row();
+        }else {
+            $data["obj"]=null;
+        }
+        $this->db->close();
+        return $data;
+    }
+    //是否做过测试
+    public function dotest($character,$testscore,$sid){
+        $this->load->database();
+        $sql="update student_tb set character=?,testscore=?,notfirst=1 where sid=? ";
+        $query=$this->db->query($sql,array($character,$testscore,$sid));
+        $this->db->close();
+
+    }
+
+
 }
 
 ?>

@@ -84,7 +84,7 @@ class Login extends MY_Controller {
             $arr=array("sid"=>$this->student->id,"username"=>$this->student->username,
             "time"=>$this->student->loginTime,"password"=>$this->student->password,
             "studentnumber"=>$this->student->studentnumber,"grade"=>$this->student->grade,
-            "class"=>$this->student->class,"role"=>'student');
+            "class"=>$this->student->class,"role"=>'student',"notfirst"=>$this->student->notfirst);
             $this->session->set_userdata($arr);
             $result=100;
         }

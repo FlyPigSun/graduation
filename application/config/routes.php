@@ -46,7 +46,7 @@ $route['logout'] = 'login/logout';
 $route['studentlogin']='login/studentlogin';
 $route['test'] = 'student/studentTestAction';
 $route['404_override'] = '';
-$route['404_override'] = '';
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
