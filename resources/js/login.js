@@ -78,8 +78,10 @@ activityCircle.loginPage = {
 		var password_1 = $('.activitycircle-register-area input:eq(2)').val();
 		var password_2 = $('.activitycircle-register-area input:eq(3)').val();
 		var grade = $('.activitycircle-register-area').find('.activitycircle-login-select').val();
+		grade = encodeURIComponent(grade);
 		var studentnum = $('.activitycircle-register-area input:eq(4)').val();
 		var gender = $('.activitycircle-register-area input:radio[name="sex"]:checked').val();
+		gender = encodeURIComponent(gender);
 		if(username!=''&&realname!=''&&password_1!=''&&password_2!=''&&grade!=''&&studentnum!=''&&gender!=''){
 			if(password_1==password_2){
 				var password = $.md5(password_1);

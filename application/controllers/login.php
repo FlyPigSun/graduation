@@ -29,6 +29,7 @@ class Login extends MY_Controller {
             $this->twig->render('login.html.twig');
         }
     }
+
     public function userlogin(){
         if(!isset($_SESSION)){
           session_start();
@@ -46,16 +47,14 @@ class Login extends MY_Controller {
           default:
             break;
         }
-     }
+    }
+
     public function logout(){       
         $this->session->sess_destroy();            
         $this->twig->render('login.html.twig');
         redirect('/login');
-        }
+    }
     
-
-
-
     public function teacherLogin($username,$password){          
         $this->load->model('teacher_model','teacher');
         $this->teacher->login($username,$password,date("Y-m-d   H:i:s"));
@@ -73,7 +72,6 @@ class Login extends MY_Controller {
             print_r(json_encode($data));
     }
    
-
     public function studentLogin($username,$password){
         
         $this->load->model("student_model","student");
@@ -89,13 +87,10 @@ class Login extends MY_Controller {
             $result=100;
         }
         $data['errcode']=$result;
-        print_r(json_encode($data));
-            
+        print_r(json_encode($data));       
     }
     
- 
-
- }
+}
 
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */

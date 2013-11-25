@@ -55,9 +55,7 @@ class Student extends MY_Controller {
 
     public function studentTestAction(){
         $sid=$this->session->userdata('sid');
-        $this->twig->render('student_test.html.twig',$sid); 
-
-
+        $this->twig->render('student_test.html.twig',array('sid'=>$sid)); 
     }
 
 }

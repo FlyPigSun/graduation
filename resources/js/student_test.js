@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 
 /**
- * 登录页面
+ * 性格测试页面
  * author: sunji
  */
 activityCircle.student.testPage = {
@@ -71,6 +71,7 @@ activityCircle.student.testPage = {
 		var result = 0;
 		var num = 0;
 		var resultText = null;
+		var sid = $('.sid').html();
 		$('.activitycircle-hobbytest input:radio:checked').each(function(){
 			var me = $(this);
 			result = result + me.val();
@@ -90,6 +91,9 @@ activityCircle.student.testPage = {
 			}else{
 				resultText = '很不感兴趣';
 			}
+			activityCircle.student.testPage.firstStyle = encodeURIComponent(activityCircle.student.testPage.firstStyle);
+			activityCircle.student.testPage.secondStyle = encodeURIComponent(activityCircle.student.testPage.secondStyle);
+			resultText = encodeURIComponent(resultText);
 			$.ajax({
 				url : '/student/testSubmit',
 				type : 'post',
@@ -99,7 +103,8 @@ activityCircle.student.testPage = {
 					second_result : activityCircle.student.testPage.secondResult,
 					second_style : activityCircle.student.testPage.secondStyle,
 					hobby_result : result,
-					hobby_result_text : resultText
+					hobby_result_text : resultText,
+					sid : sid
 				},
 				headers:{
 				    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
@@ -107,7 +112,6 @@ activityCircle.student.testPage = {
 				success : function(responseText){
 					var res = responseText;
 					res = $.parseJSON(res);
-					
 				}
 			});
 		}
