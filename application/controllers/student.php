@@ -47,7 +47,19 @@ class Student extends MY_Controller {
         $hobby_result=$this->input->post('hobby_result');
         $hobby_result_text=urldecode($this->input->post('hobby_result_text'));
         $this->load->model('testresult_model','testresult');
-        $this->testresult->insert($sid,$first_result,$second_result,$first_style,$second_style,$hobby_result,$hobby_result_text);
+        $judge=$this->testresult->findBySid($sid);
+        if($judge['obj']==null){
+            $this->testresult->insert($sid,$first_result,$second_result,$first_style,
+            $second_style,$hobby_result,$hobby_result_text);
+            $this->load->model('student_model','student');
+            $this->student->doTest($sid);
+            $result=100;
+        }else{
+            
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
     }
 
 }
