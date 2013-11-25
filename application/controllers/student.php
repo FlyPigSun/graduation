@@ -17,11 +17,11 @@ class Student extends MY_Controller {
     public function register(){
         $username=$this->input->post('username');
         $password=$this->input->post('password');
-        $realname=$this->input->post('realname');
+        $realname=urldecode($this->input->post('realname'));
         $studentnumber=$this->input->post('studentnumber');
-        $grade=$this->input->post('grade');
+        $grade=urldecode($this->input->post('grade'));
         $class=$this->input->post('class');
-        $gender=$this->input->post('gender');
+        $gender=urldecode($this->input->post('gender'));
         $this->load->model('student_model','student');
         $judge=$this->student->find($username);
         
@@ -44,10 +44,10 @@ class Student extends MY_Controller {
         $sid=$this->input->post('sid');
         $first_result=$this->input->post('first_result');
         $second_result=$this->input->post('second_result');
-        $first_style=$this->input->post('first_style');
-        $second_style=$this->input->post('second_style');
+        $first_style=urldecode($this->input->post('first_style'));
+        $second_style=urldecode($this->input->post('second_style'));
         $hobby_result=$this->input->post('hobby_result');
-        $hobby_result_text=$this->input->post('hobby_result_text');
+        $hobby_result_text=urldecode($this->input->post('hobby_result_text'));
         $this->load->model('testresult_model','testresult');
         $this->testresult->insert($sid,$first_result,$second_result,$first_style,$second_style,$hobby_result,$hobby_result_text);
         
