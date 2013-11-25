@@ -38,6 +38,7 @@ activityCircle.studentIndexPage = {
 				break;
 			case 'personal_center':
 				$('.student-index-centerarea').html('');
+				activityCircle.student.personalCenter.initialize();
 				break;
 			case 'teacher_recommend':
 				$('.student-index-centerarea').html('');

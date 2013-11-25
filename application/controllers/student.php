@@ -8,9 +8,9 @@ class Student extends MY_Controller {
             $sid=$this->session->userdata('sid');
             $this->load->model('student_model','student');
             $student=$this->student->findById($sid);
-            $notfirst=$student['obj']->notfirst;
-            $realname=$student['obj']->realname;
-            $logintime=$student['obj']->loginTime;
+            $notfirst=$student->notfirst;
+            $realname=$student->realname;
+            $logintime=$student->loginTime;
             $this->twig->render('student_index.html.twig',array('notfirst'=>$notfirst,'sid'=>$sid,
                 'realname'=>$realname,'logintime'=>$logintime));
         }else{
@@ -28,7 +28,7 @@ class Student extends MY_Controller {
         $this->load->model('student_model','student');
         $judge=$this->student->find($username);
         
-        if($judge['obj']==null){
+        if($judge==null){
             $this->student->insert($username,$password,$realname,$studentnumber,$grade,$class,$gender);
             $this->student->login($username,$password,date("Y-m-d   H:i:s"));
             $arr=array("sid"=>$this->student->id,"username"=>$username,
@@ -53,7 +53,7 @@ class Student extends MY_Controller {
         $hobby_result_text=urldecode($this->input->post('hobby_result_text'));
         $this->load->model('testresult_model','testresult');
         $judge=$this->testresult->findBySid($sid);
-        if($judge['obj']==null){
+        if($judge==null){
             $this->testresult->insert($sid,$first_result,$second_result,$first_style,
             $second_style,$hobby_result,$hobby_result_text);
             $this->load->model('student_model','student');

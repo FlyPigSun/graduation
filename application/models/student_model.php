@@ -73,9 +73,9 @@ class Student_Model  extends  CI_Model{
         $sql="select * from student_tb where username=?";
         $query=$this->db->query($sql,array($username));
         if($query->num_rows()>0){
-            $data["obj"]=$query->row()->result();
+            $data=$query->row()->result();
         }else {
-            $data["obj"]=null;
+            $data=null;
         }
         $this->db->close();
         return $data;
@@ -86,9 +86,9 @@ class Student_Model  extends  CI_Model{
         $sql="select * from student_tb where id=?";
         $query=$this->db->query($sql,array($sid));
         if($query->num_rows()>0){
-            $data["obj"]=$query->row();
+            $data=$query->row();
         }else {
-            $data["obj"]=null;
+            $data=null;
         }
         $this->db->close();
         return $data;

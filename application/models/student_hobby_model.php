@@ -20,9 +20,9 @@ class Student_Hobby_Model  extends  CI_Model{
         $sql="select * from student_hobby_tb where studentid=? and hobbyid=?";
         $query=$this->db->query($sql,array($studentid,$hobbyid));
         if($query->num_rows()>0){
-            $data['obj']=$query->row();
+            $data=$query->row();
         }else{
-            $data['obj']=null;
+            $data=null;
         }
         $this->db->close();
         return $data;

@@ -32,7 +32,7 @@ class Teacher extends MY_Controller {
         $this->load->model('teacher_model','teacher');
         $judge=$this->teacher->find($username);
         
-        if($judge['obj']==null){
+        if($judge==null){
             $this->teacher->insert($username,$password,$name,$teachernumber,$grade,$class);
             $this->teacher->login($username,$password,date("Y-m-d   H:i:s"));
             $arr=array("tid"=>$this->teacher->id,"username"=>$username,

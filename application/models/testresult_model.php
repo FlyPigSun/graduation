@@ -31,9 +31,9 @@ class TestResult_Model  extends  CI_Model{
         $sql="select * from testresult_tb where sid=?";
         $query=$this->db->query($sql,array($sid));
         if($query->num_rows()>0){
-            $data['obj']=$query->row();
+            $data=$query->row();
         }else{
-            $data['obj']=null;
+            $data=null;
         }
         $this->db->close();
         return $data;

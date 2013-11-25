@@ -71,9 +71,9 @@ class Teacher_Model  extends  CI_Model{
         $sql="select * from teacher_tb where username=?";
         $query=$this->db->query($sql,array($username));
         if($query->num_rows()>0){
-            $data["obj"]=$query->row();
+            $data=$query->row();
         }else {
-            $data["obj"]=null;
+            $data=null;
         }
         $this->db->close();
         return $data;
