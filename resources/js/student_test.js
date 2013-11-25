@@ -8,6 +8,10 @@ $(document).ready(function(){
  * author: sunji
  */
 activityCircle.student.testPage = {
+	firstResult : null,
+	firstStyle : null,
+	secondResult : null,
+	secondStyle : null,
 	initialize : function(){
 		var me = this;
 		$('.activitycircle-styletest').find('.activitycircle-test-btn').on('click',me.commitStyleTest);
@@ -46,18 +50,18 @@ activityCircle.student.testPage = {
 			alert('您需要完成所有问题');
 		}else{
 			if(firstA>firstB){
-				firstResult = firstA-firstB+'a';
-				firstStyle = '活跃型';
+				activityCircle.student.testPage.firstResult = firstA-firstB+'a';
+				activityCircle.student.testPage.firstStyle = '活跃型';
 			}else{
-				firstResult = firstB-firstA+'b';
-				firstStyle = '沉思型';
+				activityCircle.student.testPage.firstResult = firstB-firstA+'b';
+				activityCircle.student.testPage.firstStyle = '沉思型';
 			}
 			if(secondA>secondB){
-				secondResult = secondA-secondB+'a';
-				secondStyle = '视觉型';
+				activityCircle.student.testPage.secondResult = secondA-secondB+'a';
+				activityCircle.student.testPage.secondStyle = '视觉型';
 			}else{
-				secondResult = secondB-secondA+'b';
-				secondStyle = '言语型';
+				activityCircle.student.testPage.secondResult = secondB-secondA+'b';
+				activityCircle.student.testPage.secondStyle = '言语型';
 			}
 			$('.activitycircle-styletest').hide();
 			$('.activitycircle-hobbytest').show();
@@ -86,6 +90,26 @@ activityCircle.student.testPage = {
 			}else{
 				resultText = '很不感兴趣';
 			}
+			$.ajax({
+				url : '/student/testSubmit',
+				type : 'post',
+				data: {
+					first_result : activityCircle.student.testPage.firstResult,
+					first_style : activityCircle.student.testPage.firstStyle,
+					second_result : activityCircle.student.testPage.secondResult,
+					second_style : activityCircle.student.testPage.secondStyle,
+					hobby_result : result,
+					hobby_result_text : resultText
+				},
+				headers:{
+				    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+				},
+				success : function(responseText){
+					var res = responseText;
+					res = $.parseJSON(res);
+					
+				}
+			});
 		}
 	}
 }
