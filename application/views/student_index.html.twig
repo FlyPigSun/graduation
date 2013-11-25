@@ -6,6 +6,7 @@
     <title>活动天地</title>
     <script src="/resources/js/jquery-1.10.2.min.js"></script>
     <script src="/resources/js/jquery.md5.js"></script>
+    <script src="/resources/js/mustache.js"></script>
     <script src="/resources/js/bootstrap.js"></script>
     <script src="/resources/js/base.js"></script>
     <script src="/resources/js/student_index.js"></script>
@@ -288,21 +289,9 @@
             </div>
         </div>
         <div class="student-index-centerarea">
-            <div class="student-indexpage-center">
-                <div class="student-indexpage-box">
-                    教师推荐
-                </div>
-                <div class="student-indexpage-box">
-                    我的活动
-                </div>
-                <div class="student-indexpage-box">
-                    听力录音
-                </div>
-                <div class="student-indexpage-box">
-                    语法学习园
-                </div>
-                <div class="clear"></div>
-            </div>
+            
         </div>
     </div>
+
+{% include 'student_indexpage_template.html.twig' %}
 </body>

@@ -24,7 +24,8 @@ activityCircle.studentIndexPage = {
 				$('.activitycircle-test-background').show();
 				activityCircle.student.testPage.initialize();
 			},10);
-		}
+		};
+		activityCircle.student.indexPage.initialize();
 	},
 	changeTab : function(){
 		$('.student-index-topbtn').removeClass('active');
@@ -32,34 +33,46 @@ activityCircle.studentIndexPage = {
 		var btn = $(this).attr('type');
 		switch(btn){
 			case 'index':
-				alert(btn);
+				$('.student-index-centerarea').html('');
+				activityCircle.student.indexPage.initialize();
 				break;
 			case 'personal_center':
-				alert(btn);
+				$('.student-index-centerarea').html('');
 				break;
 			case 'teacher_recommend':
-				alert(btn);
+				$('.student-index-centerarea').html('');
 				break;
 			case 'group_activety':
-				alert(btn);
+				$('.student-index-centerarea').html('');
 				break;
 			case 'honor_box':
-				alert(btn);
+				$('.student-index-centerarea').html('');
 				break;
 			case 'friends_circle':
-				alert(btn);
+				$('.student-index-centerarea').html('');
 				break;
 			case 'notification':
-				alert(btn);
+				$('.student-index-centerarea').html('');
 				break;
 		}
 	}
 }
 
 /**
+ * 学生主页面
+ * author: 孙骥
+ **/
+activityCircle.student.indexPage = {
+	initialize : function(){
+		var html = $('#student_indexpage_template').html();
+		$('.student-index-centerarea').html(html);
+	}
+}
+
+/**
  * 性格测试页面
  * author: 孙骥
- */
+ **/
 activityCircle.student.testPage = {
 	firstResult : null,
 	firstStyle : null,
@@ -182,4 +195,12 @@ activityCircle.student.testPage = {
 			});
 		}
 	}
+}
+
+/**
+ * 个人中心页面
+ * author: 孙骥
+ **/
+activityCircle.student.personalCenter = {
+
 }
