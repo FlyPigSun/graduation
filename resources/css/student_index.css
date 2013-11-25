@@ -53,6 +53,12 @@
 	width: 650px;
 	margin: auto;
 }
+.student-index-topinfoarea{
+	float: right;
+	margin: -35px 20px 0px 0px;
+	color: #EDB810;
+	font-weight: 900;
+}
 .student-index-topbtn{
 	float: left;
 	color: #fff;
@@ -67,6 +73,17 @@
 }
 .student-index-topbtn.active{
 	background: rgb(37,118,184);
+}
+.student-index-logout{
+	cursor: pointer;
+	color: #EDB810;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+}
+.student-index-logout:hover{
+	color: #FF3300;
 }
 .student-index-centerarea{
 	
