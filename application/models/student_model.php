@@ -94,10 +94,10 @@ class Student_Model  extends  CI_Model{
         return $data;
     }
     //是否做过测试
-    public function dotest($character,$testscore,$sid){
+    public function doTest($sid){
         $this->load->database();
-        $sql="update student_tb set character=?,testscore=?,notfirst=1 where sid=? ";
-        $query=$this->db->query($sql,array($character,$testscore,$sid));
+        $sql="update student_tb set notfirst=1 where id=? ";
+        $query=$this->db->query($sql,array($sid));
         $this->db->close();
 
     }
