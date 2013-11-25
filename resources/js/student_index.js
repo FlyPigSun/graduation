@@ -202,5 +202,18 @@ activityCircle.student.testPage = {
  * author: 孙骥
  **/
 activityCircle.student.personalCenter = {
-
+	initialize : function(){
+		var sid = $('.sid').html();
+		$.ajax({
+			url : '/student/personalInfo/'+sid,
+			type : 'post',
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				res = $.parseJSON(res);
+			}
+		})
+	}
 }
