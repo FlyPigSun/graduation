@@ -5,7 +5,11 @@ class Student extends MY_Controller {
 
     public function studentAction(){  
         if($this->session->userdata('sid')){
-            $this->twig->render('student_index.html.twig'); 
+            if($this->session->userdata('notfirst')==0){
+                redirect('/test');
+            }else{
+                $this->twig->render('student_index.html.twig'); 
+            }
         }else{
             redirect('/login');
         }
@@ -36,12 +40,24 @@ class Student extends MY_Controller {
         $data['errcode']=$result;
         print_r(json_encode($data));
     }
+    public function testSubmit(){
+        $sid=$this->input->post('sid');
+        $first_result=$this->input->post('first_result');
+        $second_result=$this->input->post('second_result');
+        $first_style=$this->input->post('first_style');
+        $second_style=$this->input->post('second_style');
+        $hobby_result=$this->input->post('hobby_result');
+        $hobby_result_text=$this->input->post('hobby_result_text');
+        $this->load->model('testresult_model','testresult');
+        $this->testresult->insert($sid,$first_result,$second_result,$first_style,$second_style,$hobby_result,$hobby_result_text);
+        
+    }
+
     public function studentTestAction(){
-        if($this->session->userdata('sid')){
-            $this->twig->render('student_test.html.twig'); 
-        }else{
-            redirect('/login');
-        }
+        $sid=$this->session->userdata('sid');
+        $this->twig->render('student_test.html.twig',$sid); 
+
+
     }
 
 }
