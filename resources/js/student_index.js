@@ -22,6 +22,9 @@ activityCircle.studentIndexPage = {
 		$(this).addClass('active');
 		var btn = $(this).attr('type');
 		switch(btn){
+			case 'index':
+				alert(btn);
+				break;
 			case 'personal_center':
 				alert(btn);
 				break;
