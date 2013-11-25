@@ -10,7 +10,7 @@ class Student extends MY_Controller {
             $student=$this->student->findById($sid);
             $notfirst=$student['obj']->notfirst;
             $realname=$student['obj']->realname;
-             $logintime=$student['obj']->loginTime;
+            $logintime=$student['obj']->loginTime;
             $this->twig->render('student_index.html.twig',array('notfirst'=>$notfirst,'sid'=>$sid,
                 'realname'=>$realname,'logintime'=>$logintime));
         }else{
@@ -63,6 +63,19 @@ class Student extends MY_Controller {
             
             $result=102;
         }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }
+
+    public function personalInfo($sid){
+        $this->load->model('student_model','student');
+        $info=$this->student->findById($sid);
+        if($info==null){
+            $result=102;
+        }else{
+            $result=100;   
+        }
+        $data['data']=$info;
         $data['errcode']=$result;
         print_r(json_encode($data));
     }
