@@ -20,8 +20,8 @@ activityCircle.studentIndexPage = {
 		var notfirst = $('.notfirst').html();
 		if(notfirst == 0){
 			setTimeout(function(){
-				$('.activitycircle-test-box').fadeIn();
-				$('.activitycircle-test-background').fadeIn();
+				$('.activitycircle-test-box').show();
+				$('.activitycircle-test-background').show();
 				activityCircle.student.testPage.initialize();
 			},10);
 		}
