@@ -100,7 +100,14 @@ activityCircle.loginPage = {
 					    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
 					},
 					success : function(responseText){
-                         
+						var res = responseText;
+						res = $.parseJSON(res);
+						if(res.errcode==100){
+							alert('注册成功');
+							window.open('/','_self');
+						}else{
+							alert('注册失败');
+						}
 					}
 				});
 			}else{

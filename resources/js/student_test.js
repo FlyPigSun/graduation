@@ -16,6 +16,13 @@ activityCircle.student.testPage = {
 		var me = this;
 		$('.activitycircle-styletest').find('.activitycircle-test-btn').on('click',me.commitStyleTest);
 		$('.activitycircle-hobbytest').find('.activitycircle-test-btn').on('click',me.commitHobbyTest);
+		$('body').height($(window).height()-50);
+		$(window).resize(function(){
+			$('body').height($(window).height()-50);
+			if($('body').height()<700){
+				$('body').height(700);
+			}
+		});
 	},
 	commitStyleTest : function(){
 		var firstA = 0;
