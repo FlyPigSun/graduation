@@ -6,8 +6,13 @@ class Student extends MY_Controller {
     public function studentAction(){  
         if($this->session->userdata('sid')){
             $sid=$this->session->userdata('sid');
-            $notfirst=$this->session->userdata('notfirst');
-            $this->twig->render('student_index.html.twig',array('notfirst'=>$notfirst,'sid'=>$sid));
+            $this->load->model('student_model','student');
+            $student=$this->student->findById($sid);
+            $notfirst=$student['obj']->notfirst;
+            $realname=$student['obj']->realname;
+             $logintime=$student['obj']->loginTime;
+            $this->twig->render('student_index.html.twig',array('notfirst'=>$notfirst,'sid'=>$sid,
+                'realname'=>$realname,'logintime'=>$logintime));
         }else{
             redirect('/login');
         }
