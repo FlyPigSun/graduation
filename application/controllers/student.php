@@ -9,7 +9,6 @@ class Student extends MY_Controller {
     //}   
     public function studentAction(){  
         if($this->session->userdata('sid')){
-            $this->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
             $this->twig->render('student_index.html.twig'); 
         }else{
             redirect('/login');
@@ -38,17 +37,16 @@ class Student extends MY_Controller {
         }else{
             $result=102;
         }
-    $data['errcode']=$result;
-    print_r(json_encode($data));       
-              
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }
+    public function studentTestAction(){
+        if($this->session->userdata('sid')){
+            $this->twig->render('student_test.html.twig'); 
+        }else{
+            redirect('/login');
+        }
     }
 
-
-
-
-
-
 }
-
-
 ?>
