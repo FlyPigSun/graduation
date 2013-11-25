@@ -4,6 +4,7 @@ $(document).ready(function(){
 
 /**
   *学生主页
+  *author: 孙骥
  **/
 activityCircle.studentIndexPage = {
 	initialize : function(){
@@ -19,8 +20,8 @@ activityCircle.studentIndexPage = {
 		var notfirst = $('.notfirst').html();
 		if(notfirst == 0){
 			setTimeout(function(){
-				$('.activitycircle-test-box').show();
-				$('.activitycircle-test-background').show();
+				$('.activitycircle-test-box').fadeIn();
+				$('.activitycircle-test-background').fadeIn();
 				activityCircle.student.testPage.initialize();
 			},10);
 		}
@@ -57,7 +58,7 @@ activityCircle.studentIndexPage = {
 
 /**
  * 性格测试页面
- * author: sunji
+ * author: 孙骥
  */
 activityCircle.student.testPage = {
 	firstResult : null,
@@ -171,6 +172,12 @@ activityCircle.student.testPage = {
 				success : function(responseText){
 					var res = responseText;
 					res = $.parseJSON(res);
+					if(res.errcode == 100){
+						$('.activitycircle-test-box').fadeOut();
+						$('.activitycircle-test-background').fadeOut();
+					}else{
+						alert('答题失败')
+					}
 				}
 			});
 		}
