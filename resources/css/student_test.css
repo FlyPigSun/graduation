@@ -3,3 +3,29 @@
 	min-width: 1050px;
 	margin: auto;
 }
+.activitycircle-test-box{
+	width: 600px;
+	height: 700px;
+	border:2px solid #777;
+	border-radius: 4px;
+	background: #fff;
+	box-shadow: 0px 0px 5px #111;
+	margin: 50px auto;
+	padding: 10px;
+}
+.activitycircle-test-title{
+	font-size: 36px;
+	font-weight: 900;
+	text-align: center;
+}
+.activitycircle-test-radio{
+	margin-left: 20px;
+}
+.activitycircle-test-question{
+	font-size: 14px;
+	margin: 10px 0px;
+}
+.activitycircle-test-btn{
+	width: 100px;
+	margin: 20px 240px;
+}

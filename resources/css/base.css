@@ -9,6 +9,9 @@ body{
 	background-image: linear-gradient(to bottom,#EDB810,#fff);
 	min-height: 643px;
 }
+.activitycircle-hide{
+	display: none;
+}
 .clear{
 	clear: both;
 }

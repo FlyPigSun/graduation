@@ -3,10 +3,6 @@
 
 class Student extends MY_Controller {
 
-    //public function __construct(){
-       //parent::__construct();
-        //$this->load->library('my_class');
-    //}   
     public function studentAction(){  
         if($this->session->userdata('sid')){
             $this->twig->render('student_index.html.twig'); 
