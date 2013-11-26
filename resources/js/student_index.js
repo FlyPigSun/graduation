@@ -227,6 +227,7 @@ activityCircle.student.personalCenter = {
 		var me = this;
 		$('.student-personal-center-leftbar-btn').on('click',me.changeTab);
 		$('.show-box-edit-btn').on('click',me.showEditInfoBox);
+		$('.student-personal-info-btn').on('click',me.enterEditInfo);
 	},
 	changeTab : function(){
 		$('.student-personal-center-leftbar-btn').removeClass('active');
