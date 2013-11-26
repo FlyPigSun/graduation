@@ -104,7 +104,7 @@ class Student_Model  extends  CI_Model{
     //个人信息修改s
     public function updateInfo($realname,$gender,$grade,$class,$motto,$studentnumber,$sid){
         $this->load->database();
-        $sql="update student_tb set realname=?,gender=?,grade=?,class=?,studentnumber=?,motto=? where id=?";
+        $sql="update student_tb set realname=?,gender=?,grade=?,class=?,motto=?,studentnumber=? where id=?";
         $query=$this->db->query($sql,array($realname,$gender,$grade,$class,$motto,$studentnumber,$sid));
         $this->db->close();
     }
