@@ -148,7 +148,8 @@ activityCircle.student.testPage = {
 		var sid = $('.sid').html();
 		$('.activitycircle-hobbytest input:radio:checked').each(function(){
 			var me = $(this);
-			result = result + me.val();
+			var a = Number(me.val());
+			result = result + a;
 			num++;
 		});
 		if(num!=9){
