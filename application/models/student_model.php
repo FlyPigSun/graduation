@@ -61,7 +61,7 @@ class Student_Model  extends  CI_Model{
     //修改密码
     public function updatepassword($id,$password){
         $this->load->database();
-        $sql="update teacher_tb set password=? where id=?";
+        $sql="update student_tb set password=? where id=?";
         $data=array($password,$id);
         $query=$this->db->query($sql,$data);
         $this->db->close();
@@ -100,6 +100,13 @@ class Student_Model  extends  CI_Model{
         $query=$this->db->query($sql,array($sid));
         $this->db->close();
 
+    }
+    //个人信息修改s
+    public function updateInfo($realname,$gender,$grade,$class,$motto,$studentnumber,$sid){
+        $this->load->database();
+        $sql="update student_tb set realname=?,gender=?,grade=?,class=?,studentnumber=?,motto=? where id=?";
+        $query=$this->db->query($sql,array($realname,$studentnumber,$gender,$grade,$class,$motto,$sid));
+        $this->db->close();
     }
 
 

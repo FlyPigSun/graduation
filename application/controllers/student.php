@@ -80,5 +80,34 @@ class Student extends MY_Controller {
         print_r(json_encode($data));
     }
 
+    public function updateInfo($realname,$gender,$grade,$class,$motto,$studentnumber){
+        $sid=$this->session->userdata('sid');
+        $this->load->model('student_model','student');
+        $this->student->updateInfo($realname,$gender,$grade,$class,$motto,$studentnumber,$sid);
+        $result=100;
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }
+
+     public function updatepassword($password){
+        $sid=$this->session->userdata('sid');
+        print_r($password) ;
+        $this->load->model('student_model','student');
+        $this->student->updatepassword($sid,$password);
+        $result=100;
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+     }
+
+     public function mystyle(){
+        $sid=$this->session->userdata('sid');
+        $this->load->model('testresult_model','testresult');
+        $testresult=$this->testresult->findBySid($sid);
+        $data['data']=$testresult;
+        $result=100;
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+     }
+
 }
 ?>
