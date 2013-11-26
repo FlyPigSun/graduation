@@ -62,7 +62,14 @@
                     </div>
                     <div class="student-personal-info-littlebox grade-box">
                         <span class="student-personal-info-box-tip">年级：</span>
-                        <input class="student-personal-info-input"/>
+                        <select class="student-personal-info-select">
+                            <option value="一年级">一年级</option>
+                            <option value="二年级">二年级</option>
+                            <option value="三年级">三年级</option>
+                            <option value="四年级">四年级</option>
+                            <option value="五年级">五年级</option>
+                            <option value="六年级">六年级</option>
+                        </select>
                     </div>
                     <div class="student-personal-info-littlebox motto-box">
                         <span class="student-personal-info-box-tip">座右铭：</span>
@@ -70,6 +77,20 @@
                     </div>
                     <div class="clear"></div>
                     <a class="btn btn-primary btn-sm student-personal-info-btn" role="button">
+                        确定
+                    </a>
+                </div>
+                <div class="change-password-box">
+                    <div style="margin:10px">
+                        原始密码：<input type="password" class="student-personal-info-input"/>
+                    </div>
+                    <div style="margin:10px">
+                        新的密码：<input type="password" class="student-personal-info-input"/>
+                    </div>
+                    <div style="margin:10px">
+                        重复密码：<input type="password" class="student-personal-info-input"/>
+                    </div>
+                    <a class="btn btn-primary btn-sm student-changepassword-btn" role="button">
                         确定
                     </a>
                 </div>

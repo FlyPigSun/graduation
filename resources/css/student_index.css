@@ -160,10 +160,12 @@
 .show-box{
 	position: relative;
 	border-bottom: 1px solid #ccc;
+	margin-bottom: 20px;
 }
 .change-box{
 	position: relative;
 	border-bottom: 1px solid #ccc;
+	margin-bottom: 20px;
 }
 .show-box-edit-btn{
 	position: absolute;
@@ -182,5 +184,18 @@
 	position: absolute;
 	right: 110px;
 	bottom: 10px;
+	width: 100px;
+}
+.student-personal-info-select{
+	height: 26px;
+	width: 157px;
+}
+.change-password-box{
+	position: relative;
+}
+.student-changepassword-btn{
+	position: absolute;
+	right: 110px;
+	bottom: 0px;
 	width: 100px;
 }

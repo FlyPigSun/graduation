@@ -228,6 +228,7 @@ activityCircle.student.personalCenter = {
 		$('.student-personal-center-leftbar-btn').on('click',me.changeTab);
 		$('.show-box-edit-btn').on('click',me.showEditInfoBox);
 		$('.student-personal-info-btn').on('click',me.enterEditInfo);
+		$('.student-changepassword-btn').on('click',me.enterChangePassword);
 	},
 	changeTab : function(){
 		$('.student-personal-center-leftbar-btn').removeClass('active');
@@ -238,26 +239,32 @@ activityCircle.student.personalCenter = {
 				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
                 '个人信息' ;
 				$('.student-personal-center-title').html(html);
+				$('.student-personalcenter-box').hide();
+				$('.student-personal-info-box').show();
 				break;
 			case 'impression':
 				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
                 '我的印象' ;
 				$('.student-personal-center-title').html(html);
+				$('.student-personalcenter-box').hide();
 				break;
 			case 'questionnaire':
 				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
                 '我的问卷' ;
 				$('.student-personal-center-title').html(html);
+				$('.student-personalcenter-box').hide();
 				break;
 			case 'record':
 				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
                 '学习记录' ;
 				$('.student-personal-center-title').html(html);
+				$('.student-personalcenter-box').hide();
 				break;
 			case 'activity':
 				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
                 '我的活动' ;
 				$('.student-personal-center-title').html(html);
+				$('.student-personalcenter-box').hide();
 				break;
 		}
 	},
@@ -276,20 +283,20 @@ activityCircle.student.personalCenter = {
 		$('.change-box').find('.motto-box input').val(motto);
 	},
 	enterEditInfo : function(){
-		var realname = encodeURIComponent($('.change-box').find('.name-box input').val());
-		var gender = encodeURIComponent($('.change-box').find('.gender-box input').val());
+		var realname = $('.change-box').find('.name-box input').val();
+		var gender = $('.change-box').find('.gender-box input').val();
 		var studentnumber = $('.change-box').find('.studentnumber-box input').val();
-		var grade = encodeURIComponent($('.change-box').find('.grade-box input').val());
-		var motto = encodeURIComponent($('.change-box').find('.motto-box input').val());
+		var grade = $('.change-box').find('.grade-box select').val();
+		var motto = $('.change-box').find('.motto-box input').val();
 		$.ajax({
 			url : '/student/updateInfo',
 			type : 'post',
 			data : {
-				realname : realname,
-				gender : gender,
-				studentnumber : studentnumber,
-				grade : grade,
-				motto : motto,
+				realname : encodeURIComponent(realname),
+				gender : encodeURIComponent(gender),
+				studentnumber : encodeURIComponent(studentnumber),
+				grade : encodeURIComponent(grade),
+				motto : encodeURIComponent(motto),
 				class : ''
 			},
 			headers:{
@@ -305,12 +312,48 @@ activityCircle.student.personalCenter = {
 					$('.show-box').find('.grade-box').find('span:eq(1)').html(grade);
 					$('.show-box').find('.motto-box').find('span:eq(1)').html(motto);
 					$('.student-index-topinfoarea').find('div:eq(0)').html(realname);
-					$('.show-box').hide();
-					$('.change-box').show();
+					$('.show-box').show();
+					$('.change-box').hide();
 				}else{
 					alert('信息修改失败');
 				}
 			}
 		});
+	},
+	enterChangePassword : function(){
+		var oldPassword = $('.change-password-box input:eq(0)').val();
+		var newPassword = $('.change-password-box input:eq(1)').val();
+		var newPassword2 = $('.change-password-box input:eq(2)').val();
+		if(oldPassword!=''&&newPassword!=''&&newPassword2!=''){
+			if(newPassword==newPassword2){
+				newPassword = $.md5(newPassword);
+				$.ajax({
+					url : '/student/updatepassword',
+					type : 'post',
+					data : {
+						password : newPassword
+					},
+					headers:{
+					    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+					},
+					success : function(responseText){
+						var res = responseText;
+						res = $.parseJSON(res);
+						if(res.errcode = 100){
+							alert('密码修改成功');
+							$('.change-password-box input:eq(0)').val('');
+							$('.change-password-box input:eq(1)').val('');
+							$('.change-password-box input:eq(2)').val('');
+						}else{
+							alert('原始密码输入错误')
+						}
+					}
+				})
+			}else{
+				alert('两次密码需要输入一致');
+			}
+		}else{
+			alert('数据不能为空');
+		}
 	}
 }
