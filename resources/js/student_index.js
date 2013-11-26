@@ -289,7 +289,8 @@ activityCircle.student.personalCenter = {
 				gender : gender,
 				studentnumber : studentnumber,
 				grade : grade,
-				motto : motto
+				motto : motto,
+				class : ''
 			},
 			headers:{
 			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
@@ -297,6 +298,18 @@ activityCircle.student.personalCenter = {
 			success : function(responseText){
 				var res = responseText;
 				res = $.parseJSON(res);
+				if(res.errcode == 100){
+					$('.show-box').find('.name-box').find('span:eq(1)').html(realname);
+					$('.show-box').find('.gender-box').find('span:eq(1)').html(gender);
+					$('.show-box').find('.studentnumber-box').find('span:eq(1)').html(studentnumber);
+					$('.show-box').find('.grade-box').find('span:eq(1)').html(grade);
+					$('.show-box').find('.motto-box').find('span:eq(1)').html(motto);
+					$('.student-index-topinfoarea').find('div:eq(0)').html(realname);
+					$('.show-box').hide();
+					$('.change-box').show();
+				}else{
+					alert('信息修改失败');
+				}
 			}
 		});
 	}
