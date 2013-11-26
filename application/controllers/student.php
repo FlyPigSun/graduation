@@ -101,11 +101,15 @@ class Student extends MY_Controller {
 
      public function updatepassword(){
         $sid=$this->session->userdata('sid');
-        $password= $this->input->post('password');
-        print_r($password) ;
+        $oldpassword=$this->input->post('oldPassword');
+        $newpassword=$this->input->post('newPassword');
+        //print_r($password);
         $this->load->model('student_model','student');
-        $this->student->updatepassword($sid,$password);
-        $result=100;
+        $result=$this->student->verifypassword($sid,$oldpassword);
+        //print_r($result);
+        if($result==100){
+            $this->student->updatepassword($sid,$newpassword);
+        }
         $data['errcode']=$result;
         print_r(json_encode($data));
      }

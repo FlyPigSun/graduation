@@ -57,6 +57,18 @@ class Student_Model  extends  CI_Model{
         $query=$this->db->query($sql,array($realname,$username,$password,$gender,$grade,$class,$studentnumber));
         $this->db->close();
     }
+    //验证密码
+    public function verifypassword($id,$password){
+        $this->load->database();
+        $sql="select * from student_tb where password=? and id=?";
+        $query=$this->db->query($sql,array($password,$id));
+        if($query->num_rows()>0){
+            $data=100;
+        }else{
+            $data=102;
+        }
+        return $data;
+    }
 
     //修改密码
     public function updatepassword($id,$password){

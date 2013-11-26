@@ -326,12 +326,14 @@ activityCircle.student.personalCenter = {
 		var newPassword2 = $('.change-password-box input:eq(2)').val();
 		if(oldPassword!=''&&newPassword!=''&&newPassword2!=''){
 			if(newPassword==newPassword2){
+				oldPassword = $.md5(oldPassword);
 				newPassword = $.md5(newPassword);
 				$.ajax({
 					url : '/student/updatepassword',
 					type : 'post',
 					data : {
-						password : newPassword
+						oldPassword : oldPassword,
+						newPassword : newPassword
 					},
 					headers:{
 					    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
@@ -339,7 +341,7 @@ activityCircle.student.personalCenter = {
 					success : function(responseText){
 						var res = responseText;
 						res = $.parseJSON(res);
-						if(res.errcode = 100){
+						if(res.errcode == 100){
 							alert('密码修改成功');
 							$('.change-password-box input:eq(0)').val('');
 							$('.change-password-box input:eq(1)').val('');
