@@ -88,11 +88,15 @@ class Student extends MY_Controller {
         $motto = urldecode($this->input->post('motto'));
         $class='';
         $sid=$this->session->userdata('sid');
+        if($realname!=null){
         $this->load->model('student_model','student');
         $this->student->updateInfo($realname,$gender,$grade,$class,$motto,$studentnumber,$sid);
         $result=100;
+        }else{
+        $result=102;
+        } 
         $data['errcode']=$result;
-        print_r(json_encode($data));
+        print_r(json_encode($data)); 
     }
 
      public function updatepassword(){
