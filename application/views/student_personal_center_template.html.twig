@@ -1,0 +1,88 @@
+<script id="student_personal_center_template" type="text/html">
+    <div class="student-personal-center">
+        <div class="student-personal-center-leftbar">
+            <div class="student-personal-center-leftbar-btn active" type="info">
+                个人信息
+            </div>
+            <div class="student-personal-center-leftbar-btn" type="impression">
+                我的印象
+            </div>
+            <div class="student-personal-center-leftbar-btn" type="questionnaire">
+                我的问卷
+            </div>
+            <div class="student-personal-center-leftbar-btn" type="record">
+                学习记录
+            </div>
+            <div class="student-personal-center-leftbar-btn" type="activity">
+                我的活动
+            </div>
+        </div>
+        <div class="student-personal-center-rightbar">
+            <div class="student-personal-center-title"></div>
+            <div class="student-personal-info-box student-personalcenter-box">
+                <div class="show-box">
+                    <div class="student-personal-info-littlebox name-box">
+                        <span class="student-personal-info-box-tip">姓名：</span>
+                        <span>{{ '{{' }} realname {{ '}}' }}</span>
+                    </div>
+                    <div class="student-personal-info-littlebox gender-box">
+                        <span class="student-personal-info-box-tip">性别：</span>
+                        <span>{{ '{{' }} gender {{ '}}' }}</span>
+                    </div>
+                    <div class="student-personal-info-littlebox studentnumber-box">
+                        <span class="student-personal-info-box-tip">学号：</span>
+                        <span>{{ '{{' }} studentnumber {{ '}}' }}</span>
+                    </div>
+                    <div class="student-personal-info-littlebox grade-box">
+                        <span class="student-personal-info-box-tip">年级：</span>
+                        <span>{{ '{{' }} grade {{ '}}' }}</span>
+                    </div>
+                    <div class="student-personal-info-littlebox motto-box">
+                        <span class="student-personal-info-box-tip">座右铭：</span>
+                        <span>{{ '{{' }} motto {{ '}}' }}</span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="show-box-edit-btn">
+                        <img src="/resources/images/edit.png"/>
+                        编辑个人信息
+                    </div>
+                </div>
+                <div class="change-box activitycircle-hide">
+                    <div class="student-personal-info-littlebox name-box">
+                        <span class="student-personal-info-box-tip">姓名：</span>
+                        <input style="margin-left:15px;" class="student-personal-info-input"/>
+                    </div>
+                    <div class="student-personal-info-littlebox gender-box">
+                        <span class="student-personal-info-box-tip">性别：</span>
+                        <input class="student-personal-info-input"/>
+                    </div>
+                    <div class="student-personal-info-littlebox studentnumber-box">
+                        <span class="student-personal-info-box-tip">学号：</span>
+                        <input style="margin-left:15px;" class="student-personal-info-input"/>
+                    </div>
+                    <div class="student-personal-info-littlebox grade-box">
+                        <span class="student-personal-info-box-tip">年级：</span>
+                        <input class="student-personal-info-input"/>
+                    </div>
+                    <div class="student-personal-info-littlebox motto-box">
+                        <span class="student-personal-info-box-tip">座右铭：</span>
+                        <input class="student-personal-info-input"/>
+                    </div>
+                    <div class="clear"></div>
+                    <a class="btn btn-primary btn-sm student-personal-info-btn" role="button">
+                        确定
+                    </a>
+                </div>
+            </div>
+            <div class="student-personal-impression-box student-personalcenter-box activitycircle-hide">
+            </div>
+            <div class="student-personal-questionnaire-box student-personalcenter-box activitycircle-hide">
+            </div>
+            <div class="student-personal-record-box student-personalcenter-box activitycircle-hide">
+            </div>
+            <div class="student-personal-activity-box student-personalcenter-box activitycircle-hide">
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</script>

@@ -152,7 +152,7 @@ activityCircle.student.testPage = {
 			num++;
 		});
 		if(num!=9){
-			alert('您需要完成所有问题')
+			alert('您需要完成所有问题');
 		}else{
 			if(result>38){
 				resultText = '很感兴趣';
@@ -204,6 +204,7 @@ activityCircle.student.testPage = {
  **/
 activityCircle.student.personalCenter = {
 	initialize : function(){
+		var me = this;
 		var sid = $('.sid').html();
 		$.ajax({
 			url : '/student/personalInfo/'+sid,
@@ -214,7 +215,88 @@ activityCircle.student.personalCenter = {
 			success : function(responseText){
 				var res = responseText;
 				res = $.parseJSON(res);
+				var template = $('#student_personal_center_template').html();
+				var html = Mustache.to_html(template, res.data).replace(/^\s*/mg, '');
+				$('.student-index-centerarea').html(html);
+				me.buttonBind();
+				invokeClick($('.student-personal-center-leftbar').find('.student-personal-center-leftbar-btn:eq(0)')[0]);
 			}
-		})
+		});
+	},
+	buttonBind : function(){
+		var me = this;
+		$('.student-personal-center-leftbar-btn').on('click',me.changeTab);
+		$('.show-box-edit-btn').on('click',me.showEditInfoBox);
+	},
+	changeTab : function(){
+		$('.student-personal-center-leftbar-btn').removeClass('active');
+		$(this).addClass('active');
+		var btn = $(this).attr('type');
+		switch(btn){
+			case 'info':
+				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
+                '个人信息' ;
+				$('.student-personal-center-title').html(html);
+				break;
+			case 'impression':
+				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
+                '我的印象' ;
+				$('.student-personal-center-title').html(html);
+				break;
+			case 'questionnaire':
+				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
+                '我的问卷' ;
+				$('.student-personal-center-title').html(html);
+				break;
+			case 'record':
+				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
+                '学习记录' ;
+				$('.student-personal-center-title').html(html);
+				break;
+			case 'activity':
+				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
+                '我的活动' ;
+				$('.student-personal-center-title').html(html);
+				break;
+		}
+	},
+	showEditInfoBox : function(){
+		$('.show-box').hide();
+		$('.change-box').show();
+		var name = $('.show-box').find('.name-box').find('span:eq(1)').html();
+		var gender = $('.show-box').find('.gender-box').find('span:eq(1)').html();
+		var studentnumber = $('.show-box').find('.studentnumber-box').find('span:eq(1)').html();
+		var grade = $('.show-box').find('.grade-box').find('span:eq(1)').html();
+		var motto = $('.show-box').find('.motto-box').find('span:eq(1)').html();
+		$('.change-box').find('.name-box input').val(name);
+		$('.change-box').find('.gender-box input').val(gender);
+		$('.change-box').find('.studentnumber-box input').val(studentnumber);
+		$('.change-box').find('.grade-box input').val(grade);
+		$('.change-box').find('.motto-box input').val(motto);
+	},
+	enterEditInfo : function(){
+		var name = $('.change-box').find('.name-box input').val();
+		var gender = $('.change-box').find('.gender-box input').val();
+		var studentnumber = $('.change-box').find('.studentnumber-box input').val();
+		var grade = $('.change-box').find('.grade-box input').val();
+		var motto = $('.change-box').find('.motto-box input').val();
+		$.ajax({
+			url : '/student/updateInfo'
+			type : 'post',
+			data : {
+				name : name,
+				gender : gender,
+				studentnumber : studentnumber,
+				grade : grade,
+				motto : motto
+			}
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				res = $.parseJSON(res);
+			}
+		});
 	}
 }

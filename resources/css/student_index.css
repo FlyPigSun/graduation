@@ -108,11 +108,79 @@
 	color: #3399FF;
 	border-radius: 10px;
 	-webkit-transition: box-shadow .3s ease,font-size .3s ease;
-	-moz-transition: box-shadow .3s ease;
-	-ms-transition: box-shadow .3s ease;
-	-o-transition: box-shadow .3s ease;
+	-moz-transition: box-shadow .3s ease,font-size .3s ease;
+	-ms-transition: box-shadow .3s ease,font-size .3s ease;
+	-o-transition: box-shadow .3s ease,font-size .3s ease;
 }
 .student-indexpage-box:hover{
 	font-size: 34px;
 	box-shadow: 0px 0px 30px #EDB810;
+}
+.student-personal-center{
+	width: 960px;
+	margin: auto;
+}
+.student-personal-center-leftbar{
+	float: left;
+	height: 400px;
+	width: 230px;
+}
+.student-personal-center-leftbar-btn{
+	font-size: 20px;
+	font-weight: 900;
+	text-align: center;
+	line-height: 47px;
+	cursor: pointer;
+}
+.student-personal-center-leftbar-btn.active{
+	background-image: url('/resources/images/arrow.png');
+	color:#0066ff;
+}
+.student-personal-center-rightbar{
+	float: left;
+	margin-left: 50px;
+}
+.student-personalcenter-box{
+	border: 4px solid #ccc;
+	border-radius: 10px;
+	padding: 10px;
+	width: 600px;
+	height: 500px;
+	font-size: 14px;
+}
+.student-personal-center-title{
+	font-size: 24px;
+	margin-bottom: 15px;
+}
+.student-personal-info-littlebox{
+	width: 230px;
+	float: left;
+	margin: 10px;
+}
+.show-box{
+	position: relative;
+	border-bottom: 1px solid #ccc;
+}
+.change-box{
+	position: relative;
+	border-bottom: 1px solid #ccc;
+}
+.show-box-edit-btn{
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	display: none;
+	cursor: pointer;
+}
+.show-box-edit:hover{
+	color: #0066ff;
+}
+.show-box:hover > .show-box-edit-btn{
+	display: block;
+}
+.student-personal-info-btn{
+	position: absolute;
+	right: 110px;
+	bottom: 10px;
+	width: 100px;
 }
