@@ -80,7 +80,13 @@ class Student extends MY_Controller {
         print_r(json_encode($data));
     }
 
-    public function updateInfo($realname,$gender,$grade,$class,$motto,$studentnumber){
+    public function updateInfo(){
+        $realname = urldecode($this->input->post('realname'));
+        $gender = urldecode($this->input->post('gender'));
+        $studentnumber = $this->input->post('studentnumber');
+        $grade = urldecode($this->input->post('grade'));
+        $motto = urldecode($this->input->post('motto'));
+        $class='';
         $sid=$this->session->userdata('sid');
         $this->load->model('student_model','student');
         $this->student->updateInfo($realname,$gender,$grade,$class,$motto,$studentnumber,$sid);

@@ -264,28 +264,28 @@ activityCircle.student.personalCenter = {
 	showEditInfoBox : function(){
 		$('.show-box').hide();
 		$('.change-box').show();
-		var name = $('.show-box').find('.name-box').find('span:eq(1)').html();
+		var realname = $('.show-box').find('.name-box').find('span:eq(1)').html();
 		var gender = $('.show-box').find('.gender-box').find('span:eq(1)').html();
 		var studentnumber = $('.show-box').find('.studentnumber-box').find('span:eq(1)').html();
 		var grade = $('.show-box').find('.grade-box').find('span:eq(1)').html();
 		var motto = $('.show-box').find('.motto-box').find('span:eq(1)').html();
-		$('.change-box').find('.name-box input').val(name);
+		$('.change-box').find('.name-box input').val(realname);
 		$('.change-box').find('.gender-box input').val(gender);
 		$('.change-box').find('.studentnumber-box input').val(studentnumber);
 		$('.change-box').find('.grade-box input').val(grade);
 		$('.change-box').find('.motto-box input').val(motto);
 	},
 	enterEditInfo : function(){
-		var name = $('.change-box').find('.name-box input').val();
-		var gender = $('.change-box').find('.gender-box input').val();
+		var realname = encodeURIComponent($('.change-box').find('.name-box input').val());
+		var gender = encodeURIComponent($('.change-box').find('.gender-box input').val());
 		var studentnumber = $('.change-box').find('.studentnumber-box input').val();
-		var grade = $('.change-box').find('.grade-box input').val();
-		var motto = $('.change-box').find('.motto-box input').val();
+		var grade = encodeURIComponent($('.change-box').find('.grade-box input').val());
+		var motto = encodeURIComponent($('.change-box').find('.motto-box input').val());
 		$.ajax({
 			url : '/student/updateInfo',
 			type : 'post',
 			data : {
-				name : name,
+				realname : realname,
 				gender : gender,
 				studentnumber : studentnumber,
 				grade : grade,
