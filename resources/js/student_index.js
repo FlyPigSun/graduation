@@ -281,7 +281,7 @@ activityCircle.student.personalCenter = {
 		var grade = $('.change-box').find('.grade-box input').val();
 		var motto = $('.change-box').find('.motto-box input').val();
 		$.ajax({
-			url : '/student/updateInfo'
+			url : '/student/updateInfo',
 			type : 'post',
 			data : {
 				name : name,
@@ -289,7 +289,7 @@ activityCircle.student.personalCenter = {
 				studentnumber : studentnumber,
 				grade : grade,
 				motto : motto
-			}
+			},
 			headers:{
 			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
 			},
