@@ -95,8 +95,9 @@ class Student extends MY_Controller {
         print_r(json_encode($data));
     }
 
-     public function updatepassword($password){
+     public function updatepassword(){
         $sid=$this->session->userdata('sid');
+        $password= $this->input->post('password');
         print_r($password) ;
         $this->load->model('student_model','student');
         $this->student->updatepassword($sid,$password);
