@@ -18,7 +18,10 @@ class Login extends MY_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */  
-    public function loginAction(){            
+    public function loginAction(){
+        if(connection_status()!=0){
+            $this->session->sess_destroy();
+        }  
         if($this->session->userdata('sid')){
            redirect('/student');
         }      

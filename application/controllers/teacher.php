@@ -1,5 +1,5 @@
 <?php
-ob_start();
+ini_set('date.timezone','Asia/Shanghai');
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Teacher extends MY_Controller {

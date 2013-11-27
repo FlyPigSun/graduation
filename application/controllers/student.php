@@ -21,7 +21,7 @@ class Student extends MY_Controller {
         $username=$this->input->post('username');
         $password=$this->input->post('password');
         $realname=urldecode($this->input->post('realname'));
-        $studentnumber=$this->input->post('studentnumber');
+        $studentnumber=$this->input->post('studentnum');
         $grade=urldecode($this->input->post('grade'));
         $class=$this->input->post('class');
         $gender=urldecode($this->input->post('gender'));
@@ -128,11 +128,10 @@ class Student extends MY_Controller {
         $sid=$this->session->userdata('sid');
         $hobby=$this->input->post('hobby');
         $this->load->model('hobby_model','hobby');
-        $judge=$this->hobby->find($hobby);
+        $judge=$this->hobby->find($sid,$hobby);
         if($judge!=null){
             $hid=$judge->id;
-            $this->load->model('student_hobby_model','student_hobby');
-            $this->student_hobby->insert($sid,$hid);
+            $this->hobby->insert($sid,$hobby);
             $result=100;
         }else{
             $result=102;
@@ -143,11 +142,12 @@ class Student extends MY_Controller {
     }
 
     public function myHobby(){
-        $hobby=$this->input->post('myhobby');
+        $hobby=urldecode($this->input->post('myhobby'));
+        $sid=$this->session->userdata('sid');
         $this->load->model('hobby_model','hobby');
-        $judge=$this->hobby->find($hobby);
+        $judge=$this->hobby->find($sid,$hobby);
         if($judge==null){
-            $this->hobby->insert($hobby);
+            //$this->hobby->insert($sid,$hobby);
             $result=100;
         }else{
             $result=102;
@@ -158,11 +158,12 @@ class Student extends MY_Controller {
 
     public function findAllHobby(){
         $sid=$this->session->userdata('sid');
-        $this->load->model('student_model','student');
-        $info=$this->student->findAllHobby($sid);
+        $this->load->model('hobby_model','hobby');
+        $info=$this->hobby->findAllHobby($sid);
         $data['data']=$info;
         print_r(json_encode($data));
     }
+
 
     
 

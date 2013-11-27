@@ -121,14 +121,14 @@ class Student_Model  extends  CI_Model{
         $this->db->close();
     }
     //查找个人爱好
-    public function findAllHobby($sid){
+    /*public function findAllHobby($sid){
         $this->load->database();
         $sql="select * from student_hobby_tb sh left join hobby_tb h on sh.hid=h.id where sh.sid=?";
         $query=$this->db->query($sql,array($sid));
         $data=$query->result();
         $this->db->close();
         return $data;
-    }
+    }*/
 
 
 }
