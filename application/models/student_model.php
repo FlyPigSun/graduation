@@ -113,12 +113,21 @@ class Student_Model  extends  CI_Model{
         $this->db->close();
 
     }
-    //个人信息修改s
+    //个人信息修改
     public function updateInfo($realname,$gender,$grade,$class,$motto,$studentnumber,$sid){
         $this->load->database();
         $sql="update student_tb set realname=?,gender=?,grade=?,class=?,motto=?,studentnumber=? where id=?";
         $query=$this->db->query($sql,array($realname,$gender,$grade,$class,$motto,$studentnumber,$sid));
         $this->db->close();
+    }
+    //查找个人爱好
+    public function findAllHobby($sid){
+        $this->load->database();
+        $sql="select * from student_hobby_tb sh left join hobby_tb h on sh.hid=h.id where sh.sid=?";
+        $query=$this->db->query($sql,array($sid));
+        $data=$query->result();
+        $this->db->close();
+        return $data;
     }
 
 

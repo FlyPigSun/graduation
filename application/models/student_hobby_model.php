@@ -5,20 +5,20 @@
 */
 class Student_Hobby_Model  extends  CI_Model{
     var $id='';
-    var $studentid='';
-    var $hobbyid='';
+    var $sid='';
+    var $hid='';
 
-    public function insert($studentid,$hobbyid){
+    public function insert($sid,$hid){
         $this->load->database();
         $sql="insert into student_hobby_tb value(null,?,?) ";
-        $query=$this->db->query($sql,array($studentid,$hobbyid));
+        $query=$this->db->query($sql,array($sid,$hid));
         $this->db->close();
     }
 
-    public function  find($studentid,$hobbyid){
+    public function  find($sid,$hid){
         $this->load->database();
-        $sql="select * from student_hobby_tb where studentid=? and hobbyid=?";
-        $query=$this->db->query($sql,array($studentid,$hobbyid));
+        $sql="select * from student_hobby_tb where sid=? and hid=?";
+        $query=$this->db->query($sql,array($sid,$hid));
         if($query->num_rows()>0){
             $data=$query->row();
         }else{
@@ -27,6 +27,13 @@ class Student_Hobby_Model  extends  CI_Model{
         $this->db->close();
         return $data;
        
+    }
+
+    public function delete($sid,$hid){
+        $this->load->database();
+        $sql="delete * from student_hobby_tb where sid=? and hid=?";
+        $query=$this->db->query($sql,array($sid,$hid));
+        $this->db->close();
     }
 
 

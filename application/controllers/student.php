@@ -99,7 +99,7 @@ class Student extends MY_Controller {
         print_r(json_encode($data)); 
     }
 
-     public function updatepassword(){
+    public function updatepassword(){
         $sid=$this->session->userdata('sid');
         $oldpassword=$this->input->post('oldPassword');
         $newpassword=$this->input->post('newPassword');
@@ -112,9 +112,9 @@ class Student extends MY_Controller {
         }
         $data['errcode']=$result;
         print_r(json_encode($data));
-     }
+    }
 
-     public function mystyle(){
+    public function myStyle(){
         $sid=$this->session->userdata('sid');
         $this->load->model('testresult_model','testresult');
         $testresult=$this->testresult->findBySid($sid);
@@ -122,7 +122,49 @@ class Student extends MY_Controller {
         $result=100;
         $data['errcode']=$result;
         print_r(json_encode($data));
-     }
+    }
+
+    public function selectHobby(){
+        $sid=$this->session->userdata('sid');
+        $hobby=$this->input->post('hobby');
+        $this->load->model('hobby_model','hobby');
+        $judge=$this->hobby->find($hobby);
+        if($judge!=null){
+            $hid=$judge->id;
+            $this->load->model('student_hobby_model','student_hobby');
+            $this->student_hobby->insert($sid,$hid);
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+
+    }
+
+    public function myHobby(){
+        $hobby=$this->input->post('myhobby');
+        $this->load->model('hobby_model','hobby');
+        $judge=$this->hobby->find($hobby);
+        if($judge==null){
+            $this->hobby->insert($hobby);
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }
+
+    public function findAllHobby(){
+        $sid=$this->session->userdata('sid');
+        $this->load->model('student_model','student');
+        $info=$this->student->findAllHobby($sid);
+        $data['data']=$info;
+        print_r(json_encode($data));
+    }
+
+    
 
 }
 ?>
