@@ -199,3 +199,67 @@
 	bottom: 0px;
 	width: 100px;
 }
+.student-personal-impression-tips{
+	margin: 5px 0px 0px 5px;
+}
+.my-impress{
+	height: 150px;
+	border-bottom: 1px solid #000;
+}
+.single-impress{
+	position: relative;
+	margin: 5px;
+	float: left;
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 10px;
+	font-weight: 900;
+}
+.single-impress.blue{
+	color: #000;
+	background-color: #6699ff;
+}
+.single-impress-delete{
+	position: absolute;
+	display: none;
+	width: 12px;
+	height: 12px;
+	border-radius: 30px;
+	right: -3px;
+	top: -5px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	cursor: pointer;
+	-webkit-transition: background-color .3s ease;
+	-moz-transition: background-color .3s ease;
+	-ms-transition: background-color .3s ease;
+	-o-transition: background-color .3s ease;
+}
+.single-impress-delete:hover{
+	background-color: #FF3300;
+}
+.single-impress:hover>.single-impress-delete {
+	display: block;
+}
+.impress-select{
+	height: 150px;
+	border-bottom: 1px solid #000;
+}
+.single-impress-select{
+	position: relative;
+	margin: 5px;
+	float: left;
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 10px;
+	font-weight: 900;
+	cursor: pointer;
+}
+.single-impress-select.blue{
+	color: #000;
+	background-color: #6699ff;
+}

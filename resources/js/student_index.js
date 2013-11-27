@@ -230,6 +230,7 @@ activityCircle.student.personalCenter = {
 		$('.show-box-edit-btn').on('click',me.showEditInfoBox);
 		$('.student-personal-info-btn').on('click',me.enterEditInfo);
 		$('.student-changepassword-btn').on('click',me.enterChangePassword);
+		$('.single-impress-select').on('click',me.enterImpress);
 	},
 	changeTab : function(){
 		$('.student-personal-center-leftbar-btn').removeClass('active');
@@ -248,6 +249,8 @@ activityCircle.student.personalCenter = {
                 '我的印象' ;
 				$('.student-personal-center-title').html(html);
 				$('.student-personalcenter-box').hide();
+				$('.student-personal-impression-box').show();
+				activityCircle.student.personalCenter.getImpress();
 				break;
 			case 'questionnaire':
 				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
@@ -358,5 +361,45 @@ activityCircle.student.personalCenter = {
 		}else{
 			alert('数据不能为空');
 		}
+	},
+	getImpress : function(){
+		$.ajax({
+			url : '/student/findAllHobby',
+			type : 'post',
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				res = $.parseJSON(res);
+				$('.single-impress-delete').delegate("click",{'item':me},me.deleteImpress);
+			}
+		});
+	},
+	enterImpress : function(){
+		var impression = $(this).html();
+		impression = encodeURIComponent(impression);
+		$.ajax({
+			url : '/student/myHobby',
+			type : 'post',
+			data : {
+				myhobby : impression
+			},
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				res = $.parseJSON(res);
+				if(res.errcode == 100){
+
+				}else{
+					alert('您已经选择了这个特点');
+				}
+			}
+		});
+	},
+	deleteImpress : function(){
+		
 	}
 }
