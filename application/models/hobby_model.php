@@ -32,7 +32,10 @@ class Hobby_Model  extends  CI_Model{
         $this->load->database();
         $sql="select * from hobby_tb where sid=?";
         $query=$this->db->query($sql,array($sid));
-        $data=$query->result();
+        $result=$query->result();
+        foreach ($result as $row) {
+           $data[]=$row->hobby;
+        }        
         $this->db->close();
         return $data;
         
