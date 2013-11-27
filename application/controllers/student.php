@@ -2,7 +2,8 @@
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Student extends MY_Controller {
-
+  
+   
     public function studentAction(){  
         if($this->session->userdata('sid')){
             $sid=$this->session->userdata('sid');
@@ -163,7 +164,25 @@ class Student extends MY_Controller {
         $data['data']=$info;
         print_r(json_encode($data));
     }
+    public function upload(){                                
+        $this->load->library('upload'); 
+        $config['upload_path']='./uploads/';
+        $config['allowed_types']='gif|jpg|png';
+        $config['max_size']='100';
+        $config['max_width']='1024';
+        $config['max_height']='768';
 
+        $this->load->library('upload'); 
+        $this->upload->initialize($config);
+        $field_name = "student_head";       
+        if(! $this->upload->do_upload($field_name)){            
+            $result= array('error' => $this->upload->display_errors());
+        }else{
+            
+            $result=array('upload_data'=>$this->upload->data());
+        }
+        print_r($result) ;
+    }
 
 
 

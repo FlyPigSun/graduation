@@ -37,6 +37,7 @@ class Hobby_Model  extends  CI_Model{
            $data[]=$row->hobby;
         }        
         $this->db->close();
+        print_r($data);
         return $data;
         
     }

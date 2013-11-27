@@ -8,6 +8,7 @@ class MY_Controller extends CI_Controller {
         
        $CI =& get_instance(); 
        $CI->load->helper('url');
+       $CI->load->helper('form');
        $CI->load->library('session');
        $CI->config->item('base_url');
        $CI->load->library('Twig', array('template_dir' => APPPATH . 'views'), 'twig');
