@@ -183,30 +183,52 @@ class Student extends MY_Controller {
         print_r(json_encode($data));
     }
 
-    public function uploadAvatar(){                                
-        $this->load->library('upload'); 
-        $config['upload_path']='./uploads/';
+    public function uploadAvatar(){  
+
+        $sid=$this->session->userdata('sid'); 
+        if(!$sid ) print_r(json_encode(array('errcode'=>103, 'data'=>array()))); 
+
+        $png2=$this->input->post('png2');
+        $png3=$this->input->post('png3');
+
+        $filepath120 = './uploads/'.$sid.'_avatar_120.jpg';
+        $filepath44 = './uploads/'.$sid.'_avatar_44.jpg';
+
+        $somecontent2=base64_decode($png2);
+        $somecontent3=base64_decode($png3);
+        if ($handle=fopen($filepath120,'w+')) {
+            if (FALSE==!fwrite($handle,$somecontent2)) {
+                fclose($handle);
+            }
+        }
+        if ($handle=fopen($filepath44,'w+')) {
+            if (FALSE==!fwrite($handle,$somecontent3)) {
+                fclose($handle);
+            }
+        }
+        print_r('success=done');//让前台弹出上传成功                             
+        /*$this->load->library('upload'); 
+        $config['upload_path']='/uploads/';
         $config['allowed_types']='gif|jpg|png';
+        $config['file_name']=$sid.'_avartar.jpg';
         $config['max_size']='100';
         $config['max_width']='1024';
         $config['max_height']='768';
 
         $this->load->library('upload'); 
         $this->upload->initialize($config);
-        $field_name = "student_head";       
-        if(! $this->upload->do_upload($field_name)){            
-            $data= array('error' => $this->upload->display_errors());
+        //$field_name = "png1";       
+        if(! $this->upload->do_upload()){            
             $result=102;
         }else{
             $upload_data=$this->upload->data();
-            $avatar='uploads/';
-            $avatar=$avatar.$upload_data['client_name'];
+            $avatar=$config['file_name'];
             $sid=$this->session->userdata('sid');
             $this->load->model('student_model','student');
             $this->student->updateHead($sid,$avatar);
             $result=100;
         }
-        print_r($upload_data) ;
+        print_r($avatar) ;*/
     }
 
 
