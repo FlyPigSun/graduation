@@ -6,11 +6,10 @@
 class Hobby_Model  extends  CI_Model{
     var $id='';
     var $hobby='';
-    var $show='';
 
     public function insert($sid,$hobby){
         $this->load->database();
-        $sql="insert into hobby_tb value(null,?,?) ";
+        $sql="insert into hobby_tb value(null,?,?)";
         $query=$this->db->query($sql,array($sid,$hobby));
         $this->db->close();
     }
@@ -34,7 +33,7 @@ class Hobby_Model  extends  CI_Model{
         $query=$this->db->query($sql,array($sid));
         $result=$query->result();
         foreach ($result as $row) {
-           $data=$row->hobby;
+           $data[]=$row->hobby;
         }        
         $this->db->close();
         return $data;

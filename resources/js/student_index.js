@@ -383,7 +383,7 @@ activityCircle.student.personalCenter = {
 			url : '/student/selectHobby',
 			type : 'post',
 			data : {
-				myhobby : impression
+				hobby : impression
 			},
 			headers:{
 			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'

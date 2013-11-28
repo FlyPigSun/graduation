@@ -127,11 +127,11 @@ class Student extends MY_Controller {
 
     public function selectHobby(){
         $sid=$this->session->userdata('sid');
-        $hobby=$this->input->post('hobby');
+        $hobby=urldecode($this->input->post('hobby'));
+        print_r($hobby);
         $this->load->model('hobby_model','hobby');
         $judge=$this->hobby->find($sid,$hobby);
-        if($judge!=null){
-            $hid=$judge->id;
+        if($judge==null){
             $this->hobby->insert($sid,$hobby);
             $result=100;
         }else{
@@ -148,7 +148,6 @@ class Student extends MY_Controller {
         $this->load->model('hobby_model','hobby');
         $judge=$this->hobby->find($sid,$hobby);
         if($judge==null){
-            //$this->hobby->insert($sid,$hobby);
             $result=100;
         }else{
             $result=102;
@@ -176,10 +175,12 @@ class Student extends MY_Controller {
         $this->upload->initialize($config);
         $field_name = "student_head";       
         if(! $this->upload->do_upload($field_name)){            
-            $result= array('error' => $this->upload->display_errors());
+            $data= array('error' => $this->upload->display_errors());
+            $result=102;
         }else{
-            
-            $result=array('upload_data'=>$this->upload->data());
+            $data=array('upload_data'=>$this->upload->data());
+            $result=100;
+
         }
         print_r($result) ;
     }
