@@ -204,7 +204,7 @@
 }
 .my-impress{
 	height: 150px;
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid #ccc;
 }
 .single-impress{
 	position: relative;
@@ -245,7 +245,7 @@
 }
 .impress-select{
 	height: 150px;
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid #ccc;
 }
 .single-impress-select{
 	position: relative;
@@ -258,8 +258,15 @@
 	border-radius: 10px;
 	font-weight: 900;
 	cursor: pointer;
+	-webkit-transition: background-color .3s ease;
+	-moz-transition: background-color .3s ease;
+	-ms-transition: background-color .3s ease;
+	-o-transition: background-color .3s ease;
 }
 .single-impress-select.blue{
 	color: #000;
 	background-color: #6699ff;
+}
+.single-impress-select:hover{
+	background: #FFFF66;
 }

@@ -380,7 +380,7 @@ activityCircle.student.personalCenter = {
 		var impression = $(this).html();
 		impression = encodeURIComponent(impression);
 		$.ajax({
-			url : '/student/myHobby',
+			url : '/student/selectHobby',
 			type : 'post',
 			data : {
 				myhobby : impression
