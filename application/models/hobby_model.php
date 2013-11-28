@@ -41,6 +41,11 @@ class Hobby_Model  extends  CI_Model{
         
     }
 
-
+    public function deleteHobby($sid,$hobby){
+        $this->load->database();
+        $sql="delete from hobby_tb where sid=? and hobby=?";
+        $query=$this->db->query($sql,array($sid,$hobby));
+        $this->db->close();
+    }
 
 }?>

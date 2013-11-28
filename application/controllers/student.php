@@ -130,9 +130,12 @@ class Student extends MY_Controller {
         $hobby=urldecode($this->input->post('hobby'));
         $this->load->model('hobby_model','hobby');
         $judge=$this->hobby->find($sid,$hobby);
+        $judgecount=sizeof($this->hobby->findAllHobby($sid));
         if($judge==null){
             $this->hobby->insert($sid,$hobby);
             $result=100;
+        }else if($judgecount<=20){
+            $result=104;
         }else{
             $result=102;
         }
@@ -162,6 +165,26 @@ class Student extends MY_Controller {
         $data['data']=$info;
         print_r(json_encode($data));
     }
+
+
+    public function deleteHobby(){
+        $sid=$this->session->userdata('sid');
+        $hobby=$this->input->post('hobby');
+        $this->load->model('hobby_model','hobby');
+        $judge=$this->hobby->find($sid,$hobby);
+        if($judge!=null){
+            $info=$this->hobby->deleteHobby($sid,$hobby);
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }
+
+
+
+
     public function upload(){                                
         $this->load->library('upload'); 
         $config['upload_path']='./uploads/';
@@ -178,14 +201,15 @@ class Student extends MY_Controller {
             $result=102;
         }else{
             $data=array('upload_data'=>$this->upload->data());
-            //$head=$data->
+            $head='./uploads/';
+            //$head=$head.$data['client_name];
             $sid=$this->session->userdata('sid');
             $this->load->model('student_model','student');
-            //$this->student->updataHead($sid,$);
+            //$this->student->updataHead($sid,$head);
             $result=100;
 
         }
-        print_r($data) ;
+        print_r($head) ;
     }
 
 
