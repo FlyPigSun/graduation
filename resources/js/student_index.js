@@ -231,6 +231,8 @@ activityCircle.student.personalCenter = {
 		$('.student-personal-info-btn').on('click',me.enterEditInfo);
 		$('.student-changepassword-btn').on('click',me.enterChangePassword);
 		$('.single-impress-select').on('click',me.enterImpress);
+		$(document).delegate('.single-impress-delete',"click",{'item':me},me.deleteImpress);
+		$('.input-impress-enter-btn').on('click',me.inputImpress);
 	},
 	changeTab : function(){
 		$('.student-personal-center-leftbar-btn').removeClass('active');
@@ -363,6 +365,7 @@ activityCircle.student.personalCenter = {
 		}
 	},
 	getImpress : function(){
+		$('.my-impress').html('');
 		$.ajax({
 			url : '/student/findAllHobby',
 			type : 'post',
@@ -372,13 +375,19 @@ activityCircle.student.personalCenter = {
 			success : function(responseText){
 				var res = responseText;
 				res = $.parseJSON(res);
-				$('.single-impress-delete').delegate("click",{'item':me},me.deleteImpress);
+				var data = res.data;
+				$.each(data,function(key,item){
+					var html = '<div class="single-impress yellow">'+
+                        	'<img class="single-impress-delete" src="/resources/images/close.png"/>'+
+                        '<div>'+item+'</div>'+'</div>'
+                    $('.my-impress').append(html);
+				});
 			}
 		});
 	},
 	enterImpress : function(){
-		var impression = $(this).html();
-		impression = encodeURIComponent(impression);
+		var impress = $.trim($(this).html());
+		var impression = encodeURIComponent(impress);
 		$.ajax({
 			url : '/student/selectHobby',
 			type : 'post',
@@ -392,14 +401,74 @@ activityCircle.student.personalCenter = {
 				var res = responseText;
 				res = $.parseJSON(res);
 				if(res.errcode == 100){
-
-				}else{
+					var html = '<div class="single-impress activitycircle-hide yellow">'+
+                        	'<img class="single-impress-delete" src="/resources/images/close.png"/>'+
+                        '<div>'+impress+'</div>'+'</div>';
+                    $('.my-impress').append(html);
+                    $('.single-impress').fadeIn();
+				}else if(res.errcode = 102){
 					alert('您已经选择了这个特点');
+				}else{
+					alert('您选择的特点过多');
 				}
 			}
 		});
 	},
 	deleteImpress : function(){
-		
+		var me = this;
+		var impression = $(this).siblings('div').html();
+		$.ajax({
+			url : '/student/deleteHobby',
+			type : 'post',
+			data : {
+				hobby : impression
+			},
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				res = $.parseJSON(res);
+				if(res.errcode == 100){
+					$(me).parent().fadeOut();
+					setTimeout(function(){
+						$(me).parent().remove();
+					},500);
+				}else{
+					alert('删除失败');
+				}
+			}
+		});
+	},
+	inputImpress : function(){
+		var impress = $('.input-impress input').val();
+		var impression = encodeURIComponent(impression);
+		$.ajax({
+			url : '/student/myHobby',
+			type : 'post',
+			data : {
+				myhobby : impression
+			},
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				res = $.parseJSON(res);
+				if(res.errcode == 100){
+					var html = '<div class="single-impress activitycircle-hide yellow">'+
+                        	'<img class="single-impress-delete" src="/resources/images/close.png"/>'+
+                        '<div>'+impress+'</div>'+'</div>';
+                    $('.my-impress').append(html);
+                    $('.single-impress').fadeIn();
+                    $('.input-impress input').val('');
+				}else if(res.errcode = 102){
+					alert('您已经选择了这个特点');
+				}else{
+					alert('您选择的特点过多');
+				}
+			}
+		});
+
 	}
 }

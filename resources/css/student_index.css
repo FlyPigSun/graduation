@@ -210,16 +210,16 @@
 	position: relative;
 	margin: 5px;
 	float: left;
-	width: 60px;
+	padding: 0px 10px;
 	height: 30px;
 	line-height: 30px;
 	text-align: center;
 	border-radius: 10px;
 	font-weight: 900;
 }
-.single-impress.blue{
+.single-impress.yellow{
 	color: #000;
-	background-color: #6699ff;
+	background-color: #FFFF66;
 }
 .single-impress-delete{
 	position: absolute;
@@ -228,7 +228,7 @@
 	height: 12px;
 	border-radius: 30px;
 	right: -3px;
-	top: -5px;
+	top: -3px;
 	border: 1px solid #ccc;
 	background-color: #fff;
 	cursor: pointer;
@@ -269,4 +269,18 @@
 }
 .single-impress-select:hover{
 	background: #FFFF66;
+}
+.input-impress{
+	position: relative;
+}
+.my-impress-input{
+	width: 250px;
+	margin: 20px 0px;
+	font-size: 15px;
+}
+.input-impress-enter-btn{
+	position: absolute;
+	right: 20px;
+	top:38px;
+	width: 100px;
 }
