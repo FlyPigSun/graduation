@@ -183,7 +183,7 @@ class Student extends MY_Controller {
         print_r(json_encode($data));
     }
 
-    public function upload(){                                
+    public function uploadAvatar(){                                
         $this->load->library('upload'); 
         $config['upload_path']='./uploads/';
         $config['allowed_types']='gif|jpg|png';
