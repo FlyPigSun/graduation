@@ -20,3 +20,13 @@ function invokeClick(element) {
         element.dispatchEvent(evt); //分发click() 事件  
     }         
 }
+
+/**
+ *头像上传回调函数
+ *author: 孙骥
+ */
+function avatar_success(){
+    /*var src = $('.yike-studentcenter-file-me-avatar').attr('src')
+    $('.yike-studentcenter-file-me-avatar').attr('src',src+'?'+Math.random());*/
+    activityCircle.student.personalCenter.hideAvatarBox();
+}

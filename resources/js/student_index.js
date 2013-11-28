@@ -233,6 +233,7 @@ activityCircle.student.personalCenter = {
 		$('.single-impress-select').on('click',me.enterImpress);
 		$(document).delegate('.single-impress-delete',"click",{'item':me},me.deleteImpress);
 		$('.input-impress-enter-btn').on('click',me.inputImpress);
+		$('.change-avatar-btn').on('click',me.showAvatarBox);
 	},
 	changeTab : function(){
 		$('.student-personal-center-leftbar-btn').removeClass('active');
@@ -442,7 +443,7 @@ activityCircle.student.personalCenter = {
 	},
 	inputImpress : function(){
 		var impress = $('.input-impress input').val();
-		var impression = encodeURIComponent(impression);
+		var impression = encodeURIComponent(impress);
 		$.ajax({
 			url : '/student/myHobby',
 			type : 'post',
@@ -469,6 +470,17 @@ activityCircle.student.personalCenter = {
 				}
 			}
 		});
-
-	}
+	},
+    showAvatarBox : function(){
+        $('.change-avatar-box').html('');
+        $('.change-avatar-box').animate({top:$(document).scrollTop()+150+'px'});
+        var html = '<embed src="/resources/avatar_face/face.swf" id="weibo" name="weibo" quality="high" wmode="opaque" flashvars="uploadServerUrl=/student/uploadAvatar&amp;defaultImg=/resources/avatar_face/images/default-avatar.jpg" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash" width="530" height="380">'
+        $('.change-avatar-box').append(html);
+        $('.index-background').fadeIn();
+        $('.index-background').one('click',activityCircle.student.personalCenter.hideAvatarBox);
+    },
+    hideAvatarBox : function(){
+        $('.change-avatar-box').animate({top:'-500px'});
+        $('.index-background').fadeOut();
+    }
 }

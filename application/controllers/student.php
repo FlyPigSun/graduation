@@ -3,7 +3,6 @@
 
 class Student extends MY_Controller {
   
-   
     public function studentAction(){  
         if($this->session->userdata('sid')){
             $sid=$this->session->userdata('sid');
@@ -18,6 +17,7 @@ class Student extends MY_Controller {
             redirect('/login');
         }
     }
+
     public function register(){
         $username=$this->input->post('username');
         $password=$this->input->post('password');
@@ -44,6 +44,7 @@ class Student extends MY_Controller {
         $data['errcode']=$result;
         print_r(json_encode($data));
     }
+    
     public function testSubmit(){
         $sid=$this->input->post('sid');
         $first_result=$this->input->post('first_result');
@@ -146,7 +147,6 @@ class Student extends MY_Controller {
 
     public function myHobby(){
         $hobby=urldecode($this->input->post('myhobby'));
-        print_r($hobby);
         $sid=$this->session->userdata('sid');
         $this->load->model('hobby_model','hobby');
         $judge=$this->hobby->find($sid,$hobby);
@@ -168,7 +168,6 @@ class Student extends MY_Controller {
         print_r(json_encode($data));
     }
 
-
     public function deleteHobby(){
         $sid=$this->session->userdata('sid');
         $hobby=$this->input->post('hobby');
@@ -183,9 +182,6 @@ class Student extends MY_Controller {
         $data['errcode']=$result;
         print_r(json_encode($data));
     }
-
-
-
 
     public function upload(){                                
         $this->load->library('upload'); 
@@ -209,7 +205,6 @@ class Student extends MY_Controller {
             $this->load->model('student_model','student');
             //$this->student->updataHead($sid,$head);
             $result=100;
-
         }
         print_r($head) ;
     }
