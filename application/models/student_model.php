@@ -120,15 +120,14 @@ class Student_Model  extends  CI_Model{
         $query=$this->db->query($sql,array($realname,$gender,$grade,$class,$motto,$studentnumber,$sid));
         $this->db->close();
     }
-    //查找个人爱好
-    /*public function findAllHobby($sid){
+    
+    //上传头像地址
+    public function updateHead($sid,$head){
         $this->load->database();
-        $sql="select * from student_hobby_tb sh left join hobby_tb h on sh.hid=h.id where sh.sid=?";
-        $query=$this->db->query($sql,array($sid));
-        $data=$query->result();
+        $sql="update student_tb set head=? where id=?";
+        $query=$this->db->query($sql,array($head,$sid));
         $this->db->close();
-        return $data;
-    }*/
+    }
 
 
 }

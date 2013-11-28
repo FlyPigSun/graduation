@@ -128,7 +128,6 @@ class Student extends MY_Controller {
     public function selectHobby(){
         $sid=$this->session->userdata('sid');
         $hobby=urldecode($this->input->post('hobby'));
-        print_r($hobby);
         $this->load->model('hobby_model','hobby');
         $judge=$this->hobby->find($sid,$hobby);
         if($judge==null){
@@ -179,10 +178,14 @@ class Student extends MY_Controller {
             $result=102;
         }else{
             $data=array('upload_data'=>$this->upload->data());
+            //$head=$data->
+            $sid=$this->session->userdata('sid');
+            $this->load->model('student_model','student');
+            //$this->student->updataHead($sid,$);
             $result=100;
 
         }
-        print_r($result) ;
+        print_r($data) ;
     }
 
 
