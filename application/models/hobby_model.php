@@ -34,10 +34,9 @@ class Hobby_Model  extends  CI_Model{
         $query=$this->db->query($sql,array($sid));
         $result=$query->result();
         foreach ($result as $row) {
-           $data[]=$row->hobby;
+           $data=$row->hobby;
         }        
         $this->db->close();
-        print_r($data);
         return $data;
         
     }

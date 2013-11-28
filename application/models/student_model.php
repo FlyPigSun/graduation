@@ -85,7 +85,7 @@ class Student_Model  extends  CI_Model{
         $sql="select * from student_tb where username=?";
         $query=$this->db->query($sql,array($username));
         if($query->num_rows()>0){
-            $data=$query->row()->result();
+            $data=$query->row();
         }else {
             $data=null;
         }
