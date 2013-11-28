@@ -208,11 +208,13 @@
 .student-changepassword-btn{
 	position: absolute;
 	right: 110px;
-	bottom: 0px;
+	bottom: 10px;
 	width: 100px;
 }
 .change-avatar{
 	position: relative;
+	width: 135px;
+	margin: auto;
 }
 .change-avatar-btn{
 	background: url(/resources/images/change-avatar-btn.png);
@@ -220,7 +222,7 @@
 	width: 120px;
 	height: 33px;
 	cursor: pointer;
-	margin-top: 15px;
+	margin: 15px 0px 0px 8px;
 }
 .change-avatar-btn:hover{
 	background-position: 0px -34px;
@@ -238,6 +240,13 @@
 	left: 50%;
 	margin-left: -245px;
 	z-index: 10001;
+}
+.avatar-box{
+	height: 133px;
+	width: 133px;
+	border: 2px solid #6cba26;
+	border-radius: 2px;
+	box-shadow: 0px 2px 3px #000;
 }
 .student-personal-impression-tips{
 	margin: 5px 0px 0px 5px;

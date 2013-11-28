@@ -26,7 +26,7 @@ function invokeClick(element) {
  *author: 孙骥
  */
 function avatar_success(){
-    /*var src = $('.yike-studentcenter-file-me-avatar').attr('src')
-    $('.yike-studentcenter-file-me-avatar').attr('src',src+'?'+Math.random());*/
+    var src = $('.avatar-box').attr('src')
+    $('.avatar-box').attr('src',src+'?'+Math.random());
     activityCircle.student.personalCenter.hideAvatarBox();
 }
