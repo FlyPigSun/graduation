@@ -236,6 +236,7 @@ activityCircle.student.personalCenter = {
 		$('.change-avatar-btn').on('click',me.showAvatarBox);
 	},
 	changeTab : function(){
+		var sid = $('.sid').html();
 		$('.student-personal-center-leftbar-btn').removeClass('active');
 		$(this).addClass('active');
 		var btn = $(this).attr('type');
@@ -246,6 +247,7 @@ activityCircle.student.personalCenter = {
 				$('.student-personal-center-title').html(html);
 				$('.student-personalcenter-box').hide();
 				$('.student-personal-info-box').show();
+				$('.avatar-box').attr('src','/uploads/'+sid+'_avatar.jpg');
 				break;
 			case 'impression':
 				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
