@@ -198,15 +198,15 @@ class Student extends MY_Controller {
             $data= array('error' => $this->upload->display_errors());
             $result=102;
         }else{
-            $data=array('upload_data'=>$this->upload->data());
-            $head='./uploads/';
-            $head=$head.$data->client_name;
+            $upload_data=$this->upload->data();
+            $avatar='uploads/';
+            $avatar=$avatar.$upload_data['client_name'];
             $sid=$this->session->userdata('sid');
             $this->load->model('student_model','student');
-            //$this->student->updataHead($sid,$head);
+            $this->student->updateHead($sid,$avatar);
             $result=100;
         }
-        print_r($head) ;
+        print_r($upload_data) ;
     }
 
 
