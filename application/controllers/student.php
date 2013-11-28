@@ -146,10 +146,12 @@ class Student extends MY_Controller {
 
     public function myHobby(){
         $hobby=urldecode($this->input->post('myhobby'));
+        print_r($hobby);
         $sid=$this->session->userdata('sid');
         $this->load->model('hobby_model','hobby');
         $judge=$this->hobby->find($sid,$hobby);
         if($judge==null){
+            $this->hobby->insert($sid,$hobby);
             $result=100;
         }else{
             $result=102;
@@ -202,7 +204,7 @@ class Student extends MY_Controller {
         }else{
             $data=array('upload_data'=>$this->upload->data());
             $head='./uploads/';
-            //$head=$head.$data['client_name];
+            $head=$head.$data->client_name;
             $sid=$this->session->userdata('sid');
             $this->load->model('student_model','student');
             //$this->student->updataHead($sid,$head);
