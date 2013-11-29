@@ -12,6 +12,8 @@ application/config/*
 !application/config/routes.php
 !application/config/constants.php
 
+upload_files/*
+
 .tags
 
 .tags_sorted_by_file
