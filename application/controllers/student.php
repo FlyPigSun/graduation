@@ -105,7 +105,6 @@ class Student extends MY_Controller {
         $sid=$this->session->userdata('sid');
         $oldpassword=$this->input->post('oldPassword');
         $newpassword=$this->input->post('newPassword');
-        //print_r($password);
         $this->load->model('student_model','student');
         $result=$this->student->verifypassword($sid,$oldpassword);
         //print_r($result);
@@ -132,10 +131,10 @@ class Student extends MY_Controller {
         $this->load->model('hobby_model','hobby');
         $judge=$this->hobby->find($sid,$hobby);
         $judgecount=sizeof($this->hobby->findAllHobby($sid));
-        if($judge==null){
+        if($judgecount<=19||$judge==null){
             $this->hobby->insert($sid,$hobby);
             $result=100;
-        }else if($judgecount<=20){
+        }else if($judgecount<=19){
             $result=104;
         }else{
             $result=102;
@@ -150,9 +149,12 @@ class Student extends MY_Controller {
         $sid=$this->session->userdata('sid');
         $this->load->model('hobby_model','hobby');
         $judge=$this->hobby->find($sid,$hobby);
-        if($judge==null){
+        $judgecount=sizeof($this->hobby->findAllHobby($sid));
+        if($judgecount<=19||$judge==null){
             $this->hobby->insert($sid,$hobby);
             $result=100;
+        }else if($judgecount<=19){
+            $result=104;
         }else{
             $result=102;
         }
@@ -191,8 +193,8 @@ class Student extends MY_Controller {
         $png2=$this->input->post('png2');
         $png3=$this->input->post('png3');
 
-        $filepath120 = './uploads/'.$sid.'_avatar_120.jpg';
-        $filepath44 = './uploads/'.$sid.'_avatar_44.jpg';
+        $filepath120 = './upload_files/student/avatars/'.$sid.'_avatar_120.jpg';
+        $filepath44 = './upload_files/student/avatars/'.$sid.'_avatar_44.jpg';
 
         $somecontent2=base64_decode($png2);
         $somecontent3=base64_decode($png3);
@@ -207,28 +209,6 @@ class Student extends MY_Controller {
             }
         }
         print_r('success=done');//让前台弹出上传成功                             
-        /*$this->load->library('upload'); 
-        $config['upload_path']='/uploads/';
-        $config['allowed_types']='gif|jpg|png';
-        $config['file_name']=$sid.'_avartar.jpg';
-        $config['max_size']='100';
-        $config['max_width']='1024';
-        $config['max_height']='768';
-
-        $this->load->library('upload'); 
-        $this->upload->initialize($config);
-        //$field_name = "png1";       
-        if(! $this->upload->do_upload()){            
-            $result=102;
-        }else{
-            $upload_data=$this->upload->data();
-            $avatar=$config['file_name'];
-            $sid=$this->session->userdata('sid');
-            $this->load->model('student_model','student');
-            $this->student->updateHead($sid,$avatar);
-            $result=100;
-        }
-        print_r($avatar) ;*/
     }
 
 
