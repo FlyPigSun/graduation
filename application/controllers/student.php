@@ -28,7 +28,7 @@ class Student extends MY_Controller {
         $gender=urldecode($this->input->post('gender'));
         $this->load->model('student_model','student');
         $judge=$this->student->find($username);
-        $avatar=urldecode("./upload_files/student/avatars/");
+        $avatar="./upload_files/student/avatars/";
         if($judge==null){
             $this->student->insert($username,$password,$realname,$studentnumber,$grade,$class,$gender,$avatar);
             $this->student->login($username,$password,date("Y-m-d   H:i:s"));
@@ -213,15 +213,8 @@ class Student extends MY_Controller {
         $sid=$this->session->userdata('sid');
         $this->load->model('student_model','student');
         $obj=$this->student->findById($sid);
-        print_r($obj);
-        if($obj!=null){
-            $result=100;
-        }else{
-            $result=102;
-        }
-        $data['errcode']=$result;
-        $data['data']=$obj->avatar;
-        print_r(json_encode($data));
+        $data=$obj->avatar;
+        return $data;
 
     }
 
