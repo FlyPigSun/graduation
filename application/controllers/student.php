@@ -28,7 +28,7 @@ class Student extends MY_Controller {
         $gender=urldecode($this->input->post('gender'));
         $this->load->model('student_model','student');
         $judge=$this->student->find($username);
-        $avatar="./upload_files/student/avatars/";
+        $avatar="/upload_files/student/avatars/default_avatar.jpg";
         if($judge==null){
             $this->student->insert($username,$password,$realname,$studentnumber,$grade,$class,$gender,$avatar);
             $this->student->login($username,$password,date("Y-m-d   H:i:s"));
@@ -186,27 +186,22 @@ class Student extends MY_Controller {
     }
 
     public function uploadAvatar(){  
-
+        $this->load->model('student_model','student');
         $sid=$this->session->userdata('sid'); 
         if(!$sid ) print_r(json_encode(array('errcode'=>103, 'data'=>array()))); 
         $png2=$this->input->post('png2');
-        $png3=$this->input->post('png3');
 
         $filepath120 = './upload_files/student/avatars/'.$sid.'_avatar_120.jpg';
-        $filepath44 = './upload_files/student/avatars/'.$sid.'_avatar_44.jpg';
+        $avatar = '/upload_files/student/avatars/'.$sid.'_avatar_120.jpg';
+
         $somecontent2=base64_decode($png2);
-        $somecontent3=base64_decode($png3);
         if ($handle=fopen($filepath120,'w+')) {
             if (FALSE==!fwrite($handle,$somecontent2)) {
                 fclose($handle);
             }
         }
-        if ($handle=fopen($filepath44,'w+')) {
-            if (FALSE==!fwrite($handle,$somecontent3)) {
-                fclose($handle);
-            }
-        }
-        print_r('success=done');//让前台弹出上传成功                             
+        $this->student->updateHead($sid,$avatar);
+        print_r('success=done');//让前台弹出上传成功                   
     }
 
     public function getAvatarAddress(){
@@ -215,7 +210,6 @@ class Student extends MY_Controller {
         $obj=$this->student->findById($sid);
         $data=$obj->avatar;
         return $data;
-
     }
 
 
