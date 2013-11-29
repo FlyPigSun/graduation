@@ -51,10 +51,10 @@ class Student_Model  extends  CI_Model{
     }
 
     //添加学生
-    public function insert($username,$password,$realname,$studentnumber,$grade,$class,$gender){
+    public function insert($username,$password,$realname,$studentnumber,$grade,$class,$gender,$avatar){
         $this->load->database();
-        $sql="insert into student_tb values(null,?,?,?,null,?,?,?,null,null,?,null,0)";
-        $query=$this->db->query($sql,array($realname,$username,$password,$gender,$grade,$class,$studentnumber));
+        $sql="insert into student_tb values(null,?,?,?,null,?,?,?,null,null,?,null,0,?)";
+        $query=$this->db->query($sql,array($realname,$username,$password,$gender,$grade,$class,$studentnumber,$avatar));
         $this->db->close();
     }
     //验证密码

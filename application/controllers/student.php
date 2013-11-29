@@ -28,9 +28,9 @@ class Student extends MY_Controller {
         $gender=urldecode($this->input->post('gender'));
         $this->load->model('student_model','student');
         $judge=$this->student->find($username);
-        
+        $avatar=urldecode("./upload_files/student/avatars/");
         if($judge==null){
-            $this->student->insert($username,$password,$realname,$studentnumber,$grade,$class,$gender);
+            $this->student->insert($username,$password,$realname,$studentnumber,$grade,$class,$gender,$avatar);
             $this->student->login($username,$password,date("Y-m-d   H:i:s"));
             $arr=array("sid"=>$this->student->id,"username"=>$username,
             "time"=>$this->student->loginTime,"password"=>$password,
@@ -153,7 +153,7 @@ class Student extends MY_Controller {
         if($judgecount<=19||$judge==null){
             $this->hobby->insert($sid,$hobby);
             $result=100;
-        }else if($judgecount<=19){
+        }else if($judgecount<=20){
             $result=104;
         }else{
             $result=102;
@@ -189,13 +189,11 @@ class Student extends MY_Controller {
 
         $sid=$this->session->userdata('sid'); 
         if(!$sid ) print_r(json_encode(array('errcode'=>103, 'data'=>array()))); 
-
         $png2=$this->input->post('png2');
         $png3=$this->input->post('png3');
 
         $filepath120 = './upload_files/student/avatars/'.$sid.'_avatar_120.jpg';
         $filepath44 = './upload_files/student/avatars/'.$sid.'_avatar_44.jpg';
-
         $somecontent2=base64_decode($png2);
         $somecontent3=base64_decode($png3);
         if ($handle=fopen($filepath120,'w+')) {
@@ -209,6 +207,22 @@ class Student extends MY_Controller {
             }
         }
         print_r('success=done');//让前台弹出上传成功                             
+    }
+
+    public function getAvatarAddress(){
+        $sid=$this->session->userdata('sid');
+        $this->load->model('student_model','student');
+        $obj=$this->student->findById($sid);
+        print_r($obj);
+        if($obj!=null){
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        $data['data']=$obj->avatar;
+        print_r(json_encode($data));
+
     }
 
 
