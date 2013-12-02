@@ -10,7 +10,7 @@ class Student_Model  extends  CI_Model{
     var $username='';
     var $password='';
     var $realname='';
-    var $loginTime='';
+    var $logintime='';
     var $grade='';
     var $class='';
     var $studentnumber='';
@@ -33,7 +33,7 @@ class Student_Model  extends  CI_Model{
             $this->id=$row->id;
             $this->username=$row->username;
             $this->password=$row->password;
-            $this->loginTime=$row->loginTime;
+            $this->logintime=$row->logintime;
             $this->grade=$row->grade;
             $this->class=$row->class;
             $this->notfirst=$row->notfirst;

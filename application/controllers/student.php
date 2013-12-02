@@ -10,7 +10,7 @@ class Student extends MY_Controller {
             $student=$this->student->findById($sid);
             $notfirst=$student->notfirst;
             $realname=$student->realname;
-            $logintime=$student->loginTime;
+            $logintime=$student->logintime;
             $this->twig->render('student_index.html.twig',array('notfirst'=>$notfirst,'sid'=>$sid,
                 'realname'=>$realname,'logintime'=>$logintime));
         }else{
@@ -33,7 +33,7 @@ class Student extends MY_Controller {
             $this->student->insert($username,$password,$realname,$studentnumber,$grade,$class,$gender,$avatar);
             $this->student->login($username,$password,date("Y-m-d   H:i:s"));
             $arr=array("sid"=>$this->student->id,"username"=>$username,
-            "time"=>$this->student->loginTime,"password"=>$password,
+            "time"=>$this->student->logintime,"password"=>$password,
             "teachernumber"=>$studentnumber,"grade"=>$grade,
             "class"=>$class,"role"=>'student',"character"=>'',"testscore"=>0,"notfirst"=>0);
             $this->session->set_userdata($arr);

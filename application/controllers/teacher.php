@@ -21,8 +21,8 @@ class Teacher extends MY_Controller {
     public function register(){   
         $username=$this->input->post('username');
         $password=$this->input->post('password');
-        $realname=$this->input->post('realname');
-        $gender=$this->input->post('gender');
+        $realname=urldecode($this->input->post('realname'));
+        $gender=urldecode($this->input->post('gender'));
         $this->load->model('teacher_model','teacher');
         $judge=$this->teacher->find($username);
         
@@ -43,7 +43,13 @@ class Teacher extends MY_Controller {
         
     public function teacherAction(){  
         if($this->session->userdata('tid')){
-            $this->twig->render('teacher_index.html.twig');     
+            $tid=$this->session->userdata('tid');
+            $this->load->model('teacher_model','teacher');
+            $teacher=$this->teacher->findById($tid);
+            $realname=$teacher->realname;
+            $logintime=$teacher->logintime;
+            $this->twig->render('teacher_index.html.twig',array('tid'=>$tid,
+                'realname'=>$realname,'logintime'=>$logintime));     
         }else{
             redirect('/login');
         }

@@ -52,7 +52,7 @@ activityCircle.studentIndexPage = {
 			case 'friends_circle':
 				$('.student-index-centerarea').html('');
 				break;
-			case 'notification':
+			case 'message':
 				$('.student-index-centerarea').html('');
 				break;
 		}

@@ -45,14 +45,6 @@ class Teacher_Model  extends  CI_Model{
         $this->db->close();
 
     }
-
-
-
-
-
-
-
-
   
     //添加教师
     public function insert($username,$password,$realname,$gender){
@@ -63,7 +55,6 @@ class Teacher_Model  extends  CI_Model{
 
     }
     
-
     public function find($username){
         $this->load->database();
         $sql="select * from teacher_tb where username=?";
@@ -76,16 +67,20 @@ class Teacher_Model  extends  CI_Model{
         $this->db->close();
         return $data;
     }
-    //修改密码
-    //public function password($id,$password){
-       // $this->load->database();
-       // $sql="update teacher_tb set password=? where id=?";
-       // $data=array($password,$id);
-       // $query=$this->db->query($sql,$data);
-        //$this->db->close();
-   // }
 
-
+    //按id查找
+    public function findById($tid){
+        $this->load->database();
+        $sql="select * from teacher_tb where id=?";
+        $query=$this->db->query($sql,array($tid));
+        if($query->num_rows()>0){
+            $data=$query->row();
+        }else {
+            $data=null;
+        }
+        $this->db->close();
+        return $data;
+    }
 }
 
 ?>

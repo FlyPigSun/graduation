@@ -15,5 +15,47 @@
     <link href="/resources/css/teacher_index.css" rel="stylesheet"/>
 </head>
 <body>
-    教师页面
+    <div class="activitycircle-hide tid">{{ tid }}</div>
+    <div class="teacher-index-main">
+        <div class="teacher-index-toparea">
+            <div class="teacher-index-topbtnarea">
+                <div class="teacher-index-topbtn active" type="index">
+                    首页
+                </div>
+                <div class="teacher-index-topbtn" type="personal_center">
+                    个人中心
+                </div>
+                <div class="teacher-index-topbtn" type="teacher_recommend">
+                    教师推荐
+                </div>
+                <div class="teacher-index-topbtn" type="group_activety">
+                    小组活动
+                </div>
+                <div class="teacher-index-topbtn" type="honor_box">
+                    荣誉箱
+                </div>
+                <div class="teacher-index-topbtn" type="friends_circle">
+                    好友圈
+                </div>
+                <div class="teacher-index-topbtn" type="message">
+                    站内信
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="teacher-index-topinfoarea">
+                <div style="margin-right:10px;" class="middle-font pull-left">
+                    {{ realname }}
+                </div>
+                <div style="margin-right:10px;" class="middle-font pull-left">
+                    {{ logintime }}
+                </div>
+                <a style="margin-right:10px;" class="middle-font teacher-index-logout pull-left" href="/logout">
+                    退出
+                </a>
+            </div>
+        </div>
+        <div class="teacher-index-centerarea">
+           
+        </div>
+    </div>
 </body>
