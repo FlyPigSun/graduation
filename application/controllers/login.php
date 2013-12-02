@@ -63,7 +63,7 @@ class Login extends MY_Controller {
             $result=102;          
         }else{
             $arr=array("tid"=>$this->teacher->id,"username"=>$this->teacher->username,
-              "time"=>$this->teacher->loginTime,"password"=>$this->teacher->password,
+              "time"=>$this->teacher->logintime,"password"=>$this->teacher->password,
               "teachernumber"=>$this->teacher->teachernumber,"grade"=>$this->teacher->grade,
               "class"=>$this->teacher->class,"role"=>'teacher');
             $this->session->set_userdata($arr);
@@ -81,7 +81,7 @@ class Login extends MY_Controller {
             $result=101;
         }else{
             $arr=array("sid"=>$this->student->id,"username"=>$this->student->username,
-            "time"=>$this->student->loginTime,"password"=>$this->student->password,
+            "time"=>$this->student->logintime,"password"=>$this->student->password,
             "studentnumber"=>$this->student->studentnumber,"grade"=>$this->student->grade,
             "class"=>$this->student->class,"role"=>'student',"notfirst"=>$this->student->notfirst);
             $this->session->set_userdata($arr);

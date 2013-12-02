@@ -8,7 +8,7 @@ class Teacher_Model  extends  CI_Model{
     var $id='';
     var $username='';
     var $password='';
-    var $loginTime='';
+    var $logintime='';
     var $grade='';
     var $class='';
     var $teachernumber='';
@@ -29,7 +29,7 @@ class Teacher_Model  extends  CI_Model{
             $this->id=$row->id;
             $this->username=$row->username;
             $this->password=$row->password;
-            $this->loginTime=$row->logintime;
+            $this->logintime=$row->logintime;
             $this->realname=$row->realname;
             $this->gender=$row->gender;
             $sql="update teacher_tb set logintime=? where id=?";
