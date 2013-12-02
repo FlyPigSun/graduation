@@ -131,17 +131,17 @@ class Student extends MY_Controller {
         $this->load->model('hobby_model','hobby');
         $judge=$this->hobby->find($sid,$hobby);
         $judgecount=sizeof($this->hobby->findAllHobby($sid));
-        if($judgecount<=19||$judge==null){
+        if($judgecount<=19&&$judge==null){
             $this->hobby->insert($sid,$hobby);
             $result=100;
-        }else if($judgecount<=19){
+        }else if($judgecount>19){
             $result=104;
         }else{
             $result=102;
         }
         $data['errcode']=$result;
+        $data['num']=$judgecount;
         print_r(json_encode($data));
-
     }
 
     public function myHobby(){
@@ -150,15 +150,16 @@ class Student extends MY_Controller {
         $this->load->model('hobby_model','hobby');
         $judge=$this->hobby->find($sid,$hobby);
         $judgecount=sizeof($this->hobby->findAllHobby($sid));
-        if($judgecount<=19||$judge==null){
+        if($judgecount<=19&&$judge==null){
             $this->hobby->insert($sid,$hobby);
             $result=100;
-        }else if($judgecount<=20){
+        }else if($judgecount>19){
             $result=104;
         }else{
             $result=102;
         }
         $data['errcode']=$result;
+        $data['num']=$judgecount;
         print_r(json_encode($data));
     }
 

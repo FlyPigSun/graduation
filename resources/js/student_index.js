@@ -409,7 +409,7 @@ activityCircle.student.personalCenter = {
                         '<div>'+impress+'</div>'+'</div>';
                     $('.my-impress').append(html);
                     $('.single-impress').fadeIn();
-				}else if(res.errcode = 102){
+				}else if(res.errcode ==  102){
 					alert('您已经选择了这个特点');
 				}else{
 					alert('您选择的特点过多');
@@ -465,7 +465,7 @@ activityCircle.student.personalCenter = {
                     $('.my-impress').append(html);
                     $('.single-impress').fadeIn();
                     $('.input-impress input').val('');
-				}else if(res.errcode = 102){
+				}else if(res.errcode == 102){
 					alert('您已经选择了这个特点');
 				}else{
 					alert('您选择的特点过多');
