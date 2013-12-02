@@ -17,43 +17,33 @@ class Teacher extends MY_Controller {
 	 * So any other public methods not prefixed with an underscore will
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
-    //public function __construct(){
-       // parent::__construct();
-       // $this->load->library('my_class');
-    //}   
-    public function teacherregister(){   
+	 */ 
+    public function register(){   
         $username=$this->input->post('username');
         $password=$this->input->post('password');
         $realname=$this->input->post('realname');
-        $teachernumber=$this->input->post('teachernumber');
-        $grade=$this->input->post('grade');
-        $class=$this->input->post('class');
+        $gender=$this->input->post('gender');
         $this->load->model('teacher_model','teacher');
         $judge=$this->teacher->find($username);
         
         if($judge==null){
-            $this->teacher->insert($username,$password,$name,$teachernumber,$grade,$class);
+            $this->teacher->insert($username,$password,$realname,$gender);
             $this->teacher->login($username,$password,date("Y-m-d   H:i:s"));
             $arr=array("tid"=>$this->teacher->id,"username"=>$username,
             "time"=>$this->teacher->loginTime,"password"=>$password,
-            "teachernumber"=>$teachernumber,"grade"=>$grade,
-            "class"=>$class,"role"=>'teacher');
+            "role"=>'teacher');
             $this->session->set_userdata($arr);
             $result=100;
-        
         }else{
             $result=102;
         }
-    $data['errcode']=$result;
-    print_r(json_encode($data));       
-              
+        $data['errcode']=$result;
+        print_r(json_encode($data));               
     }
         
-    
-     public function teacherAction(){  
+    public function teacherAction(){  
         if($this->session->userdata('tid')){
-            $this->twig->render('student_index.html.twig');     
+            $this->twig->render('teacher_index.html.twig');     
         }else{
             redirect('/login');
         }

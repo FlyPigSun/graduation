@@ -12,9 +12,10 @@ activityCircle.loginPage = {
 	initialize : function(){
 		var me = this;
 		$('body').height($(window).height()-150);
-		$('.activitycircle-login-btn').on('click',this.login);
-		$('.activitycircle-changetab').on('click',this.changeTab);
-		$('.activitycircle-register-btn').on('click',this.studentRegister);
+		$('.activitycircle-login-btn').on('click',me.login);
+		$('.activitycircle-changetab').on('click',me.changeTab);
+		$('.activitycircle-register-btn').on('click',me.studentRegister);
+		$('.activitycircle-register-area select:eq(0)').change(me.registerChangeIdentity);
 		$(window).resize(function(){
 			$('body').height($(window).height()-150);
 			if($('body').height()<555){
@@ -62,7 +63,7 @@ activityCircle.loginPage = {
 		if(activityCircle.loginPage.mode=='login'){
 			$('.activitycircle-register-area').animate({'left':'0px'});
 			$('.activitycircle-login-area').animate({'left':'-400px'});
-			$('.activitycircle-login-box').animate({'height':'460px'});
+			$('.activitycircle-login-box').animate({'height':'520px'});
 			activityCircle.loginPage.mode = 'register';
 		}else{
 			$('.activitycircle-register-area').animate({'left':'400px'});
@@ -72,6 +73,7 @@ activityCircle.loginPage = {
 		}
 	},
 	studentRegister : function(){
+		var identity = $('.activitycircle-register-area select:eq(0)').val();
 		var username = $('.activitycircle-register-area input:eq(0)').val();
 		var realname = $('.activitycircle-register-area input:eq(1)').val();
 		realname = encodeURIComponent(realname);
@@ -82,39 +84,86 @@ activityCircle.loginPage = {
 		var studentnum = $('.activitycircle-register-area input:eq(4)').val();
 		var gender = $('.activitycircle-register-area input:radio[name="sex"]:checked').val();
 		gender = encodeURIComponent(gender);
-		if(username!=''&&realname!=''&&password_1!=''&&password_2!=''&&grade!=''&&studentnum!=''&&gender!=''){
-			if(password_1==password_2){
-				var password = $.md5(password_1);
-				$.ajax({
-					url : '/student/register',
-					type : 'post',
-					data: {
-					    username : username,
-					    password : password,
-					    realname : realname,
-					    grade : grade,
-					    studentnum : studentnum,
-					    gender : gender
-					},
-					headers:{
-					    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
-					},
-					success : function(responseText){
-						var res = responseText;
-						res = $.parseJSON(res);
-						if(res.errcode==100){
-							alert('注册成功');
-							window.open('/','_self');
-						}else{
-							alert('注册失败');
+		if(identity == 'teacher'){
+			if(username!=''&&realname!=''&&password_1!=''&&password_2!=''&&gender!=''){
+				if(password_1==password_2){
+					var password = $.md5(password_1);
+					$.ajax({
+						url : '/teacher/register',
+						type : 'post',
+						data: {
+						    username : username,
+						    password : password,
+						    realname : realname,
+						    gender : gender
+						},
+						headers:{
+						    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+						},
+						success : function(responseText){
+							var res = responseText;
+							res = $.parseJSON(res);
+							if(res.errcode==100){
+								alert('注册成功');
+								window.open('/','_self');
+							}else{
+								alert('注册失败');
+							}
 						}
-					}
-				});
+					});
+				}else{
+					alert('两次输入的密码不一致');
+				}
 			}else{
-				alert('两次输入的密码不一致');
+				alert('必填项不能为空');
 			}
 		}else{
-			alert('必填项不能为空');
+			if(username!=''&&realname!=''&&password_1!=''&&password_2!=''&&grade!=''&&studentnum!=''&&gender!=''){
+				if(password_1==password_2){
+					var password = $.md5(password_1);
+					$.ajax({
+						url : '/student/register',
+						type : 'post',
+						data: {
+						    username : username,
+						    password : password,
+						    realname : realname,
+						    grade : grade,
+						    studentnum : studentnum,
+						    gender : gender
+						},
+						headers:{
+						    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+						},
+						success : function(responseText){
+							var res = responseText;
+							res = $.parseJSON(res);
+							if(res.errcode==100){
+								alert('注册成功');
+								window.open('/','_self');
+							}else{
+								alert('注册失败');
+							}
+						}
+					});
+				}else{
+					alert('两次输入的密码不一致');
+				}
+			}else{
+				alert('必填项不能为空');
+			}
+		}
+	},
+	registerChangeIdentity : function(){
+		var identity = $(this).val();
+		if(identity=='teacher'){
+			$('.register-grade').fadeOut();
+			$('.register-studentnum').fadeOut();
+			$('.activitycircle-login-box').animate({'height':'400px'});
+		}else{
+			$('.register-grade').fadeIn();
+			$('.register-studentnum').fadeIn();
+			$('.activitycircle-login-box').animate({'height':'520px'});
 		}
 	}
 }

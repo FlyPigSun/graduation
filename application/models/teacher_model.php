@@ -30,10 +30,8 @@ class Teacher_Model  extends  CI_Model{
             $this->username=$row->username;
             $this->password=$row->password;
             $this->loginTime=$row->logintime;
-            $this->grade=$row->grade;
-            $this->class=$row->class;
-            $this->teachernumber=$row->teachernumber;
             $this->realname=$row->realname;
+            $this->gender=$row->gender;
             $sql="update teacher_tb set logintime=? where id=?";
             $this->db->query($sql, array($time,$this->id));
             $this->db->close();
@@ -57,10 +55,10 @@ class Teacher_Model  extends  CI_Model{
 
   
     //添加教师
-    public function insert($username,$password,$realname,$teachernumber,$grade,$class){
+    public function insert($username,$password,$realname,$gender){
         $this->load->database();
-        $sql="insert into teacher_tb values(null,?,?,?,?,null,?,?)";
-        $query=$this->db->query($sql,array($realname,$teachernumber,$grade,$class,$username,$password));
+        $sql="insert into teacher_tb values(null,?,null,?,?,?)";
+        $query=$this->db->query($sql,array($realname,$username,$password,$gender));
         $this->db->close();
 
     }
