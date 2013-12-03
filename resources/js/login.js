@@ -15,7 +15,6 @@ activityCircle.loginPage = {
 		$('.activitycircle-login-btn').on('click',me.login);
 		$('.activitycircle-changetab').on('click',me.changeTab);
 		$('.activitycircle-register-btn').on('click',me.studentRegister);
-		$('.activitycircle-register-area select:eq(0)').change(me.registerChangeIdentity);
 		$(window).resize(function(){
 			$('body').height($(window).height()-150);
 			if($('body').height()<555){
@@ -95,7 +94,9 @@ activityCircle.loginPage = {
 						    username : username,
 						    password : password,
 						    realname : realname,
-						    gender : gender
+						    gender : gender,
+						    grade : grade,
+						    teachernumber : studentnum
 						},
 						headers:{
 						    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
@@ -152,18 +153,6 @@ activityCircle.loginPage = {
 			}else{
 				alert('必填项不能为空');
 			}
-		}
-	},
-	registerChangeIdentity : function(){
-		var identity = $(this).val();
-		if(identity=='teacher'){
-			$('.register-grade').fadeOut();
-			$('.register-studentnum').fadeOut();
-			$('.activitycircle-login-box').animate({'height':'400px'});
-		}else{
-			$('.register-grade').fadeIn();
-			$('.register-studentnum').fadeIn();
-			$('.activitycircle-login-box').animate({'height':'520px'});
 		}
 	}
 }

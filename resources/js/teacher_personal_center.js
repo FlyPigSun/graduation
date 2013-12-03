@@ -13,7 +13,7 @@ activityCircle.teacher.personalCenter = {
 		var me = this;
 		var tid = $('.tid').html();
 		$.ajax({
-			url : '/teacher/personalInfo/'+tid,
+			url : '/student/personalInfo/'+tid,
 			type : 'post',
 			headers:{
 			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
@@ -35,9 +35,6 @@ activityCircle.teacher.personalCenter = {
 		$('.show-box-edit-btn').on('click',me.showEditInfoBox);
 		$('.teacher-personal-info-btn').on('click',me.enterEditInfo);
 		$('.teacher-changepassword-btn').on('click',me.enterChangePassword);
-		$('.single-impress-select').on('click',me.enterImpress);
-		$(document).delegate('.single-impress-delete',"click",{'item':me},me.deleteImpress);
-		$('.input-impress-enter-btn').on('click',me.inputImpress);
 		$('.change-avatar-btn').on('click',me.showAvatarBox);
 	},
 	changeTab : function(){
@@ -52,28 +49,6 @@ activityCircle.teacher.personalCenter = {
 				$('.teacher-personal-center-title').html(html);
 				$('.teacher-personalcenter-box').hide();
 				$('.teacher-personal-info-box').show();
-				break;
-			case 'impression':
-				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
-                '我的印象' ;
-				$('.teacher-personal-center-title').html(html);
-				$('.teacher-personalcenter-box').hide();
-				$('.teacher-personal-impression-box').show();
-				activityCircle.teacher.personalCenter.getImpress();
-				break;
-			case 'questionnaire':
-				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
-                '我的问卷' ;
-				$('.teacher-personal-center-title').html(html);
-				$('.teacher-personalcenter-box').hide();
-				$('.teacher-personal-questionnaire-box').show();
-				activityCircle.teacher.personalCenter.getQuestionnaireResult();
-				break;
-			case 'record':
-				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
-                '学习记录' ;
-				$('.teacher-personal-center-title').html(html);
-				$('.teacher-personalcenter-box').hide();
 				break;
 			case 'activity':
 				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
@@ -173,112 +148,6 @@ activityCircle.teacher.personalCenter = {
 			alert('数据不能为空');
 		}
 	},
-	getImpress : function(){
-		$('.my-impress').html('');
-		$.ajax({
-			url : '/teacher/findAllHobby',
-			type : 'post',
-			headers:{
-			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
-			},
-			success : function(responseText){
-				var res = responseText;
-				res = $.parseJSON(res);
-				var data = res.data;
-				$.each(data,function(key,item){
-					var html = '<div class="single-impress yellow">'+
-                        	'<img class="single-impress-delete" src="/resources/images/close.png"/>'+
-                        '<div>'+item+'</div>'+'</div>'
-                    $('.my-impress').append(html);
-				});
-			}
-		});
-	},
-	enterImpress : function(){
-		var impress = $.trim($(this).html());
-		var impression = encodeURIComponent(impress);
-		$.ajax({
-			url : '/teacher/selectHobby',
-			type : 'post',
-			data : {
-				hobby : impression
-			},
-			headers:{
-			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
-			},
-			success : function(responseText){
-				var res = responseText;
-				res = $.parseJSON(res);
-				if(res.errcode == 100){
-					var html = '<div class="single-impress activitycircle-hide yellow">'+
-                        	'<img class="single-impress-delete" src="/resources/images/close.png"/>'+
-                        '<div>'+impress+'</div>'+'</div>';
-                    $('.my-impress').append(html);
-                    $('.single-impress').fadeIn();
-				}else if(res.errcode ==  102){
-					alert('您已经选择了这个特点');
-				}else{
-					alert('您选择的特点过多');
-				}
-			}
-		});
-	},
-	deleteImpress : function(){
-		var me = this;
-		var impression = $(this).siblings('div').html();
-		$.ajax({
-			url : '/teacher/deleteHobby',
-			type : 'post',
-			data : {
-				hobby : impression
-			},
-			headers:{
-			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
-			},
-			success : function(responseText){
-				var res = responseText;
-				res = $.parseJSON(res);
-				if(res.errcode == 100){
-					$(me).parent().fadeOut();
-					setTimeout(function(){
-						$(me).parent().remove();
-					},500);
-				}else{
-					alert('删除失败');
-				}
-			}
-		});
-	},
-	inputImpress : function(){
-		var impress = $('.input-impress input').val();
-		var impression = encodeURIComponent(impress);
-		$.ajax({
-			url : '/teacher/myHobby',
-			type : 'post',
-			data : {
-				myhobby : impression
-			},
-			headers:{
-			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
-			},
-			success : function(responseText){
-				var res = responseText;
-				res = $.parseJSON(res);
-				if(res.errcode == 100){
-					var html = '<div class="single-impress activitycircle-hide yellow">'+
-                        	'<img class="single-impress-delete" src="/resources/images/close.png"/>'+
-                        '<div>'+impress+'</div>'+'</div>';
-                    $('.my-impress').append(html);
-                    $('.single-impress').fadeIn();
-                    $('.input-impress input').val('');
-				}else if(res.errcode == 102){
-					alert('您已经选择了这个特点');
-				}else{
-					alert('您选择的特点过多');
-				}
-			}
-		});
-	},
     showAvatarBox : function(){
         $('.change-avatar-box').html('');
         $('.change-avatar-box').animate({top:$(document).scrollTop()+150+'px'});
@@ -290,25 +159,5 @@ activityCircle.teacher.personalCenter = {
     hideAvatarBox : function(){
         $('.change-avatar-box').animate({top:'-500px'});
         $('.index-background').fadeOut();
-    },
-    getQuestionnaireResult : function(){
-    	$.ajax({
-			url : '/teacher/myQuestionnaireResult',
-			type : 'post',
-			headers:{
-			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
-			},
-			success : function(responseText){
-				var res = responseText;
-				res = $.parseJSON(res);
-				var data = res.data;
-				var first_style = data.first_style.substring(2,5);
-				var second_style = data.second_style.substring(2,5);
-				var str = '您属于'+data.first_style+data.second_style+'学习风格<br>'
-					+activityCircle.teacher.personalCenter.studyStyle[first_style]+'<br>'
-					+activityCircle.teacher.personalCenter.studyStyle[second_style];
-				$('.teacher-personal-questionnaire-box').find('.teacher-personalcenter-box-content:eq(0)').html(str);
-			}
-		});
     }
 }
