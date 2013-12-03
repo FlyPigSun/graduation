@@ -46,7 +46,6 @@ activityCircle.student.personalCenter = {
 				$('.student-personal-center-title').html(html);
 				$('.student-personalcenter-box').hide();
 				$('.student-personal-info-box').show();
-				//$('.avatar-box').attr('src','/upload_files/student/avatars/'+sid+'_avatar_120.jpg');
 				break;
 			case 'impression':
 				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
