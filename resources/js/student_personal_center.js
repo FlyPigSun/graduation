@@ -3,6 +3,12 @@
   *author: 孙骥
  **/
 activityCircle.student.personalCenter = {
+	studyStyle : {
+		'沉思型':'沉思型学习者更喜欢首先安静地思考问题，“我们先好好想想吧”是沉思型学习者的通常反应。',
+		'言语型':'言语型学习者更擅长从文字的和口头的解释中获取信息。',
+		'视觉型':' 视觉型学习者很擅长记住他们所看到的东西，如图片、图表、流程图、图像、影片和演示中的内容。',
+		'活跃型':'活跃型学习者倾向于通过积极地做一些事—讨论或应用或解释给别人听来掌握信息。“来，我们试试看，看会怎样”这是活跃型学习者的口头禅。他们更喜欢集体工作'
+	},
 	initialize : function(){
 		var me = this;
 		var sid = $('.sid').html();
@@ -295,6 +301,13 @@ activityCircle.student.personalCenter = {
 			success : function(responseText){
 				var res = responseText;
 				res = $.parseJSON(res);
+				var data = res.data;
+				var first_style = data.first_style.substring(2,5);
+				var second_style = data.second_style.substring(2,5);
+				var str = '您属于'+data.first_style+data.second_style+'学习风格<br>'
+					+activityCircle.student.personalCenter.studyStyle[first_style]+'<br>'
+					+activityCircle.student.personalCenter.studyStyle[second_style];
+				$('.student-personal-questionnaire-box').find('.student-personalcenter-box-content:eq(0)').html(str);
 			}
 		});
     }

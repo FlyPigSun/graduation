@@ -337,3 +337,9 @@
 	font-size: 16px;
 	font-weight: 900;
 }
+.student-personalcenter-box-title{
+	margin: 10px 0px;
+}
+.student-personalcenter-box-content{
+	margin: 5px 10px;
+}

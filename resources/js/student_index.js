@@ -125,17 +125,41 @@ activityCircle.student.testPage = {
 		}else{
 			if(firstA>firstB){
 				activityCircle.student.testPage.firstResult = firstA-firstB+'a';
-				activityCircle.student.testPage.firstStyle = '活跃型';
+				if(firstA-firstB<2){
+					activityCircle.student.testPage.firstStyle = '轻度活跃型';
+				}else if(firstA-firstB<4){
+					activityCircle.student.testPage.firstStyle = '中度活跃型';
+				}else{
+					activityCircle.student.testPage.firstStyle = '重度活跃型';
+				}
 			}else{
 				activityCircle.student.testPage.firstResult = firstB-firstA+'b';
-				activityCircle.student.testPage.firstStyle = '沉思型';
+				if(firstB-firstA<2){
+					activityCircle.student.testPage.firstStyle = '轻度沉思型';
+				}else if(firstB-firstA<4){
+					activityCircle.student.testPage.firstStyle = '中度沉思型';
+				}else{
+					activityCircle.student.testPage.firstStyle = '重度沉思型';
+				}
 			}
 			if(secondA>secondB){
 				activityCircle.student.testPage.secondResult = secondA-secondB+'a';
-				activityCircle.student.testPage.secondStyle = '视觉型';
+				if(secondA-secondB<2){
+					activityCircle.student.testPage.secondStyle = '轻度视觉型';
+				}else if(secondA-secondB<4){
+					activityCircle.student.testPage.secondStyle = '中度视觉型';
+				}else{
+					activityCircle.student.testPage.secondStyle = '重度视觉型';
+				}
 			}else{
 				activityCircle.student.testPage.secondResult = secondB-secondA+'b';
-				activityCircle.student.testPage.secondStyle = '言语型';
+				if(secondB-secondA<2){
+					activityCircle.student.testPage.secondStyle = '轻度言语型';
+				}else if(secondB-secondA<4){
+					activityCircle.student.testPage.secondStyle = '中度言语型';
+				}else{
+					activityCircle.student.testPage.secondStyle = '重度言语型';
+				}
 			}
 			$('.activitycircle-styletest').hide();
 			$('.activitycircle-hobbytest').show();
