@@ -217,6 +217,13 @@ class Student extends MY_Controller {
         $sid=$this->session->userdata('sid');
         $this->load->model('testresult_model','testresult');
         $judge=$this->testresult->findBySid($sid);
+        if($judge->first_style=='活跃型'){
+            print_r('1');
+            $content="活跃型学习者倾向于通过积极地做一些事—讨论或应用或解释给别人听来掌握信息。";
+        }else{
+            print_r(2);
+            $content="沉思型学习者更喜欢首先安静地思考问题。";
+        }       
         if($judge==null){
             $result=102;
         }else{
@@ -224,6 +231,7 @@ class Student extends MY_Controller {
         }
         $data['errcode']=$result;
         $data['data']=$judge;
+        $data['content']=$content;
         print_r(json_encode($data));
 
     }
