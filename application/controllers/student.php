@@ -212,6 +212,21 @@ class Student extends MY_Controller {
         $data=$obj->avatar;
         return $data;
     }
+    //我的印象
+    public function myTestResult(){
+        $sid=$this->session->userdata('sid');
+        $this->load->model('testresult_model','testresult');
+        $judge=$this->testresult->findBySid($sid);
+        if($judge==null){
+            $result=102;
+        }else{
+            $result=100;
+        }
+        $data['errcode']=$result;
+        $data['data']=$judge;
+        print_r(json_encode($data));
+
+    }
 
 
 
