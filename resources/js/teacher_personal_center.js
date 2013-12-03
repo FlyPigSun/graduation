@@ -13,7 +13,7 @@ activityCircle.teacher.personalCenter = {
 		var me = this;
 		var tid = $('.tid').html();
 		$.ajax({
-			url : '/student/personalInfo/'+tid,
+			url : '/teacher/personalInfo/'+tid,
 			type : 'post',
 			headers:{
 			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'

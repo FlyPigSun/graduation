@@ -3,7 +3,7 @@
 /**
 * teacher_tb model
 */
-
+ini_set('date.timezone','Asia/Shanghai');
 class Teacher_Model  extends  CI_Model{
     var $id='';
     var $username='';
@@ -50,10 +50,10 @@ class Teacher_Model  extends  CI_Model{
     }
   
     //添加教师
-    public function insert($username,$password,$realname,$gender,$teachernumber,$motto){
+    public function insert($username,$password,$realname,$gender,$teachernumber,$grade,$avatar){
         $this->load->database();
-        $sql="insert into teacher_tb values(null,?,null,?,?,?,?,?)";
-        $query=$this->db->query($sql,array($realname,$username,$password,$gender,$teachernumber,$motto));
+        $sql="insert into teacher_tb values(null,?,null,?,?,?,?,null,?,?)";
+        $query=$this->db->query($sql,array($realname,$username,$password,$gender,$teachernumber,$grade,$avatar));
         $this->db->close();
 
     }
@@ -83,6 +83,42 @@ class Teacher_Model  extends  CI_Model{
         }
         $this->db->close();
         return $data;
+    }
+    //修改信息
+    public function updateInfo($realname,$gender,$motto,$teachernumber,$tid,$grade){
+        $this->load->database();
+        $sql="update teacher_tb set realname=?,gender=?,motto=?,teachernumber=?,grade=? where id=?";
+        $query=$this->db->query($sql,array($realname,$gender,$motto,$teachernumber,$grade,$tid));
+        $this->db->close();
+    }
+
+    //修改密码
+    public function updatepassword($id,$password){
+        $this->load->database();
+        $sql="update teacher_tb set password=? where id=?";
+        $data=array($password,$id);
+        $query=$this->db->query($sql,$data);
+        $this->db->close();
+    }
+    //验证密码
+    public function verifypassword($id,$password){
+        $this->load->database();
+        $sql="select * from teacher_tb where password=? and id=?";
+        $query=$this->db->query($sql,array($password,$id));
+        if($query->num_rows()>0){
+            $data=100;
+        }else{
+            $data=102;
+        }
+        return $data;
+    }
+
+    //上传头像地址
+    public function updateAvatar($tid,$avatar){
+        $this->load->database();
+        $sql="update teacher_tb set avatar=? where id=?";
+        $query=$this->db->query($sql,array($avatar,$tid));
+        $this->db->close();
     }
 }
 

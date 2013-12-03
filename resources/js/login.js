@@ -78,7 +78,7 @@ activityCircle.loginPage = {
 		realname = encodeURIComponent(realname);
 		var password_1 = $('.activitycircle-register-area input:eq(2)').val();
 		var password_2 = $('.activitycircle-register-area input:eq(3)').val();
-		var grade = $('.activitycircle-register-area').find('.activitycircle-login-select').val();
+		var grade = $('.activitycircle-register-area').find('.activitycircle-login-select:eq(1)').val();
 		grade = encodeURIComponent(grade);
 		var studentnum = $('.activitycircle-register-area input:eq(4)').val();
 		var gender = $('.activitycircle-register-area input:radio[name="sex"]:checked').val();

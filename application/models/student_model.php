@@ -122,7 +122,7 @@ class Student_Model  extends  CI_Model{
     }
     
     //上传头像地址
-    public function updateHead($sid,$avatar){
+    public function updateAvatar($sid,$avatar){
         $this->load->database();
         $sql="update student_tb set avatar=? where id=?";
         $query=$this->db->query($sql,array($avatar,$sid));

@@ -201,7 +201,7 @@ class Student extends MY_Controller {
                 fclose($handle);
             }
         }
-        $this->student->updateHead($sid,$avatar);
+        $this->student->updateAvatar($sid,$avatar);
         print_r('success=done');//让前台弹出上传成功                   
     }
 
