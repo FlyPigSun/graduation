@@ -75,7 +75,7 @@ class Teacher extends MY_Controller {
         $realname = urldecode($this->input->post('realname'));
         $gender = urldecode($this->input->post('gender'));
         $teachernumber = $this->input->post('teachernumber');
-        $grade=urldecode($this->input->post('garde'));
+        $grade=urldecode($this->input->post('grade'));
         $motto = urldecode($this->input->post('motto'));
         $tid=$this->session->userdata('tid');
         if($realname!=null){
