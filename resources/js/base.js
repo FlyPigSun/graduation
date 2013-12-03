@@ -7,6 +7,10 @@ activityCircle = {
 activityCircle.student = {
 	
 }
+
+activityCircle.teacher = {
+    
+}
 /**
  *Js模拟用户点击
  *author: 孙骥

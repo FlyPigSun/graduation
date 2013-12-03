@@ -3,7 +3,7 @@ $(document).ready(function(){
 });
 
 /**
-  *学生主页
+  *教师主页
   *author: 孙骥
  **/
 activityCircle.teacherIndexPage = {
@@ -28,6 +28,7 @@ activityCircle.teacherIndexPage = {
 				break;
 			case 'personal_center':
 				$('.teacher-index-centerarea').html('');
+				activityCircle.teacher.personalCenter.initialize();
 				break;
 			case 'teacher_recommend':
 				$('.teacher-index-centerarea').html('');
