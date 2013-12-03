@@ -218,11 +218,20 @@ class Student extends MY_Controller {
         $this->load->model('testresult_model','testresult');
         $judge=$this->testresult->findBySid($sid);
         if($judge->first_style=='活跃型'){
-            print_r('1');
-            $content="活跃型学习者倾向于通过积极地做一些事—讨论或应用或解释给别人听来掌握信息。";
+            $first_content="活跃型学习者倾向于通过积极地做一些事—讨论或应用或解释给别人听来掌握信息。“来，我们试试看，看会怎样”这是活跃型学习者的口头禅。
+                            活跃型学习者比倾向于独立工作的沉思型学习者更喜欢集体工作。";
+            if($judge->second_style=='言语型'){
+                $second_content=" 视觉型学习者很擅长记住他们所看到的东西，如图片、图表、流程图、图像、影片和演示中的内容";
+            }else{
+                $second_content="言语型学习者更擅长从文字的和口头的解释中获取信息。";
+            }
         }else{
-            print_r(2);
-            $content="沉思型学习者更喜欢首先安静地思考问题。";
+            $first_content="沉思型学习者更喜欢首先安静地思考问题。“我们先好好想想吧”是沉思型学习者的通常反应。";
+            if($judge->second_style=='言语型'){
+                $second_content=" 视觉型学习者很擅长记住他们所看到的东西，如图片、图表、流程图、图像、影片和演示中的内容";
+            }else{
+                $second_content="言语型学习者更擅长从文字的和口头的解释中获取信息。";
+            }
         }       
         if($judge==null){
             $result=102;
@@ -231,7 +240,8 @@ class Student extends MY_Controller {
         }
         $data['errcode']=$result;
         $data['data']=$judge;
-        $data['content']=$content;
+        $data['first_content']=$first_content;
+        $data['second_content']=$second_content;
         print_r(json_encode($data));
 
     }
