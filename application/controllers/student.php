@@ -213,7 +213,7 @@ class Student extends MY_Controller {
         return $data;
     }
     //我的印象
-    public function myTestResult(){
+    public function myQuestionnaireResult(){
         $sid=$this->session->userdata('sid');
         $this->load->model('testresult_model','testresult');
         $judge=$this->testresult->findBySid($sid);
