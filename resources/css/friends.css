@@ -1,0 +1,53 @@
+.activitycircle-addfriends-area{
+	border-bottom:2px solid #ccc;
+	padding-bottom: 20px;
+}
+.activitycircle-friends-newfriends-title{
+	font-size: 20px;
+	float: left;
+	line-height: 27px;
+}
+.activitycircle-friends-input{
+	float: left;
+	margin: 0px 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 15px;
+	line-height: 27px;
+}
+.activitycircle-friends-area{
+	margin: 20px auto;
+	width: 970px;
+}
+.activitycircle-friends-box{
+	position: relative;
+	float: left;
+	width: 230px;
+	height: 130px;
+	margin: 0px 12px 12px 0px;
+	background: #d2ebff;
+	overflow: hidden;
+	text-align: left;
+	padding: 15px;
+}
+.activitycircle-friends-name{
+	font-size: 15px;
+	margin-bottom: 10px;
+}
+.activitycircle-friends-studentnumber{
+	font-size: 13px;
+	margin: 20px 0px 10px 0px;
+}
+.activitycircle-friends-motto{
+	width: 200px;
+	font-size: 13px;
+	margin: 20px 0px 10px 0px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.activitycircle-friends-box-avatar{
+	width: 60px;
+	height: 60px;
+	float: right;
+}

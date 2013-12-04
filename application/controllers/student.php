@@ -264,21 +264,10 @@ class Student extends MY_Controller {
     }
 
     public function friendsAction(){
-        $this->twig->render('student_friends.html.twig');
-    }
-
-    public function findAllStudent(){
-        $this->load->model("student_model","student");
-        $result=$this->student->findAll();
-        $data['data']=$result;
-        print_r(json_encode($data));
-    }
-
-    public function findAllFriends(){
         $sid=$this->session->userdata('sid');
         $this->load->model("friends_model","friends");
-        $data['data']=$this->friends->findAllFriends($sid);
-        print_r(json_encode($data));   
+        $data['members']=$this->friends->findAllFriends($sid);
+        $this->twig->render('student_friends.html.twig',$data);
     }
 
     public function addFriends(){

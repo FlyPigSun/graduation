@@ -51,11 +51,26 @@ activityCircle.studentIndexPage = {
 				break;
 			case 'friends_circle':
 				$('.student-index-centerarea').html('');
+				activityCircle.studentIndexPage.setFriendsHtml();
 				break;
 			case 'message':
 				$('.student-index-centerarea').html('');
 				break;
 		}
+	},
+	setFriendsHtml : function(){
+		$.ajax({
+			url : '/student/friends',
+			type : 'post',
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				$('.student-index-centerarea').html(res);
+				activityCircle.student.friends.initialize();
+			}
+		})
 	}
 }
 
