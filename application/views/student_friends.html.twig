@@ -1,21 +1,15 @@
-<div class="activitycircle-addfriends-area">
-    <div class="activitycircle-friends-newfriends-title">添加新的好友:</div>
-    <input id="activitycircle-friends-input" class="activitycircle-friends-input" placeholder="请输入您好友的姓名"/>
-    <a class="btn btn-primary btn-sm" role="button">添加好友</a>
-    <div class="clear"></div>
-</div>
-<div class="activitycircle-friends-area">
-    {% for friend in members %}
-    <div class="activitycircle-friends-box">
-        <img class="activitycircle-friends-box-avatar" src="{{friend.avatar}}"/>
-        <div class="activitycircle-friends-name">{{friend.realname}}</div>
-        <div class="activitycircle-friends-studentnumber">
-            学号：{{friend.studentnumber}}
-        </div>
-        <div class="activitycircle-friends-motto">
-            座右铭：{{friend.motto}}
-        </div>
+
+{% for friend in members %}
+<div class="activitycircle-friends-box">
+    <div class="activitycircle-friends-delete-btn">删除好友</div>
+    <div class="activitycircle-hide friend-id">{{friend.id}}</div>
+    <img class="activitycircle-friends-box-avatar" src="{{friend.avatar}}"/>
+    <div class="activitycircle-friends-name">{{friend.realname}}</div>
+    <div class="activitycircle-friends-studentnumber">
+        学号：{{friend.studentnumber}}
     </div>
-    {% endfor %} 
-    <div class="clear"></div>
+    <div class="activitycircle-friends-motto">
+        座右铭：{{friend.motto}}
+    </div>
 </div>
+{% endfor %}

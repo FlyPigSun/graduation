@@ -30,6 +30,21 @@
 	text-align: left;
 	padding: 15px;
 }
+.activitycircle-friends-box:hover > .activitycircle-friends-delete-btn{
+	display: block;
+}
+.activitycircle-friends-delete-btn{
+	position: absolute;
+	font-size: 14px;
+	color: #777;
+	right: 85px;
+	top: 15px;
+	display: none;
+	cursor: pointer;
+}
+.activitycircle-friends-delete-btn:hover{
+	text-decoration: underline;
+}
 .activitycircle-friends-name{
 	font-size: 15px;
 	margin-bottom: 10px;

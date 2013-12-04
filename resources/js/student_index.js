@@ -33,28 +33,35 @@ activityCircle.studentIndexPage = {
 		var btn = $(this).attr('type');
 		switch(btn){
 			case 'index':
-				$('.student-index-centerarea').html('');
+				$('.student-index-centerarea').children('div').hide();
+				$('.student-index-first-area').show();
 				activityCircle.student.indexPage.initialize();
 				break;
 			case 'personal_center':
-				$('.student-index-centerarea').html('');
+				$('.student-index-centerarea').children('div').hide();
+				$('.student-index-personalcenter-area').show();
 				activityCircle.student.personalCenter.initialize();
 				break;
 			case 'teacher_recommend':
-				$('.student-index-centerarea').html('');
+				$('.student-index-centerarea').children('div').hide();
+				$('.student-index-teacherrecomment-area').show();
 				break;
-			case 'group_activety':
-				$('.student-index-centerarea').html('');
+			case 'group_activity':
+				$('.student-index-centerarea').children('div').hide();
+				$('.student-index-groupactivity-area').show();
 				break;
 			case 'honor_box':
-				$('.student-index-centerarea').html('');
+				$('.student-index-centerarea').children('div').hide();
+				$('.student-index-hornor-area').show();
 				break;
 			case 'friends_circle':
-				$('.student-index-centerarea').html('');
+				$('.student-index-centerarea').children('div').hide();
+				$('.student-index-friends-area').show();
 				activityCircle.studentIndexPage.setFriendsHtml();
 				break;
 			case 'message':
-				$('.student-index-centerarea').html('');
+				$('.student-index-centerarea').children('div').hide();
+				$('.student-index-message-area').show();
 				break;
 		}
 	},
@@ -67,7 +74,8 @@ activityCircle.studentIndexPage = {
 			},
 			success : function(responseText){
 				var res = responseText;
-				$('.student-index-centerarea').html(res);
+				$('.activitycircle-friends-area').html('');
+				$('.activitycircle-friends-area').append(res);
 				activityCircle.student.friends.initialize();
 			}
 		})
@@ -81,7 +89,9 @@ activityCircle.studentIndexPage = {
 activityCircle.student.indexPage = {
 	initialize : function(){
 		var html = $('#student_indexpage_template').html();
-		$('.student-index-centerarea').html(html);
+		$('.student-index-first-area').html(html);
+		$('.student-index-centerarea').children('div').hide();
+		$('.student-index-first-area').show();
 	}
 }
 

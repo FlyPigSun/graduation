@@ -24,26 +24,33 @@ activityCircle.teacherIndexPage = {
 		var btn = $(this).attr('type');
 		switch(btn){
 			case 'index':
-				$('.teacher-index-centerarea').html('');
+				$('.teacher-index-centerarea').children('div').hide();
+				$('.teacher-index-first-area').show();
 				break;
 			case 'personal_center':
-				$('.teacher-index-centerarea').html('');
+				$('.teacher-index-centerarea').children('div').hide();
+				$('.teacher-index-personalcenter-area').show();
 				activityCircle.teacher.personalCenter.initialize();
 				break;
 			case 'teacher_recommend':
-				$('.teacher-index-centerarea').html('');
+				$('.teacher-index-centerarea').children('div').hide();
+				$('.teacher-index-teacherrecomment-area').show();
 				break;
-			case 'group_activety':
-				$('.teacher-index-centerarea').html('');
+			case 'group_activity':
+				$('.teacher-index-centerarea').children('div').hide();
+				$('.teacher-index-groupactivity-area').show();
 				break;
 			case 'honor_box':
-				$('.teacher-index-centerarea').html('');
+				$('.teacher-index-centerarea').children('div').hide();
+				$('.teacher-index-hornor-area').show();
 				break;
 			case 'friends_circle':
-				$('.teacher-index-centerarea').html('');
+				$('.teacher-index-centerarea').children('div').hide();
+				$('.teacher-index-friends-area').show();
 				break;
 			case 'message':
-				$('.teacher-index-centerarea').html('');
+				$('.teacher-index-centerarea').children('div').hide();
+				$('.teacher-index-message-area').show();
 				break;
 		}
 	}

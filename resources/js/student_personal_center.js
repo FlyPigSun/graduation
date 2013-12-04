@@ -23,7 +23,7 @@ activityCircle.student.personalCenter = {
 				res = $.parseJSON(res);
 				var template = $('#student_personal_center_template').html();
 				var html = Mustache.to_html(template, res.data).replace(/^\s*/mg, '');
-				$('.student-index-centerarea').html(html);
+				$('.student-index-personalcenter-area').html(html);
 				me.buttonBind();
 				invokeClick($('.student-personal-center-leftbar').find('.student-personal-center-leftbar-btn:eq(0)')[0]);
 			}
