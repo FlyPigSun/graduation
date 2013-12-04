@@ -15,6 +15,7 @@ class Student_Model  extends  CI_Model{
     var $class='';
     var $studentnumber='';
     var $notfirst='';
+    var $mood='';
     
 
     function __construct(){
@@ -24,7 +25,8 @@ class Student_Model  extends  CI_Model{
     /**
     *用户登录
     */
-    public function login($username,$password,$time){
+    public function login($username,$password,$mood,$time){
+
         $this->load->database();
         $sql="select * from student_tb where username=? and password=?";
         $query=$this->db->query($sql,array($username,$password));
@@ -37,8 +39,9 @@ class Student_Model  extends  CI_Model{
             $this->grade=$row->grade;
             $this->class=$row->class;
             $this->notfirst=$row->notfirst;
-            $sql="update student_tb set logintime=? where id=?";
-            $this->db->query($sql, array($time,$this->id));
+            $this->mood=$row->mood;
+            $sql="update student_tb set logintime=?,mood=? where id=?";
+            $this->db->query($sql, array($time,$mood,$this->id));
             $this->db->close();  
         }
     }
@@ -53,7 +56,7 @@ class Student_Model  extends  CI_Model{
     //添加学生
     public function insert($username,$password,$realname,$studentnumber,$grade,$class,$gender,$avatar){
         $this->load->database();
-        $sql="insert into student_tb values(null,?,?,?,null,?,?,?,null,null,?,null,0,?)";
+        $sql="insert into student_tb values(null,?,?,?,null,?,?,?,null,null,?,null,0,?,null)";
         $query=$this->db->query($sql,array($realname,$username,$password,$gender,$grade,$class,$studentnumber,$avatar));
         $this->db->close();
     }

@@ -43,7 +43,8 @@ class Login extends MY_Controller {
             $this->teacherLogin($username,$password);
             break;
           case 'student':
-            $this->studentLogin($username,$password);
+            $mood=urldecode($this->input->post('mood'));
+            $this->studentLogin($username,$password,$mood);
             break;
           default:
             break;
@@ -73,12 +74,12 @@ class Login extends MY_Controller {
             print_r(json_encode($data));
     }
    
-    public function studentLogin($username,$password){
+    public function studentLogin($username,$password,$mood){
         
         $this->load->model("student_model","student");
-        $this->student->login($username,$password,date("Y-m-d   H:i:s"));
+        $this->student->login($username,$password,$mood,date("Y-m-d   H:i:s"));
         if(strlen($this->student->username)==0){
-            $result=101;
+            $result=102;
         }else{
             $arr=array("sid"=>$this->student->id,"username"=>$this->student->username,
             "time"=>$this->student->logintime,"password"=>$this->student->password,

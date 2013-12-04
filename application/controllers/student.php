@@ -31,7 +31,8 @@ class Student extends MY_Controller {
         $avatar="/upload_files/student/avatars/default_avatar.jpg";
         if($judge==null){
             $this->student->insert($username,$password,$realname,$studentnumber,$grade,$class,$gender,$avatar);
-            $this->student->login($username,$password,date("Y-m-d   H:i:s"));
+            $mood=null;
+            $this->student->login($username,$password,$mood,date("Y-m-d   H:i:s"));
             $arr=array("sid"=>$this->student->id,"username"=>$username,
             "time"=>$this->student->logintime,"password"=>$password,
             "teachernumber"=>$studentnumber,"grade"=>$grade,
@@ -246,7 +247,20 @@ class Student extends MY_Controller {
 
     }
 
-
+    public function getMood(){
+        $sid=$this->session->userdata('sid');
+        $this->load->model('student_model','student');
+        $judge=$this->student->findById($sid);
+        if($judge==null){
+            $result=102;
+        }else{
+            $result=100;
+            $info=$judge->mood;
+        }
+        $data['errcode']=$result;
+        $data['data']=$info;
+        print_r(json_encode($data));
+    }
 
     
 
