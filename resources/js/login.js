@@ -67,7 +67,7 @@ activityCircle.loginPage = {
 		}else{
 			$('.activitycircle-register-area').animate({'left':'400px'});
 			$('.activitycircle-login-area').animate({'left':'0px'});
-			$('.activitycircle-login-box').animate({'height':'300px'});
+			$('.activitycircle-login-box').animate({'height':'320px'});
 			activityCircle.loginPage.mode = 'login';
 		}
 	},
