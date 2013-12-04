@@ -267,7 +267,37 @@ class Student extends MY_Controller {
         $this->twig->render('student_friends.html.twig');
     }
 
-    
+    public function findAllStudent(){
+        $this->load->model("student_model","student");
+        $result=$this->student->findAll();
+        $data['data']=$result;
+        print_r(json_encode($data));
+    }
+
+    public function findAllFriends(){
+        $sid=$this->session->userdata('sid');
+        $this->load->model("friends_model","friends");
+        $data['data']=$this->friends->findAllFriends($sid);
+        print_r(json_encode($data));   
+    }
+
+    public function addFriends(){
+        $sid=$this->session->userdata('sid');
+        $realname=urldecode($this->input->post('realname'));
+        $this->load->model('student_model','student');
+        $fid=$this->student->findByName($realname);
+        $this->load->model('friends_model','friends');
+        $result=$this->friends->isFriends($sid,$fid);
+        if($result==100){
+            $this->friends->insert($sid,$fid);
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }
+
+    /*public function deleteFriends(){
+        $sid=$this->session->userdata('sid');
+    }*/
 
 }
 ?>

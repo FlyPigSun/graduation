@@ -108,6 +108,19 @@ class Student_Model  extends  CI_Model{
         $this->db->close();
         return $data;
     }
+
+     public function findByName($realname){
+        $this->load->database();
+        $sql="select * from student_tb where realname=?";
+        $query=$this->db->query($sql,array($realname));
+        if($query->num_rows()>0){
+            $data=$query->row();
+        }else {
+            $data=null;
+        }
+        $this->db->close();
+        return $data->id;
+    }
     //是否做过测试
     public function doTest($sid){
         $this->load->database();
@@ -136,8 +149,17 @@ class Student_Model  extends  CI_Model{
         $this->load->database();
         $sql="select * from student_tb";
         $query=$this->db->query($sql);
-        $data=$query->result();
+        $result=$query->result();
+        $data=array();
+        foreach ($result as $row) {
+           $data[]= array('id' =>$row->id ,'username'=>$row->username,"studentnumber"=>$row->studentnumber,
+            "motto"=>$row->motto,"realname"=>$row->realname,"avatar"=>$row->avatar );
+        }        
+        $this->db->close();
+        return $data;
     }
+
+
 
 
 }
