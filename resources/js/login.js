@@ -30,8 +30,9 @@ activityCircle.loginPage = {
 	login : function(){
 		var username = $('.activitycircle-login-area').find('input:eq(0)').val();
 		var password = $('.activitycircle-login-area').find('input:eq(1)').val();
-		var role = $('.activitycircle-login-area').find('.activitycircle-login-select').val();
+		var role = $('.activitycircle-login-area').find('.activitycircle-login-select:eq(0)').val();
 		password = $.md5(password);
+		var mood = $('.activitycircle-login-area').find('.activitycircle-login-select:eq(1)').val();
 		if(username!=''&&password!=''){
 			$.ajax({
 				url : '/login/userlogin',
@@ -39,7 +40,8 @@ activityCircle.loginPage = {
 				data: {
 				    username : username,
 				    password : password,
-				    role : role
+				    role : role,
+				    mood : mood
 				},
 				headers:{
 				    'CONTENT-TYPE': 'application/x-www-form-urlencoded'

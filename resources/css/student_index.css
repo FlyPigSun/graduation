@@ -84,6 +84,10 @@
 .student-index-topbtn.active{
 	background: rgb(37,118,184);
 }
+.student-mood-ico{
+	float: left;
+	margin:-3px 5px 0px 0px;
+}
 .student-index-logout{
 	cursor: pointer;
 	color: #EDB810;

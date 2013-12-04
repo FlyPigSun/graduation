@@ -281,6 +281,15 @@
                 <div class="clear"></div>
             </div>
             <div class="student-index-topinfoarea">
+                {% if mood=='well' %}
+                    <img class="student-mood-ico" src="/resources/images/mood/mood_well.png"/>
+                {% elseif mood=='happy' %}
+                    <img class="student-mood-ico" src="/resources/images/mood/mood_happy.png"/>
+                {% elseif mood=='dispirited' %}
+                    <img class="student-mood-ico" src="/resources/images/mood/mood_dispirited.png"/>
+                {% elseif mood=='sad' %}
+                    <img class="student-mood-ico" src="/resources/images/mood/sad.png"/>
+                {% endif %}
                 <div style="margin-right:10px;" class="middle-font pull-left">
                     {{ realname }}
                 </div>

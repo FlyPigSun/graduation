@@ -11,7 +11,8 @@ class Student extends MY_Controller {
             $notfirst=$student->notfirst;
             $realname=$student->realname;
             $logintime=$student->logintime;
-            $this->twig->render('student_index.html.twig',array('notfirst'=>$notfirst,'sid'=>$sid,
+            $mood = $student->mood;
+            $this->twig->render('student_index.html.twig',array('mood'=>$mood,'notfirst'=>$notfirst,'sid'=>$sid,
                 'realname'=>$realname,'logintime'=>$logintime));
         }else{
             redirect('/login');
