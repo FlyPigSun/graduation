@@ -119,7 +119,7 @@ class Student_Model  extends  CI_Model{
             $data=null;
         }
         $this->db->close();
-        return $data->id;
+        return $data;
     }
     //是否做过测试
     public function doTest($sid){

@@ -274,9 +274,14 @@ class Student extends MY_Controller {
         $sid=$this->session->userdata('sid');
         $realname=urldecode($this->input->post('realname'));
         $this->load->model('student_model','student');
-        $fid=$this->student->findByName($realname);
-        $this->load->model('friends_model','friends');
-        $result=$this->friends->isFriends($sid,$fid);
+        $res=$this->student->findByName($realname);
+        if($res!=null){
+            $fid=$res->id;
+            $this->load->model('friends_model','friends');
+            $result=$this->friends->isFriends($sid,$fid);
+        }else {
+            $result=104;
+        }       
         if($result==100){
             $this->friends->insert($sid,$fid);
         }
