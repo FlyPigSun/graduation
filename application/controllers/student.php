@@ -295,9 +295,20 @@ class Student extends MY_Controller {
         print_r(json_encode($data));
     }
 
-    /*public function deleteFriends(){
+    public function deleteFriends(){
         $sid=$this->session->userdata('sid');
-    }*/
+        $fid=$this->input->post('fid');
+        $this->load->model("friends_model","friends");
+        $judge=$this->friends->isFriends($sid,$fid);
+        if($judge==102){
+            $this->friends->deleteFriends($sid,$fid);
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }
 
 }
 ?>
