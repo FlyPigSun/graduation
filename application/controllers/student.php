@@ -263,6 +263,10 @@ class Student extends MY_Controller {
         print_r(json_encode($data));
     }
 
+    public function friendsAction(){
+        $this->twig->render('student_friends.html.twig');
+    }
+
     
 
 }

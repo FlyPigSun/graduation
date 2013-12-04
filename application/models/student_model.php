@@ -131,6 +131,13 @@ class Student_Model  extends  CI_Model{
         $query=$this->db->query($sql,array($avatar,$sid));
         $this->db->close();
     }
+    //查找所有学生信息
+    public function findAll(){
+        $this->load->database();
+        $sql="select * from student_tb";
+        $query=$this->db->query($sql);
+        $data=$query->result();
+    }
 
 
 }
