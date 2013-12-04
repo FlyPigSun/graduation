@@ -5,6 +5,8 @@
 activityCircle.student.friends = {
 	initialize : function(){
 		var me = this;
+		$('.activitycircle-addfriends-area a').unbind();
+		$('.activitycircle-friends-delete-btn').unbind();
 		$('.activitycircle-addfriends-area a').on('click',me.addFriends);
 		$('.activitycircle-friends-delete-btn').on('click',me.removeFriends);
 	},
