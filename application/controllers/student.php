@@ -304,5 +304,66 @@ class Student extends MY_Controller {
         print_r(json_encode($data));
     }
 
+    public function sendLetters(){
+        $from_id=$this->session->userdata('sid');
+        $to_id=$this->input->post('to_id');
+        $title=$this->input->post('title');
+        $content=$this->input->post('content');
+        $this->load->model('letter_model','letter');
+        $judge=$this->letter->insert($from_id,$to_id,$title,$content);
+        if($judge==true){
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+
+    }
+
+
+
+
+    public function inBox(){
+        $sid=$this->session->userdata('sid');
+        $this->load->model('letter_model','letter');
+        $judge=$this->letter->findFrom($sid);
+        if($judge==null){
+            $result=102;
+        }else{
+            $result=100;
+            $data['data']=$judge;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }
+
+    public function outBox(){
+        $sid=$this->session->userdata('sid');
+        $this->load->model('letter_model','letter');
+        $judge=$this->letter->findTo($sid);
+        if($judge==null){
+            $result=102;
+        }else{
+            $result=100;
+            $data['data']=$judge;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }
+
+    public function deleteLetter(){
+        $id=$this->input->post('id');
+        $this->load->model('letter_model','letter');
+        $judge=$this->letter->deleteLetter($id);
+        if($judge==true){
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }
+
 }
 ?>

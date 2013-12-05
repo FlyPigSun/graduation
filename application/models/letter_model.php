@@ -4,43 +4,58 @@
 * letter_tb model
 */
 ini_set('date.timezone','Asia/Shanghai');
-class Student_Model  extends  CI_Model{
+class Letter_Model  extends  CI_Model{
 
     var $from_id='';
     var $to_id='';
     var $content='';
-    var $from_role='';
-    var $to_role='';
+    var $title='';
+    
 
 
 
     //增加站内信
-    public function insert($from_id,$to_id,$content,$from_role,$to_role){
+    public function insert($from_id,$to_id,$title,$content){
         $this->load->database();
-        $sql="insert into letter_tb varlue(null,?,?,?,?,?)";
-        $query=$this->db->query($sql,array($from_id,$to_id,$content,$from_role,$to_role));
+        $sql="insert into letter_tb value(null,?,?,?,?,0)";
+        $query=$this->db->query($sql,array($from_id,$to_id,$title,$content));
         $this->db->close();
+        return true;
     }
-    //查找站内信
-    public function find($to_id,$to_role){
+    //发件箱
+    public function findTo($sid){
         $this->load->database();
-        $sql="select * from letter_tb where $to_sid=? and $to_role=?";
-        $query=$this->db->query($sql,array($to_id,$to_role));
+        $sql="select s.realname,l.title,l.content from letter_tb l left join student_tb s on l.from_id=s.id where l.from_id=? and is_delete=0";
+        $query=$this->db->query($sql,array($sid));
         $result=$query->result();
         $data=array();
         foreach ($result as $row) {
-           $data[]=$row->content;
+           $data[]=array("toRealname"=>$row->realname,"title"=>$row->title,"content"=>$row->content);
+        }        
+        $this->db->close();
+        return $data;
+    }
+    //收件箱
+    public function findFrom($sid){
+        $this->load->database();
+        $sql="select s.realname,l.title,l.content from letter_tb l left join student_tb s on l.to_id=s.id where l.to_id=? and is_delete=0";
+         $query=$this->db->query($sql,array($sid));
+        $result=$query->result();
+        $data=array();
+        foreach ($result as $row) {
+           $data[]=array("toRealname"=>$row->realname,"title"=>$row->title,"content"=>$row->content);
         }        
         $this->db->close();
         return $data;
     }
     
     //删除站内信
-    public function deleteLetter($to_id,$to_role){
+    public function deleteLetter($id){
         $this->load->database();
-        $sql="delete from letter_tb where to_sid=? and to_role=?";
-        $query=$this->db->query($sql,array($to_id,$to_role));
+        $sql="update letter_tb set is_delete=1 where id=?";
+        $query=$this->db->query($sql,array($id));
         $this->db->close();
+        return true;
     }
 
 }
