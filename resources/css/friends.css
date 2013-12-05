@@ -8,6 +8,7 @@
 	line-height: 27px;
 }
 .activitycircle-friends-input{
+	padding: 0px 5px;
 	float: left;
 	margin: 0px 20px;
 	border: 1px solid #ccc;
@@ -65,4 +66,45 @@
 	width: 60px;
 	height: 60px;
 	float: right;
+	cursor: pointer;
+}
+.activitycircle-friends-message-send-box{
+	position: absolute;
+	top:-400px;
+	left: 50%;
+	margin-left: -300px;
+	width: 580px;
+	height: 330px;
+	background-color: #fff;
+	border:1px solid #000;
+	z-index: 100001;
+	padding: 10px;
+}
+.activitycircle-friends-message-send-box-title{
+	font-size: 30px;
+	font-weight: 900;
+	text-align: center;
+}
+.activitycircle-friends-message-send-info{
+	font-size: 15px;
+	margin: 5px 0px 0px 0px;
+}
+.activitycircle-friends-message-title{
+	padding: 0px 5px;
+	width: 512px;
+}
+.activitycircle-friends-message-send-textarea{
+	margin: 8px 0px;
+	height: 140px !important;
+	width: 512px;
+	resize: none;
+	padding: 5px;
+	display: inline-block;
+}
+.activitycircle-friends-message-send-btn{
+	width: 100px;
+	font-size: 15px;
+	padding: 3px;
+	float: right;
+	margin-top: 8px;
 }

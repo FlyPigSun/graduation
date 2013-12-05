@@ -7,6 +7,9 @@ activityCircle.student.friends = {
 		var me = this;
 		$('.activitycircle-addfriends-area a').unbind();
 		$('.activitycircle-friends-delete-btn').unbind();
+		$('.index-background').unbind();
+		$('.index-background').on('click',me.hideMessageBox);
+		$('.activitycircle-friends-box').find('.activitycircle-friends-box-avatar').on('click',me.showMessageBox);
 		$('.activitycircle-addfriends-area a').on('click',me.addFriends);
 		$('.activitycircle-friends-delete-btn').on('click',me.removeFriends);
 	},
@@ -57,5 +60,21 @@ activityCircle.student.friends = {
 				}
 			}
 		})
+	},
+	showMessageBox : function(){
+		var to_id = $(this).siblings('.friend-id').html();
+		var friends_name = $(this).siblings('.activitycircle-friends-name').html();
+		$('.activitycircle-friends-message-send-friend-name').html(friends_name);
+        $('.activitycircle-friends-message-send-box').animate({top:$(document).scrollTop()+150+'px'});
+        $('.index-background').fadeIn();
+        $('.activitycircle-friends-message-send-btn').one('click',function(){activityCircle.student.friends.sendMessage(to_id)});
+	},
+	sendMessage : function(to_id){
+		alert(to_id);
+	},
+	hideMessageBox : function(){
+		$('.activitycircle-friends-message-send-box').animate({top:"-400px"});
+        $('.index-background').fadeOut();
+        $('.activitycircle-friends-message-send-btn').unbind();
 	}
 }
