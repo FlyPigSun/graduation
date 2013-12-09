@@ -41,6 +41,7 @@
 	                
 	            </div>
 	            <div class="activitycircle-messages-messagesend">
+	            	<div style="font-weight:900;">回复：</div>
 	                <div class="activitycircle-messages-messagesend-content-area">
 	                    <textarea class="activitycircle-messages-messagesend-content"></textarea>
 	                    <div class="clear"></div>
@@ -55,14 +56,14 @@
 <script id="activitycircle-messages-receivemessage-table-template" type="text/html">
     <tr>
         <td>{{ '{{' }} ctime {{ '}}' }}</td>
-        <td>{{ '{{' }} realname_from {{ '}}' }}</td>
+        <td>{{ '{{' }} realname {{ '}}' }}</td>
         <td>{{ '{{' }} title {{ '}}' }}</td>
     </tr>
 </script>
 <script id="activitycircle-messages-sendmessage-table-template" type="text/html">
     <tr>
         <td>{{ '{{' }} ctime {{ '}}' }}</td>
-        <td>{{ '{{' }} realname_to {{ '}}' }}</td>
+        <td>{{ '{{' }} realname {{ '}}' }}</td>
         <td style="cursor:pointer;">{{ '{{' }} title {{ '}}' }}</td>
         <td class="activitycircle-hide">{{ '{{' }} content {{ '}}' }}</td>
     </tr>
@@ -70,14 +71,13 @@
 <script id="activitycircle-messages-messagedetail-template" type="text/html">
     <div class="activitycircle-messages-messagedetail-title">{{ '{{' }} title {{ '}}' }}</div>
     <div class="activitycircle-messages-messagedetail-to">
-        <span class="bold">{{ '{{' }} username_to {{ '}}' }}</span>{{ '{{' }} user_to_identity {{ '}}' }}你好！
+        你好！
     </div>
     <div class="activitycircle-messages-messagedetail-content">
         {{ '{{' }} content {{ '}}' }}
     </div>
     <div class="activitycircle-messages-messagedetail-from">
-        <div class="bold">{{ '{{' }} username_from {{ '}}' }}</div>
+        <div class="bold">{{ '{{' }} realname {{ '}}' }}</div>
         <div>{{ '{{' }} ctime {{ '}}' }}</div>
     </div>
-    <div class="activitycircle-messages-messagedetail-download"></div>
 </script>
