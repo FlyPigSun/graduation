@@ -26,7 +26,6 @@ class Letter_Model  extends  CI_Model{
         $sql="select s.realname,l.title,l.content,l.ctime from letter_tb l left join student_tb s on l.to_id=s.id where l.to_id=? and is_delete=0";
         $query=$this->db->query($sql,array($sid));
         $result=$query->result();
-        print_r($result);
         $data=array();
         foreach ($result as $row) {
            $data[]=array("realname_to"=>$row->realname,"title"=>$row->title,"ctime"=>$row->ctime);
@@ -40,7 +39,6 @@ class Letter_Model  extends  CI_Model{
         $sql="select s.realname,l.title,l.content,l.ctime from letter_tb l left join student_tb s on l.from_id=s.id where l.from_id=? and is_delete=0";
         $query=$this->db->query($sql,array($sid));
         $result=$query->result();
-        print_r($result);
         $data=array();
         foreach ($result as $row) {
            $data[]=array("realname_from"=>$row->realname,"title"=>$row->title,"ctime"=>$row->ctime);
