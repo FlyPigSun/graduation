@@ -12,8 +12,6 @@ class Letter_Model  extends  CI_Model{
     var $title='';
     var $ctime='';
 
-
-
     //增加站内信
     public function insert($from_id,$to_id,$title,$content,$ctime){
         $this->load->database();
@@ -25,9 +23,10 @@ class Letter_Model  extends  CI_Model{
     //发件箱
     public function findTo($sid){
         $this->load->database();
-        $sql="select s.realname,l.title,l.content from letter_tb l left join student_tb s on l.to_id=s.id where l.to_id=? and is_delete=0";
+        $sql="select s.realname,l.title,l.content,l.ctime from letter_tb l left join student_tb s on l.to_id=s.id where l.to_id=? and is_delete=0";
         $query=$this->db->query($sql,array($sid));
         $result=$query->result();
+        print_r($result);
         $data=array();
         foreach ($result as $row) {
            $data[]=array("realname_to"=>$row->realname,"title"=>$row->title,"ctime"=>$row->ctime);
@@ -38,9 +37,10 @@ class Letter_Model  extends  CI_Model{
     //收件箱
     public function findFrom($sid){
         $this->load->database();
-        $sql="select s.realname,l.title,l.content from letter_tb l left join student_tb s on l.from_id=s.id where l.from_id=? and is_delete=0";
+        $sql="select s.realname,l.title,l.content,l.ctime from letter_tb l left join student_tb s on l.from_id=s.id where l.from_id=? and is_delete=0";
         $query=$this->db->query($sql,array($sid));
         $result=$query->result();
+        print_r($result);
         $data=array();
         foreach ($result as $row) {
            $data[]=array("realname_from"=>$row->realname,"title"=>$row->title,"ctime"=>$row->ctime);
