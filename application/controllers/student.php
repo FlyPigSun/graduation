@@ -328,12 +328,8 @@ class Student extends MY_Controller {
         $sid=$this->session->userdata('sid');
         $this->load->model('letter_model','letter');
         $judge=$this->letter->findFrom($sid);
-        if($judge==null){
-            $result=102;
-        }else{
-            $result=100;
-            $data['data']=$judge;
-        }
+        $result=100;                   
+        $data['data']=$judge;
         $data['errcode']=$result;
         print_r(json_encode($data));
     }
