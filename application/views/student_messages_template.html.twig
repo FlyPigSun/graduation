@@ -1,10 +1,10 @@
 <script id="yike-messages-center-template" type="text/html">
 	<div class="activitycircle-messages-center">
 	    <div class="activitycircle-messages-mode-area">
-	        <div class="yike-student-receivebox-btn activitycircle-messages-mode-btn active">
+	        <div class="activitycircle-messages-receivebox-btn activitycircle-messages-mode-btn active">
 	            收件箱
 	        </div>
-	        <div class="yike-student-sendmessage-btn activitycircle-messages-mode-btn">
+	        <div class="activitycircle-messages-sendmessage-btn activitycircle-messages-mode-btn">
 	            发件箱
 	        </div>
 	        <div class="clear"></div>
@@ -25,7 +25,7 @@
 	        </div>
 	        <div class="activitycircle-messages-sendmessage-area activitycircle-hide">
 	            <div class="activitycircle-messages-sendmessage-table-area">
-	                <table class="activitycircle-messages-sendmessage-table activitycircle-messages-message-table" rules=cols>
+	                <table class="activitycircle-messages-sendmessage-table activitycircle-messages-table" rules=cols>
 	                    <thead>
 	                        <th style="width:200px;">时间</th>
 	                        <th style="width:100px;">收件人</th>
@@ -55,14 +55,14 @@
 <script id="activitycircle-messages-receivemessage-table-template" type="text/html">
     <tr>
         <td>{{ '{{' }} ctime {{ '}}' }}</td>
-        <td>{{ '{{' }} username_from {{ '}}' }}</td>
+        <td>{{ '{{' }} realname_from {{ '}}' }}</td>
         <td>{{ '{{' }} title {{ '}}' }}</td>
     </tr>
 </script>
 <script id="activitycircle-messages-sendmessage-table-template" type="text/html">
     <tr>
         <td>{{ '{{' }} ctime {{ '}}' }}</td>
-        <td>{{ '{{' }} username_to {{ '}}' }}</td>
+        <td>{{ '{{' }} realname_to {{ '}}' }}</td>
         <td style="cursor:pointer;">{{ '{{' }} title {{ '}}' }}</td>
         <td class="activitycircle-hide">{{ '{{' }} content {{ '}}' }}</td>
     </tr>
