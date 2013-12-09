@@ -327,7 +327,7 @@ class Student extends MY_Controller {
     public function inBox(){
         $sid=$this->session->userdata('sid');
         $this->load->model('letter_model','letter');
-        $judge=$this->letter->findFrom($sid);
+        $judge=$this->letter->findTo($sid);
         $result=100;                   
         $data['data']=$judge;
         $data['errcode']=$result;
@@ -337,7 +337,7 @@ class Student extends MY_Controller {
     public function outBox(){
         $sid=$this->session->userdata('sid');
         $this->load->model('letter_model','letter');
-        $judge=$this->letter->findTo($sid);
+        $judge=$this->letter->findFrom($sid);
         $result=100;
         $data['data']=$judge;
         $data['errcode']=$result;
