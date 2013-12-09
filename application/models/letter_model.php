@@ -23,7 +23,8 @@ class Letter_Model  extends  CI_Model{
     //发件箱
     public function findTo($sid){
         $this->load->database();
-        $sql="select s.realname,l.title,l.content,l.ctime from letter_tb l left join student_tb s on l.to_id=s.id where l.from_id=? and is_delete=0";
+        $sql="select s.realname,l.title,l.content,l.ctime from letter_tb l left join student_tb s on l.to_id=s.id 
+              where l.from_id=? and is_delete=0 order by ctime desc";
         $query=$this->db->query($sql,array($sid));
         $result=$query->result();
         $data=array();
@@ -36,7 +37,8 @@ class Letter_Model  extends  CI_Model{
     //收件箱
     public function findFrom($sid){
         $this->load->database();
-        $sql="select s.realname,l.title,l.content,l.ctime from letter_tb l left join student_tb s on l.from_id=s.id where l.to_id=? and is_delete=0";
+        $sql="select s.realname,l.title,l.content,l.ctime from letter_tb l left join student_tb s on l.from_id=s.id
+              where l.to_id=? and is_delete=0 order by ctime desc";
         $query=$this->db->query($sql,array($sid));
         $result=$query->result();
         $data=array();
