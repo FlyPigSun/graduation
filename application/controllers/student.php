@@ -307,8 +307,8 @@ class Student extends MY_Controller {
     public function sendLetters(){
         $from_id=$this->session->userdata('sid');
         $to_id=$this->input->post('to_id');
-        $title=$this->input->post('title');
-        $content=$this->input->post('content');
+        $title=urldecode($this->input->post('title'));
+        $content=urldecode($this->input->post('content'));
         $this->load->model('letter_model','letter');
         $judge=$this->letter->insert($from_id,$to_id,$title,$content);
         if($judge==true){
