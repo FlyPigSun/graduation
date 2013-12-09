@@ -10,27 +10,27 @@ class Letter_Model  extends  CI_Model{
     var $to_id='';
     var $content='';
     var $title='';
-    
+    var $ctime='';
 
 
 
     //增加站内信
-    public function insert($from_id,$to_id,$title,$content){
+    public function insert($from_id,$to_id,$title,$content,$ctime){
         $this->load->database();
-        $sql="insert into letter_tb value(null,?,?,?,?,0)";
-        $query=$this->db->query($sql,array($from_id,$to_id,$title,$content));
+        $sql="insert into letter_tb value(null,?,?,?,?,0,?)";
+        $query=$this->db->query($sql,array($from_id,$to_id,$title,$content,$ctime));
         $this->db->close();
         return true;
     }
     //发件箱
     public function findTo($sid){
         $this->load->database();
-        $sql="select s.realname,l.title,l.content from letter_tb l left join student_tb s on l.from_id=s.id where l.from_id=? and is_delete=0";
+        $sql="select s.realname,l.title,l.content from letter_tb l left join student_tb s on l.to_id=s.id where l.to_id=? and is_delete=0";
         $query=$this->db->query($sql,array($sid));
         $result=$query->result();
         $data=array();
         foreach ($result as $row) {
-           $data[]=array("toRealname"=>$row->realname,"title"=>$row->title,"content"=>$row->content);
+           $data[]=array("realname_to"=>$row->realname,"title"=>$row->title,"ctime"=>$row->ctime);
         }        
         $this->db->close();
         return $data;
@@ -38,12 +38,12 @@ class Letter_Model  extends  CI_Model{
     //收件箱
     public function findFrom($sid){
         $this->load->database();
-        $sql="select s.realname,l.title,l.content from letter_tb l left join student_tb s on l.to_id=s.id where l.to_id=? and is_delete=0";
-         $query=$this->db->query($sql,array($sid));
+        $sql="select s.realname,l.title,l.content from letter_tb l left join student_tb s on l.from_id=s.id where l.from_id=? and is_delete=0";
+        $query=$this->db->query($sql,array($sid));
         $result=$query->result();
         $data=array();
         foreach ($result as $row) {
-           $data[]=array("toRealname"=>$row->realname,"title"=>$row->title,"content"=>$row->content);
+           $data[]=array("realname_from"=>$row->realname,"title"=>$row->title,"ctime"=>$row->ctime);
         }        
         $this->db->close();
         return $data;

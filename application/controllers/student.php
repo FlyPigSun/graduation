@@ -310,7 +310,7 @@ class Student extends MY_Controller {
         $title=urldecode($this->input->post('title'));
         $content=urldecode($this->input->post('content'));
         $this->load->model('letter_model','letter');
-        $judge=$this->letter->insert($from_id,$to_id,$title,$content);
+        $judge=$this->letter->insert($from_id,$to_id,$title,$content,date("Y-m-d   H:i:s"));
         if($judge==true){
             $result=100;
         }else{
@@ -338,12 +338,8 @@ class Student extends MY_Controller {
         $sid=$this->session->userdata('sid');
         $this->load->model('letter_model','letter');
         $judge=$this->letter->findTo($sid);
-        if($judge==null){
-            $result=102;
-        }else{
-            $result=100;
-            $data['data']=$judge;
-        }
+        $result=100;
+        $data['data']=$judge;
         $data['errcode']=$result;
         print_r(json_encode($data));
     }
