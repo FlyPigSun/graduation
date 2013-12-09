@@ -62,6 +62,7 @@ activityCircle.studentIndexPage = {
 			case 'message':
 				$('.student-index-centerarea').children('div').hide();
 				$('.student-index-message-area').show();
+				activityCircle.studentIndexPage.setMessagesHtml();
 				break;
 		}
 	},
@@ -79,6 +80,11 @@ activityCircle.studentIndexPage = {
 				activityCircle.student.friends.initialize();
 			}
 		})
+	},
+	setMessagesHtml : function(){
+		var html = $('#yike-messages-center-template').html();
+		$('.student-index-message-area').html(html);
+		activityCircle.student.messages.initialize();
 	}
 }
 

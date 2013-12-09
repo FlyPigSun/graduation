@@ -1,0 +1,122 @@
+.activitycircle-messages-center{
+	min-height: 450px;
+	margin-top: 10px;
+	border: 3px solid #ccc;
+	border-radius: 4px;
+	padding: 10px 0px;
+}
+.activitycircle-messages-mode-area{
+	border-bottom: 1px solid #ccc;
+	font-size: 15px;
+	color: #555;
+}
+.yike-student-receivebox-btn{
+	float: left;
+	padding: 0px 15px;
+	border-right: 1px solid #ccc;
+	cursor: pointer;
+	line-height: 27px;
+}
+.yike-student-sendmessage-btn{
+	float: left;
+	padding: 0px 15px;
+	cursor: pointer;
+	line-height: 27px;
+}
+.activitycircle-messages-mode-btn.active{
+	border-bottom: 5px solid rgb(9,123,200);
+	line-height: 27px;
+}
+.activitycircle-messages-table{
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+}
+.activitycircle-messages-table tr{
+	cursor: pointer;
+}
+
+.activitycircle-messages-table th{
+	border: none;
+	font-size: 14px;
+	padding: 2px 5px;
+    text-align: center;
+    font-weight: normal;
+    border-left: 1px solid #f2f2f2;
+}
+.activitycircle-messages-table td{
+	border: 1px solid #e2e2e2;
+	padding: 5px;
+	font-size: 12px;
+	border-left: 1px solid #000;
+}
+
+.activitycircle-messages-table .odd{
+	background-color: #ddd;
+}
+
+.activitycircle-messages-table .even{
+	background-color: #fff;
+}
+.activitycircle-messages-messagedetail {
+	position: relative;
+	padding: 5px 25px;
+	font-size: 15px;
+	line-height: 25px;
+	border-bottom: 1px solid #e2e2e2;
+}
+.activitycircle-messages-messagedetail-title{
+	position: relative;
+	width: 100%;
+}
+.activitycircle-messages-messagedetail-to {
+	position: relative;
+	margin-top: 10px;
+	width: 100%;
+}
+.activitycircle-messages-messagedetail-content{
+	position: relative;
+	margin-top: 10px;
+	width: 100%;
+}
+.activitycircle-messages-messagedetail-from{
+	position: relative;
+	margin-top: 100px;
+	width: 100%;
+	text-align: right;
+}
+.activitycircle-messages-messagesend{
+	position: relative;
+	padding: 5px 25px;
+	font-size: 15px;
+	line-height: 25px;
+}
+.activitycircle-messages-messagesend-content-area{
+	position: relative;
+	border: 1px solid #e2e2e2;
+	border-radius: 4px;
+}
+.activitycircle-messages-messagesend-content{
+	position: relative;
+	width: 100%;
+	outline: none;
+	resize: none;
+	height: 120px;
+}
+.activitycircle-messages-messagesend-button{
+	position: relative;
+	left: -120px;
+	margin-top: 10px;
+	margin-left: 100%;
+	background: url(/resources/images/message-send.png);
+	background-position: 0px -1px;
+	width: 120px;
+	height: 33px;
+	cursor: pointer;
+}
+.activitycircle-messages-messagesend-button:hover{
+	background-position: 0px -34px;
+}
+.activitycircle-messages-messagesend-button:active{
+	background-position: 0px -65px;
+}

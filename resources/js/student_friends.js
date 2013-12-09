@@ -70,11 +70,37 @@ activityCircle.student.friends = {
         $('.activitycircle-friends-message-send-btn').one('click',function(){activityCircle.student.friends.sendMessage(to_id)});
 	},
 	sendMessage : function(to_id){
-		alert(to_id);
+		var title = encodeURIComponent($('.activitycircle-friends-message-title').val());
+		var content = encodeURIComponent($('.activitycircle-friends-message-send-textarea').val());
+		$.ajax({
+			url : '/student/sendLetters',
+			type : 'post',
+			data : {
+				to_id : to_id,
+				title : title,
+				content : content
+			},
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				res = $.parseJSON(res);
+				if(res.errcode == 100){
+					alert('发送成功');
+					activityCircle.student.friends.hideMessageBox();
+				}else{
+					alert('发送失败');
+					activityCircle.student.friends.hideMessageBox();
+				}
+			}
+		});
 	},
 	hideMessageBox : function(){
 		$('.activitycircle-friends-message-send-box').animate({top:"-400px"});
         $('.index-background').fadeOut();
         $('.activitycircle-friends-message-send-btn').unbind();
+        $('.activitycircle-friends-message-title').val('');
+        $('.activitycircle-friends-message-send-textarea').val('');
 	}
 }
