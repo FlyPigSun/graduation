@@ -33,6 +33,7 @@ class Teacher_Model  extends  CI_Model{
             $this->logintime=$row->logintime;
             $this->realname=$row->realname;
             $this->gender=$row->gender;
+            $this->grade=$row->grade;
             $this->teachernumber=$row->teachernumber;
             $this->motto=$row->motto;
             $sql="update teacher_tb set logintime=? where id=?";

@@ -34,7 +34,7 @@ class Teacher extends MY_Controller {
             $this->teacher->login($username,$password,date("Y-m-d   H:i:s"));
             $arr=array("tid"=>$this->teacher->id,"username"=>$username,
             "time"=>$this->teacher->logintime,"password"=>$password,
-            "role"=>'teacher');
+            "grade"=>$grade,"realname"=>$realname);
             $this->session->set_userdata($arr);
             $result=100;
         }else{
@@ -121,6 +121,49 @@ class Teacher extends MY_Controller {
         print_r('success=done');//让前台弹出上传成功                   
     }
 
+    public function uploadRes(){
+        $config['upload_path']='./upload_files/teacher/resources/';
+        $config['allowed_types']='avi|mp4|rmvb|gif|rar|jpg|mp3|rm';
+
+        $this->load->library('upload');
+        $this->upload->initialize($config);
+        $field_name="upload_videos";
+        if (!$this->upload->do_upload()){
+            //$data = array('error' => $this->upload->display_errors());
+            $result=102;
+        }else{
+            $info=$this->upload->data();
+            $address='/upload_files/teacher/resources/'.$info['client_name'];
+            $this->load->model('uploadres_model','uploadres');
+            $name=urldecode($this->input->post('name'));
+            $theme=urldecode($this->input->post('theme'));
+            $custom_theme=urldecode($this->input->post('custom_theme'));
+            $level=urldecode($this->input->post('level'));
+            $description=urldecode($this->input->post('description'));
+            $keyword=urldecode($this->input->post('keyword'));
+            $keyphrase=urldecode($this->input->post('keyphrase'));
+            $author=$this->session->userdata('realname');
+            $author_group=$this->session->userdata('grade');
+            $judge=$this->uploadres->insert($name,$theme,$custom_theme,$level,$description,$keyword,$keyphrase,date("Y-m-d   H:i:s"),$address,$author,$author_group);
+            if($judge==true){
+                $result=100;
+            }else{
+                $result=102;
+            }
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+
+    }
+
+    public function findAllRes(){            
+            $author_group=$this->session->userdata('grade');
+            $this->load->model('uploadres_model','uploadres');
+            $judge=$this->uploadres->search($author_group);
+            $data['data']=$judge;
+            print_r(json_encode($data));
+    }
+   
 }
 
 /* End of file teacher.php */
