@@ -157,7 +157,7 @@ class Teacher extends MY_Controller {
     }
 
     public function findAllRes(){            
-            $author_group=$this->session->userdata('grade');
+            $author_group=urldecode($this->session->userdata('grade'));
             $this->load->model('uploadres_model','uploadres');
             $judge=$this->uploadres->search($author_group);
             $data['data']=$judge;

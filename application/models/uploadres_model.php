@@ -24,5 +24,13 @@ class UploadRes_Model  extends  CI_Model{
         return true;
     }
 
+    public function search($author_group){
+        $this->load->database();
+        $sql="select * from resources_tb where author_group=?";
+        $query=$this->db->query($sql,array($author_group));
+        $data=$query->result();
+        return $data;
+    }
+
 }
 ?>
