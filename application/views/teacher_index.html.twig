@@ -8,12 +8,17 @@
     <script src="/resources/js/jquery.md5.js"></script>
     <script src="/resources/js/mustache.js"></script>
     <script src="/resources/js/bootstrap.js"></script>
+    <script src="/resources/js/jquery.ui.widget.js"></script>
+    <script src="/resources/js/jquery.fileupload.js"></script>
     <script src="/resources/js/base.js"></script>
     <script src="/resources/js/teacher_index.js"></script>
     <script src="/resources/js/teacher_personal_center.js"></script>
+    <script src="/resources/js/teacher_group_activity.js"></script>
     <link href="/resources/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/resources/css/jquery.fileupload.css" rel="stylesheet"/>
     <link href="/resources/css/base.css" rel="stylesheet"/>
     <link href="/resources/css/teacher_index.css" rel="stylesheet"/>
+    <link href="/resources/css/teacher_group_activity.css" rel="stylesheet"/>
 </head>
 <body>
     <div class="activitycircle-hide tid">{{ tid }}</div>
@@ -29,10 +34,7 @@
                 <div class="teacher-index-topbtn" type="personal_center">
                     个人中心
                 </div>
-                <div class="teacher-index-topbtn" type="teacher_recommend">
-                    教师推荐
-                </div>
-                <div class="teacher-index-topbtn" type="group_activety">
+                <div class="teacher-index-topbtn" type="group_activity">
                     小组活动
                 </div>
                 <div class="teacher-index-topbtn" type="honor_box">
@@ -65,9 +67,6 @@
             <div class="teacher-index-personalcenter-area activitycircle-hide">
                 
             </div>
-            <div class="teacher-index-teacherrecommend-area activitycircle-hide">
-                
-            </div>
             <div class="teacher-index-groupactivity-area activitycircle-hide">
                 
             </div>
@@ -84,4 +83,5 @@
     </div>
 
 {% include 'teacher_personal_center_template.html.twig' %}
+{% include 'teacher_group_activity_template.html.twig' %}
 </body>

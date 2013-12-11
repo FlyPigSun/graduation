@@ -1,0 +1,35 @@
+<script id="teacher_group_activity_template" type="text/html">
+    <div class="teacher-personal-center">
+        <div class="teacher-group-activity-leftbar">
+            <div class="teacher-group-activity-leftbar-btn active" type="new_activity">
+                创建活动
+            </div>
+            <div class="teacher-group-activity-leftbar-btn" type="manage_activity">
+                管理活动
+            </div>
+        </div>
+        <div class="teacher-group-activity-rightbar">
+            <div class="teacher-group-activity-title"></div>
+            <div class="teacher-new-activity-box teacher-groupActivity-box">
+                <div class="teacher-new-activity-upload-area">
+                    <div style="margin:0px 0px 20px 0px;">
+                        附件上传
+                    </div>
+                    <span class="btn btn-success fileinput-button">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>Select files...</span>
+                        <!-- The file input field used as target for the file upload widget -->
+                        <input id="teacher-group-activity-fileupload" type="file" name="files[]" multiple="">
+                    </span>
+                    <div id="progress" class="progress activitycircle-hide" style="margin:20px 0px;">
+                        <div class="progress-bar progress-bar-success"></div>
+                    </div>
+                    <div class="teacher-new-activity-upload-feedback"></div>
+                </div>
+            </div>
+            <div class="teacher-manage-activity-box teacher-groupActivity-box activitycircle-hide">
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</script>

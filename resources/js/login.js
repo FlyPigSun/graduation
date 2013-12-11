@@ -15,6 +15,7 @@ activityCircle.loginPage = {
 		$('.activitycircle-login-btn').on('click',me.login);
 		$('.activitycircle-changetab').on('click',me.changeTab);
 		$('.activitycircle-register-btn').on('click',me.studentRegister);
+		$('.activitycircle-login-area').find('.activitycircle-login-select:eq(0)').on('change',me.hideMood);
 		$(window).resize(function(){
 			$('body').height($(window).height()-150);
 			if($('body').height()<555){
@@ -155,6 +156,18 @@ activityCircle.loginPage = {
 			}else{
 				alert('必填项不能为空');
 			}
+		}
+	},
+	hideMood : function(){
+		var role = $('.activitycircle-login-area').find('.activitycircle-login-select:eq(0)').val();
+		if(role=='teacher'){
+			$('.activitycircle-login-area').find('.activitycircle-login-select:eq(1)')
+			.parent().fadeOut();
+			$('.activitycircle-login-box').animate({'height':'280px'});
+		}else{
+			$('.activitycircle-login-area').find('.activitycircle-login-select:eq(1)')
+			.parent().fadeIn();
+			$('.activitycircle-login-box').animate({'height':'320px'});
 		}
 	}
 }

@@ -32,13 +32,10 @@ activityCircle.teacherIndexPage = {
 				$('.teacher-index-personalcenter-area').show();
 				activityCircle.teacher.personalCenter.initialize();
 				break;
-			case 'teacher_recommend':
-				$('.teacher-index-centerarea').children('div').hide();
-				$('.teacher-index-teacherrecomment-area').show();
-				break;
 			case 'group_activity':
 				$('.teacher-index-centerarea').children('div').hide();
 				$('.teacher-index-groupactivity-area').show();
+				activityCircle.teacher.groupActivity.initialize();
 				break;
 			case 'honor_box':
 				$('.teacher-index-centerarea').children('div').hide();
