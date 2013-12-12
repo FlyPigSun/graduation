@@ -40,5 +40,8 @@ define("TEACHER_URL", "/teacher/");
 define("TEACHER_USER", "teacher");
 define("STUDENT_URL", "/student/");
 define("STUDENT_USER","student");
+
+// Define Ajax Request
+define('IS_AJAX', isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

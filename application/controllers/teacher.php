@@ -121,7 +121,7 @@ class Teacher extends MY_Controller {
         print_r('success=done');//让前台弹出上传成功                   
     }
 
-    public function uploadRes(){
+   /* public function uploadRes(){
         $config['upload_path']='./upload_files/teacher/resources/';
         $config['allowed_types']='avi|mp4|rmvb|gif|rar|jpg|mp3|rm';
 
@@ -154,10 +154,10 @@ class Teacher extends MY_Controller {
         $data['errcode']=$result;
         print_r(json_encode($data));
 
-    }
+    }*/
 
     public function findAllRes(){            
-            $author_group=urldecode($this->session->userdata('grade'));
+            $author_group=$this->session->userdata('grade');
             $this->load->model('uploadres_model','uploadres');
             $judge=$this->uploadres->search($author_group);
             $data['data']=$judge;
