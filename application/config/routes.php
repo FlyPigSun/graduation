@@ -45,7 +45,6 @@ $route['login'] = 'login/loginAction';
 $route['logout'] = 'login/logout';
 $route['studentlogin']='login/studentlogin';
 $route['student/friends']='student/friendsAction';
-$route['upload']='upload';
 $route['activity/upload_resources']='upload/do_upload';
 $route['404_override'] = '';
 

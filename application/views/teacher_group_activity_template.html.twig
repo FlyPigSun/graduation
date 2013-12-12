@@ -11,21 +11,24 @@
         <div class="teacher-group-activity-rightbar">
             <div class="teacher-group-activity-title"></div>
             <div class="teacher-new-activity-box teacher-groupActivity-box">
-                <div class="teacher-new-activity-upload-area">
-                    <div style="margin:0px 0px 20px 0px;">
-                        附件上传
+                <form action="activity/upload_resources" method="POST" enctype="multipart/form-data">
+                    <div class="teacher-new-activity-upload-area">
+                        <div style="margin:0px 0px 20px 0px;">
+                            附件上传
+                        </div>
+                        <span class="btn btn-success fileinput-button">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>Select files...</span>
+                            <!-- The file input field used as target for the file upload widget -->
+                            <input id="teacher-group-activity-fileupload" type="file" 
+                            name="userfile" multiple="">
+                        </span>
+                        <div id="progress" class="progress activitycircle-hide" style="margin:20px 0px;">
+                            <div class="progress-bar progress-bar-success"></div>
+                        </div>
+                        <div class="teacher-new-activity-upload-feedback"></div>
                     </div>
-                    <span class="btn btn-success fileinput-button">
-                        <i class="glyphicon glyphicon-plus"></i>
-                        <span>Select files...</span>
-                        <!-- The file input field used as target for the file upload widget -->
-                        <input id="teacher-group-activity-fileupload" type="file" name="files[]" multiple="">
-                    </span>
-                    <div id="progress" class="progress activitycircle-hide" style="margin:20px 0px;">
-                        <div class="progress-bar progress-bar-success"></div>
-                    </div>
-                    <div class="teacher-new-activity-upload-feedback"></div>
-                </div>
+                </form>
             </div>
             <div class="teacher-manage-activity-box teacher-groupActivity-box activitycircle-hide">
             </div>
