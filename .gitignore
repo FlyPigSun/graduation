@@ -13,7 +13,6 @@ application/config/*
 !application/config/constants.php
 
 upload_files/*
-!upload_files/activity
 
 .tags
 
