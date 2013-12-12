@@ -14,7 +14,7 @@ activityCircle.teacher.groupActivity = {
 	buttonBind : function(){
 		$('.teacher-group-activity-leftbar-btn').on('click',this.changeTab);
 		$('#teacher-group-activity-fileupload').fileupload({
-			url: '',
+			url: '/activity/upload_resources',
     		sequentialUploads: true,
     		start: function (e) {
     			$('.progress').fadeIn();
