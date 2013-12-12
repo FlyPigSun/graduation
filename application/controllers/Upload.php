@@ -42,7 +42,7 @@ class Upload extends MY_Controller {
 
             $address='/upload_files/activity/'.$data['client_name'];
             $this->load->model('uploadres_model','uploadres');
-            $name=urldecode($this->input->post('name'));
+            $name=$data['raw_name'];
             $theme=urldecode($this->input->post('theme'));
             $custom_theme=urldecode($this->input->post('custom_theme'));
             $level=urldecode($this->input->post('level'));
@@ -51,7 +51,8 @@ class Upload extends MY_Controller {
             $keyphrase=urldecode($this->input->post('keyphrase'));
             $author=$this->session->userdata('realname');
             $author_group=$this->session->userdata('grade');
-            $judge=$this->uploadres->insert($name,$theme,$custom_theme,$level,$description,$keyword,$keyphrase,date("Y-m-d   H:i:s"),$address,$author,$author_group);
+            $file_size=$data['file_size'];
+            $judge=$this->uploadres->insert($name,$theme,$custom_theme,$level,$description,$keyword,$keyphrase,date("Y-m-d   H:i:s"),$address,$author,$author_group,$file_size);
             /*   if($judge==true){
                 $result=100;
             }else{
@@ -100,6 +101,16 @@ class Upload extends MY_Controller {
         $author_group=$this->session->userdata('grade');
         $this->load->model('uploadres_model','uploadres');
         $judge=$this->uploadres->search($author_group);
+        //print_r($judge);
+        foreach ($judge as $row) {
+        if(abs($row->file_size)>=1000){         
+        $row->file_size=$row->file_size/1000;
+        $row->file_size=$row->file_size.'MB';
+        }else{
+        $row->file_size=$row->file_size.'KB';
+        }
+        }
+      
         $data['data']=$judge;
         print_r(json_encode($data));
     }
