@@ -85,12 +85,37 @@ activityCircle.teacher.groupActivity = {
                     var htmlStr = Mustache.to_html(tpl, item).replace(/^\s*/mg, '');
                     $('.teacher-resource-library-table tbody').append(htmlStr);
                 });
+                $('.teacher-resource-library-delete-btn').on('click',activityCircle.teacher.groupActivity.deleteResources);
                 $('.teacher-resource-library-table tr:odd').addClass('odd');
                 $('.teacher-resource-library-table tr:even').addClass('even');
 			}
 		});
 	},
 	deleteResources : function(){
-
+		var file = encodeURIComponent($(this).siblings('div').html());
+		if(confirm("是否确认")){
+			$.ajax({
+				url : '/activity/delete_resources',
+				type : 'post',
+				data : {
+					file:file
+				},
+				headers:{
+				    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+				},
+				success : function(responseText){
+					var res = responseText;
+					res = $.parseJSON(res);
+					if(res.errcode == 100){
+						alert('删除成功');
+						activityCircle.teacher.groupActivity.getAllResources();
+					}else{
+						alert('删除失败');
+					}
+				}
+			});
+		}else{ 
+			return false;
+		};
 	}
 }
