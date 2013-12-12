@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Upload extends CI_Controller {
+class Upload extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -26,6 +26,7 @@ class Upload extends CI_Controller {
             $error = array('error' => $this->upload->display_errors());
             print_r($error);
         } else {
+           
             $data = $this->upload->data();
             $config = array();
             $config['image_library'] = 'gd2';
@@ -39,7 +40,23 @@ class Upload extends CI_Controller {
             $this->load->library('image_lib', $config);
             $this->image_lib->resize();
 
-            
+            $address='/upload_files/activity/'.$data['client_name'];
+            $this->load->model('uploadres_model','uploadres');
+            $name=urldecode($this->input->post('name'));
+            $theme=urldecode($this->input->post('theme'));
+            $custom_theme=urldecode($this->input->post('custom_theme'));
+            $level=urldecode($this->input->post('level'));
+            $description=urldecode($this->input->post('description'));
+            $keyword=urldecode($this->input->post('keyword'));
+            $keyphrase=urldecode($this->input->post('keyphrase'));
+            $author=$this->session->userdata('realname');
+            $author_group=$this->session->userdata('grade');
+            $judge=$this->uploadres->insert($name,$theme,$custom_theme,$level,$description,$keyword,$keyphrase,date("Y-m-d   H:i:s"),$address,$author,$author_group);
+            /*   if($judge==true){
+                $result=100;
+            }else{
+                $result=102;
+            }*/
             //set the data for the json array
             $info['size'] = $data['file_size'];
             $info['type'] = $data['file_type'];
@@ -78,5 +95,14 @@ class Upload extends CI_Controller {
             $this->load->view('admin/delete_success', $file_data);
         }
     }
+
+    public function findAllRes(){            
+        $author_group=$this->session->userdata('grade');
+        $this->load->model('uploadres_model','uploadres');
+        $judge=$this->uploadres->search($author_group);
+        $data['data']=$judge;
+        print_r(json_encode($data));
+    }
+   
 
 }
