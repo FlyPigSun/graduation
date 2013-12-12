@@ -79,21 +79,30 @@ class Upload extends MY_Controller {
         }
     }
 
-    public function deleteImage($file) {//gets the job done but you might want to add error checking and security
-        $success = unlink(FCPATH . 'uploads/' . $file);
-        $success = unlink(FCPATH . 'uploads/thumbs/' . $file);
+    public function deleteImage() {//gets the job done but you might want to add error checking and security
+        $file=urldecode($this->input->post('file'));
+        $success = unlink(FCPATH . 'upload_files/activity/' . $file);
+        //$success = unlink(FCPATH . 'upload_files/activity/thumbs/' . $file);
         //info to see if it is doing what it is supposed to 
-        $info->sucess = $success;
-        $info->path = base_url() . 'uploads/' . $file;
-        $info->file = is_file(FCPATH . 'uploads/' . $file);
-
+        $info['sucess'] = $success;
+        $info['path'] = base_url() . 'upload_files/activity/' . $file;
+        $info['file'] = is_file(FCPATH . 'upload_files/activity/' . $file);
+        $this->load->model('uploadres_model','uploadres');
+        $judge=$this->uploadres->delete($file);
+        if($judge==true){
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errorcode']=$result;
+        print_r($data);
         if (IS_AJAX) {
             //I don't think it matters if this is set but good for error checking in the console/firebug
             echo json_encode(array($info));
         } else {
             //here you will need to decide what you want to show for a successful delete        
             $file_data['delete_data'] = $file;
-            $this->load->view('admin/delete_success', $file_data);
+            //$this->load->view('admin/delete_success', $file_data);
         }
     }
 
