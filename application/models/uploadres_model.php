@@ -3,6 +3,7 @@
 /**
 * Resources_tb model
 */
+ini_set('date.timezone','Asia/Shanghai');
 class UploadRes_Model  extends  CI_Model{
     var $name='';
     var $theme='';

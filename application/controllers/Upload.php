@@ -21,7 +21,7 @@ class Upload extends MY_Controller {
         $config['allowed_types'] = 'jpg|jpeg|png|gif|mp3|avi|mp4|wmv';
         $this->load->library('upload', $config);
         $field_name = "userfile";
-
+        $_FILES['userfile']['name']=iconv("utf-8","gbk",$_FILES['userfile']['name']); 
         if (!$this->upload->do_upload($field_name)) {
             $error = array('error' => $this->upload->display_errors());
             print_r($error);
@@ -42,7 +42,7 @@ class Upload extends MY_Controller {
 
             $address='/upload_files/activity/'.$data['client_name'];
             $this->load->model('uploadres_model','uploadres');
-            $name=$data['client_name'];
+            $name=iconv("gbk","utf-8",$data['client_name']);
             $theme=urldecode($this->input->post('theme'));
             $custom_theme=urldecode($this->input->post('custom_theme'));
             $level=urldecode($this->input->post('level'));
