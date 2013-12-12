@@ -42,7 +42,7 @@ class Upload extends MY_Controller {
 
             $address='/upload_files/activity/'.$data['client_name'];
             $this->load->model('uploadres_model','uploadres');
-            $name=$data['raw_name'];
+            $name=$data['client_name'];
             $theme=urldecode($this->input->post('theme'));
             $custom_theme=urldecode($this->input->post('custom_theme'));
             $level=urldecode($this->input->post('level'));
