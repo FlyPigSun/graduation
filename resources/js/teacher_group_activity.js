@@ -27,11 +27,14 @@ activityCircle.teacher.groupActivity = {
 		        );
 		    },
 		    done: function (e, data) {
-	            $('.progress').fadeOut();
-	            $('.progress-bar.progress-bar-success').css(
-		            'width',
-		            0 + '%'
-		        );
+	            setTimeout(function(){
+	            	$('.progress').fadeOut();
+	            	activityCircle.teacher.groupActivity.getAllResources();
+	            	setTimeout(function(){$('.progress-bar.progress-bar-success').css(
+			            'width',
+			            0 + '%'
+		        	);},1000);
+	            },1000);
 	        } 
         });
 	},
@@ -41,6 +44,14 @@ activityCircle.teacher.groupActivity = {
 		$(this).addClass('active');
 		var btn = $(this).attr('type');
 		switch(btn){
+			case 'resource_library':
+				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
+                '素材库' ;
+				$('.teacher-group-activity-title').html(html);
+				$('.teacher-groupActivity-box').hide();
+				$('.teacher-resource-box').show();
+				activityCircle.teacher.groupActivity.getAllResources();
+				break;
 			case 'new_activity':
 				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
                 '创建活动' ;
@@ -56,5 +67,30 @@ activityCircle.teacher.groupActivity = {
 				$('.teacher-manage-activity-box').show();
 				break;
 		}
+	},
+	getAllResources : function(){
+		$('.teacher-resource-library-table tbody').html('');
+		$.ajax({
+			url : '/activity/show_resources',
+			type : 'post',
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				res = $.parseJSON(res);
+				var data = res.data;
+				$.each(data,function(key,item){
+                	var tpl = $('#teacher-resource-library-table-template').html();
+                    var htmlStr = Mustache.to_html(tpl, item).replace(/^\s*/mg, '');
+                    $('.teacher-resource-library-table tbody').append(htmlStr);
+                });
+                $('.teacher-resource-library-table tr:odd').addClass('odd');
+                $('.teacher-resource-library-table tr:even').addClass('even');
+			}
+		});
+	},
+	deleteResources : function(){
+
 	}
 }

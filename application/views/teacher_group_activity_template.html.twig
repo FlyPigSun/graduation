@@ -1,7 +1,10 @@
 <script id="teacher_group_activity_template" type="text/html">
     <div class="teacher-personal-center">
         <div class="teacher-group-activity-leftbar">
-            <div class="teacher-group-activity-leftbar-btn active" type="new_activity">
+            <div class="teacher-group-activity-leftbar-btn active" type="resource_library">
+                素材库
+            </div>
+            <div class="teacher-group-activity-leftbar-btn" type="new_activity">
                 创建活动
             </div>
             <div class="teacher-group-activity-leftbar-btn" type="manage_activity">
@@ -10,29 +13,59 @@
         </div>
         <div class="teacher-group-activity-rightbar">
             <div class="teacher-group-activity-title"></div>
-            <div class="teacher-new-activity-box teacher-groupActivity-box">
-                <form action="activity/upload_resources" method="POST" enctype="multipart/form-data">
-                    <div class="teacher-new-activity-upload-area">
-                        <div style="margin:0px 0px 20px 0px;">
-                            附件上传
-                        </div>
-                        <span class="btn btn-success fileinput-button">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            <span>Select files...</span>
-                            <!-- The file input field used as target for the file upload widget -->
-                            <input id="teacher-group-activity-fileupload" type="file" 
-                            name="userfile" multiple="">
-                        </span>
-                        <div id="progress" class="progress activitycircle-hide" style="margin:20px 0px;">
-                            <div class="progress-bar progress-bar-success"></div>
-                        </div>
-                        <div class="teacher-new-activity-upload-feedback"></div>
+            <div class="teacher-resource-box teacher-groupActivity-box">
+                <div class="teacher-resource-library-area">
+                    <div style="margin:0px 0px 20px 0px;font-size:15px;">
+                        已有素材:
                     </div>
-                </form>
+                    <div class="teacher-resource-library-table-area">
+                        <table class="teacher-resource-library-table" rules=cols>
+                            <thead>
+                                <th style="width:200px;">文件名</th>
+                                <th style="width:100px;">作者</th>
+                                <th style="width:100px;">大小</th>
+                                <th style="width:150px;">上传时间</th>
+                            </thead>
+                            <tbody> 
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="teacher-new-activity-upload-area">
+                    <div style="margin:0px 0px 20px 0px;">
+                        附件上传:
+                    </div>
+                    <span class="btn btn-success fileinput-button">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>选择文件</span>
+                        <input id="teacher-group-activity-fileupload" type="file" 
+                        name="userfile" multiple="">
+                    </span>
+                    <div id="progress" class="progress activitycircle-hide" style="margin:20px 0px;">
+                        <div class="progress-bar progress-bar-success"></div>
+                    </div>
+                    <div class="teacher-new-activity-upload-feedback"></div>
+                </div>
+            </div>
+            <div class="teacher-new-activity-box teacher-groupActivity-box activitycircle-hide">
             </div>
             <div class="teacher-manage-activity-box teacher-groupActivity-box activitycircle-hide">
             </div>
         </div>
         <div class="clear"></div>
     </div>
+</script>
+
+<script id="teacher-resource-library-table-template" type="text/html">
+    <tr>
+        <td>
+            {{ '{{' }} name {{ '}}' }}
+            <span class="teacher-resource-library-delete-btn">删除</span>
+        </td>
+        <td>{{ '{{' }} author {{ '}}' }}</td>
+        <td>{{ '{{' }} file_size {{ '}}' }}</td>
+        <td>
+            {{ '{{' }} upload_time {{ '}}' }}
+        </td>
+    </tr>
 </script>

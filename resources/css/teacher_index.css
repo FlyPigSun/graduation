@@ -9,7 +9,7 @@
 	z-index: 10000;
 }
 .teacher-index-main{
-	min-height: 600px;
+	min-height: 500px;
 	min-width: 1050px;
 	margin: auto;
 }
@@ -98,7 +98,7 @@
 .teacher-index-centerarea{
 	width: 1000px;
 	margin: 30px auto;
-	min-height: 600px;
+	min-height: 500px;
 }
 .teacher-indexpage-center{
 	width: 660px;
