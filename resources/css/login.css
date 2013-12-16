@@ -7,7 +7,7 @@ body{
 	background-image: -webkit-linear-gradient(top,#EDB810,#fff);
 	background-image: -o-linear-gradient(top,#EDB810,#fff);
 	background-image: linear-gradient(to bottom,#EDB810,#fff);
-	min-height: 643px;
+	background-attachment:fixed;
 }
 .activitycircle-login-main{
 	width: 600px;

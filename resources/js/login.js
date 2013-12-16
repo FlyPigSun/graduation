@@ -11,17 +11,10 @@ activityCircle.loginPage = {
 	mode : 'login',
 	initialize : function(){
 		var me = this;
-		$('body').height($(window).height()-150);
 		$('.activitycircle-login-btn').on('click',me.login);
 		$('.activitycircle-changetab').on('click',me.changeTab);
 		$('.activitycircle-register-btn').on('click',me.studentRegister);
 		$('.activitycircle-login-area').find('.activitycircle-login-select:eq(0)').on('change',me.hideMood);
-		$(window).resize(function(){
-			$('body').height($(window).height()-150);
-			if($('body').height()<555){
-				$('body').height(555);
-			}
-		});
 		$(document).keypress(function(e){    
             if(e.which == 13){
                 me.login();
