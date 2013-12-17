@@ -94,6 +94,8 @@ activityCircle.teacher.groupActivity = {
 				var res = responseText;
 				res = $.parseJSON(res);
 				var data = res.data;
+				$('.teacher-new-activity-resource select:eq(0)')
+				.append('<option value="0">'+'无'+'</option>');
 				$.each(data,function(key,item){
 					var html = 
 						'<option value="'+item.id+'">'+
@@ -260,17 +262,18 @@ activityCircle.teacher.groupActivity = {
 						$('.teacher-new-activity-star').raty({
 				            hints : ['中等', '提高', '竞赛'],
 				            number : 3,
+				            score : 1,
 				            click: function (score, evt) {
 				                activityCircle.teacher.groupActivity.newActivityLevel = score; 
 				            }
 				        });
 				        var tpl = $('#teacher-new-activity-success-template').html();
 	                    var htmlStr = Mustache.to_html(tpl, res.data).replace(/^\s*/mg, '');
-	                    if(res.data.resources_type == 'audio'){
+	                    if(res.data.res_type == 'audio'){
 	                    	var html = '<audio src="'+res.data.res_address+'" width="300" height="150" wmode="transparent" controls="controls">'+'</audio>';
-	                    }else if(res.data.resources_type == 'img'){
+	                    }else if(res.data.res_type == 'img'){
 	                    	var html = '<img src="'+res.data.res_address+'" width="200" height="200" wmode="transparent" controls="controls"/>'; 
-	                    }else if(res.data.resources_type == 'doc'){
+	                    }else if(res.data.res_type == 'doc'){
 	                    	var html = '<audio src="'+res.data.res_address+'" width="200" height="150" wmode="transparent" controls="controls"/>'+'</audio>';
 	                    }
 	                    $('.teacher-new-activity-second').append(htmlStr);
@@ -278,6 +281,8 @@ activityCircle.teacher.groupActivity = {
 	                    $('.teacher-new-activity-success-resource-area div').append(html);
 	                    $('.teacher-new-activity-enter').unbind();
 	                    $('.teacher-new-activity-enter').on('click',activityCircle.teacher.groupActivity.returnCreate);
+	                    if(res.data.rid == 0)
+	                    	$('.teacher-new-activity-success-resource-box').remove();
 					}else{
 						alert('活动创建失败');
 					}
