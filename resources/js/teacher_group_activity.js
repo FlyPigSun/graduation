@@ -221,6 +221,46 @@ activityCircle.teacher.groupActivity = {
 		secondSelect.append(html);
 	},
 	newActivity : function(){
-		alert('1');
+		var title = encodeURIComponent($('.teacher-new-activity-title input').val());
+		var content = encodeURIComponent($('.teacher-new-activity-intro textarea').val());
+		var goal = encodeURIComponent($('.teacher-new-activity-goal select').val());
+		var type = encodeURIComponent($('.teacher-new-activity-type select').val());
+		var level = activityCircle.teacher.groupActivity.newActivityLevel;
+		var theme = encodeURIComponent($('.teacher-new-activity-theme select:eq(1)').val());
+		var rid = $('.teacher-new-activity-resource select').val();
+		$.ajax({
+			url : '/activity/create_activity',
+			type : 'post',
+			data : {
+				title : title,
+				content : content,
+				goal : goal,
+				type : type,
+				level : level,
+				theme : theme,
+				rid : rid
+			},
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				res = $.parseJSON(res);
+				if(res.errcode == 100){
+					alert('活动创建成功');
+					$('.teacher-new-activity-title input').val('');
+					$('.teacher-new-activity-intro textarea').val('');
+					$('.teacher-new-activity-star').raty({
+			            hints : ['中等', '提高', '竞赛'],
+			            number : 3,
+			            click: function (score, evt) {
+			                activityCircle.teacher.groupActivity.newActivityLevel = score; 
+			            }
+			        });
+				}else{
+					alert('活动创建失败');
+				}
+			}
+		});
 	}
 }
