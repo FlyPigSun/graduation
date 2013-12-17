@@ -3,7 +3,7 @@
   *author: 孙骥
  **/
 activityCircle.teacher.groupActivity = {
-	newActivityLevel : null,
+	newActivityLevel : 1,
 	initialize : function(){
 		var me = this;
 		var template = $('#teacher_group_activity_template').html();
@@ -43,6 +43,7 @@ activityCircle.teacher.groupActivity = {
         $('.teacher-new-activity-star').raty({
             hints : ['中等', '提高', '竞赛'],
             number : 3,
+            score : 1,
             click: function (score, evt) {
                 activityCircle.teacher.groupActivity.newActivityLevel = score; 
             }
@@ -69,6 +70,7 @@ activityCircle.teacher.groupActivity = {
 				$('.teacher-group-activity-title').html(html);
 				$('.teacher-groupActivity-box').hide();
 				$('.teacher-new-activity-box').show();
+				activityCircle.teacher.groupActivity.returnCreate();
 				break;
 			case 'manage_activity':
 				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
@@ -222,45 +224,69 @@ activityCircle.teacher.groupActivity = {
 	},
 	newActivity : function(){
 		var title = encodeURIComponent($('.teacher-new-activity-title input').val());
-		var content = encodeURIComponent($('.teacher-new-activity-intro textarea').val());
+		var content = encodeURIComponent($('.teacher-new-activity-content textarea').val());
 		var goal = encodeURIComponent($('.teacher-new-activity-goal select').val());
 		var type = encodeURIComponent($('.teacher-new-activity-type select').val());
 		var level = activityCircle.teacher.groupActivity.newActivityLevel;
 		var theme = encodeURIComponent($('.teacher-new-activity-theme select:eq(1)').val());
 		var rid = $('.teacher-new-activity-resource select').val();
-		$.ajax({
-			url : '/activity/create_activity',
-			type : 'post',
-			data : {
-				title : title,
-				content : content,
-				goal : goal,
-				type : type,
-				level : level,
-				theme : theme,
-				rid : rid
-			},
-			headers:{
-			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
-			},
-			success : function(responseText){
-				var res = responseText;
-				res = $.parseJSON(res);
-				if(res.errcode == 100){
-					alert('活动创建成功');
-					$('.teacher-new-activity-title input').val('');
-					$('.teacher-new-activity-intro textarea').val('');
-					$('.teacher-new-activity-star').raty({
-			            hints : ['中等', '提高', '竞赛'],
-			            number : 3,
-			            click: function (score, evt) {
-			                activityCircle.teacher.groupActivity.newActivityLevel = score; 
-			            }
-			        });
-				}else{
-					alert('活动创建失败');
+		if(title==''||content==''||level==''){
+			alert('以上项目不能为空');
+		}else{
+			$.ajax({
+				url : '/activity/create_activity',
+				type : 'post',
+				data : {
+					title : title,
+					content : content,
+					goal : goal,
+					type : type,
+					level : level,
+					theme : theme,
+					rid : rid
+				},
+				headers:{
+				    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+				},
+				success : function(responseText){
+					var res = responseText;
+					res = $.parseJSON(res);
+					if(res.errcode == 100){
+						$('.teacher-new-activity-first').animate({'left':'-1000px'});
+						$('.teacher-new-activity-second').animate({'left':0});
+						$('.teacher-new-activity-title input').val('');
+						$('.teacher-new-activity-content textarea').val('');
+						$('.teacher-new-activity-second').html('');
+						$('.teacher-new-activity-star').raty({
+				            hints : ['中等', '提高', '竞赛'],
+				            number : 3,
+				            click: function (score, evt) {
+				                activityCircle.teacher.groupActivity.newActivityLevel = score; 
+				            }
+				        });
+				        var tpl = $('#teacher-new-activity-success-template').html();
+	                    var htmlStr = Mustache.to_html(tpl, res.data).replace(/^\s*/mg, '');
+	                    if(res.data.resources_type == 'audio'){
+	                    	var html = '<audio src="'+res.data.res_address+'" width="300" height="150" wmode="transparent" controls="controls">'+'</audio>';
+	                    }else if(res.data.resources_type == 'img'){
+	                    	var html = '<img src="'+res.data.res_address+'" width="200" height="200" wmode="transparent" controls="controls"/>'; 
+	                    }else if(res.data.resources_type == 'doc'){
+	                    	var html = '<audio src="'+res.data.res_address+'" width="200" height="150" wmode="transparent" controls="controls"/>'+'</audio>';
+	                    }
+	                    $('.teacher-new-activity-second').append(htmlStr);
+	                    $('.teacher-new-activity-success-resource-area div').html('');
+	                    $('.teacher-new-activity-success-resource-area div').append(html);
+	                    $('.teacher-new-activity-enter').unbind();
+	                    $('.teacher-new-activity-enter').on('click',activityCircle.teacher.groupActivity.returnCreate);
+					}else{
+						alert('活动创建失败');
+					}
 				}
-			}
-		});
+			});
+		}
+	},
+	returnCreate : function(){
+		$('.teacher-new-activity-first').animate({'left':'0px'});
+		$('.teacher-new-activity-second').animate({'left':'1000px'});
 	}
 }
