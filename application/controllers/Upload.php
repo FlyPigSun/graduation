@@ -81,9 +81,12 @@ class Upload extends MY_Controller {
 
     public function deleteImage() {//gets the job done but you might want to add error checking and security
         $file=urldecode($this->input->post('file'));
+        $file=iconv("utf-8","gbk",$file);
+
         $success = unlink(FCPATH . 'upload_files/activity/' . $file);
         //$success = unlink(FCPATH . 'upload_files/activity/thumbs/' . $file);
         //info to see if it is doing what it is supposed to 
+        $file=iconv("gbk","utf-8",$file);
         $info['sucess'] = $success;
         $info['path'] = base_url() . 'upload_files/activity/' . $file;
         $info['file'] = is_file(FCPATH . 'upload_files/activity/' . $file);
