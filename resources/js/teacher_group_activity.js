@@ -92,7 +92,7 @@ activityCircle.teacher.groupActivity = {
 		});
 	},
 	deleteResources : function(){
-		var file = encodeURIComponent($(this).siblings('div').html());
+		var file = encodeURIComponent($(this).parent().parent().find('.file-name').html());
 		if(confirm("是否确认")){
 			$.ajax({
 				url : '/activity/delete_resources',

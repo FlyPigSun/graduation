@@ -63,14 +63,7 @@
 .teacher-resource-library-table .even{
 	background-color: #fff;
 }
-.teacher-resource-library-table td:hover > .teacher-resource-library-delete-btn{
-	display: block;
-}
 .teacher-resource-library-delete-btn{
-	display: none;
-	position: absolute;
-	right: 5px;
-	top:6px;
 	cursor: pointer;
 	color: #FF3300;
 }
