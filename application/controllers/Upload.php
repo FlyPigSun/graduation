@@ -81,11 +81,18 @@ class Upload extends MY_Controller {
         $info['path'] = base_url() . 'upload_files/activity/' . $file;
         $info['file'] = is_file(FCPATH . 'upload_files/activity/' . $file);
         $this->load->model('uploadres_model','uploadres');
-        $judge=$this->uploadres->delete($file);
-        if($judge==true){
-            $result=100;
+        $author=$this->session->userdata('realname');
+        $fileinfo=$this->uploadres->findByName($file);
+        $name=$fileinfo->author;
+        if($author==$name){
+            $judge=$this->uploadres->delete($file);
+            if($judge==true){
+                $result=100;
+            }else{
+                $result=102;
+            }
         }else{
-            $result=102;
+            $result=103;
         }
         $data['errcode']=$result;
         print_r(json_encode($data));

@@ -33,12 +33,40 @@ class UploadRes_Model  extends  CI_Model{
         return $data;
     }
 
+
     public function delete($file){
         $this->load->database();
         $sql="delete from resources_tb where name=?";
         $query=$this->db->query($sql,array($file));
         $this->db->close();
         return true;
+    }
+
+    public function findByName($file){
+        $this->load->database();
+        $sql="select * from resources_tb where name=?";
+        $query=$this->db->query($sql,array($file));
+        if($query->num_rows()>0){
+            $data=$query->row();
+        }else {
+            $data=null;
+        }
+        $this->db->close();
+        return $data;
+    }
+
+    public function findById($id){
+        $this->load->database();
+        $sql="select * from resources_tb where id=?";
+        $query=$this->db->query($sql,array($id));
+        if($query->num_rows()>0){
+            $data=$query->row();
+        }else {
+            $data=null;
+        }
+        $this->db->close();
+        return $data;
+
     }
 
 }
