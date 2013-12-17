@@ -25,6 +25,8 @@
                                 <th style="width:100px;">作者</th>
                                 <th style="width:100px;">大小</th>
                                 <th style="width:150px;">上传时间</th>
+                                <th style="width:150px;">下载</th>
+                                <th style="width:150px;">删除</th>
                             </thead>
                             <tbody> 
                             </tbody>
@@ -59,13 +61,18 @@
 <script id="teacher-resource-library-table-template" type="text/html">
     <tr>
         <td>
-            <div>{{ '{{' }} name {{ '}}' }}</div>
-            <span class="teacher-resource-library-delete-btn">删除</span>
+            <div class="file-name">{{ '{{' }} name {{ '}}' }}</div>
         </td>
         <td>{{ '{{' }} author {{ '}}' }}</td>
         <td>{{ '{{' }} file_size {{ '}}' }}</td>
         <td>
             {{ '{{' }} upload_time {{ '}}' }}
+        </td>
+        <td>
+            <a target="_blank" href="{{ '{{' }} address {{ '}}' }}">下载</a>
+        </td>
+        <td>
+            <span class="teacher-resource-library-delete-btn">删除</span>
         </td>
     </tr>
 </script>
