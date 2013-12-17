@@ -1,5 +1,5 @@
 /**
-  *学生个人中心主页
+  *教师个人中心
   *author: 孙骥
  **/
 activityCircle.teacher.personalCenter = {

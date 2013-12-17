@@ -1,5 +1,5 @@
 /**
-  *学生个人中心主页
+  *教师活动页面
   *author: 孙骥
  **/
 activityCircle.teacher.groupActivity = {

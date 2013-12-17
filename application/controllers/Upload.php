@@ -54,23 +54,15 @@ class Upload extends MY_Controller {
             $author_group=$this->session->userdata('grade');
             $file_size=$data['file_size'];
             $judge=$this->uploadres->insert($name,$theme,$custom_theme,$level,$description,$keyword,$keyphrase,date("Y-m-d   H:i:s"),$address,$author,$author_group,$file_size);
-            /*   if($judge==true){
-                $result=100;
-            }else{
-                $result=102;
-            }*/
-            //set the data for the json array
             $info['size'] = $data['file_size'];
             $info['type'] = $data['file_type'];
             $info['url'] = $upload_path_url . $data['file_name'];
-            // I set this to original file since I did not create thumbs.  change to thumbnail directory if you do = $upload_path_url .'/thumbs' .$data['file_name']
             $info['thumbnailUrl'] = $upload_path_url . 'thumbs/' . $data['file_name'];
             $info['deleteUrl'] = base_url() . 'upload/deleteImage/' . $data['file_name'];
             $info['deleteType'] = 'DELETE';
             $info['error'] = null;
 
             $files[] = $info;
-            //this is why we put this in the constants to pass only json data
             if (IS_AJAX) {
                 echo json_encode(array("files" => $files));
             } else {
@@ -80,15 +72,12 @@ class Upload extends MY_Controller {
         }
     }
 
-    public function deleteImage() {//gets the job done but you might want to add error checking and security
+    public function deleteImage() {
         $file=urldecode($this->input->post('file'));
         $file=iconv("utf-8","gbk",$file);
-
         $success = unlink(FCPATH . 'upload_files/activity/' . $file);
-        //$success = unlink(FCPATH . 'upload_files/activity/thumbs/' . $file);
-        //info to see if it is doing what it is supposed to 
         $file=iconv("gbk","utf-8",$file);
-        $info['sucess'] = $success;
+        $info['success'] = $success;
         $info['path'] = base_url() . 'upload_files/activity/' . $file;
         $info['file'] = is_file(FCPATH . 'upload_files/activity/' . $file);
         $this->load->model('uploadres_model','uploadres');
@@ -98,16 +87,13 @@ class Upload extends MY_Controller {
         }else{
             $result=102;
         }
-        $data['errorcode']=$result;
+        $data['errcode']=$result;
         print_r(json_encode($data));
-        if (IS_AJAX) {
-            //I don't think it matters if this is set but good for error checking in the console/firebug
+        /*if (IS_AJAX) {
             echo json_encode(array($info));
-        } else {
-            //here you will need to decide what you want to show for a successful delete        
+        } else {      
             $file_data['delete_data'] = $file;
-            //$this->load->view('admin/delete_success', $file_data);
-        }
+        }*/
     }
 
     public function findAllRes(){            
