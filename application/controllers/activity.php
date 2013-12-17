@@ -18,7 +18,6 @@ class Activity extends MY_Controller {
         $author=$this->session->userdata('realname');
         $author_group=$this->session->userdata('grade');
         $info=$this->uploadres->findById($this->input->post('rid'));
-        print_r($info);
         $resource=$info->address;
         $judge=$this->activity->insert($title,$content,$goal,$type,$level,$theme,$resource,$author,$author_group);
         if($judge==true){
