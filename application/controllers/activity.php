@@ -7,14 +7,57 @@ class Activity extends MY_Controller {
     }
 
     public function addActivity(){
-        $this->load->model('uploadres_model','uploadres')
+        $this->load->model('uploadres_model','uploadres');
+        $this->load->model('activity_model','activity');
         $title=$this->input->post('title');
         $content=$this->input->post('content');
         $goal=$this->input->post('goal');
         $type=$this->input->post('type');
         $level=$this->input->post('level');
         $theme=$this->input->post('theme');
-        $resource=$this->uploadres->findById($this->input->post('rid'))->address;
+        $author=$this->session->userdata('realname');
+        $author_group=$this->session->userdata('grade');
+        $info=$this->uploadres->findById($this->input->post('rid'));
+        print_r($info);
+        $resource=$info->address;
+        $judge=$this->activity->insert($title,$content,$goal,$type,$level,$theme,$resource,$author,$author_group);
+        if($judge==true){
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+
+    }
+
+    public function findAllAcitvity(){
+        $author_group=$this->session->userdata('grade');
+        $this->load->model('activity_model','activity');
+        $judge=$this->activity->findAll($author_group);        
+        $data['data']=$judge;
+        print_r(json_encode($data));
+    }
+
+    public function deleteActivity(){
+        $aid=$this->input->post('aid');
+        $this->load->model('activity_model','activity');
+        $realname=$this->session->userdata('realname');
+        $info=$this->activity->findById($aid);
+        $author=$info->author;
+        if($realname==$author){
+            $judge=$this->activity->delete($aid);
+            if($judge==true){
+                $result=100;
+            }else{
+                $result=102;
+            }
+        }else{
+                $result=103;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+
     }
   
     

@@ -16,9 +16,8 @@ class Upload extends MY_Controller {
 
     public function do_upload() {
         $upload_path_url = base_url() . 'upload_files/activity/';
-
         $config['upload_path'] = FCPATH . 'upload_files/activity/';
-        $config['allowed_types'] = 'jpg|jpeg|png|gif|mp3|wma|doc|docx|txt';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif|mp3|doc|docx|txt|pdf|word|wps';
         $this->load->library('upload', $config);
         $field_name = "userfile";
         $_FILES['userfile']['name']=iconv("utf-8","gbk",$_FILES['userfile']['name']); 
@@ -28,6 +27,21 @@ class Upload extends MY_Controller {
         } else {
            
             $data = $this->upload->data();
+          /*  if($data['file_ext']=='.doc'||$data['file_ext']=='.docx'){
+                set_time_limit(0); echo "开始<br>";  
+                $wps = new COM("WPS.Application"); 
+                echo "打开COM接口<br>";  
+                $src_filename=FCPATH . 'upload_files/activity/'.$_FILES['userfile']['name']; 
+                //源文件，DOC或者WPS都可以 $dest_filename="D:\\network\\htdocs\\test\\doc2.wps"; //另存为的文件名 $pdf_filename="D:\\network\\htdocs\\test\\doc2.pdf"; //欲转PDF的文件名 $doc = $wps->Documents->Open($src_filename); echo "成功打开文件<br>";  echo "输出文件中数据:<br>".$doc->content."<br>"; $doc->SaveAs($dest_filename); echo "另存为操作<br>"; 
+                $doc->exportpdf($pdf_filename);
+                echo "转成PDF<br>";
+                $doc->Close();
+                echo "关闭Document<br>";
+                $wps->Quit();  
+                echo "关闭COM<br>"; 
+                unset( $doc , $wps ); 
+                echo "回收资源<br>";
+            }*/
             $config = array();
             $config['image_library'] = 'gd2';
             $config['source_image'] = $data['full_path'];
@@ -40,10 +54,9 @@ class Upload extends MY_Controller {
             $this->load->library('image_lib', $config);
             $this->image_lib->resize();
 
-            $address='/upload_files/activity/'.iconv("gbk","utf-8",$data['client_name']);
-            print_r($data['client_name']);
+            $address='/upload_files/activity/'.iconv("gbk","utf-8",$data['file_name']);
             $this->load->model('uploadres_model','uploadres');
-            $name=iconv("gbk","utf-8",$data['client_name']);
+            $name=iconv("gbk","utf-8",$data['file_name']);
             $theme=urldecode($this->input->post('theme'));
             $custom_theme=urldecode($this->input->post('custom_theme'));
             $level=urldecode($this->input->post('level'));

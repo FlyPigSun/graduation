@@ -48,6 +48,9 @@ $route['student/friends']='student/friendsAction';
 $route['activity/upload_resources']='upload/do_upload';
 $route['activity/show_resources']='upload/findAllRes';
 $route['activity/delete_resources']='upload/deleteImage';
+$route['activity/create_activity']='activity/addActivity';
+$route['activity/show_activity']='activity/findAllAcitvity';
+$route['activity/delete_activity']='activity/deleteActivity';
 $route['404_override'] = '';
 
 
