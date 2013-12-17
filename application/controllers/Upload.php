@@ -99,7 +99,7 @@ class Upload extends MY_Controller {
             $result=102;
         }
         $data['errorcode']=$result;
-        print_r($data);
+        print_r(json_encode($data));
         if (IS_AJAX) {
             //I don't think it matters if this is set but good for error checking in the console/firebug
             echo json_encode(array($info));
