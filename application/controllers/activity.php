@@ -25,6 +25,8 @@ class Activity extends MY_Controller {
         }else{
             $result=102;
         }
+        $data['data']=array('title' =>$title , 'content' =>$content,'goal' =>$goal,'type' =>$type,'theme' =>$theme,'author' =>$author,
+            'author_group' =>$author_group,'res_address'=>$resource);
         $data['errcode']=$result;
         print_r(json_encode($data));
 

@@ -27,7 +27,7 @@ class Upload extends MY_Controller {
         } else {
            
             $data = $this->upload->data();
-          /*  if($data['file_ext']=='.doc'||$data['file_ext']=='.docx'){
+            if($data['file_ext']=='.txt'||$data['file_ext']=='.docx'){
                 set_time_limit(0); echo "开始<br>";  
                 $wps = new COM("WPS.Application"); 
                 echo "打开COM接口<br>";  
@@ -41,7 +41,7 @@ class Upload extends MY_Controller {
                 echo "关闭COM<br>"; 
                 unset( $doc , $wps ); 
                 echo "回收资源<br>";
-            }*/
+            }
             $config = array();
             $config['image_library'] = 'gd2';
             $config['source_image'] = $data['full_path'];
