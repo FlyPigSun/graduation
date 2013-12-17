@@ -18,7 +18,7 @@ class Upload extends MY_Controller {
         $upload_path_url = base_url() . 'upload_files/activity/';
 
         $config['upload_path'] = FCPATH . 'upload_files/activity/';
-        $config['allowed_types'] = 'jpg|jpeg|png|gif|mp3|avi|mp4|wmv';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif|mp3|wma|doc|docx|txt';
         $this->load->library('upload', $config);
         $field_name = "userfile";
         $_FILES['userfile']['name']=iconv("utf-8","gbk",$_FILES['userfile']['name']); 
@@ -40,7 +40,8 @@ class Upload extends MY_Controller {
             $this->load->library('image_lib', $config);
             $this->image_lib->resize();
 
-            $address='/upload_files/activity/'.$data['client_name'];
+            $address='/upload_files/activity/'.iconv("gbk","utf-8",$data['client_name']);
+            print_r($data['client_name']);
             $this->load->model('uploadres_model','uploadres');
             $name=iconv("gbk","utf-8",$data['client_name']);
             $theme=urldecode($this->input->post('theme'));
