@@ -266,7 +266,16 @@ activityCircle.teacher.groupActivity = {
 				        });
 				        var tpl = $('#teacher-new-activity-success-template').html();
 	                    var htmlStr = Mustache.to_html(tpl, res.data).replace(/^\s*/mg, '');
+	                    if(res.data.resources_type == 'audio'){
+	                    	var html = '<audio src="'+res.data.res_address+'" width="300" height="150" wmode="transparent" controls="controls">'+'</audio>';
+	                    }else if(res.data.resources_type == 'img'){
+	                    	var html = '<img src="'+res.data.res_address+'" width="200" height="200" wmode="transparent" controls="controls"/>'; 
+	                    }else if(res.data.resources_type == 'doc'){
+	                    	var html = '<audio src="'+res.data.res_address+'" width="200" height="150" wmode="transparent" controls="controls"/>'+'</audio>';
+	                    }
 	                    $('.teacher-new-activity-second').append(htmlStr);
+	                    $('.teacher-new-activity-success-resource-area div').html('');
+	                    $('.teacher-new-activity-success-resource-area div').append(html);
 	                    $('.teacher-new-activity-enter').unbind();
 	                    $('.teacher-new-activity-enter').on('click',activityCircle.teacher.groupActivity.returnCreate);
 					}else{
