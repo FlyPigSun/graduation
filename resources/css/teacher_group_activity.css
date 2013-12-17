@@ -122,14 +122,13 @@
 }
 .teacher-new-activity-success-resource-area{
 	padding: 0px 20px;
+	min-height: 130px;
+	text-align: center;
 }
 .teacher-new-activity-second-title{
 	text-align: center;
 	font-size: 24px;
 	font-weight: 900;
-}
-.teacher-new-activity-success-resource-area{
-	min-height: 130px;
 }
 .teacher-new-activity-success-info{
 	position: relative;

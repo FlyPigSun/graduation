@@ -159,8 +159,11 @@
 
 <script id="teacher-new-activity-success-template" type="text/html">
     <div class="teacher-new-activity-second-title">活动创建成功！</div>
+    <div style="margin-left:15px;">活动附件：</div>
     <div class="teacher-new-activity-success-resource-area">
-        <span>活动附件：</div>
+        <div style="width:592px;margin:auto;">
+            <embed src="{{ '{{' }} res_address {{ '}}' }}" width="200" height="150" wmode="transparent" autostart=false />
+        </div>
     </div>
     <div class="teacher-new-activity-success-info">
         <div style="text-align: center;font-size: 18px;font-weight: 900;">活动简介</div>
