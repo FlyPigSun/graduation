@@ -26,7 +26,7 @@
 .teacher-groupActivity-box{
 	border: 4px solid #ccc;
 	border-radius: 10px;
-	padding: 10px 10px 50px 10px;
+	padding: 10px 10px 10px 10px;
 	width: 600px;
 	min-height: 500px;
 	font-size: 14px;
@@ -76,4 +76,34 @@
 }
 .teacher-new-activity-upload-area{
 	padding: 20px 0px 50px 0px;
+}
+.teacher-new-activity-tips{
+	font-size: 15px;
+	margin-right: 10px;
+}
+.teacher-new-activity-input{
+	width: 250px;
+	border: 0px;
+	border-bottom: 1px solid #ccc;
+	padding:0px 5px;
+	font-size: 16px;
+}
+.teacher-new-activity-textarea{
+	resize: none;
+	width: 450px;
+	height: 200px;
+}
+.teacher-new-activity-select{
+	width: 150px;
+	height: 26px;
+}
+.teacher-new-activity-star{
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 1px;
+}
+.teacher-new-activity-btn{
+	font-weight: 900;
+	font-size: 15px;
+	margin-left: 245px;
 }

@@ -3,6 +3,7 @@
   *author: 孙骥
  **/
 activityCircle.teacher.groupActivity = {
+	newActivityLevel : null,
 	initialize : function(){
 		var me = this;
 		var template = $('#teacher_group_activity_template').html();
@@ -12,7 +13,9 @@ activityCircle.teacher.groupActivity = {
 		invokeClick($('.teacher-group-activity-leftbar').find('.teacher-group-activity-leftbar-btn:eq(0)')[0]);
 	},
 	buttonBind : function(){
-		$('.teacher-group-activity-leftbar-btn').on('click',this.changeTab);
+		var me = this;
+		$('.teacher-group-activity-leftbar-btn').on('click',me.changeTab);
+		$('.teacher-new-activity-btn').on('click',me.newActivity)
 		$('#teacher-group-activity-fileupload').fileupload({
 			url: '/activity/upload_resources',
     		sequentialUploads: true,
@@ -37,6 +40,14 @@ activityCircle.teacher.groupActivity = {
 	            },1000);
 	        } 
         });
+        $('.teacher-new-activity-star').raty({
+            hints : ['中等', '提高', '竞赛'],
+            number : 3,
+            click: function (score, evt) {
+                activityCircle.teacher.groupActivity.newActivityLevel = score; 
+            }
+        });
+        $('.teacher-new-activity-theme select:eq(0)').on('change',me.changeTheme);
 	},
 	changeTab : function(){
 		var tid = $('.tid').html();
@@ -70,6 +81,7 @@ activityCircle.teacher.groupActivity = {
 	},
 	getAllResources : function(){
 		$('.teacher-resource-library-table tbody').html('');
+		$('.teacher-new-activity-resource select:eq(0)').html('');
 		$.ajax({
 			url : '/activity/show_resources',
 			type : 'post',
@@ -81,6 +93,11 @@ activityCircle.teacher.groupActivity = {
 				res = $.parseJSON(res);
 				var data = res.data;
 				$.each(data,function(key,item){
+					var html = 
+						'<option value="'+item.id+'">'+
+                            item.name+
+                        '</option>';
+                    $('.teacher-new-activity-resource select:eq(0)').append(html);
                 	var tpl = $('#teacher-resource-library-table-template').html();
                     var htmlStr = Mustache.to_html(tpl, item).replace(/^\s*/mg, '');
                     $('.teacher-resource-library-table tbody').append(htmlStr);
@@ -109,7 +126,9 @@ activityCircle.teacher.groupActivity = {
 					if(res.errcode == 100){
 						alert('删除成功');
 						activityCircle.teacher.groupActivity.getAllResources();
-					}else{
+					}else if(res.errcode == 103){
+						alert('对不起，您不能删除他人上传的文件');
+					}else {
 						alert('删除失败');
 					}
 				}
@@ -117,5 +136,91 @@ activityCircle.teacher.groupActivity = {
 		}else{ 
 			return false;
 		};
+	},
+	changeTheme : function(){
+		var firstSelect = $('.teacher-new-activity-theme select:eq(0)');
+		var secondSelect = $('.teacher-new-activity-theme select:eq(1)');
+		secondSelect.html('');
+		switch(firstSelect.val()){
+			case '个人情况' :
+				var html = 
+						'<option value="个人信息">'+
+                            '个人信息'+
+                        '</option>'+
+                        '<option value="家庭信息">'+
+                            '家庭信息'+
+                        '</option>'+
+                        '<option value="学校信息">'+
+                            '学校信息'+
+                        '</option>'+
+                        '<option value="兴趣爱好">'+
+                            '兴趣爱好'+
+                        '</option>'+
+                        '<option value="工作与职业">'+
+                            '工作与职业'+
+                        '</option>';
+				break;
+			case '日常活动' : 
+				var html = 
+						'<option value="家庭生活">'+
+                            '家庭生活'+
+                        '</option>'+
+                        '<option value="学校生活">'+
+                            '学校生活'+
+                        '</option>'+
+                        '<option value="周末活动">'+
+                            '周末活动'+
+                        '</option>';
+				break;
+			case '个人兴趣' : 
+				var html = 
+						'<option value="游戏与休闲">'+
+                            '游戏与休闲'+
+                        '</option>'+
+                        '<option value="爱好">'+
+                            '爱好'+
+                        '</option>'+
+                        '<option value="娱乐活动">'+
+                            '娱乐活动'+
+                        '</option>'+
+                        '<option value="旅游">'+
+                            '旅游'+
+                        '</option>';
+				break;
+			case '饮食' : 
+				var html = 
+						'<option value="食物">'+
+                            '食物'+
+                        '</option>'+
+                        '<option value="饮料">'+
+                            '饮料'+
+                        '</option>'+
+                        '<option value="饮食习俗">'+
+                            '饮食习俗'+
+                        '</option>'+
+                        '<option value="点餐">'+
+                            '点餐'+
+                        '</option>';
+				break;
+			case '居住环境' : 
+				var html = 
+						'<option value="房屋与住所">'+
+                            '房屋与住所'+
+                        '</option>'+
+                        '<option value="居室">'+
+                            '居室'+
+                        '</option>'+
+                        '<option value="家具与家庭用品">'+
+                            '家具与家庭用品'+
+                        '</option>'+
+                        '<option value="社区">'+
+                            '社区'+
+                        '</option>';
+				break;
+		};
+		secondSelect.append(html);
+	},
+	newActivity : function(){
+		alert('1');
 	}
 }
