@@ -9,12 +9,12 @@ class Activity extends MY_Controller {
     public function addActivity(){
         $this->load->model('uploadres_model','uploadres');
         $this->load->model('activity_model','activity');
-        $title=$this->input->post('title');
-        $content=$this->input->post('content');
-        $goal=$this->input->post('goal');
-        $type=$this->input->post('type');
+        $title=urldecode($this->input->post('title'));
+        $content=urldecode($this->input->post('content'));
+        $goal=urldecode($this->input->post('goal'));
+        $type=urldecode($this->input->post('type'));
         $level=$this->input->post('level');
-        $theme=$this->input->post('theme');
+        $theme=urldecode($this->input->post('theme'));
         $author=$this->session->userdata('realname');
         $author_group=$this->session->userdata('grade');
         $info=$this->uploadres->findById($this->input->post('rid'));
