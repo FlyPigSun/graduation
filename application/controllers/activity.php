@@ -17,8 +17,13 @@ class Activity extends MY_Controller {
         $theme=urldecode($this->input->post('theme'));
         $author=$this->session->userdata('realname');
         $author_group=$this->session->userdata('grade');
-        $info=$this->uploadres->findById($this->input->post('rid'));
+        $rid=$this->input->post('rid');
+        if($rid!=0){
+            $info=$this->uploadres->findById();
+        }
         $resource=$info->address;
+        $res_type=$info->file_type;
+        $res_name=$info->name;
         $judge=$this->activity->insert($title,$content,$goal,$type,$level,$theme,$resource,$author,$author_group);
         if($judge==true){
             $result=100;
@@ -26,7 +31,7 @@ class Activity extends MY_Controller {
             $result=102;
         }
         $data['data']=array('title' =>$title , 'content' =>$content,'goal' =>$goal,'type' =>$type,'theme' =>$theme,'author' =>$author,
-            'author_group' =>$author_group,'res_address'=>$resource);
+            'author_group' =>$author_group,'res_address'=>$resource,'res_type'=>$res_type,'res_name'=>$res_name);
         $data['errcode']=$result;
         print_r(json_encode($data));
 

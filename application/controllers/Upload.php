@@ -27,12 +27,17 @@ class Upload extends MY_Controller {
         } else {
            
             $data = $this->upload->data();
-            if($data['file_ext']=='.txt'||$data['file_ext']=='.docx'){
+           /* if($data['file_ext']=='.txt'||$data['file_ext']=='.docx'){
                 set_time_limit(0); echo "开始<br>";  
-                $wps = new COM("WPS.Application"); 
+                $wps= new COM("com.sun.star.ServiceManager") 
+                or die ("Please be sure that OpenOffice.org 
+                is installed.\n");   
                 echo "打开COM接口<br>";  
                 $src_filename=FCPATH . 'upload_files/activity/'.$_FILES['userfile']['name']; 
+                $pdf_filename=FCPATH . 'upload_files/activity/'.$_FILES['userfile']['name'].'.pdf'; 
                 //源文件，DOC或者WPS都可以 $dest_filename="D:\\network\\htdocs\\test\\doc2.wps"; //另存为的文件名 $pdf_filename="D:\\network\\htdocs\\test\\doc2.pdf"; //欲转PDF的文件名 $doc = $wps->Documents->Open($src_filename); echo "成功打开文件<br>";  echo "输出文件中数据:<br>".$doc->content."<br>"; $doc->SaveAs($dest_filename); echo "另存为操作<br>"; 
+                $doc=$wps->Documents->Open($src_filename);
+                echo "成功打开文件";
                 $doc->exportpdf($pdf_filename);
                 echo "转成PDF<br>";
                 $doc->Close();
@@ -40,8 +45,37 @@ class Upload extends MY_Controller {
                 $wps->Quit();  
                 echo "关闭COM<br>"; 
                 unset( $doc , $wps ); 
-                echo "回收资源<br>";
-            }
+                echo "回收资源<br>";*/
+            /*    set_time_limit(0);  
+                function MakePropertyValue($name,$value,$osm){  
+                $oStruct = $osm->Bridge_GetStruct
+                ("com.sun.star.beans.PropertyValue");  
+                $oStruct->Name = $name;  
+                $oStruct->Value = $value;  
+                return $oStruct;  
+                }  
+                function word2pdf($doc_url, $output_url){  
+                $osm = new COM("com.sun.star.ServiceManager") 
+                or die ("Please be sure that OpenOffice.org 
+                is installed.\n");  
+                $args = array(MakePropertyValue("Hidden",true,$osm));  
+                $oDesktop = $osm->createInstance("com.sun.star
+                .frame.Desktop");  
+                $oWriterDoc = $oDesktop->loadComponentFromURL
+                ($doc_url,"_blank", 0, $args);  
+                $export_args = array(MakePropertyValue
+                ("FilterName","writer_pdf_Export",$osm));  
+                $oWriterDoc->storeToURL($output_url,$export_args);  
+                $oWriterDoc->close(true);  
+                }  
+                $output_dir = "upload_files/activity/";  
+                $doc_file = 'upload_files/activity/'.$_FILES['userfile']['name'];  
+                $pdf_file = $_FILES['userfile']['name'].'.pdf';  
+                $output_file = $output_dir . $pdf_file;  
+                $doc_file = "upload_files/activity/" . $doc_file;  
+                $output_file = "upload_files/activity/" . $output_file;  
+                word2pdf($doc_file,$output_file);  
+            }*/
             $config = array();
             $config['image_library'] = 'gd2';
             $config['source_image'] = $data['full_path'];
@@ -66,7 +100,8 @@ class Upload extends MY_Controller {
             $author=$this->session->userdata('realname');
             $author_group=$this->session->userdata('grade');
             $file_size=$data['file_size'];
-            $judge=$this->uploadres->insert($name,$theme,$custom_theme,$level,$description,$keyword,$keyphrase,date("Y-m-d   H:i:s"),$address,$author,$author_group,$file_size);
+            $file_type=$data['file_type'];
+            $judge=$this->uploadres->insert($name,$theme,$custom_theme,$level,$description,$keyword,$keyphrase,date("Y-m-d   H:i:s"),$address,$author,$author_group,$file_size,$file_type);
             $info['size'] = $data['file_size'];
             $info['type'] = $data['file_type'];
             $info['url'] = $upload_path_url . $data['file_name'];
