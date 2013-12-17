@@ -270,11 +270,14 @@ activityCircle.teacher.groupActivity = {
 				        var tpl = $('#teacher-new-activity-success-template').html();
 	                    var htmlStr = Mustache.to_html(tpl, res.data).replace(/^\s*/mg, '');
 	                    if(res.data.res_type == 'audio'){
-	                    	var html = '<audio src="'+res.data.res_address+'" width="300" height="150" wmode="transparent" controls="controls">'+'</audio>';
+	                    	var html = '<div style="margin:5px">'+res.data.res_name+'</div>'+
+	                    	'<audio src="'+res.data.res_address+'" width="300" height="50" wmode="transparent" controls="controls">'+'</audio>';
 	                    }else if(res.data.res_type == 'img'){
-	                    	var html = '<img src="'+res.data.res_address+'" width="200" height="200" wmode="transparent" controls="controls"/>'; 
+	                    	var html = '<div style="margin:5px">'+res.data.res_name+'</div>'+
+	                    	'<img src="'+res.data.res_address+'" width="100" height="100" wmode="transparent" controls="controls"/>'; 
 	                    }else if(res.data.res_type == 'doc'){
-	                    	var html = '<audio src="'+res.data.res_address+'" width="200" height="150" wmode="transparent" controls="controls"/>'+'</audio>';
+	                    	var html = '<div style="margin:5px">'+res.data.res_name+'</div>'+
+	                    	'<audio src="'+res.data.res_address+'" width="200" height="150" wmode="transparent" controls="controls"/>'+'</audio>';
 	                    }
 	                    $('.teacher-new-activity-second').append(htmlStr);
 	                    $('.teacher-new-activity-success-resource-area div').html('');
