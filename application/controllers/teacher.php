@@ -157,11 +157,45 @@ class Teacher extends MY_Controller {
     }*/
 
     public function findAllRes(){            
-            $author_group=$this->session->userdata('grade');
-            $this->load->model('uploadres_model','uploadres');
-            $judge=$this->uploadres->search($author_group);
-            $data['data']=$judge;
-            print_r(json_encode($data));
+        $author_group=$this->session->userdata('grade');
+        $this->load->model('uploadres_model','uploadres');
+        $judge=$this->uploadres->search($author_group);
+        $data['data']=$judge;
+        print_r(json_encode($data));
+    }
+
+    public function recommendActivity(){
+        $sid=array($this->input->post('sid'));
+        $aid=$this->input->post('aid');
+        $t_name=$this->session->userdata('realname');
+        $this->load->model('personal_activity_model','pa');
+        for($i=0;$i<count($sid);$i++){
+            $info=$this->pa->find($sid[$i],$aid);
+            if($info==null){
+                $this->pa->insert($sid[$i],$aid,$t_name);
+            }            
+        }
+        if($i==count($sid)){
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+
+    }
+
+    public function deleteActivity(){
+
+    }
+
+    public function studentCount(){
+        $aid=$this->input->post('aid');
+        $this->load->model('personal_activity_model','pa');
+        $count=$this->pa->studentCount($aid);
+        $data['data']=$count;
+        print_r($data);
+
     }
    
 }

@@ -359,6 +359,14 @@ class Student extends MY_Controller {
         print_r(json_encode($data));
     }
 
+    public function myActivity(){
+        $sid=$this->session->userdata('sid');
+        $this->load->model('personal_activity_model','pa');
+        $info=$this->pa->findBySid($sid);
+        $data['data']=$info;
+        print_r(json_encode($data));
+    }
+
   
 
 }

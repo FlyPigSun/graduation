@@ -19,14 +19,93 @@ class Upload extends MY_Controller {
         $config['upload_path'] = FCPATH . 'upload_files/activity/';
         $config['allowed_types'] = 'jpg|jpeg|png|gif|mp3|doc|docx|txt|pdf|word|wps';
         $this->load->library('upload', $config);
-        $field_name = "userfile";
+        //$field_name = 'userfile';
         $_FILES['userfile']['name']=iconv("utf-8","gbk",$_FILES['userfile']['name']); 
-        if (!$this->upload->do_upload($field_name)) {
+        if (!$this->upload->do_upload()) {
             $error = array('error' => $this->upload->display_errors());
             print_r($error);
-        } else {
-           
+        } else {           
             $data = $this->upload->data();
+            //if($data['file_ext']=='.txt'||$data['file_ext']=='.doc'){
+      /*        function MakePropertyValue($name, $value,$osm){ 
+                   $oStruct = $osm->Bridge_GetStruct("com.sun.star.beans.PropertyValue"); 
+                   $oStruct->Name = $name; 
+                   $oStruct->Value = $value; 
+                   return $oStruct; 
+                } 
+                function odt2pdf($doc_url, $output_url){
+                $osm = new COM("com.sun.star.ServiceManager") or die ("Please be sure that OpenOffice.org is installed.\n");
+                $args = array(MakePropertyValue("Hidden",true,$osm));
+                $oDesktop = $osm->createInstance("com.sun.star.frame.Desktop");
+                print_r($doc_url);
+                $oWriterDoc = $oDesktop->loadComponentFromURL($doc_url,"_blank", 0, $args);
+                $aFilterData  = array();
+                $aFilterData [0] = $osm->Bridge_GetStruct("com.sun.star.beans.PropertyValue");
+                $aFilterData [0]->Name = "SelectPdfVersion";
+                $aFilterData [0]->Value = 1;
+                $obj  = $osm->Bridge_GetValueObject();
+                $obj->set("[]com.sun.star.beans.PropertyValue",$aFilterData );
+                $storePDF = array();
+                $storePDF[0] = $osm->Bridge_GetStruct("com.sun.star.beans.PropertyValue");
+                $storePDF[0]->Name = "FilterName";
+                $storePDF[0
+                ]->Value = "writer_pdf_Export";
+                $storePDF[1] = $osm->Bridge_GetStruct("com.sun.star.beans.PropertyValue");   
+                $storePDF[1]->Name = "FilterData";
+                $storePDF[1]->Value = $obj;
+                print_r($output_url);
+                print_r($storePDF);
+                $oWriterDoc->storeToURL($output_url,$storePDF);
+                $oWriterDoc->close(true);
+                }
+                $output_dir = FCPATH .'upload_files/activity/';
+                $doc_file = FCPATH .'upload_files/activity/11.doc';
+                $pdf_file = "output2.pdf";
+                $output_file = $output_dir . $pdf_file;
+                $doc_file = "file:///" . $doc_file;
+                $output_file = "file:///" . $output_file;
+                odt2pdf($doc_file,$output_file);*/
+  
+
+    
+                set_time_limit(0);  
+                function MakePropertyValue($name,$value,$osm){  
+                $oStruct = $osm->Bridge_GetStruct
+                ("com.sun.star.beans.PropertyValue");  
+                $oStruct->Name = $name;  
+                $oStruct->Value = $value;  
+                return $oStruct;  
+                }  
+                function word2pdf($doc_url, $output_url){  
+                $osm = new COM("com.sun.star.ServiceManager") 
+                or die ("Please be sure that OpenOffice.org 用openoffice 将doc转换成pdf 的配置
+                is installed.n");
+                var_dump($osm)  ;
+                $args = MakePropertyValue("Hidden",true,$osm); 
+                print_r($args->Value) ;
+
+                $oDesktop = $osm->createInstance("com.sun.star
+                .frame.Desktop");
+                var_dump($oDesktop);
+                $oWriterDoc = $oDesktop->loadComponentFromURL($doc_url,"_blank",0,$args);  
+                $export_args = array(MakePropertyValue
+                ("FilterName","writer_pdf_Export",$osm));  
+                $oWriterDoc->storeToURL($output_url,$export_args);  
+                $oWriterDoc->close(true);  
+                }  
+                $output_dir = FCPATH ."upload_files/activity/";
+                //$doc_file = "D:\graduation\upload_files\activity/2111.doc";
+                $doc_file = FCPATH ."upload_files/activity/".$_FILES['userfile']['name'];
+                $pdf_file = "2111.pdf";
+                $output_file = $output_dir . $pdf_file;
+                $doc_file = "file:///" . $doc_file;
+                $output_file = "file:///" . $output_file;
+                word2pdf($doc_file,$output_file);
+                //$oDesktop->terminate();//关闭
+                $osm->dispose();//关闭
+            //}
+
+
             $config = array();
             $config['image_library'] = 'gd2';
             $config['source_image'] = $data['full_path'];
