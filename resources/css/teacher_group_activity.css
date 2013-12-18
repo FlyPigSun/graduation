@@ -164,3 +164,41 @@
 	padding: 4px;
 	margin-left: 240px;
 }
+.teacher-manage-activity-title{
+	border-bottom: 1px solid #ccc;
+	font-size: 15px;
+}
+.teacher-manage-listening-activity{
+	position: relative;
+	width: 160px;
+	height: 170px;
+	background-color: #ccc;
+	float: left;
+	margin: 10px 15px 10px 15px;
+	padding: 10px;
+	background: #f8f8ef;
+	box-shadow: 4px 4px 3px 0px rgba(204,204,204,0.4);
+	cursor: pointer;
+}
+.teacher-manage-listening-activity-title{
+	text-align: center;
+	font-size: 16px;
+	font-weight: 900;
+	margin: 5px;
+}
+.teacher-manage-listening-activity-member{
+	text-align: center;
+	margin: 20px;
+}
+.teacher-manage-listening-activity-delete{
+	right: 5px;
+	top: 5px;
+	position: absolute;
+	background-image: url('/resources/images/close-2.png');
+	width: 17px;
+	height: 17px;
+	display: none;
+}
+.teacher-manage-listening-activity:hover > .teacher-manage-listening-activity-delete{
+	display: block;
+}
