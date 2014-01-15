@@ -30,6 +30,8 @@ class Activity extends MY_Controller {
             $res_type=$info->file_type;
             $res_name=$info->name;
             $judge=$this->activity->insert($title,$content,$goal,$type,$level,$theme,$resource,$author,$author_id,$author_group);
+        }else{
+            $judge=$this->activity->insert($title,$content,$goal,$type,$level,$theme,$resource,$author,$author_id,$author_group);
         }
         
         if($judge==true){
