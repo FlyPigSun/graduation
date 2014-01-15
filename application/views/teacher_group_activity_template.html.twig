@@ -212,7 +212,10 @@
 <script id="teacher-manage-activity-template" type="text/html">
     <a href="/teacher/activity/{{ '{{' }} id {{ '}}' }}" target="_blank">
     <div class="teacher-manage-activity-infobox">
+    <div class="teacher-manage-listening-activity-delete"></div>
+        {{ '{{#' }} remove {{ '}}' }}
         <div class="teacher-manage-listening-activity-delete"></div>
+        {{ '{{/' }} remove {{ '}}' }}
         <div class="teacher-manage-listening-activity-title">{{ '{{' }} title {{ '}}' }}</div>
         <div class="teacher-manage-listening-activity-member">
             参与人数：{{ '{{' }} student_count {{ '}}' }}人

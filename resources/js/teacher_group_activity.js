@@ -107,13 +107,13 @@ activityCircle.teacher.groupActivity = {
                     var htmlStr = Mustache.to_html(tpl, item).replace(/^\s*/mg, '');
                     $('.teacher-resource-library-table tbody').append(htmlStr);
                 });
-                $('.teacher-resource-library-delete-btn').on('click',activityCircle.teacher.groupActivity.deleteResources);
+                $('.teacher-resource-library-delete-btn').on('click',activityCircle.teacher.groupActivity.removeResources);
                 $('.teacher-resource-library-table tr:odd').addClass('odd');
                 $('.teacher-resource-library-table tr:even').addClass('even');
 			}
 		});
 	},
-	deleteResources : function(){
+	removeResources : function(){
 		var file = encodeURIComponent($(this).parent().parent().find('.file-name').html());
 		if(confirm("是否确认")){
 			$.ajax({
@@ -337,7 +337,33 @@ activityCircle.teacher.groupActivity = {
                         noRatedMsg: '活动难度'
                     });
                 });
+				$('.teacher-manage-listening-activity-delete').on('click',[event],activityCircle.teacher.groupActivity.removeActivity);
             }
         });
+	},
+	removeActivity : function(event){
+		alert('1');
+		/*$.ajax({
+			url : '',
+			type : 'post',
+			data : {
+				file:file
+			},
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				res = $.parseJSON(res);
+				if(res.errcode == 100){
+					alert('活动删除成功');
+				}else if(res.errcode == 103){
+					alert('对不起，您不能删除他人创建的活动');
+				}else {
+					alert('删除失败');
+				}
+			}
+		});*/
+		event.preventDefault();
 	}
 }

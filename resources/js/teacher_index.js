@@ -41,14 +41,30 @@ activityCircle.teacherIndexPage = {
 				$('.teacher-index-centerarea').children('div').hide();
 				$('.teacher-index-hornor-area').show();
 				break;
-			case 'friends_circle':
+			case 'class':
 				$('.teacher-index-centerarea').children('div').hide();
-				$('.teacher-index-friends-area').show();
+				$('.teacher-index-class-area').show();
+				activityCircle.teacherIndexPage.setClassHtml();
 				break;
 			case 'message':
 				$('.teacher-index-centerarea').children('div').hide();
 				$('.teacher-index-message-area').show();
 				break;
 		}
+	},
+	setClassHtml : function(){
+		$.ajax({
+			url : '',
+			type : 'post',
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				/*$('.activitycircle-friends-area').html('');
+				$('.activitycircle-friends-area').append(res);*/
+				activityCircle.teacher.class.initialize();
+			}
+		})
 	}
 }

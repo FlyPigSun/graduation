@@ -15,10 +15,12 @@
     <script src="/resources/js/teacher_index.js"></script>
     <script src="/resources/js/teacher_personal_center.js"></script>
     <script src="/resources/js/teacher_group_activity.js"></script>
+    <script src="/resources/js/teacher_class.js"></script>
     <link href="/resources/css/bootstrap.css" rel="stylesheet"/>
     <link href="/resources/css/jquery.fileupload.css" rel="stylesheet"/>
     <link href="/resources/css/base.css" rel="stylesheet"/>
     <link href="/resources/css/teacher_index.css" rel="stylesheet"/>
+    <link href="/resources/css/teacher_class.css" rel="stylesheet"/>
     <link href="/resources/css/teacher_group_activity.css" rel="stylesheet"/>
 </head>
 <body>
@@ -41,7 +43,7 @@
                 <div class="teacher-index-topbtn" type="honor_box">
                     荣誉箱
                 </div>
-                <div class="teacher-index-topbtn" type="friends_circle">
+                <div class="teacher-index-topbtn" type="class">
                     班级
                 </div>
                 <div class="teacher-index-topbtn" type="message">
@@ -74,8 +76,16 @@
             <div class="teacher-index-honorbox-area activitycircle-hide">
                 
             </div>
-            <div class="teacher-index-friends-area activitycircle-hide">
-                
+            <div class="teacher-index-class-area activitycircle-hide">
+                <div class="activitycircle-addfriends-area">
+                    <div class="activitycircle-friends-newfriends-title">添加新的好友:</div>
+                    <input id="activitycircle-friends-input" class="activitycircle-friends-input" placeholder="请输入您好友的姓名"/>
+                    <a class="btn btn-primary btn-sm" role="button">添加好友</a>
+                    <div class="clear"></div>
+                </div>
+                <div class="activitycircle-friends-area">
+                    <div class="clear"></div>
+                </div>
             </div>
             <div class="teacher-index-message-area activitycircle-hide">
                 
