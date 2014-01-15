@@ -54,15 +54,15 @@ activityCircle.teacherIndexPage = {
 	},
 	setClassHtml : function(){
 		$.ajax({
-			url : '',
+			url : '/teacher/classAction',
 			type : 'post',
 			headers:{
 			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
 			},
 			success : function(responseText){
 				var res = responseText;
-				/*$('.activitycircle-friends-area').html('');
-				$('.activitycircle-friends-area').append(res);*/
+				$('.activitycircle-friends-area').html('');
+				$('.activitycircle-friends-area').append(res);
 				activityCircle.teacher.class.initialize();
 			}
 		})

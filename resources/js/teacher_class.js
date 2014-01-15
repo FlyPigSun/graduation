@@ -16,7 +16,7 @@ activityCircle.teacher.class = {
 	addFriends : function(){
 		var realname = $('.activitycircle-addfriends-area input').val();
 		$.ajax({
-			url : '/student/addFriends',
+			url : '/teacher/addStudents',
 			type : 'post',
 			data : {
 				realname : realname
@@ -29,7 +29,7 @@ activityCircle.teacher.class = {
 				res = $.parseJSON(res);
 				if(res.errcode == 100){
 					alert('好友添加成功');
-					//activityCircle.studentIndexPage.setFriendsHtml();
+					activityCircle.teacherIndexPage.setClassHtml();
 				}else if(res.errcode == 102){
 					alert('该用户已经是您的好友')
 				}else{
@@ -41,7 +41,7 @@ activityCircle.teacher.class = {
 	removeFriends : function(){
 		var fid = $(this).siblings('.friend-id').html();
 		$.ajax({
-			url : '/student/deleteFriends',
+			url : '/teacher/deleteStudents',
 			type : 'post',
 			data : {
 				fid : fid
@@ -54,7 +54,7 @@ activityCircle.teacher.class = {
 				res = $.parseJSON(res);
 				if(res.errcode == 100){
 					alert('删除成功');
-					//activityCircle.studentIndexPage.setFriendsHtml();
+					activityCircle.teacherIndexPage.setClassHtml();
 				}else{
 					alert('删除失败');
 				}
