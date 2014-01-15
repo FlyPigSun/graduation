@@ -1,0 +1,14 @@
+{% for friend in members %}
+<div class="activitycircle-friends-box">
+    <div class="activitycircle-friends-delete-btn">删除好友</div>
+    <div class="activitycircle-hide friend-id">{{friend.id}}</div>
+    <img class="activitycircle-friends-box-avatar" src="{{friend.avatar}}"/>
+    <div class="activitycircle-friends-name">{{friend.realname}}</div>
+    <div class="activitycircle-friends-studentnumber">
+        学号：{{friend.studentnumber}}
+    </div>
+    <div class="activitycircle-friends-motto">
+        座右铭：{{friend.motto}}
+    </div>
+</div>
+{% endfor %}
