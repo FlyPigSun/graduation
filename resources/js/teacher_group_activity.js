@@ -76,6 +76,7 @@ activityCircle.teacher.groupActivity = {
 				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
                 '管理活动' ;
 				$('.teacher-group-activity-title').html(html);
+				activityCircle.teacher.groupActivity.getAllActivity();
 				$('.teacher-groupActivity-box').hide();
 				$('.teacher-manage-activity-box').show();
 				break;
@@ -276,8 +277,7 @@ activityCircle.teacher.groupActivity = {
 	                    	var html = '<div style="margin:5px">'+res.data.res_name+'</div>'+
 	                    	'<img src="'+res.data.res_address+'" width="100" height="100" wmode="transparent" controls="controls"/>'; 
 	                    }else if(res.data.res_type == 'doc'){
-	                    	var html = '<div style="margin:5px">'+res.data.res_name+'</div>'+
-	                    	'<audio src="'+res.data.res_address+'" width="200" height="150" wmode="transparent" controls="controls"/>'+'</audio>';
+	                    	var html = '<div style="margin:5px">'+res.data.res_name+'</div>';
 	                    }
 	                    $('.teacher-new-activity-second').append(htmlStr);
 	                    $('.teacher-new-activity-success-resource-area div').html('');
@@ -296,5 +296,48 @@ activityCircle.teacher.groupActivity = {
 	returnCreate : function(){
 		$('.teacher-new-activity-first').animate({'left':'0px'});
 		$('.teacher-new-activity-second').animate({'left':'1000px'});
+	},
+	getAllActivity : function(){
+		$('.teacher-manage-activity-listeningbox').html('');
+		$('.teacher-manage-activity-oralbox').html('');
+		$('.teacher-manage-activity-readingbox').html('');
+		$('.teacher-manage-activity-writtingbox').html('');
+		$.ajax({
+            url:'/activity/show_activity',
+            type : 'post',
+            headers:{
+                'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+            },
+            success : function(responseText){
+                var res = responseText;
+                res = $.parseJSON(res);
+                var data = res.data;
+                $.each(data,function(key,item){
+                    var tpl = $('#teacher-manage-activity-template').html();
+                    var htmlStr = Mustache.to_html(tpl, item).replace(/^\s*/mg, '');
+                    switch(item.goal){
+                    	case '听力能力':
+                    		$('.teacher-manage-activity-listeningbox').append(htmlStr);
+                    		break;
+                    	case '口语能力':
+                    		$('.teacher-manage-activity-oralbox').append(htmlStr);
+                    		break;
+                    	case '阅读能力':
+                    		$('.teacher-manage-activity-readingbox').append(htmlStr);
+                    		break;
+                    	case '写作能力':
+                    		$('.teacher-manage-activity-writtingbox').append(htmlStr);
+                    		break;
+                    }
+                    $('.teacher-manage-listening-activity-level-'+item.id).raty({
+                        readOnly : true,
+                        score : item.level,
+                        number : 3,
+                        hints : ['中等', '提高', '竞赛'],
+                        noRatedMsg: '活动难度'
+                    });
+                });
+            }
+        });
 	}
 }
