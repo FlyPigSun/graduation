@@ -40,12 +40,36 @@ class Activity extends MY_Controller {
 
     public function findAllAcitvity(){
         $author_group=$this->session->userdata('grade');
+
         $this->load->model('activity_model','activity');
         $judge=$this->activity->findAll($author_group);    
         if($judge==null){
             $result=102;
         }else{
             $result=100;
+            $info=array();
+            $tid=$this->session->userdata('tid');
+            /*foreach ($judge as $row) {
+                $row=(array)$row;
+                if($row['author_id']==$tid){
+                    $delete = array('delete' =>1);
+                }else{
+                    $delete = array('delete' =>0);
+                }
+                $row=array_merge($delete);
+            }*/
+            for($i=0;$i<count($judge);$i++){
+                $judge[$i]=(array)$judge[$i];
+                if($judge[$i]['author_id']==$tid){
+                    $delete = array('delete' =>1);
+                }else{
+                    $delete = array('delete' =>0);
+                }
+                $judge[$i]=array_merge($judge[$i],$delete);
+
+            }
+
+
         } 
         $data['errcode']=$result;       
         $data['data']=$judge;
