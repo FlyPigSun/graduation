@@ -39,12 +39,12 @@ activityCircle.teacher.class = {
 		})
 	},
 	removeFriends : function(){
-		var fid = $(this).siblings('.friend-id').html();
+		var sid = $(this).siblings('.sid').html();
 		$.ajax({
 			url : '/teacher/deleteStudents',
 			type : 'post',
 			data : {
-				fid : fid
+				sid : sid
 			},
 			headers:{
 			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
