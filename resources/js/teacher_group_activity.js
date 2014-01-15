@@ -342,8 +342,9 @@ activityCircle.teacher.groupActivity = {
         });
 	},
 	removeActivity : function(event){
+		var aid = $(this).parent().find('.teacher-manage-activity-infobox-id').html();
 		$.ajax({
-			url : '/teacher/deleteActivity',
+			url : '/teacher/deleteActivity/'+aid,
 			type : 'post',
 			headers:{
 			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
@@ -353,6 +354,7 @@ activityCircle.teacher.groupActivity = {
 				res = $.parseJSON(res);
 				if(res.errcode == 100){
 					alert('活动删除成功');
+					activityCircle.teacher.groupActivity.getAllActivity();
 				}else if(res.errcode == 103){
 					alert('对不起，您不能删除他人创建的活动');
 				}else {
