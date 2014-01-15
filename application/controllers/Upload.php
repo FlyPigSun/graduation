@@ -67,7 +67,7 @@ class Upload extends MY_Controller {
                 odt2pdf($doc_file,$output_file);*/
   
 
-    
+    /*
                 set_time_limit(0);  
                 function MakePropertyValue($name,$value,$osm){  
                 $oStruct = $osm->Bridge_GetStruct
@@ -104,7 +104,7 @@ class Upload extends MY_Controller {
                 //$oDesktop->terminate();//关闭
                 $osm->dispose();//关闭
             //}
-
+*/
 
             $config = array();
             $config['image_library'] = 'gd2';
