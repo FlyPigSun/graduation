@@ -221,7 +221,7 @@ class Teacher extends MY_Controller {
     public function classAction(){
         $tid=$this->session->userdata('tid');
         $this->load->model("class_model","class");
-        $data['members']=$this->class->findAllStudent($tid);
+        $data['members']=$this->class->findAllStudents($tid);
         $this->twig->render('student_friends.html.twig',$data);
     }
 
