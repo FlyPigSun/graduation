@@ -185,11 +185,12 @@ class Teacher extends MY_Controller {
 
     }
 
-    public function deleteActivity(){
-        $aid=$this->input->post('aid');
+    public function deleteActivity($aid){
         $this->load->model('personal_activity_model','pa');
+        $this->load->model('activity_model','activity');
         $judge=$this->pa->t_delete($aid);
-        if($judge==true){
+        $judge_a=$this->activity->delete($aid);
+        if($judge==true && $judge_a==true){
             $result=100;
         }else{
             $result=102;
@@ -215,6 +216,47 @@ class Teacher extends MY_Controller {
             'goal' =>$info->goal ,'type' =>$info->type ,'level' =>$info->level ,'theme' =>$info->theme ,
             'resource' =>$info->resource ,'author' =>$info->author ,'author_id' =>$info->author_id,
             'author_group' =>$info->author_group ,'student_count' =>$info->student_count));
+    }
+
+    public function classAction(){
+        $tid=$this->session->userdata('tid');
+        $this->load->model("class_model","class");
+        $data['members']=$this->class->findAllStudent($tid);
+        $this->twig->render('student_friends.html.twig',$data);
+    }
+
+    public function addStudents(){
+        $tid=$this->session->userdata('tid');
+        $realname=urldecode($this->input->post('realname'));
+        $this->load->model('student_model','student');
+        $res=$this->student->findByName($realname);
+        if($res!=null){
+            $sid=$res->id;
+            $this->load->model('class_model','class');
+            $result=$this->class->isStudents($tid,$sid);
+        }else {
+            $result=104;
+        }       
+        if($result==100){
+            $this->class->insert($tid,$sid);
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }
+
+    public function deleteStudents(){
+        $tid=$this->session->userdata('tid');
+        $sid=$this->input->post('sid');
+        $this->load->model("class_model","class");
+        $judge=$this->class->isStudents($tid,$sid);
+        if($judge==102){
+            $this->class->deleteStudents($tid,$sid);
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
     }
    
 }

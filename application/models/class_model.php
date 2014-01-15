@@ -9,7 +9,7 @@ class Class_Model  extends  CI_Model{
 
     public function insert($tid,$sid){
         $this->load->database();
-        $sql="insert into friends_tb value(null,?,?)";
+        $sql="insert into class_tb value(null,?,?)";
         $query=$this->db->query($sql,array($tid,$sid));
         $this->db->close();
     }
