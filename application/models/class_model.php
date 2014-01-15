@@ -29,7 +29,7 @@ class Class_Model  extends  CI_Model{
     
     public function findAllStudents($tid){
         $this->load->database();
-        $sql="select * from class_tb c left join teacher_tb s on c.fid=t.id where c.tid=?";
+        $sql="select * from class_tb c left join student_tb s on c.sid=s.id where c.tid=?";
         $query=$this->db->query($sql,array($tid));
         $result=$query->result();
         $data=array();
