@@ -381,6 +381,25 @@ class Student extends MY_Controller {
         print_r(json_encode($data));
     }
 
+    public function addActivity(){
+        $sid=$this->session->userdata('sid');
+        $aid=$this->input->post('aid');
+        $this->load->model('activity_model','activity');
+        $t_name=$this->activity->findById($aid)->author;
+        $this->load->model('personal_activity_model','pa');
+        $judge=$this->pa->insert($sid,$aid,$t_name);
+        if($judge==true){
+            $this->load->model('personal_activity_model','pa');
+            $count=$this->pa->studentCount($aid);
+            $this->activity->update_studentcount($aid,$count);
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }
+
   
 
 }

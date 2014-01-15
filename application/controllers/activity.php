@@ -39,10 +39,8 @@ class Activity extends MY_Controller {
     }
 
     public function findAllAcitvity(){
-        $studentCount=$this->studentCount();
         $author_group=$this->session->userdata('grade');
         $this->load->model('activity_model','activity');
-        $this->activity->update_studentcount($aid,$studentCount);
         $judge=$this->activity->findAll($author_group);    
         if($judge==null){
             $result=102;
@@ -79,8 +77,7 @@ class Activity extends MY_Controller {
         $aid=$this->input->post('aid');
         $this->load->model('personal_activity_model','pa');
         $count=$this->pa->studentCount($aid);
-        $data['data']=$count;
-        print_r($data);
+        return $count;
 
     }
   
