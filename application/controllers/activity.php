@@ -19,13 +19,19 @@ class Activity extends MY_Controller {
         $author_id=$this->session->userdata('tid');
         $author_group=$this->session->userdata('grade');
         $rid=$this->input->post('rid');
+        $judge=true;
+        $resource='';
+        $resource='';
+        $res_type='';
+        $res_name='';
         if($rid!=0){
             $info=$this->uploadres->findById($rid);
+            $resource=$info->address;
+            $res_type=$info->file_type;
+            $res_name=$info->name;
+            $judge=$this->activity->insert($title,$content,$goal,$type,$level,$theme,$resource,$author,$author_id,$author_group);
         }
-        $resource=$info->address;
-        $res_type=$info->file_type;
-        $res_name=$info->name;
-        $judge=$this->activity->insert($title,$content,$goal,$type,$level,$theme,$resource,$author,$author_id,$author_group);
+        
         if($judge==true){
             $result=100;
         }else{
