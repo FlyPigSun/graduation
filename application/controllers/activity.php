@@ -19,7 +19,7 @@ class Activity extends MY_Controller {
         $author_group=$this->session->userdata('grade');
         $rid=$this->input->post('rid');
         if($rid!=0){
-            $info=$this->uploadres->findById();
+            $info=$this->uploadres->findById($rid);
         }
         $resource=$info->address;
         $res_type=$info->file_type;
