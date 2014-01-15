@@ -222,7 +222,7 @@ class Teacher extends MY_Controller {
         $tid=$this->session->userdata('tid');
         $this->load->model("class_model","class");
         $data['members']=$this->class->findAllStudents($tid);
-        $this->twig->render('student_friends.html.twig',$data);
+        $this->twig->render('teacher_class.html.twig',$data);
     }
 
     public function addStudents(){
