@@ -160,7 +160,8 @@ class Teacher extends MY_Controller {
         $author_group=$this->session->userdata('grade');
         $this->load->model('uploadres_model','uploadres');
         $judge=$this->uploadres->search($author_group);
-        $data['data']=$judge;
+        $studentCount=$this->studentCount();
+        $data['data']=$judge.$studentCount;
         print_r(json_encode($data));
     }
 
@@ -205,6 +206,13 @@ class Teacher extends MY_Controller {
         $count=$this->pa->studentCount($aid);
         $data['data']=$count;
         print_r($data);
+
+    }
+
+    public function Activityaction($aid){
+        $this->load->model('activity_model','activity');
+        $info=$this->activity->findById($aid);
+        $this->twig->render('activity.html.twig',$info);
 
     }
    

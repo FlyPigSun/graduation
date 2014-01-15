@@ -13,10 +13,10 @@ class Activity_Model  extends  CI_Model{
     var $theme='';
     var $resource='';
 
-    public function insert($title,$content,$goal,$type,$level,$theme,$resource,$author,$author_group){
+    public function insert($title,$content,$goal,$type,$level,$theme,$resource,$author,$author_id,$author_group){
         $this->load->database();
-        $sql="insert into activity_tb value(null,?,?,?,?,?,?,?,?,?)";
-        $query=$this->db->query($sql,array($title,$content,$goal,$type,$level,$theme,$resource,$author,$author_group));
+        $sql="insert into activity_tb value(null,?,?,?,?,?,?,?,?,?,?,0)";
+        $query=$this->db->query($sql,array($title,$content,$goal,$type,$level,$theme,$resource,$author,$author_id,$author_group));
         $this->db->close();
         return true;
     }
@@ -49,6 +49,13 @@ class Activity_Model  extends  CI_Model{
         }
         $this->db->close();
         return $data;
+    }
+    public function update_studentcount($aid,$studentCount){
+        $this->load->database();
+        $sql="update activity_tb set student_count=? where id=?";
+        $query=$this->db->query($sql,array($studentCount,$aid));
+        $this->db->close();
+
     }
 
 

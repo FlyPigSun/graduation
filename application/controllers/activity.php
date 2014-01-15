@@ -16,6 +16,7 @@ class Activity extends MY_Controller {
         $level=$this->input->post('level');
         $theme=urldecode($this->input->post('theme'));
         $author=$this->session->userdata('realname');
+        $author_id=$this->session->userdata('tid');
         $author_group=$this->session->userdata('grade');
         $rid=$this->input->post('rid');
         if($rid!=0){
@@ -24,7 +25,7 @@ class Activity extends MY_Controller {
         $resource=$info->address;
         $res_type=$info->file_type;
         $res_name=$info->name;
-        $judge=$this->activity->insert($title,$content,$goal,$type,$level,$theme,$resource,$author,$author_group);
+        $judge=$this->activity->insert($title,$content,$goal,$type,$level,$theme,$resource,$author,$author_id,$author_group);
         if($judge==true){
             $result=100;
         }else{
@@ -38,9 +39,11 @@ class Activity extends MY_Controller {
     }
 
     public function findAllAcitvity(){
+        $studentCount=$this->studentCount();
         $author_group=$this->session->userdata('grade');
         $this->load->model('activity_model','activity');
-        $judge=$this->activity->findAll($author_group);
+        $this->activity->update_studentcount($aid,$studentCount);
+        $judge=$this->activity->findAll($author_group);    
         if($judge==null){
             $result=102;
         }else{
@@ -69,6 +72,15 @@ class Activity extends MY_Controller {
         }
         $data['errcode']=$result;
         print_r(json_encode($data));
+
+    }
+
+    public function studentCount(){
+        $aid=$this->input->post('aid');
+        $this->load->model('personal_activity_model','pa');
+        $count=$this->pa->studentCount($aid);
+        $data['data']=$count;
+        print_r($data);
 
     }
   
