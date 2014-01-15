@@ -342,13 +342,9 @@ activityCircle.teacher.groupActivity = {
         });
 	},
 	removeActivity : function(event){
-		alert('1');
-		/*$.ajax({
-			url : '',
+		$.ajax({
+			url : '/teacher/deleteActivity',
 			type : 'post',
-			data : {
-				file:file
-			},
 			headers:{
 			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
 			},
@@ -363,7 +359,7 @@ activityCircle.teacher.groupActivity = {
 					alert('删除失败');
 				}
 			}
-		});*/
+		});
 		event.preventDefault();
 	}
 }
