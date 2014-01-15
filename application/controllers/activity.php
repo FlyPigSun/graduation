@@ -40,7 +40,13 @@ class Activity extends MY_Controller {
     public function findAllAcitvity(){
         $author_group=$this->session->userdata('grade');
         $this->load->model('activity_model','activity');
-        $judge=$this->activity->findAll($author_group);        
+        $judge=$this->activity->findAll($author_group);
+        if($judge==null){
+            $result=102;
+        }else{
+            $result=100;
+        } 
+        $data['errcode']=$result;       
         $data['data']=$judge;
         print_r(json_encode($data));
     }

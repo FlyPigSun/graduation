@@ -367,6 +367,20 @@ class Student extends MY_Controller {
         print_r(json_encode($data));
     }
 
+    public function deleteActivity(){
+        $sid=$this->session->userdata('sid');
+        $aid=$this->input->post('aid');
+        $this->load->model('personal_activity_model','pa');
+        $judge=$this->pa->s_delete($sid,$aid);
+        if($judge==true){
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }
+
   
 
 }

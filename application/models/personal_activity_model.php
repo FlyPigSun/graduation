@@ -75,17 +75,17 @@ class Personal_Activity_Model  extends  CI_Model{
 
     }
     //学生退出活动 
-    public function s_delete($sid){
+    public function s_delete($sid,$aid){
         $this->load->database();
-        $sql="delete form personal_activity_tb where sid=?";
-        $query=$this->db->query($sql,array($sid));
+        $sql="delete from personal_activity_tb where sid=? and aid=?";
+        $query=$this->db->query($sql,array($sid,$aid));
         $this->db->close();
         return true;
     }
     //教师删除活动
     public function t_delete($aid){
         $this->load->database();
-        $sql="delete form personal_activity_tb where aid=?";
+        $sql="delete from personal_activity_tb where aid=?";
         $query=$this->db->query($sql,array($aid));
         $this->db->close();
         return true;
@@ -104,6 +104,8 @@ class Personal_Activity_Model  extends  CI_Model{
         return $data->a;
        
     }
+
+    
 
 
 

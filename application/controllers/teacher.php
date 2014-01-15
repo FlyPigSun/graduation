@@ -186,6 +186,16 @@ class Teacher extends MY_Controller {
     }
 
     public function deleteActivity(){
+        $aid=$this->input->post('aid');
+        $this->load->model('personal_activity_model','pa');
+        $judge=$this->pa->t_delete($aid);
+        if($judge==true){
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
 
     }
 
