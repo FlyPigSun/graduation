@@ -129,16 +129,61 @@ class Activity extends MY_Controller {
         $this->load->model('activity_model','activity');
         $allactivity=$this->activity->findAll($author_group);
         $allactivity=(array)$allactivity;
-        $this->laod->model('personal_activity_model','pa');
+        $this->load->model('personal_activity_model','pa');
         $aid=$this->pa->find_aid_teacherPush($sid);
         for($i=0;$i<count($aid);$i++){
             foreach ($allactivity as $row) {
-                $strData = intval(substr(strval($row),1));
-                $newAct[] = $strData;
+                $max=$sum=0;
+                $right_act=$row;
+                if($aid[$i]->aid==$row->id){
+                    $sum=0;
+                }else{
+                    $act=$this->activity->findById($aid[$i]->aid);
+                    similar_text($act->title, $row->title, $percent);
+                    if($percent>90){
+                        $sum+=2;
+                    }else if($percent>50&&$percent<90){
+                        $sum+=1;
+                    }
+                    if($row->resource!==""){   
+                        $this->load->model('testresult_model','testresult');
+                        $f_style=$this->testresult->findBySid($sid)->first_style;
+                        $s_style=$this->testresult->findBySid($sid)->second_style;
+                        $this->load->model('uploadres_model','uploadres');
+                        $res=$this->uploadres->findByPath($row->resource);
+                        $res_type=$res->file_type;
+                        if($f_style=='活跃型'&&$s_style=='视觉型'&&$res_type=='video'){
+                            $sum+=10;
+                        }else if($f_style=='活跃型'&&$s_style=='言语型'&&$res_type=='video'){
+                            $sum+=10;
+                        }else if($f_style=='沉思型'&&$s_style=='视觉型'&&$res_type=='video'){
+                            $sum+=10;
+                        }else if($f_style=='沉思型'&&$s_style=='视觉型'&&$res_type=='video'){
+                            $sum+=10;
+                        }
+                    }   
+                    if($act->goal==$row->goal){
+                        $sum+=2;
+                    }
+                    if($act->theme==$row->theme){
+                        $sum+=2;
+                    }
+                    if($act->level==$row->level){
+                        $sum+=2;
+                    }
+                    if($act->type==$row->type){
+                        $sum+=2;
+                    }    
+                }
+                if($sum>$max){
+                    $max=$sum;
+                    $right_act=$row;
+                    }
+                print_r($sum);
             }
+            $right[$i]=$right_act;    
         }
-
-        
+        print_r($right);
     }
 
   
