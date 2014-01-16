@@ -89,12 +89,18 @@ class Activity extends MY_Controller {
         }
         $data['errcode']=$result;
 
-        $data['data']=array('title' =>$judge->title , 'content' =>$judge->content,'goal' =>$judge->goal,
-            'type' =>$judge->type,'theme' =>$judge->theme,'author' =>$judge->author,
+        $data['data']=array(
+            'title' =>$judge->title ,
+            'content' =>$judge->content,
+            'goal' =>$judge->goal,
+            'type' =>$judge->type,
+            'theme' =>$judge->theme,
+            'author' =>$judge->author,
             'author_group' =>$judge->author_group,
             'res_address'=>$judge->resource,
             'res_type'=>$info->file_type,
-            'res_name'=>$info->name);
+            'res_name'=>$info->name,
+            'level'=>$judge->level);
         }
         print_r(json_encode($data));
 
