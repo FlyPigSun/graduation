@@ -7,10 +7,40 @@
     <script src="/resources/js/jquery-1.10.2.min.js"></script>
     <script src="/resources/js/jquery.md5.js"></script>
     <script src="/resources/js/bootstrap.js"></script>
+    <script src="/resources/js/jquery.raty.js"></script>
     <script src="/resources/js/base.js"></script>
+    <script src="/resources/js/activity.js"></script>
     <link href="/resources/css/bootstrap.css" rel="stylesheet"/>
     <link href="/resources/css/base.css" rel="stylesheet"/>
+    <link href="/resources/css/activity.css" rel="stylesheet"/>
 </head>
 <body>
-    {{ title }}
+    <div class="acitvity-aid activitycircle-hide">{{ aid }}</div>
+    <div class="acitvity-main">
+        <div class="activity-top-area">
+            <div class="activity-title">
+                {{ title }}
+            </div>
+            <div class="activity-author">
+                {{ author }}老师
+            </div>
+        </div>
+        <div class="activity-center-area">
+            <div>
+                <span class="activity-tips">
+                    活动难度：
+                </span>
+                <div class="activity-star"></div>
+                <div class="clear"></div>
+            </div>
+            <div>
+                <span class="activity-tips">
+                    活动附件：
+                </span>
+                <div class="activity-resource-area"></div>
+                <div class="clear"></div>
+            </div>
+            活动简介：{{ content }}
+        </div>
+    </div>
 </body>
