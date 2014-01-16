@@ -75,7 +75,7 @@ class Activity extends MY_Controller {
     }
     public function findByAid($aid){
         $this->load->model('activity_model','activity');
-        $judge=$this->activity->findById($id);
+        $judge=$this->activity->findById($aid);
         if($judge==null){
             $result=102;
         }else{
@@ -123,12 +123,14 @@ class Activity extends MY_Controller {
         $author_group=$this->session->userdata('grade');
         $this->load->model('activity_model','activity');
         $allactivity=$this->activity->findAll($author_group);
+        $allactivity=(array)$allactivity;
         $this->laod->model('personal_activity_model','pa');
         $aid=$this->pa->find_aid_teacherPush($sid);
-        $student_activity_teacherPush=(array)$student_activity_teacherPush;
-        foreach ($aid as $row) {    
-            $student_activity_teacherPush=array_merge($student_activity_teacherPush,array($this->activity->findById($row)));
-        } 
+        for($i=0;$i<count($aid);$i++){
+            foreach ($allactivity as $row) {
+
+            }
+        }
         
     }
 
