@@ -38,7 +38,7 @@ class Personal_Activity_Model  extends  CI_Model{
 
     public function findBySid($sid){
         $this->load->database();
-        $sql="select s.realname,s.studentnumber,s.gender,a.title from student_tb s
+        $sql="select s.id,s.realname,s.studentnumber,s.gender,a.title from student_tb s
               inner join personal_activity_tb pa on s.id=pa.sid
               inner join activity_tb a on pa.aid=a.id where pa.sid=?";
         $query=$this->db->query($sql,array($sid));
@@ -49,7 +49,7 @@ class Personal_Activity_Model  extends  CI_Model{
 
     public function findByAid($aid){
         $this->load->database();
-        $sql="select s.realname,s.studentnumber,s.gender,a.title from student_tb s
+        $sql="select s.id,s.realname,s.studentnumber,s.gender,a.title from student_tb s
               inner join personal_activity_tb pa on s.id=pa.sid
               inner join activity_tb a on pa.aid=a.id where pa.aid=?";
         $query=$this->db->query($sql,array($aid));

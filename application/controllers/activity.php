@@ -87,6 +87,14 @@ class Activity extends MY_Controller {
             $result=100;
 
         }
+        $this->load->model('personal_activity_model','pa');
+        $studentCount=$this->pa->studentCount($aid);
+        for($i=0;$i<$studentCount;$i++){
+            $sInfo[]=array('name'=>$this->pa->findByAid($aid)[$i]->realname,
+                    'sid'=>$this->pa->findByAid($aid)[$i]->id);
+        }
+        print_r($this->pa->findByAid($aid));
+        print_r($sInfo);
         $data['errcode']=$result;
 
         $data['data']=array(
@@ -100,7 +108,8 @@ class Activity extends MY_Controller {
             'res_address'=>$judge->resource,
             'res_type'=>$info->file_type,
             'res_name'=>$info->name,
-            'level'=>$judge->level);
+            'level'=>$judge->level,
+            'sInfo'=>$sInfo);
         }
         print_r(json_encode($data));
 
