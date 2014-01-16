@@ -172,7 +172,7 @@ class Teacher extends MY_Controller {
         for($i=0;$i<count($sid);$i++){
             $info=$this->pa->find($sid[$i],$aid);
             if($info==null){
-                $this->pa->insert($sid[$i],$aid,$t_name);
+                $this->pa->insert($sid[$i],$aid,$t_name,1);
             }            
         }
         if($i==count($sid)){
@@ -215,7 +215,7 @@ class Teacher extends MY_Controller {
         $this->twig->render('activity.html.twig', array('aid' =>$info->id , 'title' =>$info->title ,
             'goal' =>$info->goal ,'type' =>$info->type ,'level' =>$info->level ,'theme' =>$info->theme ,
             'resource' =>$info->resource ,'author' =>$info->author ,'author_id' =>$info->author_id,
-            'author_group' =>$info->author_group ,'student_count' =>$info->student_count));
+            'author_group' =>$info->author_group ,'student_count' =>$info->student_count,'content'=>$info->content));
     }
 
     public function classAction(){
@@ -257,6 +257,15 @@ class Teacher extends MY_Controller {
         }
         $data['errcode']=$result;
         print_r(json_encode($data));
+    }
+
+    public function showStudents(){
+        $tid=$this->session->userdata('tid');
+        $this->load->model('class_model','class');
+        $info=$this->class->findAllStudents($tid);
+        $data['data']=$info;
+        print_r(json_encode($data));
+
     }
    
 }
