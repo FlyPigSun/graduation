@@ -76,6 +76,8 @@ class Activity extends MY_Controller {
     public function findByAid($aid){
         $this->load->model('activity_model','activity');
         $judge=$this->activity->findById($aid);
+        $this->load->model('uploadres_model','uploadres');
+        $info=$this->uploadres->findByPath($judge->address);
         if($judge==null){
             $result=102;
         }else{
@@ -83,7 +85,9 @@ class Activity extends MY_Controller {
 
         }
         $data['errcode']=$result;
-        $data['data']=$judge;
+        $data['data']=array('title' =>$judge->title , 'content' =>$judge->content,'goal' =>$judge->goal,
+            'type' =>$judge->type,'theme' =>$judge->theme,'author' =>$judge->author,
+            'author_group' =>$judge->author_group,'res_address'=>$judge->resource,'res_type'=>$info->res_type,'res_name'=>$info->res_name);
         print_r(json_encode($data));
 
     }
@@ -128,9 +132,11 @@ class Activity extends MY_Controller {
         $aid=$this->pa->find_aid_teacherPush($sid);
         for($i=0;$i<count($aid);$i++){
             foreach ($allactivity as $row) {
-
+                $strData = intval(substr(strval($row),1));
+                $newAct[] = $strData;
             }
         }
+
         
     }
 

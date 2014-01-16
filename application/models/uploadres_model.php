@@ -69,5 +69,18 @@ class UploadRes_Model  extends  CI_Model{
 
     }
 
+    public function findByPath($address){
+        $this->load->database();
+        $sql="select * from resources_tb where address=?";
+        $query=$this->db->query($sql,array($address));
+        if($query->num_rows()>0){
+            $data=$query->row();
+        }else {
+            $data=null;
+        }
+        $this->db->close();
+        return $data;
+    }
+
 }
 ?>
