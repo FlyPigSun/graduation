@@ -77,24 +77,24 @@ class Activity extends MY_Controller {
         $this->load->model('activity_model','activity');
         $judge=$this->activity->findById($aid);
         $this->load->model('uploadres_model','uploadres');
-        if($judge->resource==""){
-            $data['data']=array("rid"=>0);
-        }else{
-        $info=$this->uploadres->findByPath($judge->resource);
-        if($judge==null){
-            $result=102;
-        }else{
-            $result=100;
 
+        if($judge->resource==""){
+            $rid=0;
+            $info='';
+        }else{
+            $rid=1; 
+            $info=$this->uploadres->findByPath($judge->resource);
         }
         $this->load->model('personal_activity_model','pa');
         $studentCount=$this->pa->studentCount($aid);
-        for($i=0;$i<$studentCount;$i++){
-            $sInfo[]=array('name'=>$this->pa->findByAid($aid)[$i]->realname,
-                    'sid'=>$this->pa->findByAid($aid)[$i]->id);
+        if($studentCount==0){
+            $sInfo='';
+        }else{
+            for($i=0;$i<$studentCount;$i++){
+                $sInfo[]=array('name'=>$this->pa->findByAid($aid)[$i]->realname,
+                        'sid'=>$this->pa->findByAid($aid)[$i]->id);
+            }   
         }
-        $data['errcode']=$result;
-
         $data['data']=array(
             'title' =>$judge->title ,
             'content' =>$judge->content,
@@ -104,12 +104,12 @@ class Activity extends MY_Controller {
             'author' =>$judge->author,
             'author_group' =>$judge->author_group,
             'res_address'=>$judge->resource,
-            'res_type'=>$info->file_type,
-            'res_name'=>$info->name,
+            'res_info'=>$info,
             'level'=>$judge->level,
             'sInfo'=>$sInfo,
-            'sCount'=>$studentCount);
-        }
+            'sCount'=>$studentCount,
+            'rid'=>$rid);
+    
         print_r(json_encode($data));
 
     }
@@ -196,15 +196,13 @@ class Activity extends MY_Controller {
                         $sum+=2;
                     }    
                 }
-                if($sum>$max){
-                    $max=$sum;
-                    $right_act=$row;
-                    }
-                //print_r($sum);
+                $map[]=array('sum'=>$sum,'activity'=>$row);
+                    
+                
             }
-            //$right[$i]=$right_act;    
+        print_r($map);    
         }
-        //print_r($right);
+        
     }
 
   
