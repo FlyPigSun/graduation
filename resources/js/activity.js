@@ -31,21 +31,26 @@ activityCircle.activity = {
                         hints : ['中等', '提高', '竞赛'],
                         noRatedMsg: '活动难度'
                     });
-                    if(data.res_type == 'audio'){
-                    	var html = '<div style="margin:5px">'+data.res_name+'</div>'+
-                    	'<audio src="'+data.res_address+'" width="300" height="50" wmode="transparent" controls="controls">'+'</audio>';
-                    }else if(data.res_type == 'img'){
-                    	var html = '<div style="margin:5px">'+data.res_name+'</div>'+
-                    	'<img src="'+data.res_address+'" width="100" height="100" wmode="transparent" controls="controls"/>'; 
-                    }else if(data.res_type == 'doc'){
-                    	var html = '<div style="margin:5px">'+data.res_name+'</div>';
-                    }
-                    $('.activity-resource-area').html('');
-                    $('.activity-resource-area').append(html);
-                    if(data.rid == 0)
+                    if(data.res_info == ''){
                     	$('.activity-resource-area').remove();
-				}else{
-					alert('活动创建失败');
+                    }else{
+	                    if(data.res_info.file_type == 'audio'){
+	                    	var html = '<div style="margin:5px">'+data.res_info.name+'</div>'+
+	                    	'<audio src="'+data.res_info.address+'" width="300" height="50" wmode="transparent" controls="controls">'+'</audio>';
+	                    }else if(data.res_info.file_type == 'img'){
+	                    	var html = '<div style="margin:5px">'+data.res_info.name+'</div>'+
+	                    	'<img src="'+data.res_info.address+'" width="100" height="100" wmode="transparent" controls="controls"/>'; 
+	                    }else if(data.res_info.file_type == 'doc'){
+	                    	var html = '<a style="margin:5px" href='+data.res_info.address+'>'+data.res_info.name+'</a>';
+	                    }
+	                    $('.activity-resource-area').html('');
+	                    $('.activity-resource-area').append(html);
+	                }
+                    $('.activity-student-area').html('');
+                    for (var i = 0; i < data.sInfo.length; i++) {
+                    	var studenthtml = '<a>'+data.sInfo[i].name+'</a>'
+                    	$('.activity-student-area').append(studenthtml);
+                    };
 				}
 			}
 		});
