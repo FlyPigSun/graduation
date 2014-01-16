@@ -48,7 +48,6 @@ class Activity extends MY_Controller {
 
     public function findAllAcitvity(){
         $author_group=$this->session->userdata('grade');
-
         $this->load->model('activity_model','activity');
         $judge=$this->activity->findAll($author_group);    
         if($judge==null){
@@ -57,15 +56,6 @@ class Activity extends MY_Controller {
             $result=100;
             $info=array();
             $tid=$this->session->userdata('tid');
-            /*foreach ($judge as $row) {
-                $row=(array)$row;
-                if($row['author_id']==$tid){
-                    $delete = array('delete' =>1);
-                }else{
-                    $delete = array('delete' =>0);
-                }
-                $row=array_merge($delete);
-            }*/
             for($i=0;$i<count($judge);$i++){
                 $judge[$i]=(array)$judge[$i];
                 if($judge[$i]['author_id']==$tid){
@@ -82,6 +72,20 @@ class Activity extends MY_Controller {
         $data['errcode']=$result;       
         $data['data']=$judge;
         print_r(json_encode($data));
+    }
+    public function findByAid($aid){
+        $this->load->model('activity_model','activity');
+        $judge=$this->activity->findById($id);
+        if($judge==null){
+            $result=102;
+        }else{
+            $result=100;
+
+        }
+        $data['errcode']=$result;
+        $data['data']=$judge;
+        print_r(json_encode($data));
+
     }
 
     public function deleteActivity(){
@@ -112,6 +116,22 @@ class Activity extends MY_Controller {
         return $count;
 
     }
+
+
+    public function intelligentPush(){
+        $sid=$this->session->userdata('sid');
+        $author_group=$this->session->userdata('grade');
+        $this->load->model('activity_model','activity');
+        $allactivity=$this->activity->findAll($author_group);
+        $this->laod->model('personal_activity_model','pa');
+        $aid=$this->pa->find_aid_teacherPush($sid);
+        $student_activity_teacherPush=(array)$student_activity_teacherPush;
+        foreach ($aid as $row) {    
+            $student_activity_teacherPush=array_merge($student_activity_teacherPush,array($this->activity->findById($row)));
+        } 
+        
+    }
+
   
     
 
