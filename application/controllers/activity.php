@@ -77,12 +77,14 @@ class Activity extends MY_Controller {
         $this->load->model('activity_model','activity');
         $judge=$this->activity->findById($aid);
         $this->load->model('uploadres_model','uploadres');
-
+        if($judge!=null){
+            $result=100;
+        }else{
+            $result=102;
+        }
         if($judge->resource==""){
-            $rid=0;
             $info='';
         }else{
-            $rid=1; 
             $info=$this->uploadres->findByPath($judge->resource);
         }
         $this->load->model('personal_activity_model','pa');
@@ -95,6 +97,7 @@ class Activity extends MY_Controller {
                         'sid'=>$this->pa->findByAid($aid)[$i]->id);
             }   
         }
+        $data['errcode']=$result;
         $data['data']=array(
             'title' =>$judge->title ,
             'content' =>$judge->content,
@@ -108,8 +111,7 @@ class Activity extends MY_Controller {
             'level'=>$judge->level,
             'sInfo'=>$sInfo,
             'sCount'=>$studentCount,
-            'rid'=>$rid);
-    
+            );
         print_r(json_encode($data));
 
     }
