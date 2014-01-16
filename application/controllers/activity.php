@@ -77,7 +77,8 @@ class Activity extends MY_Controller {
         $this->load->model('activity_model','activity');
         $judge=$this->activity->findById($aid);
         $this->load->model('uploadres_model','uploadres');
-        $info=$this->uploadres->findByPath($judge->address);
+        $info=$this->uploadres->findByPath($judge->resource);
+        print_r($info);
         if($judge==null){
             $result=102;
         }else{
@@ -87,7 +88,7 @@ class Activity extends MY_Controller {
         $data['errcode']=$result;
         $data['data']=array('title' =>$judge->title , 'content' =>$judge->content,'goal' =>$judge->goal,
             'type' =>$judge->type,'theme' =>$judge->theme,'author' =>$judge->author,
-            'author_group' =>$judge->author_group,'res_address'=>$judge->resource,'res_type'=>$info->res_type,'res_name'=>$info->res_name);
+            'author_group' =>$judge->author_group,'res_address'=>$judge->resource,'res_type'=>$info->file_type,'res_name'=>$info->name);
         print_r(json_encode($data));
 
     }
