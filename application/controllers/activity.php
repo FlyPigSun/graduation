@@ -158,7 +158,7 @@ class Activity extends MY_Controller {
                             $sum+=10;
                         }else if($f_style=='沉思型'&&$s_style=='视觉型'&&$res_type=='video'){
                             $sum+=10;
-                        }else if($f_style=='沉思型'&&$s_style=='视觉型'&&$res_type=='video'){
+                        }else if($f_style=='沉思型'&&$s_style=='言语型'&&$res_type=='video'){
                             $sum+=10;
                         }
                     }   
@@ -179,11 +179,11 @@ class Activity extends MY_Controller {
                     $max=$sum;
                     $right_act=$row;
                     }
-                print_r($sum);
+                //print_r($sum);
             }
-            $right[$i]=$right_act;    
+            //$right[$i]=$right_act;    
         }
-        print_r($right);
+        //print_r($right);
     }
 
   
