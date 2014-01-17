@@ -155,52 +155,48 @@ class Activity extends MY_Controller {
         $this->load->model('personal_activity_model','pa');
         $this->load->helper('date');
         $aid=$this->pa->find_aid_teacherPush($sid,date("Y-m-d   H"));
-            foreach ($allactivity as $row) {
-                $max=$sum=0;
-                if($aid->aid==$row->id){
-                    $sum=0;
-                }else{
-                    $act=$this->activity->findById($aid->aid);
-                    similar_text($act->title, $row->title, $percent);
-                    if($percent>90){
-                        $sum+=2;
-                    }else if($percent>50&&$percent<90){
-                        $sum+=1;
+        foreach ($allactivity as $row){
+            $max=$sum=0;
+            if($aid->aid==$row->id){
+                $sum=0;
+            }else{
+                $act=$this->activity->findById($aid->aid);
+                similar_text($act->title, $row->title, $percent);
+                if($percent>90){
+                    $sum+=2;
+                }else if($percent>50&&$percent<90){
+                    $sum+=1;
+                }
+                if($row->resource!==""){   
+                    $this->load->model('testresult_model','testresult');
+                    $f_style=$this->testresult->findBySid($sid)->first_style;
+                    $s_style=$this->testresult->findBySid($sid)->second_style;
+                    $this->load->model('uploadres_model','uploadres');
+                    $res=$this->uploadres->findByPath($row->resource);
+                    $res_type=$res->file_type;
+                    if(strpos($f_style, '活跃型') !== false&&strpos($s_style, '言语型') !== false&&$row->type=='小组合作'){
+                        $sum+=10;
+                    }else if(strpos($f_style, '活跃型') !== false&&strpos($s_style, '视觉型') !== false&&$res_type=='video'){
+                        $sum+=10;
+                    }else if(strpos($f_style, '沉思型') !== false&&strpos($s_style, '言语型') !== false&&$row->type=='小组合作'){
+                        $sum+=10;
+                    }else if(strpos($f_style, '沉思型') !== false&&strpos($s_style, '视觉型') !== false&&$res_type=='video'){
+                        $sum+=10;
                     }
-                    if($row->resource!==""){   
-                        $this->load->model('testresult_model','testresult');
-                        $f_style=$this->testresult->findBySid($sid)->first_style;
-                        $s_style=$this->testresult->findBySid($sid)->second_style;
-                        $this->load->model('uploadres_model','uploadres');
-                        $res=$this->uploadres->findByPath($row->resource);
-                        $res_type=$res->file_type;
-                        if(strpos($f_style, '活跃型') !== false&&strpos($s_style, '言语型') !== false&&$row->type=='小组合作'){
-                            $sum+=10;
-                        }else if(strpos($f_style, '活跃型') !== false&&strpos($s_style, '视觉型') !== false&&$res_type=='video'){
-                            $sum+=10;
-                        }else if(strpos($f_style, '沉思型') !== false&&strpos($s_style, '言语型') !== false&&$row->type=='小组合作'){
-                            $sum+=10;
-                        }else if(strpos($f_style, '沉思型') !== false&&strpos($s_style, '视觉型') !== false&&$res_type=='video'){
-                            $sum+=10;
-                        }
-                    }   
-                    if($act->goal==$row->goal){
-                        $sum+=2;
-                    }
-                    if($act->theme==$row->theme){
-                        $sum+=2;
-                    }
-                    if($act->level==$row->level){
-                        $sum+=2;
-                    }
-                    /*if($act->type==$row->type){
-                        $sum+=2;
-                    }*/
-                    $n=$row; 
-                    $right_act[]=array('sum'=>$sum,'activity'=>$n);
+                }   
+                if($act->goal==$row->goal){
+                    $sum+=2;
+                }
+                if($act->theme==$row->theme){
+                    $sum+=2;
+                }
+                if($act->level==$row->level){
+                    $sum+=2;
+                }
+                $n=$row; 
+                $right_act[]=array('sum'=>$sum,'activity'=>$n);
                 }        
-            }
-        print_r($right_act);
+        }
         foreach ($right_act as $key => $value) {
             $SUM[$key] = $value['sum'];
         }

@@ -165,21 +165,39 @@ class Teacher extends MY_Controller {
     }
 
     public function recommendActivity($aid){
+        $result=0;
         $sid=$this->input->post('sid');
         $t_name=$this->session->userdata('realname');
         $this->load->model('personal_activity_model','pa');
         $this->load->helper('date');
+
         for($i=0;$i<count($sid);$i++){
             $info=$this->pa->find($sid[$i],$aid);
             if($info==null){
                 $this->pa->insert($sid[$i],$aid,$t_name,1,date("Y-m-d   H"));
-            }            
+            }else{
+                $result=104;
+            }           
         }
-        if($i==count($sid)){
-            $result=100;
-        }else{
-            $result=102;
-        }
+
+        if(count($sid)==1){
+            $activity=$this->intelligentPush($sid[0]);
+            for($j=0; $j <count($activity) ; $j++){
+                $info=$this->pa->find($sid[0],$activity[$j]['activity']->id);
+                if($info==null){ 
+                    $this->pa->insert($sid[0],$activity[$j]['activity']->id,$t_name,2,date("Y-m-d   H")); 
+                }else{
+                    $result=104;
+                }    
+            }
+        }       
+        if($result!=104){
+            if($i==count($sid)){
+                $result=100;
+            }else{
+                $result=102;
+            }
+        }    
         $data['errcode']=$result;
         print_r(json_encode($data));
 
@@ -267,6 +285,70 @@ class Teacher extends MY_Controller {
         print_r(json_encode($data));
 
     }
+
+    public function intelligentPush($sid){
+        $author_group=$this->session->userdata('grade');
+        $this->load->model('activity_model','activity');
+        $allactivity=$this->activity->findAll($author_group);
+        $allactivity=(array)$allactivity;
+        $this->load->model('personal_activity_model','pa');
+        $this->load->helper('date');
+        $aid=$this->pa->find_aid_teacherPush($sid,date("Y-m-d   H"));
+        foreach ($allactivity as $row){
+            $max=$sum=0;
+            if($aid->aid==$row->id){
+                $sum=0;
+            }else{
+                $act=$this->activity->findById($aid->aid);
+                similar_text($act->title, $row->title, $percent);
+                if($percent>90){
+                    $sum+=2;
+                }else if($percent>50&&$percent<90){
+                    $sum+=1;
+                }
+                if($row->resource!==""){   
+                    $this->load->model('testresult_model','testresult');
+                    $f_style=$this->testresult->findBySid($sid)->first_style;
+                    $s_style=$this->testresult->findBySid($sid)->second_style;
+                    $this->load->model('uploadres_model','uploadres');
+                    $res=$this->uploadres->findByPath($row->resource);
+                    $res_type=$res->file_type;
+                    if(strpos($f_style, '活跃型') !== false&&strpos($s_style, '言语型') !== false&&$row->type=='小组合作'){
+                        $sum+=10;
+                    }else if(strpos($f_style, '活跃型') !== false&&strpos($s_style, '视觉型') !== false&&$res_type=='video'){
+                        $sum+=10;
+                    }else if(strpos($f_style, '沉思型') !== false&&strpos($s_style, '言语型') !== false&&$row->type=='小组合作'){
+                        $sum+=10;
+                    }else if(strpos($f_style, '沉思型') !== false&&strpos($s_style, '视觉型') !== false&&$res_type=='video'){
+                        $sum+=10;
+                    }
+                }   
+                if($act->goal==$row->goal){
+                    $sum+=2;
+                }
+                if($act->theme==$row->theme){
+                    $sum+=2;
+                }
+                if($act->level==$row->level){
+                    $sum+=2;
+                }
+                $n=$row; 
+                $right_act[]=array('sum'=>$sum,'activity'=>$n);
+                }        
+        }
+        foreach ($right_act as $key => $value) {
+            $SUM[$key] = $value['sum'];
+        }
+        array_multisort($SUM,SORT_DESC, $right_act); 
+        if(count($right_act)>2){
+            for($i=0;$i<3;$i++){
+                $activity[$i]=$right_act[$i];
+            }
+        }else{
+            $activity=$right_act;
+        }
+        return $activity;
+    }    
 
    
 }
