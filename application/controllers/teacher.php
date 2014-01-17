@@ -169,6 +169,7 @@ class Teacher extends MY_Controller {
         $sid=$this->input->post('sid');
         $t_name=$this->session->userdata('realname');
         $this->load->model('personal_activity_model','pa');
+        $this->load->model('activity_model','activity');
         $this->load->helper('date');
 
         for($i=0;$i<count($sid);$i++){
