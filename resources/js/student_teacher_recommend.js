@@ -7,8 +7,6 @@ activityCircle.student.teacherRecommend = {
 		activityCircle.student.teacherRecommend.refresh();
 	},
     refresh : function(){
-        $('.student-teacher-recommend-undone-center').html('');
-        $('.student-teacher-recommend-done-center').html('');
         $.ajax({
             url : '/student/myActivity',
             type : 'post',
@@ -19,6 +17,8 @@ activityCircle.student.teacherRecommend = {
                 var res = responseText;
                 res = $.parseJSON(res);
                 var data = res.data;
+                $('.student-teacher-recommend-undone-center').html('');
+                $('.student-teacher-recommend-done-center').html('');
                 $.each(data,function(key,item){
                     var tpl = $('#student-teacher-recommend-activity-template').html();
                     var htmlStr = Mustache.to_html(tpl, item).replace(/^\s*/mg, '');

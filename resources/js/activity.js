@@ -13,6 +13,7 @@ activityCircle.activity = {
 		$('.activity-btn:eq(0)').on('click',activityCircle.activity.pushActivity);
 	},
 	refresh : function(){
+		$('.activity-student-checkbox-area').html('');
 		var aid = $('.acitvity-aid').html();
 		$.ajax({
 			url : '/activity/findByAid/'+aid,
