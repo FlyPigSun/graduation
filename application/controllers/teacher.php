@@ -165,7 +165,7 @@ class Teacher extends MY_Controller {
     }
 
     public function recommendActivity($aid){
-        $result=0;
+        $result=100;
         $sid=$this->input->post('sid');
         $t_name=$this->session->userdata('realname');
         $this->load->model('personal_activity_model','pa');
@@ -191,13 +191,12 @@ class Teacher extends MY_Controller {
                 }else{
                     $result=104;
                 }    
+            }
         }       
         if($result!=104||$n>0){
-                $result=100;
-            }else{
-                $result=102;
-            }
-        }    
+            $result=100;
+        }
+            
         $data['errcode']=$result;
         print_r(json_encode($data));
 
