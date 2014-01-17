@@ -173,8 +173,10 @@ class Teacher extends MY_Controller {
 
         for($i=0;$i<count($sid);$i++){
             $info=$this->pa->find($sid[$i],$aid);
+            $n=0;
             if($info==null){
                 $this->pa->insert($sid[$i],$aid,$t_name,1,date("Y-m-d   H"));
+                $n+=1;
             }else{
                 $result=104;
             }           
@@ -189,10 +191,8 @@ class Teacher extends MY_Controller {
                 }else{
                     $result=104;
                 }    
-            }
         }       
-        if($result!=104){
-            if($i==count($sid)){
+        if($result!=104||$n>0){
                 $result=100;
             }else{
                 $result=102;
