@@ -1,0 +1,51 @@
+.student-teacher-recommend-center{
+	min-height: 450px;
+	padding: 10px 0px;
+	width: 700px;
+	margin: 10px auto;
+}
+.student-teacher-recommend-top{
+	font-size: 25px;
+	border-bottom: 2px solid #ccc;
+	color: #777;
+	line-height: 40px;
+}
+.student-teacher-recommend-undone-center{
+	min-height: 250px;
+}
+.student-teacher-recommend-done-center{
+	min-height: 250px;
+}
+.student-teacher-recommend-activity-infobox{
+	position: relative;
+	width: 160px;
+	height: 170px;
+	background-color: #ccc;
+	float: left;
+	margin: 15px 35px 15px 35px;
+	padding: 10px;
+	background: #f8f8ef;
+	cursor: pointer;
+	text-align: center;
+}
+.student-teacher-recommend-activity-title{
+	text-align: center;
+	font-size: 16px;
+	font-weight: 900;
+	margin: 5px;
+}
+.student-teacher-recommend-activity-goal{
+	text-align: center;
+	margin: 20px 0px;
+}
+.student-teacher-recommend-activity-member{
+	text-align: center;
+	margin: 20px;
+}
+a .student-teacher-recommend-activity-infobox{
+	color: #000;
+}
+a .student-teacher-recommend-activity-infobox:hover{
+	box-shadow: 4px 4px 3px 0px rgba(204,204,204,0.4);
+	color: #000;
+}

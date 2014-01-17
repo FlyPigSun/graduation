@@ -1,0 +1,30 @@
+<script id="student-teacher-recommend-template" type="text/html">
+	<div class="student-teacher-recommend-center">
+	    <div class="student-teacher-recommend-undone-area">
+	    	<div class="student-teacher-recommend-top">未完成活动</div>
+	    	<div class="student-teacher-recommend-undone-center"></div>
+	    </div>
+	    <div class="student-teacher-recommend-done-area">
+	    	<div class="student-teacher-recommend-top">已经完成活动</div>
+	    	<div class="student-teacher-recommend-done-center"></div>
+	    </div>
+	</div>
+</script>
+
+<script id="student-teacher-recommend-activity-template" type="text/html">
+    <a href="" target="_blank">
+        <div class="student-teacher-recommend-activity-infobox">
+            <div class="student-teacher-recommend-activity-infobox-id activitycircle-hide">
+                {{ '{{' }} id {{ '}}' }}
+            </div>
+            <div class="student-teacher-recommend-activity-title">{{ '{{' }} title {{ '}}' }}</div>
+            <div class="student-teacher-recommend-activity-member">
+                参与人数：{{ '{{' }} student_count {{ '}}' }}人
+            </div>
+            <div class="student-teacher-recommend-activity-goal">
+                活动目标：{{ '{{' }} goal {{ '}}' }}
+            </div>
+            活动难度：<span class="student-teacher-recommend-activity-level-{{ '{{' }} id {{ '}}' }}"></span>
+        </div>
+    </a>
+</script>
