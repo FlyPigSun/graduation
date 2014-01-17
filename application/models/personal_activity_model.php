@@ -40,7 +40,7 @@ class Personal_Activity_Model  extends  CI_Model{
         $this->load->database();
         $sql="select s.id,s.realname,s.studentnumber,s.gender,a.* ,pa.is_finish from student_tb s
               inner join personal_activity_tb pa on s.id=pa.sid
-              inner join activity_tb a on pa.aid=a.id where pa.sid=?";
+              inner join activity_tb a on pa.aid=a.id where pa.sid=? and is_push=1";
         $query=$this->db->query($sql,array($sid));
         $data=$query->result();
         $this->db->close();
