@@ -1,6 +1,7 @@
 input,button,select,textarea{outline:none}
 body{
 	word-break:break-all;
+	overflow-y:scroll; 
 }
 .activitycircle-hide{
 	display: none;

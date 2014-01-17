@@ -9,13 +9,6 @@ $(document).ready(function(){
 activityCircle.studentIndexPage = {
 	initialize : function(){
 		var me = this;
-		$('body').height($(window).height());
-		$(window).resize(function(){
-			$('body').height($(window).height());
-			if($('body').height()<700){
-				$('body').height(700);
-			}
-		});
 		$('.student-index-topbtn').on('click',me.changeTab);
 		var notfirst = $('.notfirst').html();
 		if(notfirst == 0){
@@ -44,7 +37,8 @@ activityCircle.studentIndexPage = {
 				break;
 			case 'teacher_recommend':
 				$('.student-index-centerarea').children('div').hide();
-				$('.student-index-teacherrecomment-area').show();
+				$('.student-index-teacherrecommend-area').show();
+				activityCircle.studentIndexPage.setTeacherRecommendHtml();
 				break;
 			case 'group_activity':
 				$('.student-index-centerarea').children('div').hide();
@@ -82,9 +76,14 @@ activityCircle.studentIndexPage = {
 		})
 	},
 	setMessagesHtml : function(){
-		var html = $('#yike-messages-center-template').html();
+		var html = $('#activitycircle-messages-center-template').html();
 		$('.student-index-message-area').html(html);
 		activityCircle.student.messages.initialize();
+	},
+	setTeacherRecommendHtml : function(){
+		var html = $('#student-teacher-recommend-template').html();
+		$('.student-index-teacherrecommend-area').html(html);
+		activityCircle.student.teacherRecommend.initialize();
 	}
 }
 

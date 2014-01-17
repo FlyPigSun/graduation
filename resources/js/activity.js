@@ -49,7 +49,7 @@ activityCircle.activity = {
 	                }
                     $('.activity-student-area').html('');
                     for (var i = 0; i < data.sInfo.length; i++) {
-                    	var studenthtml = '<a>'+data.sInfo[i].name+'</a>'
+                    	var studenthtml = '<a class="activity-student-name">'+data.sInfo[i].name+'</a>'
                     	$('.activity-student-area').append(studenthtml);
                     };
 				}
@@ -113,6 +113,9 @@ activityCircle.activity = {
 				res = $.parseJSON(res);
 				if(res.errcode == 100){
 					alert('推送成功');
+					activityCircle.activity.refresh();
+				}else if(res.errcode == 104){
+					alert('您已经给这名同学推送过该活动了');
 				}else{
 					alert('推送失败');
 				}

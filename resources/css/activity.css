@@ -44,3 +44,7 @@ body{
 .activity-btn{
 	margin: 20px 160px;
 }
+.activity-student-name{
+	cursor: pointer;
+	margin-right: 20px;
+}
