@@ -31,7 +31,7 @@ class Activity_Model  extends  CI_Model{
 
     public function findAll($author_group){
         $this->load->database();
-        $sql="select * from activity_tb where author_group=? order by id desc";
+        $sql="select * from activity_tb where author_group=? order by type desc";
         $query=$this->db->query($sql,array($author_group));
         $data=$query->result();
         $this->db->close();

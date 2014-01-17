@@ -192,7 +192,9 @@ class Teacher extends MY_Controller {
                     $result=104;
                 }    
             }
-        }       
+        }
+        $count=$this->pa->studentCount($aid);
+        $this->activity->update_studentcount($aid,$count);       
         if($result!=104||$n>0){
             $result=100;
         }
