@@ -164,15 +164,15 @@ class Teacher extends MY_Controller {
         print_r(json_encode($data));
     }
 
-    public function recommendActivity(){
-        $sid=array($this->input->post('sid'));
-        $aid=$this->input->post('aid');
+    public function recommendActivity($aid){
+        $sid=$this->input->post('sid');
         $t_name=$this->session->userdata('realname');
         $this->load->model('personal_activity_model','pa');
+        $this->load->helper('date');
         for($i=0;$i<count($sid);$i++){
             $info=$this->pa->find($sid[$i],$aid);
             if($info==null){
-                $this->pa->insert($sid[$i],$aid,$t_name,1);
+                $this->pa->insert($sid[$i],$aid,$t_name,1,date("Y-m-d   H"));
             }            
         }
         if($i==count($sid)){

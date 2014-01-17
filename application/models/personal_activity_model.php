@@ -15,10 +15,10 @@ class Personal_Activity_Model  extends  CI_Model{
     var $t_name='';
     var $is_finish='';
     
-    public function insert($sid,$aid,$t_name,$is_push){
+    public function insert($sid,$aid,$t_name,$is_push,$date){
         $this->load->database();
-        $sql="insert into personal_activity_tb value(null,?,?,null,null,null,?,0,?)";
-        $query=$this->db->query($sql,array($sid,$aid,$t_name,$is_push));
+        $sql="insert into personal_activity_tb value(null,?,?,null,null,null,?,0,?,?)";
+        $query=$this->db->query($sql,array($sid,$aid,$t_name,$is_push,$date));
         $this->db->close();
         return true;
 
@@ -105,11 +105,16 @@ class Personal_Activity_Model  extends  CI_Model{
        
     }
     //找到所有教师推荐活动的id
-    public function find_aid_teacherPush($sid){
+    public function find_aid_teacherPush($sid,$date){
         $this->load->database();
-        $sql="select * from personal_activity_tb where sid=? and is_push=1";
-        $query=$this->db->query($sql,array($sid));
-        $data=$query->result();
+        $sql="select * from personal_activity_tb where sid=? and is_push=1 and date=?";
+        $query=$this->db->query($sql,array($sid,$date));
+        if($query->num_rows()>0){
+            $data=$query->row();
+        }else {
+            $data=null;
+        }
+        $this->db->close();
         $this->db->close();
         return $data;
     }

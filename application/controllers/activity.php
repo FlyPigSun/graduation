@@ -153,15 +153,14 @@ class Activity extends MY_Controller {
         $allactivity=$this->activity->findAll($author_group);
         $allactivity=(array)$allactivity;
         $this->load->model('personal_activity_model','pa');
-        $aid=$this->pa->find_aid_teacherPush($sid);
-        for($i=0;$i<count($aid);$i++){
+        $this->load->helper('date');
+        $aid=$this->pa->find_aid_teacherPush($sid,date("Y-m-d   H"));
             foreach ($allactivity as $row) {
                 $max=$sum=0;
-                $right_act=$row;
-                if($aid[$i]->aid==$row->id){
+                if($aid->aid==$row->id){
                     $sum=0;
                 }else{
-                    $act=$this->activity->findById($aid[$i]->aid);
+                    $act=$this->activity->findById($aid->aid);
                     similar_text($act->title, $row->title, $percent);
                     if($percent>90){
                         $sum+=2;
@@ -175,13 +174,13 @@ class Activity extends MY_Controller {
                         $this->load->model('uploadres_model','uploadres');
                         $res=$this->uploadres->findByPath($row->resource);
                         $res_type=$res->file_type;
-                        if($f_style=='活跃型'&&$s_style=='视觉型'&&$res_type=='video'){
+                        if(strpos($f_style, '活跃型') !== false&&strpos($s_style, '言语型') !== false&&$row->type=='小组合作'){
                             $sum+=10;
-                        }else if($f_style=='活跃型'&&$s_style=='言语型'&&$res_type=='video'){
+                        }else if(strpos($f_style, '活跃型') !== false&&strpos($s_style, '视觉型') !== false&&$res_type=='video'){
                             $sum+=10;
-                        }else if($f_style=='沉思型'&&$s_style=='视觉型'&&$res_type=='video'){
+                        }else if(strpos($f_style, '沉思型') !== false&&strpos($s_style, '言语型') !== false&&$row->type=='小组合作'){
                             $sum+=10;
-                        }else if($f_style=='沉思型'&&$s_style=='言语型'&&$res_type=='video'){
+                        }else if(strpos($f_style, '沉思型') !== false&&strpos($s_style, '视觉型') !== false&&$res_type=='video'){
                             $sum+=10;
                         }
                     }   
@@ -194,18 +193,28 @@ class Activity extends MY_Controller {
                     if($act->level==$row->level){
                         $sum+=2;
                     }
-                    if($act->type==$row->type){
+                    /*if($act->type==$row->type){
                         $sum+=2;
-                    }    
-                }
-                $map[]=array('sum'=>$sum,'activity'=>$row);
-                    
-                
+                    }*/
+                    $n=$row; 
+                    $right_act[]=array('sum'=>$sum,'activity'=>$n);
+                }        
             }
-        print_r($map);    
+        print_r($right_act);
+        foreach ($right_act as $key => $value) {
+            $SUM[$key] = $value['sum'];
         }
-        
+        array_multisort($SUM,SORT_DESC, $right_act); 
+        if(count($right_act)>2){
+            for($i=0;$i<3;$i++){
+                $activity[$i]=$right_act[$i];
+            }
+        }else{
+            $activity=$right_act;
+        }
+        print_r($activity);
     }
+        
 
   
     
