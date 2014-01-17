@@ -10,6 +10,7 @@ $(document).ready(function(){
 activityCircle.activity = {
 	initialize : function(){
 		activityCircle.activity.refresh();
+		$('.activity-btn:eq(0)').on('click',activityCircle.activity.pushActivity);
 	},
 	refresh : function(){
 		var aid = $('.acitvity-aid').html();
@@ -51,6 +52,69 @@ activityCircle.activity = {
                     	var studenthtml = '<a>'+data.sInfo[i].name+'</a>'
                     	$('.activity-student-area').append(studenthtml);
                     };
+				}
+			}
+		});
+		$.ajax({
+			url : '/teacher/showStudents',
+			type : 'post',
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				res = $.parseJSON(res);
+				var data = res.data;
+				$.each(data,function(key,item){
+					var html = 
+						'<div class="activity-student-checkbox-item">'+
+                    		'<input type="checkbox" class="activity-student-checkbox" value="'+item.id+'"/>'+
+                    			item.realname+
+                		'</div>';
+                	$('.activity-student-checkbox-area').prepend(html);
+				});
+				$('.activity-student-checkbox-all').on('click',activityCircle.activity.pushAll);
+			}
+		});
+	},
+	pushAll : function(){
+		var length = 
+			$('.activity-student-checkbox-area').find('.activity-student-checkbox').length; 
+		if($(this).is(':checked'))
+			for(var i = 0;i<length;i++){
+				$('.activity-student-checkbox-area').find('.activity-student-checkbox:eq('+i+')')[0].checked = true;
+			}
+		else
+			for(var i = 0;i<length;i++){
+				$('.activity-student-checkbox-area').find('.activity-student-checkbox:eq('+i+')')[0].checked = false;
+			}
+	},
+	pushActivity : function(){
+		var studentArray = [];
+		var length = 
+			$('.activity-student-checkbox-area').find('.activity-student-checkbox').length;
+		var aid = $('.acitvity-aid').html();
+		for(var i = 0;i<length;i++){
+			if($('.activity-student-checkbox-area').find('.activity-student-checkbox:eq('+i+')').is(':checked')){
+				studentArray.push($('.activity-student-checkbox-area').find('.activity-student-checkbox:eq('+i+')').val());
+			}
+		}
+		$.ajax({
+			url : '/teacher/recommendActivity/'+aid,
+			type : 'post',
+			data : {
+				sid : studentArray
+			},
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				res = $.parseJSON(res);
+				if(res.errcode == 100){
+					alert('推送成功');
+				}else{
+					alert('推送失败');
 				}
 			}
 		});

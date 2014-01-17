@@ -34,3 +34,13 @@ body{
 .activity-star{
 	float: left;
 }
+.activity-student-checkbox{
+	margin: 0px 5px !important;
+}
+.activity-student-checkbox-item{
+	float: left;
+	margin: 0px 10px;
+}
+.activity-btn{
+	margin: 20px 160px;
+}
