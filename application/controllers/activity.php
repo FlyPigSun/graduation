@@ -217,12 +217,20 @@ class Activity extends MY_Controller {
             'resource' =>$info->resource ,'author' =>$info->author ,'author_id' =>$info->author_id,
             'author_group' =>$info->author_group ,'student_count' =>$info->student_count,'content'=>$info->content,'role'=>$role));
     }
-        
 
-  
-    
-
-  
-
+    public function studentAnswer(){
+        $sid=$this->session->userdata('sid');
+        $s_answer=$this->input->post('answer');
+        $s_annex='';
+        $this->load->model('personal_activity_model','pa');
+        $judge=$this->pa->s_update($sid,$s_answer,$s_annex);
+        if($judge==true){
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }
 }
 ?>

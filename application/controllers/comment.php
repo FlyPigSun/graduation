@@ -43,6 +43,8 @@ class Comment extends MY_Controller {
     public function showComment($commented_aid){
         $this->load->model('comment_model','comment');
         $info=$this->comment->findAll($commented_aid);
+        $result=100;
+        $dat['errcode']=$result;
         $data['data']=$info;
         print_r(json_encode($data));
     }
