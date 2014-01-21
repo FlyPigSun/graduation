@@ -43,31 +43,36 @@ class Comment extends MY_Controller {
 
     public function showComment($commented_aid){
         $this->load->model('comment_model','comment');
+        $role=$this->session->userdata('role');
+        if($role=='student'){
+            $reviewer_sid=$this->session->userdata('sid');
+            $reviewer_tid=-1;
+        }else{
+            $reviewer_tid=$this->session->userdata('tid');
+            $reviewer_sid=-1;
+        }
         $info=$this->comment->findAll($commented_aid);
         $result=100;
+        for($i=0;$i<count($info);$i++){
+            $info[$i]=(array)$info[$i];
+            if($info[$i]['reviewer_sid']==$reviewer_sid||$info[$i]['reviewer_tid']==$reviewer_tid){
+                $delete = array('delete' =>1);
+            }else{
+                $delete = array('delete' =>0);
+            }
+            $info[$i]=array_merge($info[$i],$delete);
+        }
         $data['errcode']=$result;
         $data['data']=$info;
         print_r(json_encode($data));
     }
     public function deleteComment($id){
         $this->load->model('comment_model','comment');
-        $role=$this->session->userdata('role');
-        if($role=='student'){
-            $reviewer_id=$this->session->userdata('sid');
-            $info=$this->comment->findById($id)->reviewer_sid;
+        $judge=$this->comment->delete($id);    
+        if($judge==true){
+            $result=100;
         }else{
-            $reviewer_id=$this->session->userdata('tid');
-            $info=$this->comment->findById($id)->reviewer_tid;
-        }
-        $is_delete=0;
-        if($info===$reviewer_id){
-        $judge=$this->comment->delete($id);
-            $is_delete=1;
-            if($judge==true){
-                $result=100;
-            }else{
-                $result=102;
-            }
+            $result=102;
         }
 
         $data['errcode']=$result;
