@@ -40,6 +40,7 @@ class Student_Model  extends  CI_Model{
             $this->class=$row->class;
             $this->notfirst=$row->notfirst;
             $this->mood=$row->mood;
+            $this->realname=$row->realname;
             $sql="update student_tb set logintime=?,mood=? where id=?";
             $this->db->query($sql, array($time,$mood,$this->id));
             $this->db->close();  
