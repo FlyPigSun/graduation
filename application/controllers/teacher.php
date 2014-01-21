@@ -34,7 +34,7 @@ class Teacher extends MY_Controller {
             $this->teacher->login($username,$password,date("Y-m-d   H:i:s"));
             $arr=array("tid"=>$this->teacher->id,"username"=>$username,
             "time"=>$this->teacher->logintime,"password"=>$password,
-            "grade"=>$grade,"realname"=>$realname);
+            "grade"=>$grade,"realname"=>$realname,"role"=>'teacher');
             $this->session->set_userdata($arr);
             $result=100;
         }else{
@@ -182,15 +182,16 @@ class Teacher extends MY_Controller {
                 $result=104;
             }           
         }
-
-        if(count($sid)==1){
+        if(count($sid)==1&&$this->activity->count()>1){
             $activity=$this->intelligentPush($sid[0]);
-            for($j=0; $j <count($activity) ; $j++){
-                $info=$this->pa->find($sid[0],$activity[$j]['activity']->id);
-                if($info==null){ 
-                    $this->pa->insert($sid[0],$activity[$j]['activity']->id,$t_name,2,date("Y-m-d   H")); 
-                }else{
-                    $result=104;
+            if($activity!=''){
+                for($j=0; $j <count($activity) ; $j++){
+                    $info=$this->pa->find($sid[0],$activity[$j]['activity']->id);
+                    if($info==null){ 
+                        $this->pa->insert($sid[0],$activity[$j]['activity']->id,$t_name,2,date("Y-m-d   H")); 
+                    }else{
+                        $result=104;
+                    }
                 }    
             }
         }
@@ -235,7 +236,7 @@ class Teacher extends MY_Controller {
         $this->twig->render('activity.html.twig', array('aid' =>$info->id , 'title' =>$info->title ,
             'goal' =>$info->goal ,'type' =>$info->type ,'level' =>$info->level ,'theme' =>$info->theme ,
             'resource' =>$info->resource ,'author' =>$info->author ,'author_id' =>$info->author_id,
-            'author_group' =>$info->author_group ,'student_count' =>$info->student_count,'content'=>$info->content));
+            'author_group' =>$info->author_group ,'student_count' =>$info->student_count,'content'=>$info->content,'role'=>'teacher'));
     }
 
     public function classAction(){
@@ -350,7 +351,33 @@ class Teacher extends MY_Controller {
             $activity=$right_act;
         }
         return $activity;
-    }    
+    }
+    public function t_deleteComment_s($commented_aid){
+        $commented_sid=$this->input->post('commented_sid');
+        $reviewer_tid=$this->session->userdata('tid');
+        $this->load->model('comment_model','comment');
+        $judge=$this->comment->t_delete_s($reviewer_tid,$commented_sid,$commented_aid);
+        if($judge==true){
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }
+    public function t_deleteComment_t($commented_aid){
+        $commented_tid=$this->input->post('commented_tid');
+        $reviewer_tid=$this->session->userdata('tid');
+        $this->load->model('comment_model','comment');
+        $judge=$this->comment->t_delete_s($reviewer_tid,$commented_tid,$commented_aid);
+        if($judge==true){
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }        
 
    
 }

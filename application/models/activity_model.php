@@ -57,6 +57,18 @@ class Activity_Model  extends  CI_Model{
         $this->db->close();
 
     }
+    public function count(){
+       $this->load->database();
+       $sql="select count(*) as a from activity_tb";
+       $query=$this->db->query($sql) ;
+       if($query->num_rows()>0){
+            $data=$query->row();
+        }else {
+            $data=null;
+        }
+        $this->db->close();
+        return $data->a;
+    }
 
 
 }?>

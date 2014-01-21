@@ -2,9 +2,6 @@
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Activity extends MY_Controller {
-    public function activityAction(){
-
-    }
 
     public function addActivity(){
         $this->load->model('uploadres_model','uploadres');
@@ -209,6 +206,16 @@ class Activity extends MY_Controller {
             $activity=$right_act;
         }
         print_r($activity);
+    }
+
+    public function activityAction($aid){
+        $role=$this->session->userdata('role');
+        $this->load->model('activity_model','activity');
+        $info=$this->activity->findById($aid);
+        $this->twig->render('activity.html.twig', array('aid' =>$info->id , 'title' =>$info->title ,
+            'goal' =>$info->goal ,'type' =>$info->type ,'level' =>$info->level ,'theme' =>$info->theme ,
+            'resource' =>$info->resource ,'author' =>$info->author ,'author_id' =>$info->author_id,
+            'author_group' =>$info->author_group ,'student_count' =>$info->student_count,'content'=>$info->content,'role'=>$role));
     }
         
 

@@ -400,6 +400,34 @@ class Student extends MY_Controller {
         print_r(json_encode($data));
     }
 
+    public function s_deleteComment_t($commented_aid){
+        $commented_tid=$this->input->post('commented_tid');
+        $reviewer_sid=$this->session->userdata('sid');
+        $this->load->model('comment_model','comment');
+        $judge=$this->comment->t_delete_s($reviewer_sid,$commented_tid,$commented_aid);
+        if($judge==true){
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }
+    public function s_deleteComment_s($commented_aid){
+        $commented_sid=$this->input->post('commented_sid');
+        $reviewer_sid=$this->session->userdata('sid');
+        $this->load->model('comment_model','comment');
+        $judge=$this->comment->t_delete_s($reviewer_sid,$commented_sid,$commented_aid);
+        if($judge==true){
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+    }
+     
+
   
 
 }
