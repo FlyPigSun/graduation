@@ -15,6 +15,7 @@
     <link href="/resources/css/activity.css" rel="stylesheet"/>
 </head>
 <body>
+    <div class="activity-role activitycircle-hide">{{ role }}</div>
     <div class="acitvity-aid activitycircle-hide">{{ aid }}</div>
     <div class="acitvity-main">
         <div class="activity-top-area">
@@ -50,18 +51,39 @@
                 <div class="activity-student-area"></div>
                 <div class="clear"></div>
             </div>
-            <div style="margin:10px 0px;">
-                <span class="activity-tips">
-                    将该活动推送给：
-                </span>
-                <div class="activity-student-checkbox-item">
-                    <input type="checkbox" class="activity-student-checkbox activity-student-checkbox-all" value="all" />全班
-                </div>
-                <div class="activity-student-checkbox-area">
+            {% if role == 'teacher' %}
+                <div style="margin:10px 0px;">
+                    <span class="activity-tips">
+                        将该活动推送给：
+                    </span>
+                    <div class="activity-student-checkbox-item">
+                        <input type="checkbox" class="activity-student-checkbox activity-student-checkbox-all" value="all" />全班
+                    </div>
+                    <div class="activity-student-checkbox-area">
+                        <div class="clear"></div>
+                    </div>
+                    <a class="btn btn-primary btn-sm activity-push-btn" role="button">
+                        确认推送
+                    </a>
                     <div class="clear"></div>
                 </div>
-                <a class="btn btn-primary btn-sm activity-btn" role="button">确认推送</a>
-                <div class="clear"></div>
+            {% else %}
+            <div style="margin:10px 0px;">
+                答题区域：
+                <textarea class="activity-answer-textarea" placeholder="请在此处填写您的答案"></textarea>
+                <a class="btn btn-primary btn-sm activity-answer-btn" role="button">
+                    答题
+                </a>
+            </div>
+            {% endif %}
+            <div class="activity-comment-area">
+                <div class="activity-big-tip">
+                    讨论区
+                </div>
+                <textarea class="activity-comment-textarea" placeholder="请在此处填写您的评论"></textarea>
+                <a class="btn btn-primary btn-sm activity-sendcomment-btn" role="button">
+                    发布评论
+                </a>
             </div>
         </div>
     </div>

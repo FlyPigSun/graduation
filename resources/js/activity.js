@@ -10,7 +10,10 @@ $(document).ready(function(){
 activityCircle.activity = {
 	initialize : function(){
 		activityCircle.activity.refresh();
-		$('.activity-btn:eq(0)').on('click',activityCircle.activity.pushActivity);
+		$('.activity-push-btn').on('click',
+			activityCircle.activity.pushActivity);
+		$('.activity-sendcomment-btn').on('click',
+			activityCircle.activity.sendComment);
 	},
 	refresh : function(){
 		$('.activity-student-checkbox-area').html('');
@@ -34,7 +37,7 @@ activityCircle.activity = {
                         noRatedMsg: '活动难度'
                     });
                     if(data.res_info == ''){
-                    	$('.activity-resource-area').remove();
+                    	$('.activity-resource-area').html('无');
                     }else{
 	                    if(data.res_info.file_type == 'audio'){
 	                    	var html = '<div style="margin:5px">'+data.res_info.name+'</div>'+
@@ -119,6 +122,30 @@ activityCircle.activity = {
 					alert('您已经给这名同学推送过该活动了');
 				}else{
 					alert('推送失败');
+				}
+			}
+		});
+	},
+	sendComment : function(){
+		var aid = $('.acitvity-aid').html();
+		var comment = $('.activity-comment-textarea').val();
+		$.ajax({
+			url : '/comment/addcomment',
+			type : 'post',
+			data : {
+				commented_aid : aid,
+				comment : comment
+			},
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				res = $.parseJSON(res);
+				if(res.errcode == 100){
+					alert('评论发送成功');
+				}else if(res.errcode == 104){
+					alert('评论发送失败');
 				}
 			}
 		});
