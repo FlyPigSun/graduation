@@ -80,6 +80,7 @@ activityCircle.activity = {
 				$('.activity-student-checkbox-all').on('click',activityCircle.activity.pushAll);
 			}
 		});
+		activityCircle.activity.getAllComment();
 	},
 	pushAll : function(){
 		var length = 
@@ -128,7 +129,7 @@ activityCircle.activity = {
 	},
 	sendComment : function(){
 		var aid = $('.acitvity-aid').html();
-		var comment = $('.activity-comment-textarea').val();
+		var comment = encodeURIComponent($('.activity-comment-textarea').val());
 		$.ajax({
 			url : '/comment/addcomment',
 			type : 'post',
@@ -144,10 +145,92 @@ activityCircle.activity = {
 				res = $.parseJSON(res);
 				if(res.errcode == 100){
 					alert('评论发送成功');
+					$('.activity-comment-textarea').val('');
+					activityCircle.activity.getAllComment();
 				}else if(res.errcode == 104){
 					alert('评论发送失败');
 				}
 			}
 		});
-	}
+	},
+	getAllComment : function(){
+		$('.activity-comment-center-area').html('');
+		var aid = $('.acitvity-aid').html();
+		$.ajax({
+			url : '/comment/showComment/'+aid,
+			type : 'post',
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				res = $.parseJSON(res);
+				var data = res.data;
+				if(res.errcode == 100){
+                	$.each(data,function(key,item){
+                		var tpl = $('#activity_comment_template').html();
+                    	var htmlStr = Mustache.to_html(tpl, item).replace(/^\s*/mg, '');
+                    	$('.activity-comment-center-area').append(htmlStr);
+                    	$('.yike-teacher-detail-comment-reply-btn').on('click',
+                    		activityCircle.activity.showReplayArea);
+                	});
+                	$('.yike-teacher-detail-comment-reply-btn').on('click',activityCircle.activity.showCommentReply);
+	                $('.yike-teacher-detail-send-reply-btn').on('click',activityCircle.activity.sendCommentReply);
+	                $('.yike-teacher-detail-comment-delete-btn').on('click',activityCircle.activity.deleteComment);
+					}
+			}
+		});
+	},
+	showReplayArea : function(){
+		$(this).siblings('.yike-teacher-detail-comment-reply-area').show();
+	},
+	sendCommentReply : function(){
+		var aid = $('.acitvity-aid').html();
+        var targetname =$(this).siblings('.yike-teacher-detail-comment-title').find('span').html()
+        var comment = '回复'+targetname+'：'+$(this).siblings('textarea').val();
+        comment = encodeURIComponent(comment);
+        $.ajax({
+            url : '/comment/addcomment',
+            type : 'post',
+            data : {
+            	commented_aid : aid,
+                comment : comment
+            }, 
+            headers:{
+                'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+            },
+            success : function(responseText){
+                var res = responseText;
+                res = $.parseJSON(res);
+                if(res.errcode==100){
+                    alert('信息发送成功');
+                    activityCircle.activity.getAllComment();
+                }
+                else{
+                    alert('信息发送失败');
+                }
+            }
+        });
+    },
+    deleteComment : function(){
+        var cid = $(this).siblings('.yike-teacher-detail-comment-cid').html();
+        $.ajax({
+            url : '/comment/deleteComment/'+cid,
+            type : 'post',
+            headers:{
+                'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+            },
+            success : function(responseText){
+                var res = responseText;
+                res = $.parseJSON(res);
+                if(res.errcode==100){
+                    alert('信息删除成功');
+                   activityCircle.activity.getAllComment();
+                }
+                else{
+                    alert('信息删除失败');
+                }
+            }
+        });
+    }
 }

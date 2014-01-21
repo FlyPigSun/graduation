@@ -8,6 +8,7 @@
     <script src="/resources/js/jquery.md5.js"></script>
     <script src="/resources/js/bootstrap.js"></script>
     <script src="/resources/js/jquery.raty.js"></script>
+    <script src="/resources/js/mustache.js"></script>
     <script src="/resources/js/base.js"></script>
     <script src="/resources/js/activity.js"></script>
     <link href="/resources/css/bootstrap.css" rel="stylesheet"/>
@@ -76,7 +77,7 @@
                 </a>
             </div>
             {% endif %}
-            <div class="activity-comment-area">
+            <div class="activity-comment-box">
                 <div class="activity-big-tip">
                     讨论区
                 </div>
@@ -84,7 +85,35 @@
                 <a class="btn btn-primary btn-sm activity-sendcomment-btn" role="button">
                     发布评论
                 </a>
+                <div class="activity-comment-center-area">
+                </div>
             </div>
         </div>
     </div>
 </body>
+
+<script id="activity_comment_template" type="text/html">
+    <div class="yike-teacher-detail-comment-box">
+        <div class="yike-teacher-detail-comment-cid activitycircle-hide">
+            {{ '{{' }} id {{ '}}' }}
+        </div>
+        <div class="yike-teacher-detail-comment-title">
+            <span>{{ '{{' }} author {{ '}}' }}</span>&nbsp;&nbsp;&nbsp;&nbsp;{{ '{{' }} date {{ '}}' }}
+        </div>
+        <div class="yike-teacher-detail-comment-content">
+            {{ '{{' }} comment {{ '}}' }}
+        </div>
+        {{ '{{' }}#delete{{ '}}' }}
+        <div class="yike-teacher-detail-comment-delete-btn">
+            删除
+        </div>
+        {{ '{{' }}/delete{{ '}}' }}
+        <div class="yike-teacher-detail-comment-reply-btn">
+            回复
+        </div>
+        <div class="yike-teacher-detail-comment-reply-area">
+            <textarea placeholder="回复" class="yike-teacher-detail-comment-input"></textarea>
+            <a class="btn btn-primary btn-sm yike-teacher-detail-send-reply-btn" role="button">回复</a>
+        </div>
+    </div>
+</script>
