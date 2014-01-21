@@ -14,6 +14,8 @@ activityCircle.activity = {
 			activityCircle.activity.pushActivity);
 		$('.activity-sendcomment-btn').on('click',
 			activityCircle.activity.sendComment);
+		$('.activity-answer-btn').on('click',
+			activityCircle.activity.finishActivity);
 	},
 	refresh : function(){
 		$('.activity-student-checkbox-area').html('');
@@ -186,7 +188,7 @@ activityCircle.activity = {
 	},
 	sendCommentReply : function(){
 		var aid = $('.acitvity-aid').html();
-        var targetname =$(this).siblings('.yike-teacher-detail-comment-title').find('span').html()
+        var targetname =$(this).parent().siblings('.yike-teacher-detail-comment-title').find('span').html()
         var comment = '回复'+targetname+'：'+$(this).siblings('textarea').val();
         comment = encodeURIComponent(comment);
         $.ajax({
@@ -229,6 +231,32 @@ activityCircle.activity = {
                 }
                 else{
                     alert('信息删除失败');
+                }
+            }
+        });
+    },
+    finishActivity : function(){
+    	var aid = $('.acitvity-aid').html();
+    	var answer = $('.activity-answer-textarea').val();
+    	$.ajax({
+            url : '/activity/studentAnswer',
+            type : 'post',
+            data : {
+            	aid : aid,
+            	answer : answer
+            },
+            headers:{
+                'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+            },
+            success : function(responseText){
+                var res = responseText;
+                res = $.parseJSON(res);
+                if(res.errcode==100){
+                    alert('答题成功');
+                   activityCircle.activity.getAllComment();
+                }
+                else{
+                    alert('答题失败');
                 }
             }
         });

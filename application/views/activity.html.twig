@@ -69,13 +69,19 @@
                     <div class="clear"></div>
                 </div>
             {% else %}
-            <div style="margin:10px 0px;">
-                答题区域：
-                <textarea class="activity-answer-textarea" placeholder="请在此处填写您的答案"></textarea>
-                <a class="btn btn-primary btn-sm activity-answer-btn" role="button">
-                    答题
-                </a>
-            </div>
+                {% if isFinish %}
+                <div style="margin:10px 0px;">
+                    您的答案:{{ answer }}
+                </div>
+                {% else %}
+                <div style="margin:10px 0px;">
+                    答题区域：
+                    <textarea class="activity-answer-textarea" placeholder="请在此处填写您的答案"></textarea>
+                    <a class="btn btn-primary btn-sm activity-answer-btn" role="button">
+                        答题
+                    </a>
+                </div>
+                {% endif %}
             {% endif %}
             <div class="activity-comment-box">
                 <div class="activity-big-tip">
