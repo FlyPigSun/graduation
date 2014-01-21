@@ -58,10 +58,10 @@ class Personal_Activity_Model  extends  CI_Model{
         return $data;
     }
     //学生提交答案
-    public function s_update($sid,$s_answer,$s_annex){
+    public function s_update($sid,$aid,$s_answer,$s_annex){
         $this->load->database();
-        $sql="update personal_activity_tb set s_answer=?,s_annex=?,is_finish=1 where sid=?";
-        $query=$this->db->query($sql,array($s_answer,$s_annex,$sid));
+        $sql="update personal_activity_tb set s_answer=?,s_annex=?,is_finish=1 where sid=? and aid=?";
+        $query=$this->db->query($sql,array($s_answer,$s_annex,$sid,$aid));
         $this->db->close();
         return true;
     }

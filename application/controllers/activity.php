@@ -220,10 +220,11 @@ class Activity extends MY_Controller {
 
     public function studentAnswer(){
         $sid=$this->session->userdata('sid');
+        $aid=$this->input->post('aid');
         $s_answer=urldecode($this->input->post('answer'));
         $s_annex='';
         $this->load->model('personal_activity_model','pa');
-        $judge=$this->pa->s_update($sid,$s_answer,$s_annex);
+        $judge=$this->pa->s_update($sid,$aid,$s_answer,$s_annex);
         if($judge==true){
             $result=100;
         }else{
