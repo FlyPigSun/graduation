@@ -37,7 +37,6 @@ class Comment extends MY_Controller {
         }else{
             $result=102;
         }
-        $data['author']=$author;
         $data['errcode']=$result;
         print_r(json_encode($data));
     }
@@ -60,16 +59,17 @@ class Comment extends MY_Controller {
             $reviewer_id=$this->session->userdata('tid');
             $info=$this->comment->findById($id)->reviewer_tid;
         }
+        $is_delete=0;
         if($info===$reviewer_id){
         $judge=$this->comment->delete($id);
+            $is_delete=1;
             if($judge==true){
                 $result=100;
             }else{
                 $result=102;
             }
-        }else{
-            $result=104;
         }
+
         $data['errcode']=$result;
         print_r(json_encode($data));
     }
