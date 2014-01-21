@@ -43,10 +43,10 @@ activityCircle.activity = {
                     }else{
 	                    if(data.res_info.file_type == 'audio'){
 	                    	var html = '<div style="margin:5px">'+data.res_info.name+'</div>'+
-	                    	'<audio src="'+data.res_info.address+'" width="300" height="50" wmode="transparent" controls="controls">'+'</audio>';
+	                    	'<audio style="margin-left: 90px;" src="'+data.res_info.address+'" width="300" height="50" wmode="transparent" controls="controls">'+'</audio>';
 	                    }else if(data.res_info.file_type == 'img'){
 	                    	var html = '<div style="margin:5px">'+data.res_info.name+'</div>'+
-	                    	'<img src="'+data.res_info.address+'" width="100" height="100" wmode="transparent" controls="controls"/>'; 
+	                    	'<img style="margin-left: 90px;" src="'+data.res_info.address+'" width="100" height="100" wmode="transparent" controls="controls"/>'; 
 	                    }else if(data.res_info.file_type == 'doc'){
 	                    	var html = '<a style="margin:5px" href='+data.res_info.address+'>'+data.res_info.name+'</a>';
 	                    }
@@ -253,7 +253,7 @@ activityCircle.activity = {
                 res = $.parseJSON(res);
                 if(res.errcode==100){
                     alert('答题成功');
-                   activityCircle.activity.getAllComment();
+                   	window.location.reload();
                 }
                 else{
                     alert('答题失败');
