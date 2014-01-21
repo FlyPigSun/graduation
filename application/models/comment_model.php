@@ -13,46 +13,13 @@ class Comment_Model  extends  CI_Model{
     var $comment='';
     var $date='';
 
-    public function insert($commented_aid,$reviewer_sid,$reviewer_tid,$commented_sid,$commented_tid,$comment,$date){
+    public function insert($commented_aid,$reviewer_sid,$reviewer_tid,$comment,$date){
         $this->load->database();
-        $sql="insert into comment_tb value(null,?,?,?,?,?,?,?)";
-        $query=$this->db->query($sql,array($commented_aid,$reviewer_sid,$reviewer_tid,$commented_sid,$commented_tid,$comment,$date));
+        $sql="insert into comment_tb value(null,?,?,?,?,?)";
+        $query=$this->db->query($sql,array($commented_aid,$reviewer_sid,$reviewer_tid,$comment,$date));
         $this->db->close();
         return true;
     }
-
-    public function s_delete_s($reviewer_sid,$commented_sid,$commented_aid){
-        $this->load->database();
-        $sql="delete from comment_tb where reviewer_sid=? and commented_sid=? and commented_aid=?";
-        $query=$this->db->query($sql,array($reviewer_sid,$commented_sid,$commented_aid));
-        $this->db->close();
-        return true;
-    }
-
-    public function t_delete_s($reviewer_tid,$commented_sid){
-        $this->load->database();
-        $sql="delete from comment_tb where reviewer_tid=? and commented_sid=? and commented_aid=?";
-        $query=$this->db->query($sql,array($reviewer_tid,$commented_sid,$commented_aid));
-        $this->db->close();
-        return true;
-    }
-
-    public function s_delete_t($reviewer_sid,$commented_tid,$commented_aid){
-        $this->load->database();
-        $sql="delete from comment_tb where reviewer_sid=? and commented_tid=? and commented_aid=?";
-        $query=$this->db->query($sql,array($reviewer_sid,$commented_tid,$commented_aid));
-        $this->db->close();
-        return true;
-    }
-
-    public function t_delete_s($reviewer_tid,$commented_sid,$commented_aid){
-        $this->load->database();
-        $sql="delete from comment_tb where reviewer_tid=? and commented_sid=? and commented_aid=?";
-        $query=$this->db->query($sql,array($reviewer_tid,$commented_sid,$commented_aid));
-        $this->db->close();
-        return true;
-    }
-
     public function findAll($commented_aid){
         $this->load->database();
         $sql="select * from comment_tb where commented_aid=? order by date desc";
@@ -61,7 +28,6 @@ class Comment_Model  extends  CI_Model{
         $this->db->close();
         return $data;
     }
-
     public function count(){
        $this->load->database();
        $sql="select count(*) as a from comment_tb";
@@ -73,6 +39,13 @@ class Comment_Model  extends  CI_Model{
         }
         $this->db->close();
         return $data->a;
+    }
+    public function delete($id){
+        $this->load->database();
+        $sql="delete from comment_tb where id=?";
+        $query=$this->db->query($sql,array($id));
+        $this->db->close();
+        return true;
     }
 
 

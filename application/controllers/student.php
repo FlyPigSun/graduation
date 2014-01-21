@@ -416,8 +416,10 @@ class Student extends MY_Controller {
     public function s_deleteComment_s($commented_aid){
         $commented_sid=$this->input->post('commented_sid');
         $reviewer_sid=$this->session->userdata('sid');
+        print_r($reviewer_sid);
         $this->load->model('comment_model','comment');
         $judge=$this->comment->t_delete_s($reviewer_sid,$commented_sid,$commented_aid);
+        print_r($judge);
         if($judge==true){
             $result=100;
         }else{
