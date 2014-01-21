@@ -13,10 +13,10 @@ class Comment_Model  extends  CI_Model{
     var $comment='';
     var $date='';
 
-    public function insert($commented_aid,$reviewer_sid,$reviewer_tid,$comment,$date){
+    public function insert($commented_aid,$reviewer_sid,$reviewer_tid,$comment,$date,$author){
         $this->load->database();
-        $sql="insert into comment_tb value(null,?,?,?,?,?)";
-        $query=$this->db->query($sql,array($commented_aid,$reviewer_sid,$reviewer_tid,$comment,$date));
+        $sql="insert into comment_tb value(null,?,?,?,?,?,?)";
+        $query=$this->db->query($sql,array($commented_aid,$reviewer_sid,$reviewer_tid,$comment,$date,$author));
         $this->db->close();
         return true;
     }

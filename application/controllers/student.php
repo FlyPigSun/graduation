@@ -37,7 +37,7 @@ class Student extends MY_Controller {
             $arr=array("sid"=>$this->student->id,"username"=>$username,
             "time"=>$this->student->logintime,"password"=>$password,
             "teachernumber"=>$studentnumber,"grade"=>$grade,
-            "class"=>$class,"role"=>'student',"character"=>'',"testscore"=>0,"notfirst"=>0);
+            "class"=>$class,"role"=>'student',"character"=>'',"testscore"=>0,"notfirst"=>0,"realname"=>$realname);
             $this->session->set_userdata($arr);
             $result=100;
         }else{

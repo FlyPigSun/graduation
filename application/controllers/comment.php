@@ -20,6 +20,7 @@ class Comment extends MY_Controller {
 	 */ 
     public function addComment(){
         $comment_aid=$this->input->post('commented_aid');
+        $author=urldecode($this->session->userdata('realname'));
         $role=$this->session->userdata('role');
         if($role=='student'){
             $reviewer_sid=$this->session->userdata('sid');
@@ -30,12 +31,13 @@ class Comment extends MY_Controller {
         }
         $comment=urldecode($this->input->post('comment'));
         $this->load->model('comment_model','comment');
-        $judge=$this->comment->insert($comment_aid,$reviewer_sid,$reviewer_tid,$comment,date("Y-m-d  H:i:s"));
+        $judge=$this->comment->insert($comment_aid,$reviewer_sid,$reviewer_tid,$comment,date("Y-m-d  H:i:s"),$author);
         if($judge==true){
             $result=100;
         }else{
             $result=102;
         }
+        $data['author']=$author;
         $data['errcode']=$result;
         print_r(json_encode($data));
     }
@@ -43,7 +45,6 @@ class Comment extends MY_Controller {
     public function showComment($commented_aid){
         $this->load->model('comment_model','comment');
         $info=$this->comment->findAll($commented_aid);
-        $info=array_merge($info,array('author'=>$this->session->userdata('realname')));
         $result=100;
         $data['errcode']=$result;
         $data['data']=$info;
@@ -58,7 +59,6 @@ class Comment extends MY_Controller {
         }else{
             $reviewer_id=$this->session->userdata('tid');
             $info=$this->comment->findById($id)->reviewer_tid;
-            print_r($info);
         }
         if($info===$reviewer_id){
         $judge=$this->comment->delete($id);
