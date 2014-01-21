@@ -28,6 +28,18 @@ class Comment_Model  extends  CI_Model{
         $this->db->close();
         return $data;
     }
+    public function findById($id){
+        $this->load->database();
+        $sql="select * from comment_tb where id=?";
+        $query=$this->db->query($sql,array($id));
+        if($query->num_rows()>0){
+            $data=$query->row();
+        }else {
+            $data=null;
+        }
+        $this->db->close();
+        return $data;
+    }
     public function count(){
        $this->load->database();
        $sql="select count(*) as a from comment_tb";

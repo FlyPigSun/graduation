@@ -220,7 +220,7 @@ class Activity extends MY_Controller {
 
     public function studentAnswer(){
         $sid=$this->session->userdata('sid');
-        $s_answer=$this->input->post('answer');
+        $s_answer=urldecode($this->input->post('answer'));
         $s_annex='';
         $this->load->model('personal_activity_model','pa');
         $judge=$this->pa->s_update($sid,$s_answer,$s_annex);
@@ -231,6 +231,17 @@ class Activity extends MY_Controller {
         }
         $data['errcode']=$result;
         print_r(json_encode($data));
+    }
+    public function showAnswer(){
+        $sid=$this->input->post('sid');
+        $aid=$this->input->post('aid');
+        $this->load->model('personal_activity_model','pa');
+        $info=$this->pa->find($sid,$aid);
+        $result=100;
+        $data['errcode']=$result;
+        $data['data']=$info;
+        print_r(json_encode($data));
+
     }
 }
 ?>
