@@ -210,12 +210,23 @@ class Activity extends MY_Controller {
 
     public function activityAction($aid){
         $role=$this->session->userdata('role');
+        if($role=='student'){
+            $sid=$this->session->userdata('sid');
+            $this->load->model('personal_activity_model','pa');
+            $p_info=$this->pa->find($sid,$aid);
+            $isFinish=$p_info->is_finish;
+            $answer=$p_info->s_answer;
+        }else{
+            $isFinish='';
+            $answer='';
+        }
         $this->load->model('activity_model','activity');
         $info=$this->activity->findById($aid);
         $this->twig->render('activity.html.twig', array('aid' =>$info->id , 'title' =>$info->title ,
             'goal' =>$info->goal ,'type' =>$info->type ,'level' =>$info->level ,'theme' =>$info->theme ,
             'resource' =>$info->resource ,'author' =>$info->author ,'author_id' =>$info->author_id,
-            'author_group' =>$info->author_group ,'student_count' =>$info->student_count,'content'=>$info->content,'role'=>$role));
+            'author_group' =>$info->author_group ,'student_count' =>$info->student_count,'content'=>$info->content,'role'=>$role,
+            'isFinish'=>$isFinish,'answer'=>$answer));
     }
 
     public function studentAnswer(){
