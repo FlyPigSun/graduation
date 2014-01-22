@@ -121,7 +121,7 @@ class Personal_Activity_Model  extends  CI_Model{
 
     public function findInfo($aid,$sid){
         $this->load->database();
-        $sql="select pa.sid,s.realname as name,s.studentnumber,a.* ,pa.is_finish from student_tb s
+        $sql="select pa.sid,s.realname as name,s.studentnumber,a.* ,pa.is_finish,pa.end_time from student_tb s
               inner join personal_activity_tb pa on s.id=pa.sid
               inner join activity_tb a on pa.aid=a.id where pa.aid=? and pa.sid=?";
         $query=$this->db->query($sql,array($aid,$sid));
