@@ -91,7 +91,7 @@ class Activity extends MY_Controller {
         }else{
             for($i=0;$i<$studentCount;$i++){
                 $sInfo[]=array('name'=>$this->pa->findByAid($aid)[$i]->realname,
-                        'sid'=>$this->pa->findByAid($aid)[$i]->id);
+                        'sid'=>$this->pa->findByAid($aid)[$i]->sid,'is_finish'=>$this->pa->findByAid($aid)[$i]->is_finish);
             }   
         }
         $data['errcode']=$result;
@@ -246,8 +246,9 @@ class Activity extends MY_Controller {
     }
     public function showAnswerAction($sid,$aid){
         $this->load->model('personal_activity_model','pa');
-        $info=$this->pa->find($sid,$aid);
+        $info=$this->pa->findInfo($aid,$sid);
         $info=(array)$info;
+        print_r($info);
         $this->twig->render('student_activity_answer.html.twig',$info);
 
     }

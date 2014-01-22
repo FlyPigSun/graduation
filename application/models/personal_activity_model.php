@@ -15,10 +15,10 @@ class Personal_Activity_Model  extends  CI_Model{
     var $t_name='';
     var $is_finish='';
     
-    public function insert($sid,$aid,$t_name,$is_push,$date){
+    public function insert($sid,$aid,$t_name,$is_push,$date,$end_time){
         $this->load->database();
-        $sql="insert into personal_activity_tb value(null,?,?,null,null,null,?,0,?,?)";
-        $query=$this->db->query($sql,array($sid,$aid,$t_name,$is_push,$date));
+        $sql="insert into personal_activity_tb value(null,?,?,null,null,null,?,0,?,?,?)";
+        $query=$this->db->query($sql,array($sid,$aid,$t_name,$is_push,$date,$end_time));
         $this->db->close();
         return true;
 
@@ -49,7 +49,7 @@ class Personal_Activity_Model  extends  CI_Model{
 
     public function findByAid($aid){
         $this->load->database();
-        $sql="select s.id,s.realname,s.studentnumber,s.gender,a.* from student_tb s
+        $sql="select pa.sid,s.realname,s.studentnumber,s.gender,a.*,pa.is_finish from student_tb s
               inner join personal_activity_tb pa on s.id=pa.sid
               inner join activity_tb a on pa.aid=a.id where pa.aid=?";
         $query=$this->db->query($sql,array($aid));
@@ -60,8 +60,8 @@ class Personal_Activity_Model  extends  CI_Model{
     //学生提交答案
     public function s_update($sid,$aid,$s_answer,$s_annex){
         $this->load->database();
-        $sql="update personal_activity_tb set s_answer=?,s_annex=?,is_finish=1 where sid=? and aid=?";
-        $query=$this->db->query($sql,array($s_answer,$s_annex,$sid,$aid));
+        $sql="update personal_activity_tb set s_answer=?,s_annex=?,is_finish=1,end_time=? where sid=? and aid=?";
+        $query=$this->db->query($sql,array($s_answer,$s_annex,date("Y-m-d  H:i:s"),$sid,$aid));
         $this->db->close();
         return true;
     }
@@ -118,7 +118,22 @@ class Personal_Activity_Model  extends  CI_Model{
         return $data;
     }
 
-    
+
+    public function findInfo($aid,$sid){
+        $this->load->database();
+        $sql="select pa.sid,s.realname as name,s.studentnumber,a.* ,pa.is_finish from student_tb s
+              inner join personal_activity_tb pa on s.id=pa.sid
+              inner join activity_tb a on pa.aid=a.id where pa.aid=? and pa.sid=?";
+        $query=$this->db->query($sql,array($aid,$sid));
+        if($query->num_rows()>0){
+            $data=$query->row();
+        }else {
+            $data=null;
+        }
+        $this->db->close();
+        return $data;
+    }
+
 
 
 

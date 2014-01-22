@@ -176,7 +176,7 @@ class Teacher extends MY_Controller {
             $info=$this->pa->find($sid[$i],$aid);
             $n=0;
             if($info==null){
-                $this->pa->insert($sid[$i],$aid,$t_name,1,date("Y-m-d   H"));
+                $this->pa->insert($sid[$i],$aid,$t_name,1,date("Y-m-d   H"),'');
                 $n+=1;
             }else{
                 $result=104;

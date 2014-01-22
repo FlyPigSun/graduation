@@ -53,6 +53,8 @@ $route['activity/show_activity']='activity/findAllAcitvity';
 $route['activity/delete_activity']='activity/deleteActivity';
 $route['404_override'] = '';
 $route['activity/(:num)']='activity/activityAction/$1';
+$route['activity/(:num)/(:num)']='activity/showAnswerAction/$1/$2';
+
 
 
 
