@@ -56,14 +56,19 @@ activityCircle.activity = {
                     $('.activity-student-area').html('');
                     for (var i = 0; i < data.sInfo.length; i++) {
                     	var isFinish = $('.acitvity-isfinish').html();
+                    	var html = '<span class="activity-student-name" style="cursor:default">'+data.sInfo[i].name+'</span>';
                     	if(isFinish == '')
                     		isFinish = 1;
                     	if(isFinish != 0)
-                    		var studenthtml = '<a href="/activity/'+aid+'/'+data.sInfo[i].sid+'" class="activity-student-name" target="_blank">'+data.sInfo[i].name+'</a>'
+                    		var studenthtml = '<a href="/activity/'+aid+'/'+data.sInfo[i].sid+'" class="activity-student-name" target="_blank">'+data.sInfo[i].name+'</a>';
                     	else
-                    		var studenthtml = '<span class="activity-student-name" style="cursor:default">'+data.sInfo[i].name+'</span>'
-                    	$('.activity-student-area').append(studenthtml);
+                    		var studenthtml = '<span class="activity-student-name" style="cursor:default">'+data.sInfo[i].name+'</span>';
+                    	if(data.sInfo[i].is_finish == 1)
+                    		$('.activity-finish-student-area').append(studenthtml);
+                    	$('.activity-student-area').append(html);
                     };
+                    if($('.activity-finish-student-area').html()=='')
+                    	$('.activity-finish-student-area').html('无');
 				}
 			}
 		});
