@@ -244,11 +244,10 @@ class Activity extends MY_Controller {
         $data['errcode']=$result;
         print_r(json_encode($data));
     }
-    public function showAnswerAction($sid,$aid){
+    public function showAnswerAction($aid,$sid){
         $this->load->model('personal_activity_model','pa');
         $info=$this->pa->findInfo($aid,$sid);
         $info=(array)$info;
-        print_r($info);
         $this->twig->render('student_activity_answer.html.twig',$info);
 
     }
