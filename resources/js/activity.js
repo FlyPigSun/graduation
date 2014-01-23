@@ -259,7 +259,10 @@ activityCircle.activity = {
     finishActivity : function(){
     	var aid = $('.acitvity-aid').html();
     	var answer = $('.activity-answer-textarea').val();
-    	alert(activityCircle.activity.activityScore)
+    	if(activityCircle.activity.activityScore==0){
+    		alert('您需要给该活动打分');
+    		return false;
+       	}
     	$.ajax({
             url : '/activity/studentAnswer',
             type : 'post',

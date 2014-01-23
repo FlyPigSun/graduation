@@ -4,6 +4,11 @@
  **/
 activityCircle.teacher.groupActivity = {
 	newActivityLevel : 1,
+	themeScore : 0,
+	resScore : 0,
+	audioScore : 0,
+	voiceScore : 0,
+	classScore : 0,
 	initialize : function(){
 		var me = this;
 		var template = $('#teacher_group_activity_template').html();
@@ -11,6 +16,7 @@ activityCircle.teacher.groupActivity = {
 		$('.teacher-index-groupactivity-area').html(html);
 		me.buttonBind();
 		invokeClick($('.teacher-group-activity-leftbar').find('.teacher-group-activity-leftbar-btn:eq(0)')[0]);
+		$('.teacher-comment-btn').on('click',activityCircle.teacher.groupActivity.submitComment);
 	},
 	buttonBind : function(){
 		var me = this;
@@ -337,6 +343,7 @@ activityCircle.teacher.groupActivity = {
                         noRatedMsg: '活动难度'
                     });
                 });
+				$('.teacher-manege-listening-activity-comment').on('click',[event],activityCircle.teacher.groupActivity.showCommentBox);
 				$('.teacher-manage-listening-activity-delete').on('click',[event],activityCircle.teacher.groupActivity.removeActivity);
             }
         });
@@ -363,5 +370,87 @@ activityCircle.teacher.groupActivity = {
 			}
 		});
 		event.preventDefault();
+	},
+	showCommentBox : function(event){
+		var aid = $(this).parent().find('.teacher-manage-activity-infobox-id').html();
+		$('.teacher-comment-box-id ').html(aid);
+		$('.teacher-comment-box').animate({'top':'200px'});
+		$('.index-background').fadeIn();
+		$('.index-background').one('click',activityCircle.teacher.groupActivity.hideCommentBox);
+		$('.teacher-comment-theme-star').raty({
+            hints : ['很不好', '不太好', '一般','不错','非常好'],
+            number : 5,
+            score : 0,
+            click: function (score, evt) {
+                activityCircle.teacher.groupActivity.themeScore = score; 
+            }
+        });
+        $('.teacher-comment-res-star').raty({
+            hints : ['很不好', '不太好', '一般','不错','非常好'],
+            number : 5,
+            score : 0,
+            click: function (score, evt) {
+                activityCircle.teacher.groupActivity.resScore = score; 
+            }
+        });
+        $('.teacher-comment-audio-star').raty({
+            hints : ['很不好', '不太好', '一般','不错','非常好'],
+            number : 5,
+            score : 0,
+            click: function (score, evt) {
+                activityCircle.teacher.groupActivity.audioScore = score; 
+            }
+        });
+        $('.teacher-comment-voice-star').raty({
+            hints : ['很不好', '不太好', '一般','不错','非常好'],
+            number : 5,
+            score : 0,
+            click: function (score, evt) {
+                activityCircle.teacher.groupActivity.voiceScore = score; 
+            }
+        });
+        $('.teacher-comment-class-star').raty({
+            hints : ['很不好', '不太好', '一般','不错','非常好'],
+            number : 5,
+            score : 0,
+            click: function (score, evt) {
+                activityCircle.teacher.groupActivity.classScore = score; 
+            }
+        });
+		event.preventDefault();
+	},
+	hideCommentBox : function(){
+		$('.teacher-comment-box').animate({'top':'-300px'});
+		$('.index-background').fadeOut();
+	},
+	submitComment : function(){
+		var aid = $('.teacher-comment-box-id').html();
+		if(activityCircle.teacher.groupActivity.themeScore==0||activityCircle.teacher.groupActivity.resScore==0||activityCircle.teacher.groupActivity.audioScore==0||activityCircle.teacher.groupActivity.voiceScore==0||activityCircle.teacher.groupActivity.classScore==0){
+			alert('您需要每一项都评论');
+			return false;
+		}
+		$.ajax({
+			url : '/teacher_review/addReview/'+aid,
+			type : 'post',
+			data : {
+				theme_match_degree : activityCircle.teacher.groupActivity.themeScore,
+				res_match_degree : activityCircle.teacher.groupActivity.resScore,
+				audio_clear_degree : activityCircle.teacher.groupActivity.audioScore,
+				voice_fluent_degree : activityCircle.teacher.groupActivity.voiceScore,
+				class_effect_degree : activityCircle.teacher.groupActivity.classScore
+			},
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				res = $.parseJSON(res);
+				if(res.errcode == 100){
+					invokeClick($('.index-background')[0]);
+				}else {
+					alert('评论失败');
+				}
+			}
+		});
 	}
 }

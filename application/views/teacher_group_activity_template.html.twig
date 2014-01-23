@@ -1,4 +1,38 @@
 <script id="teacher_group_activity_template" type="text/html">
+    <div class="teacher-comment-box">
+        <div class="teacher-comment-box-id activitycircle-hide"></div>
+        <div class="teacher-comment-title">评论活动</div>
+        <div style="margin:8px 0px;font-size: 16px;">
+            <span style="float: left;">活动主题适合程度</span>
+            <div class="teacher-comment-star teacher-comment-theme-star"></div>
+            <div class="clear"></div>
+        </div>
+        <div style="margin:8px 0px;font-size: 16px;">
+            <span style="float: left;">活动资源适用程度</span>
+            <div class="teacher-comment-star teacher-comment-res-star"></div>
+            <div class="clear"></div>
+        </div>
+        <div style="margin:8px 0px;font-size: 16px;">
+            <span style="float: left;">听力活动清楚程度</span>
+            <div class="teacher-comment-star teacher-comment-audio-star"></div>
+            <div class="clear"></div>
+        </div>
+        <div style="margin:8px 0px;font-size: 16px;">
+            <span style="float: left;">口语活动流利程度</span>
+            <div class="teacher-comment-star teacher-comment-voice-star"></div>
+            <div class="clear"></div>
+        </div>
+        <div style="margin:8px 0px;font-size: 16px;">
+            <span style="float: left;">实际课堂效果程度</span>
+            <div class="teacher-comment-star teacher-comment-class-star"></div>
+            <div class="clear"></div>
+        </div>
+        <div style="margin:20px 0px 0px 0px;text-align:center">
+            <a class="btn btn-primary btn-sm teacher-comment-btn" role="button">
+                提交评分
+            </a>
+        </div>
+    </div>
     <div class="teacher-personal-center">
         <div class="teacher-group-activity-leftbar">
             <div class="teacher-group-activity-leftbar-btn active" type="resource_library">
@@ -218,6 +252,9 @@
             {{ '{{#' }} delete {{ '}}' }}
             <div class="teacher-manage-listening-activity-delete"></div>
             {{ '{{/' }} delete {{ '}}' }}
+            {{ '{{#' }} isDo {{ '}}' }}
+            <div class="teacher-manege-listening-activity-comment">评论</div>
+            {{ '{{/' }} isDo {{ '}}' }}
             <div class="teacher-manage-listening-activity-title">{{ '{{' }} title {{ '}}' }}</div>
             <div class="teacher-manage-listening-activity-member">
                 参与人数：{{ '{{' }} student_count {{ '}}' }}人

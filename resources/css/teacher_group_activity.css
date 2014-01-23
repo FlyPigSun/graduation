@@ -209,3 +209,38 @@ a .teacher-manage-activity-infobox:hover{
 	box-shadow: 4px 4px 3px 0px rgba(204,204,204,0.4);
 	color: #000;
 }
+.teacher-manege-listening-activity-comment{
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	color: rgb(67, 139, 187);
+}
+.teacher-manege-listening-activity-comment:hover{
+	text-decoration: underline;
+	color: rgb(67, 139, 187);
+}
+.teacher-comment-box{
+	position: absolute;
+	width: 600px;
+	height: 300px;
+	top: -300px;
+	padding: 20px;
+	left: 50%;
+	margin-left: -300px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	z-index: 10001;
+}
+.teacher-comment-title{
+	font-size: 30px;
+	font-weight: 900;
+	text-align: center;
+}
+.teacher-comment-star{
+	float: left;
+	margin-left: 20px;
+	line-height: 17px;
+}
+.teacher-comment-btn{
+	font-size: 15px;
+}
