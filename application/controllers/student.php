@@ -363,8 +363,10 @@ class Student extends MY_Controller {
         $sid=$this->session->userdata('sid');
         $this->load->model('personal_activity_model','pa');
         $info=$this->pa->findBySid($sid);
-        $isDo=array('isDo' =>0);
-        $info=array_merge(array($info),$isDo);
+        $isDo=array('isDo'=>0);
+        for($i=0;$i<count($info);$i++){
+            $info[$i]=array_merge((array)$info[$i],$isDo);
+        }
         $data['data']=$info;
         print_r(json_encode($data));
     }
@@ -402,34 +404,16 @@ class Student extends MY_Controller {
         print_r(json_encode($data));
     }
 
-    public function s_deleteComment_t($commented_aid){
-        $commented_tid=$this->input->post('commented_tid');
-        $reviewer_sid=$this->session->userdata('sid');
-        $this->load->model('comment_model','comment');
-        $judge=$this->comment->t_delete_s($reviewer_sid,$commented_tid,$commented_aid);
-        if($judge==true){
-            $result=100;
-        }else{
-            $result=102;
-        }
+    public function systemPush(){
+        $sid=$this->session->userdata('sid');
+        $this->load->model('personal_activity_model','pa');
+        $info=$this->pa->findSystemPush($sid);
+        $result=100;
         $data['errcode']=$result;
+        $data['data']=$info;
         print_r(json_encode($data));
     }
-    public function s_deleteComment_s($commented_aid){
-        $commented_sid=$this->input->post('commented_sid');
-        $reviewer_sid=$this->session->userdata('sid');
-        print_r($reviewer_sid);
-        $this->load->model('comment_model','comment');
-        $judge=$this->comment->t_delete_s($reviewer_sid,$commented_sid,$commented_aid);
-        print_r($judge);
-        if($judge==true){
-            $result=100;
-        }else{
-            $result=102;
-        }
-        $data['errcode']=$result;
-        print_r(json_encode($data));
-    }
+
      
 
   
