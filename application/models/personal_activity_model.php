@@ -25,7 +25,7 @@ class Personal_Activity_Model  extends  CI_Model{
     }
     public function find($sid,$aid){
         $this->load->database();
-        $sql="select * from personal_activity_tb where sid=? and aid=?";
+        $sql="select * from personal_activity_tb where sid=? and aid=? and is_push=1";
         $query=$this->db->query($sql,array($sid,$aid));
         if($query->num_rows()>0){
             $data=$query->row();
