@@ -48,7 +48,7 @@ class Activity extends MY_Controller {
         $this->load->model('activity_model','activity');
         $judge=$this->activity->findAll($author_group);    
         if($judge==null){
-            $result=102;
+            $result=100;
         }else{
             $result=100;
             $info=array();

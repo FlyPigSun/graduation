@@ -153,7 +153,7 @@ class Teacher extends MY_Controller {
                 for($j=0; $j <count($activity) ; $j++){
                     $info=$this->pa->find($sid[0],$activity[$j]['activity']->id);
                     if($info==null){ 
-                        $this->pa->insert($sid[0],$activity[$j]['activity']->id,$t_name,2,date("Y-m-d   H")); 
+                        $this->pa->insert($sid[0],$activity[$j]['activity']->id,$t_name,2,date("Y-m-d   H"),'1970-01-01 00:00:00'); 
                     }else{
                         $result=104;
                     }
