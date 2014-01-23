@@ -13,7 +13,7 @@
             <div class="student-personal-center-leftbar-btn" type="record">
                 学习记录
             </div>
-            <div class="student-personal-center-leftbar-btn" type="activity">
+            <div class="student-personal-center-leftbar-btn" type="test">
                 我的活动
             </div>
         </div>
@@ -174,12 +174,48 @@
                 <div class="student-personalcenter-box-content"></div>
             </div>
             <div class="student-personal-record-box student-personalcenter-box activitycircle-hide">
-            
             </div>
-            <div class="student-personal-activity-box student-personalcenter-box activitycircle-hide">
-            
+            <div class="student-personal-test-box student-personalcenter-box activitycircle-hide">
+                <div class="">您上次的得分是<span></span></div>
+                <div class="student-personal-test-title">本次测试：</div>
+                <div class="student-personal-test-center">
+                    <div>dsaddasas是什么意思</div>
+                    <input type="radio" name="1"><span style="margin-left:10px">A.123</span>
+                    <input type="radio" name="1"><span style="margin-left:10px">B.231</span>
+                    <input type="radio" name="1"><span style="margin-left:10px">C.232</span>
+                    <input type="radio" name="1"><span style="margin-left:10px">D.233</span>
+                </div>
+                <a class="btn btn-primary btn-sm submit-test-btn" role="button">
+                    提交问卷
+                </a>
             </div>
         </div>
         <div class="clear"></div>
     </div>
+</script>
+
+<script id="student_personal_center_test_template" type="text/html">
+    <div>{{ '{{' }} number {{ '}}' }}、{{ '{{' }} question {{ '}}' }}</div>
+    <div style="float:left">
+        <input type="radio" value="a" name="{{ '{{' }} number {{ '}}' }}">
+        <span style="margin-left:10px">{{ '{{' }} selectA {{ '}}' }}</span>
+    </div>
+    <div style="float:left">
+        <input type="radio" value="b" name="{{ '{{' }} number {{ '}}' }}">
+        <span style="margin-left:10px">{{ '{{' }} selectB {{ '}}' }}</span>
+    </div>
+    <div style="float:left">
+        <input type="radio" value="c" name="{{ '{{' }} number {{ '}}' }}">
+        <span style="margin-left:10px">{{ '{{' }} selectC {{ '}}' }}</span>
+    </div>
+    {{ '{{#' }} selectD {{ '}}' }}
+    <div style="float:left">
+        <input type="radio" value="d" name="{{ '{{' }} number {{ '}}' }}">
+        <span style="margin-left:10px">{{ '{{' }} selectD {{ '}}' }}</span>
+    </div>
+    {{ '{{/' }} selectD {{ '}}' }}
+    <div class="student_personal_center_test_answer activitycircle-hide">
+        {{ '{{' }} answer {{ '}}' }}
+    </div>
+    <div class="clear"></div>
 </script>

@@ -348,3 +348,18 @@
 .student-personalcenter-box-content{
 	margin: 5px 10px;
 }
+.student-personal-test-box{
+	border: 4px solid #ccc;
+	border-radius: 10px;
+	padding: 10px;
+	width: 600px;
+	height: 500px;
+	font-size: 14px;
+}
+.student-personal-test-title{
+	font-size: 18px;
+	margin: 10px 0px;
+}
+.submit-test-btn{
+	
+}

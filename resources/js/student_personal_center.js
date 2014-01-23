@@ -39,6 +39,7 @@ activityCircle.student.personalCenter = {
 		$(document).delegate('.single-impress-delete',"click",{'item':me},me.deleteImpress);
 		$('.input-impress-enter-btn').on('click',me.inputImpress);
 		$('.change-avatar-btn').on('click',me.showAvatarBox);
+		$('.submit-test-btn').on('click',me.submitTest);
 	},
 	changeTab : function(){
 		var sid = $('.sid').html();
@@ -75,11 +76,13 @@ activityCircle.student.personalCenter = {
 				$('.student-personal-center-title').html(html);
 				$('.student-personalcenter-box').hide();
 				break;
-			case 'activity':
+			case 'test':
 				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
                 '我的活动' ;
 				$('.student-personal-center-title').html(html);
 				$('.student-personalcenter-box').hide();
+				$('.student-personal-test-box').show();
+				activityCircle.student.personalCenter.getTest();
 				break;
 		}
 	},
@@ -310,5 +313,55 @@ activityCircle.student.personalCenter = {
 				$('.student-personal-questionnaire-box').find('.student-personalcenter-box-content:eq(0)').html(str);
 			}
 		});
+    },
+    getTest : function(){
+    	$.ajax({
+			url : '/question/showQuestion',
+			type : 'post',
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				res = $.parseJSON(res);
+				var data = res.data;
+				$.each(data,function(key,item){
+					var template = $('#student_personal_center_test_template').html();
+					var html = Mustache.to_html(template, res.data).replace(/^\s*/mg, '');
+					$('.student-personal-test-center').html(html);
+				});
+			}
+		});
+    },
+    submitTest : function(){
+    	var result = 0;
+    	var first = $("input[name='1']:checked").val();
+    	var second = $("input[name='2']:checked").val();
+    	var third = $("input[name='3']:checked").val();
+    	var forth = $("input[name='4']:checked").val();
+    	var fifth = $("input[name='5']:checked").val();
+    	for(i=0;i<5;i++){
+    		switch(i){
+    			case '1':
+    				var question = first;
+    				break;
+    			case '2':
+    				var question = second;
+    				break;
+    			case '3':
+    				var question = third;
+    				break;
+    			case '4':
+    				var question = forth;
+    				break;
+    			case '5':
+    				var question = fifth;
+    				break;
+    		}
+    		var answer = $("input[name='"+i+"']").parent().siblings('.student_personal_center_test_answer').html();
+    		if(answer == question)
+    			result++;
+    	}
+    	alert(result);
     }
 }
