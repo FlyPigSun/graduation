@@ -89,7 +89,7 @@ activityCircle.studentIndexPage = {
 	setSystemPushHtml : function(){
 		var html = $('#student-system-push-template').html();
 		$('.student-index-systempush-area').html(html);
-		activityCircle.student.teacherRecommend.initialize();
+		activityCircle.student.systemPush.initialize();
 	}
 }
 
