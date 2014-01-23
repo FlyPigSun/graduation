@@ -46,7 +46,8 @@ class Activity extends MY_Controller {
     public function findAllAcitvity(){
         $author_group=$this->session->userdata('grade');
         $this->load->model('activity_model','activity');
-        $judge=$this->activity->findAll($author_group);    
+        $judge=$this->activity->findAll($author_group); 
+        $this->load->model('teacher_review_model','teacher_review'); 
         if($judge==null){
             $result=100;
         }else{
@@ -54,14 +55,20 @@ class Activity extends MY_Controller {
             $info=array();
             $tid=$this->session->userdata('tid');
             for($i=0;$i<count($judge);$i++){
+
                 $judge[$i]=(array)$judge[$i];
+                $info=$this->teacher_review->find($judge[$i]['id'],$tid);
+                if($info==null){
+                    $isDo=array('isDo' =>1);
+                }else{
+                    $isDo=array('isDo' =>0);
+                } 
                 if($judge[$i]['author_id']==$tid){
                     $delete = array('delete' =>1);
                 }else{
                     $delete = array('delete' =>0);
                 }
-                $judge[$i]=array_merge($judge[$i],$delete);
-
+                $judge[$i]=array_merge($judge[$i],$delete,$isDo);
             }
 
 
@@ -232,10 +239,13 @@ class Activity extends MY_Controller {
     public function studentAnswer(){
         $sid=$this->session->userdata('sid');
         $aid=$this->input->post('aid');
+        $s_score=$this->input->post('score');
         $s_answer=urldecode($this->input->post('answer'));
         $s_annex='';
         $this->load->model('personal_activity_model','pa');
+        $this->pa->update_score($aid,$s_score,$sid);
         $judge=$this->pa->s_update($sid,$aid,$s_answer,$s_annex);
+        //$this->load->model('activity_model','activity');
         if($judge==true){
             $result=100;
         }else{
@@ -251,5 +261,14 @@ class Activity extends MY_Controller {
         $this->twig->render('student_activity_answer.html.twig',$info);
 
     }
+
+    public function find_score(){
+        $aid=$this->input->post('aid');
+        $this->load->model('personal_activity_model','pa');
+        $score=$this->pa->find_score($aid);
+        $data['data']=$score;
+        print_r(json_encode($data));
+    }
+
 }
 ?>

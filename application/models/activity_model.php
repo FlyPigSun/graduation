@@ -1,7 +1,7 @@
 <?php
 
 /**
-* friends_tb model
+* activity_tb model
 */
 class Activity_Model  extends  CI_Model{
     var $id='';
@@ -15,8 +15,16 @@ class Activity_Model  extends  CI_Model{
 
     public function insert($title,$content,$goal,$type,$level,$theme,$resource,$author,$author_id,$author_group){
         $this->load->database();
-        $sql="insert into activity_tb value(null,?,?,?,?,?,?,?,?,?,?,0)";
-        $query=$this->db->query($sql,array($title,$content,$goal,$type,$level,$theme,$resource,$author,$author_id,$author_group));
+        $sql="insert into activity_tb value(null,?,?,?,?,?,?,?,?,?,?,0,?)";
+        $query=$this->db->query($sql,array($title,$content,$goal,$type,$level,$theme,$resource,$author,$author_id,$author_group,null));
+        $this->db->close();
+        return true;
+    }
+
+    public function update_score($aid,$s_score){
+        $this->load->database();
+        $sql="update activity_tb set s_score=concat(s_score,?) where id=?";
+        $query=$this->db->query($sql,array($s_score,$aid));
         $this->db->close();
         return true;
     }

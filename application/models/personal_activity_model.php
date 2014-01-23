@@ -17,12 +17,30 @@ class Personal_Activity_Model  extends  CI_Model{
     
     public function insert($sid,$aid,$t_name,$is_push,$date,$end_time){
         $this->load->database();
-        $sql="insert into personal_activity_tb value(null,?,?,null,null,null,?,0,?,?,?)";
+        $sql="insert into personal_activity_tb value(null,?,?,null,null,null,?,0,?,?,?,0)";
         $query=$this->db->query($sql,array($sid,$aid,$t_name,$is_push,$date,$end_time));
         $this->db->close();
         return true;
 
     }
+
+    public function update_score($aid,$s_score,$sid){
+        $this->load->database();
+        $sql="update personal_activity_tb set s_score=? where aid=? and sid=?";
+        $query=$this->db->query($sql,array($s_score,$aid,$sid));
+        $this->db->close();
+        return true;
+    }
+
+    public function find_score($aid){
+        $this->load->database();
+        $sql="select s_score from personal_activity_tb  where aid=?";
+        $query=$this->db->query($sql,array($aid));
+        $data=$query->row();
+        $this->db->close();
+        return $data->s_score;
+    }
+
     public function find($sid,$aid){
         $this->load->database();
         $sql="select * from personal_activity_tb where sid=? and aid=? and is_push=1";
