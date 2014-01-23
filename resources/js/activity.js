@@ -18,7 +18,7 @@ activityCircle.activity = {
 		$('.activity-answer-btn').on('click',
 			activityCircle.activity.finishActivity);
 		$('.activity-score-star').raty({
-            score : 3,
+            score : 0,
             number : 5,
             hints : ['很不好', '不太好', '一般','不错','非常好'],
             noRatedMsg: '活动评分',
