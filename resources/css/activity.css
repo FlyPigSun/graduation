@@ -147,3 +147,6 @@ body{
 	line-height: 25px;
 	resize:none;
 }
+.activity-score-star{
+	float: left;
+}

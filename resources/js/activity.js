@@ -8,6 +8,7 @@ $(document).ready(function(){
  * author: sunji
  */
 activityCircle.activity = {
+	activityScore : 0,
 	initialize : function(){
 		activityCircle.activity.refresh();
 		$('.activity-push-btn').on('click',
@@ -16,6 +17,15 @@ activityCircle.activity = {
 			activityCircle.activity.sendComment);
 		$('.activity-answer-btn').on('click',
 			activityCircle.activity.finishActivity);
+		$('.activity-score-star').raty({
+            score : 3,
+            number : 5,
+            hints : ['很不好', '不太好', '一般','不错','非常好'],
+            noRatedMsg: '活动评分',
+            click: function (score, evt) {
+                activityCircle.activity.activityScore = score; 
+            }
+        });
 	},
 	refresh : function(){
 		$('.activity-student-checkbox-area').html('');
@@ -238,7 +248,7 @@ activityCircle.activity = {
                 res = $.parseJSON(res);
                 if(res.errcode==100){
                     alert('信息删除成功');
-                   activityCircle.activity.getAllComment();
+                   	activityCircle.activity.getAllComment();
                 }
                 else{
                     alert('信息删除失败');
@@ -249,12 +259,14 @@ activityCircle.activity = {
     finishActivity : function(){
     	var aid = $('.acitvity-aid').html();
     	var answer = $('.activity-answer-textarea').val();
+    	alert(activityCircle.activity.activityScore)
     	$.ajax({
             url : '/activity/studentAnswer',
             type : 'post',
             data : {
             	aid : aid,
-            	answer : answer
+            	answer : answer,
+            	score : activityCircle.activity.activityScore
             },
             headers:{
                 'CONTENT-TYPE': 'application/x-www-form-urlencoded'
