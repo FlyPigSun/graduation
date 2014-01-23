@@ -270,5 +270,6 @@ class Activity extends MY_Controller {
         print_r(json_encode($data));
     }
 
+
 }
 ?>
