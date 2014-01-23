@@ -93,7 +93,7 @@ class Personal_Activity_Model  extends  CI_Model{
     //参与活动的人数
     public function studentCount($aid){
        $this->load->database();
-       $sql="select count(aid) as a from personal_activity_tb where aid=?";
+       $sql="select count(aid) as a from personal_activity_tb where aid=? and is_push=1";
        $query=$this->db->query($sql,array($aid)) ;
        if($query->num_rows()>0){
             $data=$query->row();
