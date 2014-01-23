@@ -364,7 +364,7 @@ class Student extends MY_Controller {
         $this->load->model('personal_activity_model','pa');
         $info=$this->pa->findBySid($sid);
         $isDo=array('isDo' =>0);
-        $judge[$i]=array_merge(array($info),$isDo);
+        $info=array_merge(array($info),$isDo);
         $data['data']=$info;
         print_r(json_encode($data));
     }
