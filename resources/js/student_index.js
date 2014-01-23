@@ -40,9 +40,10 @@ activityCircle.studentIndexPage = {
 				$('.student-index-teacherrecommend-area').show();
 				activityCircle.studentIndexPage.setTeacherRecommendHtml();
 				break;
-			case 'group_activity':
+			case 'system_push':
 				$('.student-index-centerarea').children('div').hide();
-				$('.student-index-groupactivity-area').show();
+				$('.student-index-systempush-area').show();
+				activityCircle.studentIndexPage.setSystemPushHtml();
 				break;
 			case 'honor_box':
 				$('.student-index-centerarea').children('div').hide();
@@ -83,6 +84,11 @@ activityCircle.studentIndexPage = {
 	setTeacherRecommendHtml : function(){
 		var html = $('#student-teacher-recommend-template').html();
 		$('.student-index-teacherrecommend-area').html(html);
+		activityCircle.student.teacherRecommend.initialize();
+	},
+	setSystemPushHtml : function(){
+		var html = $('#student-system-push-template').html();
+		$('.student-index-systempush-area').html(html);
 		activityCircle.student.teacherRecommend.initialize();
 	}
 }
