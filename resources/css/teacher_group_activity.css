@@ -214,6 +214,10 @@ a .teacher-manage-activity-infobox:hover{
 	right: 10px;
 	bottom: 10px;
 	color: rgb(67, 139, 187);
+	display: none;
+}
+.teacher-manage-activity-infobox:hover > .teacher-manege-listening-activity-comment{
+	display: block;
 }
 .teacher-manege-listening-activity-comment:hover{
 	text-decoration: underline;

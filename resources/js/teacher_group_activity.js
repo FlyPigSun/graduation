@@ -447,6 +447,7 @@ activityCircle.teacher.groupActivity = {
 				res = $.parseJSON(res);
 				if(res.errcode == 100){
 					invokeClick($('.index-background')[0]);
+					activityCircle.teacher.groupActivity.getAllActivity();
 				}else {
 					alert('评论失败');
 				}
