@@ -33,5 +33,20 @@ class Question extends MY_Controller {
         print_r(json_encode($data));
     }
 
+    public function result(){
+        $q_result=$this->input->post('result');
+        $sid=$this->session->userdata('sid');
+        $this->load->model('student_model','student');
+        $judge=$this->student->upadeQuestionResult($sid,$q_result);
+        if($judge==true){
+            $result=100;
+        }else{
+            $result=102;
+        }
+        $data['errcode']=$result;
+        print_r(json_encode($data));
+
+    }
+
 }
 ?>

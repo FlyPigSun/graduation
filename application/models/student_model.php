@@ -16,7 +16,7 @@ class Student_Model  extends  CI_Model{
     var $studentnumber='';
     var $notfirst='';
     var $mood='';
-    
+    var $question_result='';
 
     function __construct(){
         parent::__construct();
@@ -41,6 +41,7 @@ class Student_Model  extends  CI_Model{
             $this->notfirst=$row->notfirst;
             $this->mood=$row->mood;
             $this->realname=$row->realname;
+            $this->question_result=$row->question_result;
             $sql="update student_tb set logintime=?,mood=? where id=?";
             $this->db->query($sql, array($time,$mood,$this->id));
             $this->db->close();  
@@ -57,7 +58,7 @@ class Student_Model  extends  CI_Model{
     //添加学生
     public function insert($username,$password,$realname,$studentnumber,$grade,$class,$gender,$avatar){
         $this->load->database();
-        $sql="insert into student_tb values(null,?,?,?,null,?,?,?,null,null,?,null,0,?,null)";
+        $sql="insert into student_tb values(null,?,?,?,null,?,?,?,null,null,?,null,0,?,null,0)";
         $query=$this->db->query($sql,array($realname,$username,$password,$gender,$grade,$class,$studentnumber,$avatar));
         $this->db->close();
     }
@@ -158,6 +159,14 @@ class Student_Model  extends  CI_Model{
         }        
         $this->db->close();
         return $data;
+    }
+
+    public function upadeQuestionResult($sid,$question_result){
+        $this->load->database();
+        $sql="update student_tb set question_result=? where id=?";
+        $query=$this->db->query($sql,array($question_result,$sid));
+        $this->db->close();
+        return true;
     }
 
 

@@ -78,7 +78,7 @@ activityCircle.student.personalCenter = {
 				break;
 			case 'test':
 				var html = '<img style="margin-right:10px;" src="/resources/images/personalcenter-header-ico.png"/>'+
-                '我的活动' ;
+                '学习测试' ;
 				$('.student-personal-center-title').html(html);
 				$('.student-personalcenter-box').hide();
 				$('.student-personal-test-box').show();
@@ -315,6 +315,7 @@ activityCircle.student.personalCenter = {
 		});
     },
     getTest : function(){
+    	$('.student-personal-test-center').html('');
     	$.ajax({
 			url : '/question/showQuestion',
 			type : 'post',
@@ -327,8 +328,8 @@ activityCircle.student.personalCenter = {
 				var data = res.data;
 				$.each(data,function(key,item){
 					var template = $('#student_personal_center_test_template').html();
-					var html = Mustache.to_html(template, res.data).replace(/^\s*/mg, '');
-					$('.student-personal-test-center').html(html);
+					var html = Mustache.to_html(template,item).replace(/^\s*/mg, '');
+					$('.student-personal-test-center').append(html);
 				});
 			}
 		});
@@ -342,26 +343,43 @@ activityCircle.student.personalCenter = {
     	var fifth = $("input[name='5']:checked").val();
     	for(i=0;i<5;i++){
     		switch(i){
-    			case '1':
+    			case 0:
     				var question = first;
     				break;
-    			case '2':
+    			case 1:
     				var question = second;
     				break;
-    			case '3':
+    			case 2:
     				var question = third;
     				break;
-    			case '4':
+    			case 3:
     				var question = forth;
     				break;
-    			case '5':
+    			case 4:
     				var question = fifth;
     				break;
     		}
-    		var answer = $("input[name='"+i+"']").parent().siblings('.student_personal_center_test_answer').html();
+    		var answer = $.trim($(".student_personal_center_test_item:eq("+i+")").find('.student_personal_center_test_answer').html());
     		if(answer == question)
     			result++;
     	}
-    	alert(result);
+    	$.ajax({
+			url : '/question/result',
+			data : {
+				result : result
+			},
+			type : 'post',
+			headers:{
+			    'CONTENT-TYPE': 'application/x-www-form-urlencoded'
+			},
+			success : function(responseText){
+				var res = responseText;
+				res = $.parseJSON(res);
+				if(res.errcode == 100)
+					alert('答题成功');
+				else
+					alert('答题失败');
+			}
+		});
     }
 }
