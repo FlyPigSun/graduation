@@ -40,6 +40,7 @@
 
 $route['default_controller'] = 'login/loginAction';
 $route['student'] = 'student/studentAction';
+$route['student/grammar'] = 'student/studentGrammarAction';
 $route['teacher'] = 'teacher/teacherAction';
 $route['login'] = 'login/loginAction';
 $route['logout'] = 'login/logout';

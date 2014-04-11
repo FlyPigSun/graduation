@@ -18,7 +18,13 @@ class Student extends MY_Controller {
             redirect('/login');
         }
     }
-
+    public function studentGrammarAction(){  
+        if($this->session->userdata('sid')){
+            $this->twig->render('student_grammar.html.twig');
+        }else{
+            redirect('/login');
+        }
+    }
     public function register(){
         $username=$this->input->post('username');
         $password=$this->input->post('password');
