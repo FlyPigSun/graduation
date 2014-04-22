@@ -1,0 +1,221 @@
+<script id="student_personal_center_template" type="text/html">
+    <div class="student-personal-center">
+        <div class="student-personal-center-leftbar">
+            <div class="student-personal-center-leftbar-btn active" type="info">
+                个人信息
+            </div>
+            <div class="student-personal-center-leftbar-btn" type="impression">
+                我的印象
+            </div>
+            <div class="student-personal-center-leftbar-btn" type="questionnaire">
+                我的问卷
+            </div>
+            <div class="student-personal-center-leftbar-btn" type="record">
+                学习记录
+            </div>
+            <div class="student-personal-center-leftbar-btn" type="test">
+                学习测试
+            </div>
+        </div>
+        <div class="student-personal-center-rightbar">
+            <div class="student-personal-center-title"></div>
+            <div class="student-personal-info-box student-personalcenter-box">
+                <div class="show-box">
+                    <div class="student-personal-info-littlebox name-box">
+                        <span class="student-personal-info-box-tip">姓名：</span>
+                        <span>{{ '{{' }} realname {{ '}}' }}</span>
+                    </div>
+                    <div class="student-personal-info-littlebox gender-box">
+                        <span class="student-personal-info-box-tip">性别：</span>
+                        <span>{{ '{{' }} gender {{ '}}' }}</span>
+                    </div>
+                    <div class="student-personal-info-littlebox studentnumber-box">
+                        <span class="student-personal-info-box-tip">学号：</span>
+                        <span>{{ '{{' }} studentnumber {{ '}}' }}</span>
+                    </div>
+                    <div class="student-personal-info-littlebox grade-box">
+                        <span class="student-personal-info-box-tip">年级：</span>
+                        <span>{{ '{{' }} grade {{ '}}' }}</span>
+                    </div>
+                    <div class="student-personal-info-littlebox motto-box">
+                        <span class="student-personal-info-box-tip">座右铭：</span>
+                        <span>{{ '{{' }} motto {{ '}}' }}</span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="show-box-edit-btn">
+                        <img src="/resources/images/edit.png"/>
+                        编辑个人信息
+                    </div>
+                </div>
+                <div class="change-box activitycircle-hide">
+                    <div class="student-personal-info-littlebox name-box">
+                        <span class="student-personal-info-box-tip">姓名：</span>
+                        <input style="margin-left:15px;" class="student-personal-info-input"/>
+                    </div>
+                    <div class="student-personal-info-littlebox gender-box">
+                        <span class="student-personal-info-box-tip">性别：</span>
+                        <input class="student-personal-info-input"/>
+                    </div>
+                    <div class="student-personal-info-littlebox studentnumber-box">
+                        <span class="student-personal-info-box-tip">学号：</span>
+                        <input style="margin-left:15px;" class="student-personal-info-input"/>
+                    </div>
+                    <div class="student-personal-info-littlebox grade-box">
+                        <span class="student-personal-info-box-tip">年级：</span>
+                        <select class="student-personal-info-select">
+                            <option value="一年级">一年级</option>
+                            <option value="二年级">二年级</option>
+                            <option value="三年级">三年级</option>
+                            <option value="四年级">四年级</option>
+                            <option value="五年级">五年级</option>
+                            <option value="六年级">六年级</option>
+                        </select>
+                    </div>
+                    <div class="student-personal-info-littlebox motto-box">
+                        <span class="student-personal-info-box-tip">座右铭：</span>
+                        <input class="student-personal-info-input"/>
+                    </div>
+                    <div class="clear"></div>
+                    <a class="btn btn-primary btn-sm student-personal-info-btn" role="button">
+                        确定
+                    </a>
+                </div>
+                <div class="change-password-box">
+                    <div style="margin:10px">
+                        原始密码：<input type="password" class="student-personal-info-input"/>
+                    </div>
+                    <div style="margin:10px">
+                        新的密码：<input type="password" class="student-personal-info-input"/>
+                    </div>
+                    <div style="margin:10px">
+                        重复密码：<input type="password" class="student-personal-info-input"/>
+                    </div>
+                    <a class="btn btn-primary btn-sm student-changepassword-btn" role="button">
+                        确定
+                    </a>
+                </div>
+                <div class="change-avatar">
+                    <img class="avatar-box" src="{{ '{{' }} avatar {{ '}}' }}"/>
+                    <div class="change-avatar-btn"></div>
+                </div>
+            </div>
+            <div class="student-personal-impression-box student-personalcenter-box activitycircle-hide">
+                <div class="student-personal-impression-tips">我认为我的特点(最多只能选择20个)</div>
+                <div class="my-impress"></div>
+                <div class="student-personal-impression-tips">来选择几个能代表你的标签吧</div>
+                <div class="impress-select">
+                    <div class="single-impress-select blue">
+                        运动
+                    </div>
+                    <div class="single-impress-select blue">
+                        英语
+                    </div>
+                    <div class="single-impress-select blue">
+                        户外
+                    </div>
+                    <div class="single-impress-select blue">
+                        海洋
+                    </div>
+                    <div class="single-impress-select blue">
+                        语文
+                    </div>
+                    <div class="single-impress-select blue">
+                        视频
+                    </div>
+                    <div class="single-impress-select blue">
+                        游戏
+                    </div>
+                    <div class="single-impress-select blue">
+                        草原
+                    </div>
+                    <div class="single-impress-select blue">
+                        阅读
+                    </div>
+                    <div class="single-impress-select blue">
+                        旅游
+                    </div>
+                    <div class="single-impress-select blue">
+                        交流
+                    </div>
+                    <div class="single-impress-select blue">
+                        零食
+                    </div>
+                    <div class="single-impress-select blue">
+                        水果
+                    </div>
+                    <div class="single-impress-select blue">
+                        卡通
+                    </div>
+                    <div class="single-impress-select blue">
+                        农村
+                    </div>
+                    <div class="single-impress-select blue">
+                        城市
+                    </div>
+                    <div class="single-impress-select blue">
+                        植物
+                    </div>
+                    <div class="single-impress-select blue">
+                        学习
+                    </div>
+                </div>
+                <div class="input-impress">
+                    <div class="student-personal-impression-tips">上边没有？自己输入</div>
+                    <input class="my-impress-input" maxlength="5" placeholder="我认为我..." />
+                    <a class="btn btn-primary btn-sm input-impress-enter-btn" role="button">
+                        确定
+                    </a>
+                </div>
+            </div>
+            <div class="student-personal-questionnaire-box student-personalcenter-box activitycircle-hide">
+                <div class="student-personalcenter-box-title">1、学习风格调查表</div>
+                <div class="student-personalcenter-box-content"></div>
+                <div class="student-personalcenter-box-title">2、学习兴趣调查</div>
+                <div class="student-personalcenter-box-content"></div>
+            </div>
+            <div class="student-personal-record-box student-personalcenter-box activitycircle-hide">
+            </div>
+            <div class="student-personal-test-box student-personalcenter-box activitycircle-hide">
+                <div class="">您上次的得分是<span></span></div>
+                <div class="student-personal-test-title">本次测试：</div>
+                <div class="student-personal-test-center">
+                    
+                </div>
+                <a class="btn btn-primary btn-sm submit-test-btn" role="button">
+                    提交问卷
+                </a>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</script>
+
+<script id="student_personal_center_test_template" type="text/html">
+    <div class="student_personal_center_test_item">
+        <div>{{ '{{' }} number {{ '}}' }}、{{ '{{' }} question {{ '}}' }}</div>
+        <div style="float:left">
+            <input style="margin:0px 5px;" type="radio" value="A" name="{{ '{{' }} number {{ '}}' }}">
+            <span style="margin-left:10px">A、{{ '{{' }} select_A {{ '}}' }}</span>
+        </div>
+        <div style="float:left">
+            <input style="margin:0px 5px;" type="radio" value="B" name="{{ '{{' }} number {{ '}}' }}">
+            <span style="margin-left:10px">B、{{ '{{' }} select_B {{ '}}' }}</span>
+        </div>
+        {{ '{{#' }} selectC {{ '}}' }}
+        <div style="float:left">
+            <input style="margin:0px 5px;" type="radio" value="C" name="{{ '{{' }} number {{ '}}' }}">
+            <span style="margin-left:10px">C、{{ '{{' }} select_C {{ '}}' }}</span>
+        </div>
+        {{ '{{/' }} selectC {{ '}}' }}
+        {{ '{{#' }} selectD {{ '}}' }}
+        <div style="float:left">
+            <input style="margin:0px 5px;" type="radio" value="D" name="{{ '{{' }} number {{ '}}' }}">
+            <span style="margin-left:10px">D、{{ '{{' }} select_D {{ '}}' }}</span>
+        </div>
+        {{ '{{/' }} selectD {{ '}}' }}
+        <div class="student_personal_center_test_answer activitycircle-hide">
+            {{ '{{' }} answer {{ '}}' }}
+        </div>
+        <div class="clear"></div>
+    </div>
+</script>

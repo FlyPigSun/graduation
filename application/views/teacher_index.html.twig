@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>活动天地</title>
+    <script src="/resources/js/jquery-1.10.2.min.js"></script>
+    <script src="/resources/js/jquery.md5.js"></script>
+    <script src="/resources/js/mustache.js"></script>
+    <script src="/resources/js/bootstrap.js"></script>
+    <script src="/resources/js/jquery.ui.widget.js"></script>
+    <script src="/resources/js/jquery.fileupload.js"></script>
+    <script src="/resources/js/jquery.raty.js"></script>
+    <script src="/resources/js/base.js"></script>
+    <script src="/resources/js/teacher_index.js"></script>
+    <script src="/resources/js/teacher_personal_center.js"></script>
+    <script src="/resources/js/teacher_group_activity.js"></script>
+    <script src="/resources/js/teacher_class.js"></script>
+    <link href="/resources/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/resources/css/jquery.fileupload.css" rel="stylesheet"/>
+    <link href="/resources/css/base.css" rel="stylesheet"/>
+    <link href="/resources/css/teacher_index.css" rel="stylesheet"/>
+    <link href="/resources/css/teacher_class.css" rel="stylesheet"/>
+    <link href="/resources/css/teacher_group_activity.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="activitycircle-hide tid">{{ tid }}</div>
+    <div class="index-background activitycircle-hide"></div>
+    <div class="change-avatar-box">
+    </div>
+    <div class="teacher-index-main">
+        <div class="teacher-index-toparea">
+            <div class="teacher-index-topbtnarea">
+                <div class="teacher-index-topbtn active" type="index">
+                    首页
+                </div>
+                <div class="teacher-index-topbtn" type="personal_center">
+                    个人中心
+                </div>
+                <div class="teacher-index-topbtn" type="group_activity">
+                    小组活动
+                </div>
+                <div class="teacher-index-topbtn" type="honor_box">
+                    荣誉箱
+                </div>
+                <div class="teacher-index-topbtn" type="class">
+                    班级
+                </div>
+                <div class="teacher-index-topbtn" type="message">
+                    站内信
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="teacher-index-topinfoarea">
+                <div style="margin-right:10px;" class="middle-font pull-left">
+                    {{ realname }}
+                </div>
+                <div style="margin-right:10px;" class="middle-font pull-left">
+                    {{ logintime }}
+                </div>
+                <a style="margin-right:10px;" class="middle-font teacher-index-logout pull-left" href="/logout">
+                    退出
+                </a>
+            </div>
+        </div>
+        <div class="teacher-index-centerarea">
+            <div class="teacher-index-first-area activitycircle-hide">
+                
+            </div>
+            <div class="teacher-index-personalcenter-area activitycircle-hide">
+                
+            </div>
+            <div class="teacher-index-groupactivity-area activitycircle-hide">
+                
+            </div>
+            <div class="teacher-index-honorbox-area activitycircle-hide">
+                
+            </div>
+            <div class="teacher-index-class-area activitycircle-hide">
+                <div class="activitycircle-addfriends-area">
+                    <div class="activitycircle-friends-newfriends-title">添加学生进入班级:</div>
+                    <input id="activitycircle-friends-input" class="activitycircle-friends-input" placeholder="请输入学生的姓名"/>
+                    <a class="btn btn-primary btn-sm" role="button">添加学生</a>
+                    <div class="clear"></div>
+                </div>
+                <div class="activitycircle-friends-area">
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="teacher-index-message-area activitycircle-hide">
+                
+            </div>
+        </div>
+    </div>
+
+{% include 'teacher_personal_center_template.html.twig' %}
+{% include 'teacher_group_activity_template.html.twig' %}
+</body>

@@ -1,0 +1,265 @@
+<script id="teacher_group_activity_template" type="text/html">
+    <div class="teacher-comment-box">
+        <div class="teacher-comment-box-id activitycircle-hide"></div>
+        <div class="teacher-comment-title">评论活动</div>
+        <div style="margin:8px 0px;font-size: 16px;">
+            <span style="float: left;">活动主题适合程度</span>
+            <div class="teacher-comment-star teacher-comment-theme-star"></div>
+            <div class="clear"></div>
+        </div>
+        <div style="margin:8px 0px;font-size: 16px;">
+            <span style="float: left;">活动资源适用程度</span>
+            <div class="teacher-comment-star teacher-comment-res-star"></div>
+            <div class="clear"></div>
+        </div>
+        <div style="margin:8px 0px;font-size: 16px;">
+            <span style="float: left;">听力活动清楚程度</span>
+            <div class="teacher-comment-star teacher-comment-audio-star"></div>
+            <div class="clear"></div>
+        </div>
+        <div style="margin:8px 0px;font-size: 16px;">
+            <span style="float: left;">口语活动流利程度</span>
+            <div class="teacher-comment-star teacher-comment-voice-star"></div>
+            <div class="clear"></div>
+        </div>
+        <div style="margin:8px 0px;font-size: 16px;">
+            <span style="float: left;">实际课堂效果程度</span>
+            <div class="teacher-comment-star teacher-comment-class-star"></div>
+            <div class="clear"></div>
+        </div>
+        <div style="margin:20px 0px 0px 0px;text-align:center">
+            <a class="btn btn-primary btn-sm teacher-comment-btn" role="button">
+                提交评分
+            </a>
+        </div>
+    </div>
+    <div class="teacher-personal-center">
+        <div class="teacher-group-activity-leftbar">
+            <div class="teacher-group-activity-leftbar-btn active" type="resource_library">
+                素材库
+            </div>
+            <div class="teacher-group-activity-leftbar-btn" type="new_activity">
+                创建活动
+            </div>
+            <div class="teacher-group-activity-leftbar-btn" type="manage_activity">
+                管理活动
+            </div>
+        </div>
+        <div class="teacher-group-activity-rightbar">
+            <div class="teacher-group-activity-title"></div>
+            <div class="teacher-resource-box teacher-groupActivity-box">
+                <div class="teacher-resource-library-area">
+                    <div style="margin:0px 0px 20px 0px;font-size:15px;">
+                        已有素材:
+                    </div>
+                    <div class="teacher-resource-library-table-area">
+                        <table class="teacher-resource-library-table" rules=cols>
+                            <thead>
+                                <th style="width:200px;">文件名</th>
+                                <th style="width:100px;">作者</th>
+                                <th style="width:100px;">大小</th>
+                                <th style="width:150px;">上传时间</th>
+                                <th style="width:150px;">下载</th>
+                                <th style="width:150px;">删除</th>
+                            </thead>
+                            <tbody> 
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="teacher-new-activity-upload-area">
+                    <div style="margin:0px 0px 20px 0px;">
+                        附件上传:
+                    </div>
+                    <span class="btn btn-success fileinput-button">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>选择文件</span>
+                        <input id="teacher-group-activity-fileupload" type="file" 
+                        name="userfile" multiple="">
+                    </span>
+                    <div id="progress" class="progress activitycircle-hide" style="margin:20px 0px;">
+                        <div class="progress-bar progress-bar-success"></div>
+                    </div>
+                    <div class="teacher-new-activity-upload-feedback"></div>
+                </div>
+            </div>
+            <div class="teacher-new-activity-box teacher-groupActivity-box activitycircle-hide">
+                <div class="teacher-new-activity-first">
+                    <div class="teacher-new-activity-title" style="margin:10px 0px;">
+                        <span class="teacher-new-activity-tips">活动标题:</span>
+                        <input class="teacher-new-activity-input"/>
+                    </div>
+                    <div class="teacher-new-activity-content" style="margin:20px 0px;">
+                        <span class="teacher-new-activity-tips">活动简介:</span>
+                        <textarea class="teacher-new-activity-textarea"/>
+                    </div>
+                    <div class="teacher-new-activity-goal" style="margin:20px 0px;">
+                        <span class="teacher-new-activity-tips">活动目标:</span>
+                        <select class="teacher-new-activity-select">
+                            <option value="听力能力">
+                                听力能力
+                            </option>
+                            <option value="口语能力">
+                                口语能力
+                            </option>
+                            <option value="阅读能力">
+                                阅读能力
+                            </option>
+                            <option value="写作能力">
+                                写作能力
+                            </option>
+                        </select>
+                        <span style="margin-left:60px;" class="teacher-new-activity-tips">
+                            活动难度：
+                        </span>
+                        <div class="teacher-new-activity-star"></div>
+                    </div>
+                    <div class="teacher-new-activity-type" style="margin:20px 0px;">
+                        <span class="teacher-new-activity-tips">
+                            活动形式:
+                        </span>
+                        <select class="teacher-new-activity-select">
+                            <option value="小组合作">
+                                小组合作
+                            </option>
+                            <option value="独立完成">
+                                独立完成
+                            </option>
+                            <option value="课下作业">
+                                课下作业
+                            </option>
+                        </select>
+                    </div>
+                    <div class="teacher-new-activity-theme" style="margin:20px 0px;">
+                        <span class="teacher-new-activity-tips">
+                            活动主题:
+                        </span>
+                        <select class="teacher-new-activity-select">
+                            <option value="个人情况">
+                                个人情况
+                            </option>
+                            <option value="日常活动">
+                                日常活动
+                            </option>
+                            <option value="个人兴趣">
+                                个人兴趣
+                            </option>
+                            <option value="饮食">
+                                饮食
+                            </option>
+                            <option value="居住环境">
+                                居住环境
+                            </option>
+                        </select>
+                        <select style="margin-left:60px;" class="teacher-new-activity-select">
+                            <option value="个人信息">
+                                个人信息
+                            </option>
+                            <option value="家庭信息">
+                                家庭信息
+                            </option>
+                            <option value="学校信息">
+                                学校信息
+                            </option>
+                            <option value="兴趣爱好">
+                                兴趣爱好
+                            </option>
+                            <option value="工作与职业">
+                                工作与职业
+                            </option>
+                        </select>
+                    </div>
+                    <div class="teacher-new-activity-resource" style="margin:20px 0px;">
+                        <span class="teacher-new-activity-tips">
+                            选择附件:
+                        </span>
+                        <select style="width:365px;" class="teacher-new-activity-select">
+                        </select>
+                    </div>
+                    <a class="btn btn-primary btn-sm teacher-new-activity-btn" role="button">
+                        创建活动
+                    </a>  
+                </div>
+                <div class="teacher-new-activity-second">
+                        
+                </div>
+            </div>
+            <div class="teacher-manage-activity-box teacher-groupActivity-box activitycircle-hide">
+                <div class="teacher-manage-activity-title">听力能力活动</div>
+                <div class="teacher-manage-activity-listeningbox"></div>
+                <div class="clear"></div>
+                <div class="teacher-manage-activity-title">口语能力活动</div>
+                <div class="teacher-manage-activity-oralbox"></div>
+                <div class="clear"></div>
+                <div class="teacher-manage-activity-title">阅读能力活动</div>
+                <div class="teacher-manage-activity-readingbox"></div>
+                <div class="clear"></div>
+                <div class="teacher-manage-activity-title">写作能力活动</div>
+                <div class="teacher-manage-activity-writtingbox"></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</script>
+
+<script id="teacher-new-activity-success-template" type="text/html">
+    <div class="teacher-new-activity-second-title">活动创建成功！</div>
+    <div class="teacher-new-activity-success-resource-box">
+        <div style="margin-left:15px;">活动附件：</div>
+        <div class="teacher-new-activity-success-resource-area">
+            <div style="width:592px;margin:auto;">
+            </div>
+        </div>
+    </div>
+    <div class="teacher-new-activity-success-info">
+        <div style="text-align: center;font-size: 18px;font-weight: 900;">活动简介</div>
+        <div class="teacher-new-activity-success-title">{{ '{{' }} title {{ '}}' }}</div>
+        <div class="teacher-new-activity-success-content">{{ '{{' }} content {{ '}}' }}</div>
+        <div class="teacher-new-activity-success-goal">活动目标：{{ '{{' }} goal {{ '}}' }}</div>
+        <div class="teacher-new-activity-success-type">活动形式：{{ '{{' }} type {{ '}}' }}</div>
+    </div>
+    <a class="btn btn-primary btn-sm teacher-new-activity-enter" role="button">
+        确认
+    </a>
+</script>
+
+<script id="teacher-resource-library-table-template" type="text/html">
+    <tr>
+        <td>
+            <div class="file-name">{{ '{{' }} name {{ '}}' }}</div>
+        </td>
+        <td>{{ '{{' }} author {{ '}}' }}</td>
+        <td>{{ '{{' }} file_size {{ '}}' }}</td>
+        <td>
+            {{ '{{' }} upload_time {{ '}}' }}
+        </td>
+        <td>
+            <a target="_blank" href="{{ '{{' }} address {{ '}}' }}">下载</a>
+        </td>
+        <td>
+            <span class="teacher-resource-library-delete-btn">删除</span>
+        </td>
+    </tr>
+</script>
+
+<script id="teacher-manage-activity-template" type="text/html">
+    <a href="/activity/{{ '{{' }} id {{ '}}' }}" target="_blank">
+        <div class="teacher-manage-activity-infobox">
+            <div class="teacher-manage-activity-infobox-id activitycircle-hide">
+                {{ '{{' }} id {{ '}}' }}
+            </div>
+            {{ '{{#' }} delete {{ '}}' }}
+            <div class="teacher-manage-listening-activity-delete"></div>
+            {{ '{{/' }} delete {{ '}}' }}
+            {{ '{{#' }} isDo {{ '}}' }}
+            <div class="teacher-manege-listening-activity-comment">评论</div>
+            {{ '{{/' }} isDo {{ '}}' }}
+            <div class="teacher-manage-listening-activity-title">{{ '{{' }} title {{ '}}' }}</div>
+            <div class="teacher-manage-listening-activity-member">
+                参与人数：{{ '{{' }} student_count {{ '}}' }}人
+            </div>
+            活动难度：<span class="teacher-manage-listening-activity-level-{{ '{{' }} id {{ '}}' }}"></span>
+        </div>
+    </a>
+</script>

@@ -1,0 +1,152 @@
+body{
+	font-family: helvetica,Arial,"微软雅黑","Microsoft Yahei","hiragino kaku gothic pro",meiryo,"ms pgothic",sans-serif;
+	word-break:break-all;
+	background-color: #efefef;
+	background-attachment:fixed;
+}
+.acitvity-main{
+	min-height: 500px;
+	width: 650px;
+	margin: auto;
+}
+.activity-top-area{
+	text-align: center;
+	margin: 30px 0px;
+}
+.activity-title{
+	font-size: 36px;
+	font-weight: 900;
+}
+.activity-author{
+	font-size: 18px;
+}
+.activity-center-area{
+	font-size: 18px;
+}
+.activity-tips{
+	float: left;
+}
+.activity-star{
+	float: left;
+}
+.activity-student-checkbox{
+	margin: 0px 5px !important;
+}
+.activity-student-checkbox-item{
+	float: left;
+	margin: 0px 10px;
+}
+.activity-push-btn{
+	margin: 20px 160px;
+}
+.activity-student-name{
+	cursor: pointer;
+	margin-right: 20px;
+}
+.activity-answer-textarea{
+	resize: none;
+	width: 450px;
+	height: 250px;
+	font-size: 14px;
+	font-weight: 0;
+}
+.activity-answer-btn{
+	margin: 10px 95px;
+	display: block;
+	width: 100px;
+}
+.activity-comment-box{
+	padding: 10px 0px 30px 0px;
+}
+.activity-big-tip{
+	text-align: center;
+	border-top: 1px solid #ccc;
+	padding: 10px 130px;
+	font-size: 30px;
+	font-weight: 900;
+}
+.activity-comment-textarea{
+	resize: none;
+	width: 100%;
+	height: 150px;
+	font-size: 14px;
+	font-weight: 0;
+}
+.activity-sendcomment-btn{
+	margin-top: 10px;
+}
+.yike-teacher-detail-comment-box{
+	position: relative;
+	margin-top: 10px;
+	padding: 10px 20px 20px 20px;
+	background-color: #ccc;
+	border-radius: 4px;
+}
+.yike-teacher-detail-comment-title{
+	font-size: 13px;
+	font-weight: 900;
+	color: #777;
+}
+.yike-teacher-detail-comment-content{
+	margin:5px 0px;
+	font-size: 14px;
+}
+.yike-teacher-detail-comment-teacher-box{
+	position: relative;
+	margin-top: 10px;
+	padding: 10px 50px 20px 50px;
+	background-color: #99CCFF;
+	border-radius: 4px;
+	width: 620px;
+}
+.yike-teacher-detail-comment-teacher-box:hover > .yike-teacher-detail-comment-reply-btn{
+	display: block;
+}
+.yike-teacher-detail-comment-box:hover > .yike-teacher-detail-comment-reply-btn{
+	display: block;
+}
+.yike-teacher-detail-comment-teacher-box:hover > .yike-teacher-detail-comment-delete-btn{
+	display: block;
+}
+.yike-teacher-detail-comment-box:hover > .yike-teacher-detail-comment-delete-btn{
+	display: block;
+}
+.yike-teacher-detail-comment-delete-btn{
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	display: none;
+	color: #CC0000;
+	cursor: pointer;
+	font-size: 14px;
+}
+.yike-teacher-detail-comment-reply-btn{
+	position: absolute;
+	right: 10px;
+	bottom: 5px;
+	display: none;
+	color: #333FFF;
+	cursor: pointer;
+	font-size: 14px;
+}
+.yike-teacher-detail-comment-reply-btn:hover{
+	text-decoration: underline;
+}
+.yike-teacher-detail-comment-delete-btn:hover{
+	text-decoration: underline;
+}
+.yike-teacher-detail-comment-reply-area{
+	display: none;
+}
+.yike-teacher-detail-comment-input{
+	height: 55px;
+	font-size: 14px;
+	width: 100%;
+	margin: 10px 0px;
+	padding: 0px 10px;
+	line-height: 25px;
+	resize:none;
+}
+.activity-score-star{
+	float: left;
+}

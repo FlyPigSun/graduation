@@ -1,0 +1,365 @@
+.index-background{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.7;
+	z-index: 10000;
+}
+.student-index-main{
+	min-height: 500px;
+	min-width: 1050px;
+	margin: auto;
+}
+.activitycircle-test-background{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.7;
+	z-index: 10000;
+}
+.activitycircle-test-box{
+	position: absolute;
+	width: 600px;
+	height: 700px;
+	border: 1px solid #777;
+	box-shadow: 2px 3px 10px #000;
+	border-radius: 4px;
+	background: #fff;
+	padding: 10px;
+	top:50px;
+	left: 50%;
+	margin-left: -300px;
+	z-index: 10001;
+}
+.activitycircle-test-title{
+	font-size: 36px;
+	font-weight: 900;
+	text-align: center;
+}
+.activitycircle-test-radio{
+	margin-left: 20px;
+}
+.activitycircle-test-question{
+	font-size: 14px;
+	margin: 10px 0px;
+}
+.activitycircle-test-btn{
+	width: 100px;
+	margin: 20px 240px;
+}
+.student-index-toparea{
+	width: 100%;
+	height: 50px;
+	background: rgb(67, 139, 187);
+	box-shadow: 0px 2px 3px #000;
+}
+.student-index-topbtnarea{
+	width: 650px;
+	margin: auto;
+}
+.student-index-topinfoarea{
+	float: right;
+	margin: -35px 20px 0px 0px;
+	color: #EDB810;
+	font-weight: 900;
+	width: 350px;
+}
+.student-index-topbtn{
+	float: left;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 900;
+	line-height: 50px;
+	cursor: pointer;
+	padding: 0px 15px;
+}
+.student-index-topbtn:hover{
+	background: rgb(37,118,184);
+}
+.student-index-topbtn.active{
+	background: rgb(37,118,184);
+}
+.student-mood-ico{
+	float: left;
+	margin:-3px 5px 0px 0px;
+}
+.student-index-logout{
+	cursor: pointer;
+	color: #EDB810;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+}
+.student-index-logout:hover{
+	color: #FF3300;
+}
+.student-index-centerarea{
+	width: 1000px;
+	margin: 30px auto;
+	min-height: 500px;
+}
+.student-indexpage-center{
+	width: 660px;
+	margin: auto;
+}
+.student-indexpage-box{
+	width: 270px;
+	height: 170px;
+	background-color: #efecd2;
+	float: left;
+	margin: 30px;
+	cursor: pointer;
+	text-align: center;
+	font-size: 30px;
+	font-weight: 900;
+	line-height: 170px;
+	color: #3399FF;
+	border-radius: 10px;
+	-webkit-transition: box-shadow .3s ease,font-size .3s ease;
+	-moz-transition: box-shadow .3s ease,font-size .3s ease;
+	-ms-transition: box-shadow .3s ease,font-size .3s ease;
+	-o-transition: box-shadow .3s ease,font-size .3s ease;
+}
+.student-indexpage-box:hover{
+	font-size: 34px;
+	box-shadow: 0px 0px 30px #EDB810;
+}
+.student-personal-center{
+	width: 960px;
+	margin: auto;
+}
+.student-personal-center-leftbar{
+	float: left;
+	height: 400px;
+	width: 230px;
+}
+.student-personal-center-leftbar-btn{
+	font-size: 20px;
+	font-weight: 900;
+	text-align: center;
+	line-height: 47px;
+	cursor: pointer;
+}
+.student-personal-center-leftbar-btn.active{
+	background-image: url('/resources/images/arrow.png');
+	color:#0066ff;
+}
+.student-personal-center-rightbar{
+	float: left;
+	margin-left: 50px;
+}
+.student-personalcenter-box{
+	border: 4px solid #ccc;
+	border-radius: 10px;
+	padding: 10px;
+	width: 600px;
+	height: 500px;
+	font-size: 14px;
+}
+.student-personal-center-title{
+	font-size: 24px;
+	margin-bottom: 15px;
+}
+.student-personal-info-littlebox{
+	width: 230px;
+	float: left;
+	margin: 10px;
+}
+.show-box{
+	position: relative;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 20px;
+}
+.change-box{
+	position: relative;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 20px;
+}
+.show-box-edit-btn{
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	display: none;
+	cursor: pointer;
+}
+.show-box-edit:hover{
+	color: #0066ff;
+}
+.show-box:hover > .show-box-edit-btn{
+	display: block;
+}
+.student-personal-info-btn{
+	position: absolute;
+	right: 110px;
+	bottom: 10px;
+	width: 100px;
+}
+.student-personal-info-select{
+	height: 26px;
+	width: 157px;
+}
+.change-password-box{
+	position: relative;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 20px;
+}
+.student-changepassword-btn{
+	position: absolute;
+	right: 110px;
+	bottom: 10px;
+	width: 100px;
+}
+.change-avatar{
+	position: relative;
+	width: 135px;
+	margin: auto;
+}
+.change-avatar-btn{
+	background: url(/resources/images/change-avatar-btn.png);
+	background-position: 0px -1px;
+	width: 120px;
+	height: 33px;
+	cursor: pointer;
+	margin: 15px 0px 0px 8px;
+}
+.change-avatar-btn:hover{
+	background-position: 0px -34px;
+}
+.change-avatar-btn:active{
+	background-position: 0px -65px;
+}
+.change-avatar-box{
+	position: absolute;
+	width: 600px;
+	height: 400px;
+	background-color: #fff;
+	border: 1px solid #000;
+	top: -500px;
+	left: 50%;
+	margin-left: -245px;
+	z-index: 10001;
+}
+.avatar-box{
+	height: 133px;
+	width: 133px;
+	border: 2px solid #6cba26;
+	border-radius: 2px;
+	box-shadow: 0px 2px 3px #000;
+}
+.student-personal-impression-tips{
+	margin: 5px 0px 0px 5px;
+}
+.my-impress{
+	height: 150px;
+	border-bottom: 1px solid #ccc;
+}
+.single-impress{
+	position: relative;
+	margin: 5px;
+	float: left;
+	padding: 0px 10px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 10px;
+	font-weight: 900;
+}
+.single-impress.yellow{
+	color: #000;
+	background-color: #FFFF66;
+}
+.single-impress-delete{
+	position: absolute;
+	display: none;
+	width: 12px;
+	height: 12px;
+	border-radius: 30px;
+	right: -3px;
+	top: -3px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	cursor: pointer;
+	-webkit-transition: background-color .3s ease;
+	-moz-transition: background-color .3s ease;
+	-ms-transition: background-color .3s ease;
+	-o-transition: background-color .3s ease;
+}
+.single-impress-delete:hover{
+	background-color: #FF3300;
+}
+.single-impress:hover>.single-impress-delete {
+	display: block;
+}
+.impress-select{
+	height: 150px;
+	border-bottom: 1px solid #ccc;
+}
+.single-impress-select{
+	position: relative;
+	margin: 5px;
+	float: left;
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 10px;
+	font-weight: 900;
+	cursor: pointer;
+	-webkit-transition: background-color .3s ease;
+	-moz-transition: background-color .3s ease;
+	-ms-transition: background-color .3s ease;
+	-o-transition: background-color .3s ease;
+}
+.single-impress-select.blue{
+	color: #000;
+	background-color: #6699ff;
+}
+.single-impress-select:hover{
+	background: #FFFF66;
+}
+.input-impress{
+	position: relative;
+}
+.my-impress-input{
+	width: 250px;
+	margin: 20px 0px;
+	font-size: 15px;
+}
+.input-impress-enter-btn{
+	position: absolute;
+	right: 20px;
+	top:38px;
+	width: 100px;
+}
+.student-personalcenter-box-title{
+	font-size: 16px;
+	font-weight: 900;
+}
+.student-personalcenter-box-title{
+	margin: 10px 0px;
+}
+.student-personalcenter-box-content{
+	margin: 5px 10px;
+}
+.student-personal-test-box{
+	border: 4px solid #ccc;
+	border-radius: 10px;
+	padding: 10px;
+	width: 600px;
+	height: 500px;
+	font-size: 14px;
+}
+.student-personal-test-title{
+	font-size: 18px;
+	margin: 10px 0px;
+}
+.submit-test-btn{
+	
+}

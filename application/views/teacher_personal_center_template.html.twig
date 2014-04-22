@@ -1,0 +1,99 @@
+<script id="teacher_personal_center_template" type="text/html">
+    <div class="teacher-personal-center">
+        <div class="teacher-personal-center-leftbar">
+            <div class="teacher-personal-center-leftbar-btn active" type="info">
+                个人信息
+            </div>
+            <div class="teacher-personal-center-leftbar-btn" type="activity">
+                我的活动
+            </div>
+        </div>
+        <div class="teacher-personal-center-rightbar">
+            <div class="teacher-personal-center-title"></div>
+            <div class="teacher-personal-info-box teacher-personalcenter-box">
+                <div class="show-box">
+                    <div class="teacher-personal-info-littlebox name-box">
+                        <span class="teacher-personal-info-box-tip">姓名：</span>
+                        <span>{{ '{{' }} realname {{ '}}' }}</span>
+                    </div>
+                    <div class="teacher-personal-info-littlebox gender-box">
+                        <span class="teacher-personal-info-box-tip">性别：</span>
+                        <span>{{ '{{' }} gender {{ '}}' }}</span>
+                    </div>
+                    <div class="teacher-personal-info-littlebox teachernumber-box">
+                        <span class="teacher-personal-info-box-tip">工号：</span>
+                        <span>{{ '{{' }} teachernumber {{ '}}' }}</span>
+                    </div>
+                    <div class="teacher-personal-info-littlebox grade-box">
+                        <span class="teacher-personal-info-box-tip">年级：</span>
+                        <span>{{ '{{' }} grade {{ '}}' }}</span>
+                    </div>
+                    <div class="teacher-personal-info-littlebox motto-box">
+                        <span class="teacher-personal-info-box-tip">座右铭：</span>
+                        <span>{{ '{{' }} motto {{ '}}' }}</span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="show-box-edit-btn">
+                        <img src="/resources/images/edit.png"/>
+                        编辑个人信息
+                    </div>
+                </div>
+                <div class="change-box activitycircle-hide">
+                    <div class="teacher-personal-info-littlebox name-box">
+                        <span class="teacher-personal-info-box-tip">姓名：</span>
+                        <input style="margin-left:15px;" class="teacher-personal-info-input"/>
+                    </div>
+                    <div class="teacher-personal-info-littlebox gender-box">
+                        <span class="teacher-personal-info-box-tip">性别：</span>
+                        <input class="teacher-personal-info-input"/>
+                    </div>
+                    <div class="teacher-personal-info-littlebox teachernumber-box">
+                        <span class="teacher-personal-info-box-tip">工号：</span>
+                        <input style="margin-left:15px;" class="teacher-personal-info-input"/>
+                    </div>
+                    <div class="teacher-personal-info-littlebox grade-box">
+                        <span class="teacher-personal-info-box-tip">年级：</span>
+                        <select class="teacher-personal-info-select">
+                            <option value="一年级">一年级</option>
+                            <option value="二年级">二年级</option>
+                            <option value="三年级">三年级</option>
+                            <option value="四年级">四年级</option>
+                            <option value="五年级">五年级</option>
+                            <option value="六年级">六年级</option>
+                        </select>
+                    </div>
+                    <div class="teacher-personal-info-littlebox motto-box">
+                        <span class="teacher-personal-info-box-tip">座右铭：</span>
+                        <input class="teacher-personal-info-input"/>
+                    </div>
+                    <div class="clear"></div>
+                    <a class="btn btn-primary btn-sm teacher-personal-info-btn" role="button">
+                        确定
+                    </a>
+                </div>
+                <div class="change-password-box">
+                    <div style="margin:10px">
+                        原始密码：<input type="password" class="teacher-personal-info-input"/>
+                    </div>
+                    <div style="margin:10px">
+                        新的密码：<input type="password" class="teacher-personal-info-input"/>
+                    </div>
+                    <div style="margin:10px">
+                        重复密码：<input type="password" class="teacher-personal-info-input"/>
+                    </div>
+                    <a class="btn btn-primary btn-sm teacher-changepassword-btn" role="button">
+                        确定
+                    </a>
+                </div>
+                <div class="change-avatar">
+                    <img class="avatar-box" src="{{ '{{' }} avatar {{ '}}' }}"/>
+                    <div class="change-avatar-btn"></div>
+                </div>
+            </div>
+            <div class="teacher-personal-activity-box teacher-personalcenter-box activitycircle-hide">
+            
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</script>

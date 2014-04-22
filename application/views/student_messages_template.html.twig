@@ -1,0 +1,83 @@
+<script id="activitycircle-messages-center-template" type="text/html">
+	<div class="activitycircle-messages-center">
+	    <div class="activitycircle-messages-mode-area">
+	        <div class="activitycircle-messages-receivebox-btn activitycircle-messages-mode-btn active">
+	            收件箱
+	        </div>
+	        <div class="activitycircle-messages-sendmessage-btn activitycircle-messages-mode-btn">
+	            发件箱
+	        </div>
+	        <div class="clear"></div>
+	    </div>
+	    <div class="activitycircle-messages-main-area">
+	        <div class="activitycircle-messages-receivebox-area">
+	            <div class="activitycircle-messages-receivemessage-table-area">
+	                <table class="activitycircle-messages-receivemessage-table activitycircle-messages-table" rules=cols>
+	                    <thead>
+	                        <th style="width:200px;">时间</th>
+	                        <th style="width:100px;">发件人</th>
+	                        <th style="width:400px;">主题</th>
+	                    </thead>
+	                    <tbody> 
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	        <div class="activitycircle-messages-sendmessage-area activitycircle-hide">
+	            <div class="activitycircle-messages-sendmessage-table-area">
+	                <table class="activitycircle-messages-sendmessage-table activitycircle-messages-table" rules=cols>
+	                    <thead>
+	                        <th style="width:200px;">时间</th>
+	                        <th style="width:100px;">收件人</th>
+	                        <th style="width:400px;">主题</th>
+	                    </thead>
+	                    <tbody> 
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	        <div class="activitycircle-messages-messagedetail-area activitycircle-hide">
+	            <div class="activitycircle-messages-messagedetail">
+	                
+	            </div>
+	            <div class="activitycircle-messages-messagesend">
+	            	<div style="font-weight:900;">回复：</div>
+	                <div class="activitycircle-messages-messagesend-content-area">
+	                    <textarea class="activitycircle-messages-messagesend-content"></textarea>
+	                    <div class="clear"></div>
+	                </div>
+	                <div class="activitycircle-messages-messagesend-button"></div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</script>
+
+<script id="activitycircle-messages-receivemessage-table-template" type="text/html">
+    <tr>
+        <td>{{ '{{' }} ctime {{ '}}' }}</td>
+        <td>{{ '{{' }} realname {{ '}}' }}</td>
+        <td>{{ '{{' }} title {{ '}}' }}</td>
+    </tr>
+</script>
+<script id="activitycircle-messages-sendmessage-table-template" type="text/html">
+    <tr>
+        <td>{{ '{{' }} ctime {{ '}}' }}</td>
+        <td>{{ '{{' }} realname {{ '}}' }}</td>
+        <td style="cursor:pointer;">{{ '{{' }} title {{ '}}' }}</td>
+        <td class="activitycircle-hide">{{ '{{' }} content {{ '}}' }}</td>
+    </tr>
+</script>
+<script id="activitycircle-messages-messagedetail-template" type="text/html">
+    <div class="activitycircle-messages-messagedetail-title">{{ '{{' }} title {{ '}}' }}</div>
+    <div class="activitycircle-messages-messagedetail-to">
+        你好！
+    </div>
+    <div class="activitycircle-messages-messagedetail-content">
+        {{ '{{' }} content {{ '}}' }}
+    </div>
+    <div class="activitycircle-messages-messagedetail-from">
+        <div class="bold">{{ '{{' }} realname {{ '}}' }}</div>
+        <div>{{ '{{' }} ctime {{ '}}' }}</div>
+    </div>
+</script>

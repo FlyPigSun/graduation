@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>活动天地</title>
+    <script src="/resources/js/jquery-1.10.2.min.js"></script>
+    <script src="/resources/js/jquery.md5.js"></script>
+    <script src="/resources/js/bootstrap.js"></script>
+    <script src="/resources/js/jquery.raty.js"></script>
+    <script src="/resources/js/mustache.js"></script>
+    <script src="/resources/js/base.js"></script>
+    <script src="/resources/js/activity.js"></script>
+    <link href="/resources/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/resources/css/base.css" rel="stylesheet"/>
+    <link href="/resources/css/activity.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="activity-role activitycircle-hide">{{ role }}</div>
+    <div class="acitvity-aid activitycircle-hide">{{ aid }}</div>
+    <div class="acitvity-isfinish activitycircle-hide">{{ isFinish }}</div>
+    <div class="acitvity-main">
+        <div class="activity-top-area">
+            <div class="activity-title">
+                {{ title }}
+            </div>
+            <div class="activity-author">
+                {{ author }}老师
+            </div>
+        </div>
+        <div class="activity-center-area">
+            <div style="margin:10px 0px;">
+                <span class="activity-tips">
+                    活动难度：
+                </span>
+                <div class="activity-star"></div>
+                <div class="clear"></div>
+            </div>
+            <div style="margin:10px 0px;">
+                <span class="activity-tips">
+                    活动附件：
+                </span>
+                <div class="activity-resource-area"></div>
+                <div class="clear"></div>
+            </div>
+            <div style="margin:10px 0px;">
+                活动简介：{{ content }}
+            </div>
+            <div style="margin:10px 0px;">
+                <span class="activity-tips">
+                    参与人员：
+                </span>
+                <div class="activity-student-area"></div>
+                <div class="clear"></div>
+            </div>
+            <div style="margin:10px 0px;">
+                <span class="activity-tips">
+                    已完成人员：
+                </span>
+                <div class="activity-finish-student-area"></div>
+                <div class="clear"></div>
+            </div>
+            {% if role == 'teacher' %}
+                <div style="margin:10px 0px;">
+                    <span class="activity-tips">
+                        将该活动推送给：
+                    </span>
+                    <div class="activity-student-checkbox-item">
+                        <input type="checkbox" class="activity-student-checkbox activity-student-checkbox-all" value="all" />全班
+                    </div>
+                    <div class="activity-student-checkbox-area">
+                        <div class="clear"></div>
+                    </div>
+                    <a class="btn btn-primary btn-sm activity-push-btn" role="button">
+                        确认推送
+                    </a>
+                    <div class="clear"></div>
+                </div>
+            {% else %}
+                {% if isFinish %}
+                <div style="margin:10px 0px;">
+                    您的答案：{{ answer }}
+                </div>
+                {% else %}
+                <div style="margin:10px 0px;">
+                    答题区域：
+                    <textarea class="activity-answer-textarea" placeholder="请在此处填写您的答案"></textarea>
+                    <a class="btn btn-primary btn-sm activity-answer-btn" role="button">
+                        答题
+                    </a>
+                </div>
+                <span class="activity-tips">
+                    您为该活动的评分：
+                </span>
+                <div class="activity-score-star"></div>
+                <div class="clear"></div>
+                {% endif %}
+            {% endif %}
+            <div class="activity-comment-box">
+                <div class="activity-big-tip">
+                    讨论区
+                </div>
+                <textarea class="activity-comment-textarea" placeholder="请在此处填写您的评论"></textarea>
+                <a class="btn btn-primary btn-sm activity-sendcomment-btn" role="button">
+                    发布评论
+                </a>
+                <div class="activity-comment-center-area">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script id="activity_comment_template" type="text/html">
+    <div class="yike-teacher-detail-comment-box">
+        <div class="yike-teacher-detail-comment-cid activitycircle-hide">
+            {{ '{{' }} id {{ '}}' }}
+        </div>
+        <div class="yike-teacher-detail-comment-title">
+            <span>{{ '{{' }} author {{ '}}' }}</span>&nbsp;&nbsp;&nbsp;&nbsp;{{ '{{' }} date {{ '}}' }}
+        </div>
+        <div class="yike-teacher-detail-comment-content">
+            {{ '{{' }} comment {{ '}}' }}
+        </div>
+        {{ '{{' }}#delete{{ '}}' }}
+        <div class="yike-teacher-detail-comment-delete-btn">
+            删除
+        </div>
+        {{ '{{' }}/delete{{ '}}' }}
+        <div class="yike-teacher-detail-comment-reply-btn">
+            回复
+        </div>
+        <div class="yike-teacher-detail-comment-reply-area">
+            <textarea placeholder="回复" class="yike-teacher-detail-comment-input"></textarea>
+            <a class="btn btn-primary btn-sm yike-teacher-detail-send-reply-btn" role="button">回复</a>
+        </div>
+    </div>
+</script>

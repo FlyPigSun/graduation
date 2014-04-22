@@ -1,0 +1,250 @@
+.teacher-personal-center{
+	width: 960px;
+	margin: auto;
+}
+.teacher-group-activity-leftbar{
+	float: left;
+	height: 400px;
+	width: 230px;
+}
+.teacher-group-activity-leftbar-btn{
+	font-size: 20px;
+	font-weight: 900;
+	text-align: center;
+	line-height: 47px;
+	cursor: pointer;
+}
+.teacher-group-activity-leftbar-btn.active{
+	background-image: url('/resources/images/arrow.png');
+	color:#0066ff;
+}
+.teacher-group-activity-rightbar{
+	float: left;
+	margin-left: 50px;
+	padding-bottom: 50px;
+}
+.teacher-groupActivity-box{
+	position: relative;
+	overflow: hidden;
+	border: 4px solid #ccc;
+	border-radius: 10px;
+	padding: 10px 10px 10px 10px;
+	width: 600px;
+	min-height: 550px;
+	font-size: 14px;
+}
+.teacher-group-activity-title{
+	font-size: 24px;
+	margin-bottom: 15px;
+}
+.teacher-resource-library-table{
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+    border: 1px solid #e2e2e2;
+}
+.teacher-resource-library-table th{
+	border: none;
+	font-size: 14px;
+	padding: 2px 5px;
+    text-align: center;
+    font-weight: normal;
+    border-left: 1px solid #f2f2f2;
+}
+.teacher-resource-library-table td{
+	border: 1px solid #e2e2e2;
+	padding: 5px;
+	font-size: 12px;
+}
+.teacher-resource-library-table td{
+	position: relative;
+}
+.teacher-resource-library-table .odd{
+	background-color: #ddd;
+}
+.teacher-resource-library-table .even{
+	background-color: #fff;
+}
+.teacher-resource-library-delete-btn{
+	cursor: pointer;
+	color: #FF3300;
+}
+.teacher-resource-library-delete-btn:hover{
+	text-decoration: underline;
+}
+.teacher-resource-library-area{
+	padding-bottom: 20px;
+	border-bottom: 1px solid #ccc;
+}
+.teacher-new-activity-upload-area{
+	padding: 20px 0px 50px 0px;
+}
+.teacher-new-activity-tips{
+	font-size: 15px;
+	margin-right: 10px;
+}
+.teacher-new-activity-input{
+	width: 250px;
+	border: 0px;
+	border-bottom: 1px solid #ccc;
+	padding:0px 5px;
+	font-size: 16px;
+}
+.teacher-new-activity-textarea{
+	resize: none;
+	width: 450px;
+	height: 200px;
+	padding: 5px;
+}
+.teacher-new-activity-select{
+	width: 150px;
+	height: 26px;
+}
+.teacher-new-activity-star{
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 1px;
+}
+.teacher-new-activity-btn{
+	font-weight: 900;
+	font-size: 15px;
+	margin-left: 245px;
+}
+.teacher-new-activity-first{
+	position: absolute;
+	width: 592px;
+	margin: 0px 15px;
+}
+.teacher-new-activity-second{
+	position: absolute;
+	left: 1000px;
+	width: 592px;
+}
+.teacher-new-activity-success-resource-area{
+	padding: 0px 20px;
+	min-height: 130px;
+	text-align: center;
+}
+.teacher-new-activity-second-title{
+	text-align: center;
+	font-size: 24px;
+	font-weight: 900;
+}
+.teacher-new-activity-success-info{
+	position: relative;
+	min-height: 250px;
+	border: 1px solid #ccc;
+	width: 500px;
+	margin: 20px auto 30px auto;
+	padding: 10px 20px;
+	font-size: 18px;
+}
+.teacher-new-activity-success-title{
+	color: #0066ff;
+}
+.teacher-new-activity-success-goal{
+	position: absolute;
+	font-size: 16px;
+	font-weight: 100;
+	color: #EDB810;
+	bottom: 20px;
+	left: 20px;
+}
+.teacher-new-activity-success-type{
+	position: absolute;
+	font-size: 16px;
+	font-weight: 100;
+	color: #EDB810;
+	right: 20px;
+	bottom: 20px;
+}
+.teacher-new-activity-enter{
+	width: 120px;
+	font-size: 16px;
+	padding: 4px;
+	margin-left: 240px;
+}
+.teacher-manage-activity-title{
+	border-bottom: 1px solid #ccc;
+	font-size: 15px;
+}
+.teacher-manage-activity-infobox{
+	position: relative;
+	width: 160px;
+	height: 170px;
+	background-color: #ccc;
+	float: left;
+	margin: 10px 15px 10px 15px;
+	padding: 10px;
+	background: #f8f8ef;
+	cursor: pointer;
+	text-align: center;
+}
+.teacher-manage-listening-activity-title{
+	text-align: center;
+	font-size: 16px;
+	font-weight: 900;
+	margin: 5px;
+}
+.teacher-manage-listening-activity-member{
+	text-align: center;
+	margin: 20px;
+}
+.teacher-manage-listening-activity-delete{
+	right: 5px;
+	top: 5px;
+	position: absolute;
+	background-image: url('/resources/images/close-2.png');
+	width: 17px;
+	height: 17px;
+	display: none;
+}
+.teacher-manage-activity-infobox:hover > .teacher-manage-listening-activity-delete{
+	display: block;
+}
+a .teacher-manage-activity-infobox{
+	color: #000;
+}
+a .teacher-manage-activity-infobox:hover{
+	box-shadow: 4px 4px 3px 0px rgba(204,204,204,0.4);
+	color: #000;
+}
+.teacher-manege-listening-activity-comment{
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	color: rgb(67, 139, 187);
+	display: none;
+}
+.teacher-manage-activity-infobox:hover > .teacher-manege-listening-activity-comment{
+	display: block;
+}
+.teacher-manege-listening-activity-comment:hover{
+	text-decoration: underline;
+	color: rgb(67, 139, 187);
+}
+.teacher-comment-box{
+	position: absolute;
+	width: 600px;
+	height: 300px;
+	top: -300px;
+	padding: 20px;
+	left: 50%;
+	margin-left: -300px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	z-index: 10001;
+}
+.teacher-comment-title{
+	font-size: 30px;
+	font-weight: 900;
+	text-align: center;
+}
+.teacher-comment-star{
+	float: left;
+	margin-left: 20px;
+	line-height: 17px;
+}
+.teacher-comment-btn{
+	font-size: 15px;
+}
